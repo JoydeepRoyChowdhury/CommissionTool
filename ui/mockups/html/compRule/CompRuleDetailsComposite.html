@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+ul.menu {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+li.menu {
+	float: left;
+	position: relative;
+	width: 8em;
+}
+
+li.menu ul {
+	display: none;
+	position: absolute;
+	top: 1em;
+	left: 0;
+}
+
+li.menu>ul {
+	top: auto;
+	left: auto;
+}
+
+li.menu:hover ul {
+	display: block;
+}
+</style>
+<script src="../../js/SalesCommission.js"></script>
+<script src="../../js/jquery-2.1.4.min.js"></script>
+<title>Compensation Rule Details</title>
+</head>
+<body>
+
+	<div id="menu"></div>
+	<div id="buffer" class="body"></div>
+	<script>
+		showMenu();
+	</script>
+	<div id="body" class="body">
+		<h1 align="center">Compensation Rule Details</h1>
+		<table>
+			<tr>
+				<td>Rule name :</td>
+				<td><input type="text" size=50 value="High Performance"></input></td>
+			</tr>
+			<tr>
+				<td valign="top">Description :</td>
+				<td valign="top"><textarea rows="4" cols="50"
+						style="vertical-align: top">Compensation rule for high performers</textarea>
+				</td>
+			</tr>
+			<td>Rule type :</td>
+			<td><input type="radio">Simple</input>&nbsp;&nbsp;&nbsp;&nbsp;<input
+				type="radio" checked="true">Composite</input></td>
+			<tr>
+				<td>Rules connected as :</td>
+				<td><input type="radio">All</input>&nbsp;&nbsp;&nbsp;&nbsp;<input
+					type="radio" checked="true">Any</input></td>
+			</tr>
+			<tr>
+				<td valign="top">List of Rules :</td>
+				<td>
+					<table>
+						<tr>
+							<td>
+								<select>
+									<option value="volvo">Sales Perfornance</option>
+									<option value="saab">Order Booking</option>
+									<option value="mercedes">Max Order Booking</option>
+									<option value="audi">Max Order count</option>
+									<option value="audi" selected="selected"><b>Top Ranks</b></option>
+								</select>
+								<a href="#">Delete</a>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<select>
+									<option value="volvo" selected="selected">Sales Perfornance</option>
+									<option value="saab">Order Booking</option>
+									<option value="mercedes">Max Order Booking</option>
+									<option value="audi">Max Order count</option>
+									<option value="audi"><b>Top Ranks</b></option>
+								</select>
+								<a href="#">Delete</a>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<select>
+									<option value="volvo">Sales Perfornance</option>
+									<option value="saab" selected="selected">Order Booking</option>
+									<option value="mercedes">Max Order Booking</option>
+									<option value="audi">Max Order count</option>
+									<option value="audi"><b>Top Ranks</b></option>
+								</select>
+								<a href="#">Delete</a>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<a href="#">Add row</a>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<br><br>
+		<input type="button" value="Update"></input>
+	</div>
+
+</body>
+</html>
