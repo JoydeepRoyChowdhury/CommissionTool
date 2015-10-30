@@ -3,7 +3,7 @@ function showMenu() {
 	menuTxt += '<ul>';
 	menuTxt += '<li><a href="#">Master Data</a>';
 	menuTxt += '<ul> ';
-	menuTxt += '<li><a href="#">Employee</a></li>';
+	menuTxt += '<li><a href="../employee/EmployeeList.html">Employee</a></li>';
 	menuTxt += '<li><a href="#">Role</a></li>';
 	menuTxt += '<li><a href="#">Org Structure</a></li>';
 	menuTxt += '<li><a href="#">Comp Rule</a></li>';
