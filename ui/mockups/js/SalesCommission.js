@@ -1,0 +1,32 @@
+function showMenu() {
+	var menuTxt = '';
+	menuTxt += '<ul>';
+	menuTxt += '<li><a href="#">Master Data</a>';
+	menuTxt += '<ul> ';
+	menuTxt += '<li><a href="#">Employee</a></li>';
+	menuTxt += '<li><a href="#">Role</a></li>';
+	menuTxt += '<li><a href="#">Org Structure</a></li>';
+	menuTxt += '<li><a href="#">Comp Rule</a></li>';
+	menuTxt += '<li><a href="#">Credit Rollup Rule</a></li>';
+	menuTxt += '</ul> ';
+	menuTxt += '</li>';
+	menuTxt += '<li><a href="#">Booking</a>';
+	menuTxt += '<ul> ';
+	menuTxt += '<li><a href="#">Orders / Booking</a></li>';
+	menuTxt += '</ul> ';
+	menuTxt += '</li>';
+	menuTxt += '<li><a href="#">Comp Plan</a>';
+	menuTxt += '<ul> ';
+	menuTxt += '<li><a href="#">Employee Comp Plan</a></li>';
+	menuTxt += '<li><a href="#">Role Comp Plan</a></li>';
+	menuTxt += '</ul> ';
+	menuTxt += '</li>';
+	menuTxt += '<li><a href="#">Compensation</a>';
+	menuTxt += '<ul> ';
+	menuTxt += '<li><a href="#">Employee Comp Report</a></li>';
+	menuTxt += '</ul> ';
+	menuTxt += '</li>';
+	menuTxt += '</ul>';
+	$("#menu").html(menuTxt);
+	$("#buffer").html('&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>');
+}
