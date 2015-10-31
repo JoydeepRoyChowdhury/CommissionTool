@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css"> 
+ul.menu { padding: 0; margin: 0; list-style: none; } 
+li.menu { float: left; position: relative; width: 8em; } 
+li.menu ul { display: none; position: absolute; top: 1em; left: 0; } 
+li.menu > ul { top: auto; left: auto; } 
+li.menu:hover ul { display: block; } 
+</style> 
+<script src="../../js/SalesCommission.js"></script>
+<script src="../../js/jquery-2.1.4.min.js"></script>
+<title>Employee Details</title>
+</head>
+<body>
+<div id="menu"></div>
+	<div id="buffer" class="body"></div>
+	<script>
+showMenu();
+</script>
+<div id="body" class="body">
+		<h1 align="center">Employee Details</h1>
+<form>
+<table border=0 align="center">
+	<tr>
+   <td>First name: </td><td><input type="text" name="fname"></td>
+ 	</tr>
+ 	<tr>
+  <td> Last name: </td> <td><input type="text" name="lname"></td>
+   </tr>
+   <tr>
+   <td>Hire date:</td> <td>dd/mm/yyyy</td>
+   </tr>
+   <tr>
+   <td>Termination date:</td> <td>dd/mm/yyyy</td>
+   </tr>
+   <tr>
+   <td>Role:</td> <td><input type="text" name="role"></td>
+   </tr>
+   <tr>
+   <td>Job title:</td> <td> <input type="text" name="jobTitle"></td>
+   </tr>
+   <tr>
+   <td>Base Salary:</td> <td> <input type="text" name="salary"></td>
+  </tr>
+  <tr>
+  <td>Manager Id:</td>
+  <td>
+  <select>
+  <option value="volvo">MGR-001</option>
+  <option value="saab">MGR-002</option>
+  <option value="opel">MGR-003</option>
+  <option value="audi">MGR-004</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>
+&nbsp;</td>
+ <td>
+  <input type="submit" value="Save">
+  <input type="button" value="Cancel">
+ </td>
+ </tr>
+</table>
+</form>
+</div>
+</body>
+</html>
