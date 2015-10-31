@@ -25,24 +25,24 @@ showMenu();
 	
 <h1 align="center">Organisation Structure</h1>
 <ul class="non-bullet">
-     <li><span class="Collapsable">+ &nbsp; <a href='EditStructure.html'>CEO</a></span><ul class="non-bullet">
-        <li><span class="Collapsable">+ &nbsp; <a href='EditStructure.html'>VPF</a></span></li>
-        <li><span class="Collapsable">+ &nbsp; <a href='EditStructure.html'>VPO</a></span></li>
-        <li><span class="Collapsable">+ &nbsp; <a href='EditStructure.html'>VPS</a></span></li>
-        <li><span class="Collapsable">+ &nbsp; <a href='EditStructure.html'>VPE</a></span><ul class="non-bullet">
-            <li><span class="Collapsable">+ &nbsp; <a href='EditStructure.html'>DiV</a></span></li>
-            <li><span class="Collapsable">+ &nbsp; <a href='EditStructure.html'>DiD</a></span></li>
-            <li><span class="Collapsable">+ &nbsp; <a href='EditStructure.html'>DiA</a></span><ul class="non-bullet">
-           		 <li><span class="Collapsable">+ &nbsp; <a href='EditStructure.html'>An</a></span></li>
-            	 <li><span class="Collapsable">+ &nbsp; <a href='EditStructure.html'>MGR</a></span></li>
-            	 <li><span class="Collapsable">+ &nbsp; <a href='EditStructure.html'>PROJMGR</a></span><ul class="non-bullet">
-           		 	<li><span class="Collapsable">+ &nbsp; <a href='EditStructure.html'>PROJMGR1</a></span></li>
-            	 	<li><span class="Collapsable">+ &nbsp;<a href='EditStructure.html'>PROJMGR2</a></span></li>
-            	 	<li><span class="Collapsable">+ &nbsp;<a href='EditStructure.html'>PROJMGR3</a></span><ul class="non-bullet">
-           		 		<li><span class="Collapsable">- &nbsp;<a href='EditStructure.html'>TL1</a></span></li>
-            	 		<li><span class="Collapsable">- &nbsp;<a href='EditStructure.html'>TL2</a></span></li>
-            	 		<li><span class="Collapsable">- &nbsp;<a href='EditStructure.html'>SD</a></span></li>
-            	 		<li><span class="Collapsable">- &nbsp;<a href='EditStructure.html'>TESTER</a></span></li>
+     <li><span class="Collapsable">- &nbsp; <a href='EditStructure.html'>CEO</a></span><ul class="non-bullet">
+        <li><span class="Collapsable">- &nbsp; <a href='EditStructure.html'>VPF</a></span></li>
+        <li><span class="Collapsable">- &nbsp; <a href='EditStructure.html'>VPO</a></span></li>
+        <li><span class="Collapsable">- &nbsp; <a href='EditStructure.html'>VPS</a></span></li>
+        <li><span class="Collapsable">- &nbsp; <a href='EditStructure.html'>VPE</a></span><ul class="non-bullet">
+            <li><span class="Collapsable">- &nbsp; <a href='EditStructure.html'>DiV</a></span></li>
+            <li><span class="Collapsable">- &nbsp; <a href='EditStructure.html'>DiD</a></span></li>
+            <li><span class="Collapsable">- &nbsp; <a href='EditStructure.html'>DiA</a></span><ul class="non-bullet">
+           		 <li><span class="Collapsable">- &nbsp; <a href='EditStructure.html'>An</a></span></li>
+            	 <li><span class="Collapsable">- &nbsp; <a href='EditStructure.html'>MGR</a></span></li>
+            	 <li><span class="Collapsable">- &nbsp; <a href='EditStructure.html'>PROJMGR</a></span><ul class="non-bullet">
+           		 	<li><span class="Collapsable">- &nbsp; <a href='EditStructure.html'>PROJMGR1</a></span></li>
+            	 	<li><span class="Collapsable">- &nbsp;<a href='EditStructure.html'>PROJMGR2</a></span></li>
+            	 	<li><span class="Collapsable">- &nbsp;<a href='EditStructure.html'>PROJMGR3</a></span><ul class="non-bullet">
+           		 		<li><span >- &nbsp;<a href='EditStructure.html'>TL1</a></span></li>
+            	 		<li><span >- &nbsp;<a href='EditStructure.html'>TL2</a></span></li>
+            	 		<li><span >- &nbsp;<a href='EditStructure.html'>SD</a></span></li>
+            	 		<li><span >- &nbsp;<a href='EditStructure.html'>TESTER</a></span></li>
         	</ul>
         	</li>
         	</ul>
@@ -57,10 +57,9 @@ showMenu();
 </div>
 <script type="text/javascript">
     $(".Collapsable").click(function () {
-
         $(this).parent().children().toggle();
         $(this).toggle();
-
+        $(this).html($(this).html().startsWith('+') ? $(this).html().replace('+','-') : $(this).html().replace('-','+'));
     });
 
 </script>

@@ -17,7 +17,7 @@ function showMenu() {
 	menuTxt += '</li>';
 	menuTxt += '<li class="menu"><a href="#">Comp Plan</a>';
 	menuTxt += '<ul class="menu"> ';
-	menuTxt += '<li class="menu"><a href="#">Employee Comp Plan</a></li>';
+	menuTxt += '<li class="menu"><a href="../compPlan/CompPlan.html">Employee Comp Plan</a></li>';
 	menuTxt += '<li class="menu"><a href="#">Role Comp Plan</a></li>';
 	menuTxt += '</ul> ';
 	menuTxt += '</li>';
