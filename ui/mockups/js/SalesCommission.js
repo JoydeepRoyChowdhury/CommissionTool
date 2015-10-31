@@ -7,7 +7,7 @@ function showMenu() {
 	menuTxt += '<li class="menu"><a href="#">Role</a></li>';
 	menuTxt += '<li class="menu"><a href="../orgStructure/OrgStructure.html">Org Structure</a></li>';
 	menuTxt += '<li class="menu"><a href="../compRule/CompRule.html">Comp Rule</a></li>';
-	menuTxt += '<li class="menu"><a href="#">Credit Rollup Rule</a></li>';
+	menuTxt += '<li class="menu"><a href="../rollup/RollupRule.html">Credit Rollup Rule</a></li>';
 	menuTxt += '</ul> ';
 	menuTxt += '</li>';
 	menuTxt += '<li class="menu"><a href="#">Booking</a>';
