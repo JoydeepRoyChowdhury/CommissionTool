@@ -44,18 +44,21 @@ showMenu();
    <td>Base Salary:</td> <td> <input type="text" name="salary"></td>
   </tr>
   <tr>
-  <td>Manager Id:</td> <td> <input type="text" name="mgrId"></td>
-<td><img onclick="chooseEmployee()" src="../../image/search.png" alt="Mountain View" style="width:30px;height:20px;"></td>
+  <td>Manager Id:</td> <td> <input type="text" name="mgrId"><script>
+printChooseEmployee();
+</script></td>
 </tr>
-<tr>
-<td>
-&nbsp;</td>
- <td>
-  <input type="submit" value="Save">
-  <input type="button" value="Cancel">
- </td>
- </tr>
 </table>
+<br><br>
+<div align="center">
+<input type="submit" value="Save">
+<script>
+		showCancel();
+	</script>
+	</div>
+	<script>
+		footer();
+	</script>
 </form>
 </div>
 
