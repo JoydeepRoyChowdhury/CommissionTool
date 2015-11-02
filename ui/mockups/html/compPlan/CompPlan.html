@@ -32,7 +32,126 @@ showMenu();
 </script>
 	<div id="body" class="body">
 		<h1 align="center">Compensation Plan Assignment</h1>
+		<table>
+			<tr><td>
+				<table>
+					<tr>
+						<td><input type="radio">Employee</input><br>
+						Select Employee : Selected Employee <input type="button" value="Select"></input>
+						</td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Or</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+						<td><input type="radio" checked="checked">Role</input><br>
+						Select Role :
+								<select>
+									<option value="volvo">Systems Engineer</option>
+									<option value="saab">Analyst</option>
+									<option value="mercedes" selected="selected">Management support</option>
+								</select>
+						
+						</td>
+					</tr>
+				</table>
+			</td></tr>
+			<tr><td>&nbsp;</td></tr>
+			
+			<tr><td>
+				<table>
+					<tr>
+						<td>Plan validity :
+						</td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+						<td><input type="radio">Fixed Date</input> &nbsp;&nbsp;&nbsp;&nbsp;
+							From <input type="text"></input><input type="button" value="Calendar"
+														onclick="window.open('../popups/calendar.html', 'cal', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=no, resizable=no, height=200, width=200')"
+								></input>
+							To <input type="text"></input><input type="button" value="Calendar"
+														onclick="window.open('../popups/calendar.html', 'cal', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=no, resizable=no, height=200, width=200')"
+								></input>						</td>
+					</tr>
+					<tr>
+						<td>
+						</td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+						<td>Or
+						</td>
+					</tr>
+					<tr>
+						<td>
+						</td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+						<td><input type="radio" checked="checked">Repeats</input> &nbsp;&nbsp;&nbsp;&nbsp;
+							From <input type="text"></input><input type="button" value="Calendar"
+														onclick="window.open('../popups/calendar.html', 'cal', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=no, resizable=no, height=200, width=200')"
+														></input>
+							Frequency
+								<select>
+									<option value="volvo">Weekly</option>
+									<option value="saab">Fortnightly</option>
+									<option value="mercedes" selected="selected">Monthly</option>
+									<option value="saab">Quarterly</option>
+									<option value="saab">Annualy</option>
+								</select>
+					</td>
+					</tr>
+				</table>
+			</td></tr>
+			<tr><td>
+				Selected Plans <br>
+				<table border="1">
+					<tr>
+						<td>Plan Id</td>
+						<td>Plan Name</td>
+						<td>Plan Description</td>
+						<td>Details</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>P001</td>
+						<td>High Performance</td>
+						<td>Compensation rule for high performers</td>
+						<td>When any of "Top Ranks", "Sales Performance", "Order booking" is achieved, pay 10% of "Sales performance"<br>
+							<table border="1">
+								<tr>
+									<td>Parameter</td>
+									<td>Default value</td>
+									<td>Overwrite</td>
+								</tr>
+								<tr>
+									<td>MIN_SALES</td>
+									<td>10000</td>
+									<td><input type="text" value=""></input></td>
+								</tr>
+								<tr>
+									<td>SALES_MODE</td>
+									<td>Direct</td>
+									<td><input type="text" value="Travel"></input></td>
+								</tr>
+							</table>
+						</td>
+						<td><a href="#">Delete</a></td>
+					</tr>
+					<tr>
+						<td>P002</td>
+						<td>Max Order booking</td>
+						<td>Compensation rule for maximum order booking</td>
+						<td>When within 10% of all the employees based on max(order total)</td>
+						<td><a href="#">Delete</a></td>
+					</tr>
+					<tr>
+						<td colspan="5" align="right"><a href="#">Add new</a></td>
+					</tr>
+				</table>
+			</td></tr>
+		</table>
+		<br><br>
+		<input type="button" value="Update"></input>
+	<script>
+		showCancel();
+	</script>
 	</div>
+	<script>
+		footer();
+	</script>
 
 </body>
 </html>

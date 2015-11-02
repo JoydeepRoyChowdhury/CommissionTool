@@ -55,6 +55,14 @@ li.menu:hover ul {
 				</td>
 			</tr>
 			<tr>
+				<td>Rollup Plan validity :
+				</td>
+				<td>
+					From <input type="text"></input><input type="button" value="Calendar"></input>
+					To <input type="text"></input><input type="button" value="Calendar"></input>
+				</td>
+			</tr>
+			<tr>
 			<td valign="top">Applies when :</td>
 			<td>
 				<table>
@@ -128,8 +136,28 @@ li.menu:hover ul {
 			</tr>
 			<tr>
 			<td>Beneficiary roles :</td>
-			<td>Starting <input type="text" size="10"></input> level up<br>
-				Ending &nbsp;<input type="text" size="10"></input> level up
+			<td>
+				<table>
+					<tr>
+						<td valign="top"><input type="radio" checked="checked">Hierarchy</input></td>
+						<td valign="top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+						<td>Starting <input type="text" size="10"></input> level up<br>
+							Ending &nbsp;<input type="text" size="10"></input> level up
+						</td>
+					</tr>
+					<tr><td colspan="3">&nbsp;</td></tr>
+					<tr>
+						<td valign="top"><input type="radio">Contributor</input></td>
+						<td valign="top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+						<td align="left">
+								<select>
+									<option value="volvo">Systems Engineer</option>
+									<option value="saab">Analyst</option>
+									<option value="mercedes" selected="selected">Management support</option>
+								</select>
+						</td>
+					</tr>
+				</table>
 			</td>
 			</tr>
 		</table>

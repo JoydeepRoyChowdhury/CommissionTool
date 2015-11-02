@@ -17,8 +17,7 @@ function showMenu() {
 	menuTxt += '</li>';
 	menuTxt += '<li class="menu"><a href="#">Comp Plan</a>';
 	menuTxt += '<ul class="menu"> ';
-	menuTxt += '<li class="menu"><a href="../compPlan/CompPlan.html">Employee Comp Plan</a></li>';
-	menuTxt += '<li class="menu"><a href="#">Role Comp Plan</a></li>';
+	menuTxt += '<li class="menu"><a href="../compPlan/CompPlan.html">Assign Comp Plan</a></li>';
 	menuTxt += '</ul> ';
 	menuTxt += '</li>';
 	menuTxt += '<li class="menu"><a href="#">Compensation</a>';
@@ -29,4 +28,13 @@ function showMenu() {
 	menuTxt += '</ul>';
 	$("#menu").html(menuTxt);
 	$("#buffer").html('&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>');
+}
+
+function showCancel() {
+	var cancelTxt = '';
+	cancelTxt += '<input type="button" value="Cancel" onclick="javascript:window.history.back();"></input>';
+	document.write(cancelTxt);
+}
+function footer() {
+	document.write("About Copyright");
 }
