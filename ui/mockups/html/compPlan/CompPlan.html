@@ -65,12 +65,14 @@ showMenu();
 						<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
 						<td><input type="radio">Fixed Date</input> &nbsp;&nbsp;&nbsp;&nbsp;
 							From <input type="text"></input>
-							<input type="button" value="Calendar"
-									onclick="window.open('../popups/calendar.html', 'cal', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=no, resizable=no, height=200, width=200')">
-														</input>
-							To <input type="text"></input><input type="button" value="Calendar"
-														onclick="window.open('../popups/calendar.html', 'cal', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=no, resizable=no, height=200, width=200')"
-								></input>						</td>
+							<script>
+								printChooseCal();
+							</script>
+							To <input type="text"></input>
+							<script>
+								printChooseCal();
+							</script>
+						</td>
 					</tr>
 					<tr>
 						<td>
@@ -84,9 +86,10 @@ showMenu();
 						</td>
 						<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
 						<td><input type="radio" checked="checked">Repeats</input> &nbsp;&nbsp;&nbsp;&nbsp;
-							From <input type="text"></input><input type="button" value="Calendar"
-														onclick="window.open('../popups/calendar.html', 'cal', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=no, resizable=no, height=200, width=200')"
-														></input>
+							From <input type="text"></input>
+							<script>
+								printChooseCal();
+							</script>
 							Frequency
 								<select>
 									<option value="volvo">Weekly</option>
