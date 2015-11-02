@@ -38,3 +38,8 @@ function showCancel() {
 function footer() {
 	document.write("About Copyright");
 }
+function printChooseEmployee() {
+	var empTxt = '';
+	empTxt += '<img onclick="window.open(\'../employee/EmployeeSelection.html\', \'empSearch\', \'toolbar=no, location=no, status=no, menubar=no, scrollbars=no, resizable=no, height=400, width=600\')" src="../../image/search.png" style="width:30px;height:20px;"/>';
+	document.write(empTxt);
+}

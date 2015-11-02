@@ -37,7 +37,10 @@ showMenu();
 				<table>
 					<tr>
 						<td><input type="radio">Employee</input><br>
-						Select Employee : Selected Employee <input type="button" value="Select"></input>
+						Select Employee : Selected Employee
+						<script>
+							printChooseEmployee();
+						</script>
 						</td>
 						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Or</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 						<td><input type="radio" checked="checked">Role</input><br>
@@ -61,9 +64,10 @@ showMenu();
 						</td>
 						<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
 						<td><input type="radio">Fixed Date</input> &nbsp;&nbsp;&nbsp;&nbsp;
-							From <input type="text"></input><input type="button" value="Calendar"
-														onclick="window.open('../popups/calendar.html', 'cal', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=no, resizable=no, height=200, width=200')"
-								></input>
+							From <input type="text"></input>
+							<input type="button" value="Calendar"
+									onclick="window.open('../popups/calendar.html', 'cal', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=no, resizable=no, height=200, width=200')">
+														</input>
 							To <input type="text"></input><input type="button" value="Calendar"
 														onclick="window.open('../popups/calendar.html', 'cal', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=no, resizable=no, height=200, width=200')"
 								></input>						</td>
@@ -106,7 +110,7 @@ showMenu();
 						<td>&nbsp;</td>
 					</tr>
 					<tr>
-						<td>P001</td>
+						<td><a href="../compRule/CompRuleDetailsComposite.html">P001</a></td>
 						<td>High Performance</td>
 						<td>Compensation rule for high performers</td>
 						<td>When any of "Top Ranks", "Sales Performance", "Order booking" is achieved, pay 10% of "Sales performance"<br>
