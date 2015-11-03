@@ -5,3 +5,4 @@ div.body {
  clear:both;
 }
 
+.non-bullet { list-style-type:none;}
