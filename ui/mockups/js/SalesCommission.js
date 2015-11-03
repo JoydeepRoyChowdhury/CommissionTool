@@ -11,7 +11,7 @@ function showMenu() {
 	menuTxt += '</li>';
 	menuTxt += '<li class="menu"><a href="#">Booking</a>';
 	menuTxt += '<ul class="menu"> ';
-	menuTxt += '<li class="menu"><a href="#">Orders / Booking</a></li>';
+	menuTxt += '<li class="menu"><a href="../orders/OrderManagement.html">Orders / Booking</a></li>';
 	menuTxt += '</ul> ';
 	menuTxt += '</li>';
 	menuTxt += '<li class="menu"><a href="#">Comp Plan</a>';
@@ -21,7 +21,7 @@ function showMenu() {
 	menuTxt += '</li>';
 	menuTxt += '<li class="menu"><a href="#">Compensation</a>';
 	menuTxt += '<ul class="menu"> ';
-	menuTxt += '<li class="menu"><a href="#">Employee Comp Report</a></li>';
+	menuTxt += '<li class="menu"><a href="../compReport/CompReport.html">Employee Comp Report</a></li>';
 	menuTxt += '</ul> ';
 	menuTxt += '</li>';
 	menuTxt += '</ul>';
@@ -39,7 +39,7 @@ function footer() {
 }
 function printChooseEmployee() {
 	var empTxt = '';
-	empTxt += '<img onclick="window.open(\'../employee/EmployeeSelection.html\', \'empSearch\', \'toolbar=no, location=no, status=no, menubar=no, scrollbars=no, resizable=no, height=400, width=600\')" src="../../image/search.png" style="width:30px;height:20px;"/>';
+	empTxt += '<img onclick="window.open(\'employee/EmployeeSelection.html\', \'empSearch\', \'toolbar=no, location=no, status=no, menubar=no, scrollbars=no, resizable=no, height=400, width=600\')" src="../image/search.png" style="width:30px;height:20px;"/>';
 	document.write(empTxt);
 }
 function printChooseCal() {
@@ -54,3 +54,19 @@ function getUrlVars() {
 				});
 	return vars;
 }
+function execEmployeeDetails() {
+	$("#setTarget").load("../components/setTarget.html");
+	$("#rolePicker").load("../components/rolePicker.html");
+	
+}
+function httpGet(theUrl)
+{
+  var xmlHttp = null;
+
+  xmlHttp = new XMLHttpRequest();
+  xmlHttp.open( "GET", theUrl, false );
+  xmlHttp.send( null );
+  return xmlHttp.responseText;
+}
+
+

@@ -1,43 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
-<style type="text/css"> 
-ul.menu { padding: 0; margin: 0; list-style: none; } 
-li.menu { float: left; position: relative; width: 8em; } 
-li.menu ul { display: none; position: absolute; top: 1em; left: 0; } 
-li.menu > ul { top: auto; left: auto; } 
-li.menu:hover ul { display: block; } 
-.non-bullet { list-style-type:none;}
-</style> 
-<script src="../../js/SalesCommission.js"></script>
-<script src="../../js/jquery-2.1.4.min.js"></script>
-<title>Organisation Structure</title>
-
-</head>
-<body>
-<div id="menu"></div>
-	<div id="buffer" class="body"></div>
-	<script>
-		var showMenuParam = getUrlVars()["showMenu"];
-		if (showMenuParam != 'no') {
-			showMenu();
-		}
-		function clickLink() {
-			var showMenuParam = getUrlVars()["showMenu"];
-			if (showMenuParam != 'no') {
-				window.location = 'EditStructure.html';
-			} else {
-				close();
-			}
-		}
-	</script>
-	<div id="body" class="body">
-	
 <h1 align="center">Organisation Structure</h1>
 <ul class="non-bullet">
      <li><span class="Collapsable">- &nbsp;</span> <a href='#' onclick='clickLink();'>CEO</a><ul class="non-bullet">
-        <li><span class="Collapsable">- &nbsp; <a href='EditStructure.html'>VPF</a></span></li>
+        <li><span class="Collapsable">- &nbsp; <a href='./App.html?content=/../orgStructure/EditStructure.html'>VPF</a></span></li>
         <li><span class="Collapsable">- &nbsp; <a href='EditStructure.html'>VPO</a></span></li>
         <li><span class="Collapsable">- &nbsp; <a href='EditStructure.html'>VPS</a></span></li>
         <li><span class="Collapsable">- &nbsp; <a href='EditStructure.html'>VPE</a></span><ul class="non-bullet">
@@ -65,14 +29,3 @@ li.menu:hover ul { display: block; }
     </ul>
     </li>
     </ul>
-</div>
-<script type="text/javascript">
-    $(".Collapsable").click(function () {
-        $(this).parent().children().toggle();
-        $(this).toggle();
-        $(this).html($(this).html().startsWith('+') ? $(this).html().replace('+','-') : $(this).html().replace('-','+'));
-    });
-
-</script>
-</body>
-</html>
