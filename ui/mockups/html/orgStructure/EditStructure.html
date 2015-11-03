@@ -1,135 +1,109 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style type="text/css"> 
-ul.menu { padding: 0; margin: 0; list-style: none; } 
-li.menu { float: left; position: relative; width: 8em; } 
-li.menu ul { display: none; position: absolute; top: 1em; left: 0; } 
-li.menu > ul { top: auto; left: auto; } 
-li.menu:hover ul { display: block; } 
+<style type="text/css">
+thead {
+	font-size: medium;
+	font-weight: bold;
+}
 
+ul.menu {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+li.menu {
+	float: left;
+	position: relative;
+	width: 8em;
+}
+
+li.menu ul {
+	display: none;
+	position: absolute;
+	top: 1em;
+	left: 0;
+}
+
+li.menu>ul {
+	top: auto;
+	left: auto;
+}
+
+li.menu:hover ul {
+	display: block;
+}
 </style>
 <style>
 #blanket {
-   background-color:#111;
-   opacity: 0.65;
-   *background:none;
-   position:absolute;
-   z-index: 9001;
-   top:0px;
-   left:0px;
-   width:100%;
+	background-color: #111;
+	opacity: 0.65;
+	*background: none;
+	position: absolute;
+	z-index: 9001;
+	top: 0px;
+	left: 0px;
+	width: 100%;
 }
 
 #popUpDiv {
-    position:absolute;
-    background:url(pop-back.jpg) no-repeat;
-    width:400px;
-    height:400px;
-    border:5px solid #000;
-    z-index: 9002;
+	position: absolute;
+	background: url(pop-back.jpg) no-repeat;
+	width: 400px;
+	height: 400px;
+	border: 5px solid #000;
+	z-index: 9002;
 }
-</style> 
+</style>
 <script src="../../js/SalesCommission.js"></script>
 <script src="../../js/jquery-2.1.4.min.js"></script>
+<script>
+		$(document).ready(function() {
+			$("#setTarget").load("../components/setTarget.html");
+			$("#rolePicker").load("../components/rolePicker.html");
+		});
+</script>
 <title>Structure edit</title>
 </head>
 <body>
-<div id="menu"></div>
+	<div id="menu"></div>
 	<div id="buffer" class="body"></div>
 	<script>
-showMenu();
-</script>
-<div id="body" class="body">
+		showMenu();
+	</script>
+	<div id="body" class="body">
 		<h1 align="center">Role Details</h1>
-<form>
-<table border=0 align="center">
-	<tr>
-   <td>Role Name: </td><td><input type="text" name="fname" value="TESTER"></td>
- 	</tr>
- 	<tr>
-  <td> Description: </td> <td><textarea rows="4" cols="50">Software Testing</textarea></td>
-   </tr>
-  <tr>
-  <td>Reports To:</td>
-  <td>
-  <select>
-  <option value="volvo">MGR-001</option>
-  <option value="saab">MGR-002</option>
-  <option value="opel">MGR-003</option>
-  <option value="audi">MGR-004</option>
-</select>
-</td>
-</tr>
-<tr>
-<td>
-&nbsp;</td>
- <td>
- <div id="blanket" style="display:none;"></div>
-    <div id="popUpDiv" style="display:none;">
-
-        <a href="#" onclick="popup('popUpDiv')" >Close</a>
-    </div>  
-   <a id="link" onclick="popup('popUpDiv')">Click to choose reports to person</a>
-  <input type="submit" value="Save">
-  <input type="button" value="Cancel">
- </td>
- </tr>
-</table>
-</form>
-</div>
-<script type="text/javascript">
-function toggle(div_id) {
-    var el = document.getElementById(div_id);
-    if ( el.style.display == 'none' ) { el.style.display = 'block';}
-    else {el.style.display = 'none';}
-}
-function blanket_size(popUpDivVar) {
-    if (typeof window.innerWidth != 'undefined') {
-        viewportheight = window.innerHeight;
-    } else {
-        viewportheight = document.documentElement.clientHeight;
-    }
-    if ((viewportheight > document.body.parentNode.scrollHeight) && (viewportheight > document.body.parentNode.clientHeight)) {
-        blanket_height = viewportheight;
-    } else {
-        if (document.body.parentNode.clientHeight > document.body.parentNode.scrollHeight) {
-            blanket_height = document.body.parentNode.clientHeight;
-        } else {
-            blanket_height = document.body.parentNode.scrollHeight;
-        }
-    }
-    var blanket = document.getElementById('blanket');
-    blanket.style.height = blanket_height + 'px';
-    var popUpDiv = document.getElementById(popUpDivVar);
-    popUpDiv_height=blanket_height/2-200;//200 is half popup's height
-    popUpDiv.style.top = popUpDiv_height + 'px';
-}
-function window_pos(popUpDivVar) {
-    if (typeof window.innerWidth != 'undefined') {
-        viewportwidth = window.innerHeight;
-    } else {
-        viewportwidth = document.documentElement.clientHeight;
-    }
-    if ((viewportwidth > document.body.parentNode.scrollWidth) && (viewportwidth > document.body.parentNode.clientWidth)) {
-        window_width = viewportwidth;
-    } else {
-        if (document.body.parentNode.clientWidth > document.body.parentNode.scrollWidth) {
-            window_width = document.body.parentNode.clientWidth;
-        } else {
-            window_width = document.body.parentNode.scrollWidth;
-        }
-    }
-    var popUpDiv = document.getElementById(popUpDivVar);
-    window_width=window_width/2-200;//200 is half popup's width
-    popUpDiv.style.left = window_width + 'px';
-}
-function popup(windowname) {
-    blanket_size(windowname);
-    window_pos(windowname);
-    toggle('blanket');
-    toggle(windowname);     
-}
-</script>
+		<form>
+			<table border=0 align="center">
+				<tr>
+					<td>Role Name:</td>
+					<td><input type="text" name="fname" value="TESTER"></td>
+				</tr>
+				<tr>
+					<td>Description:</td>
+					<td><textarea rows="4" cols="50">Software Testing</textarea></td>
+				</tr>
+				<tr>
+					<td>Reports To:</td>
+					<td>CEO <div style="display: inline" id="rolePicker"></div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<div id="setTarget">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><input type="submit" value="Update"> <input
+						type="submit" value="Add New Parameter"> <script>
+		showCancel();
+	</script></td>
+				</tr>
+			</table>
+		</form>
+	</div>
 </body>
 </html>

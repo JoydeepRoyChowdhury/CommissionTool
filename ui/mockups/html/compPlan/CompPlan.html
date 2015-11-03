@@ -2,6 +2,10 @@
 <html>
 <head>
 <style type="text/css"> 
+thead {
+	font-size: medium;
+	font-weight: bold;
+}
 ul.menu { padding: 0; margin: 0; list-style: none; } 
 li.menu { float: left; position: relative; width: 8em; } 
 li.menu ul { display: none; position: absolute; top: 1em; left: 0; } 
@@ -18,6 +22,9 @@ $(document).ready(function(){
         $(this).parent().children().toggle();
         $(this).toggle();
     });
+
+	$("#planParameter1").load("../components/planParameters.html");
+	$("#planParameter2").load("../components/planParameters.html");
     
 });
 </script>
@@ -105,43 +112,34 @@ showMenu();
 			<tr><td>
 				Selected Plans <br>
 				<table border="1">
-					<tr>
-						<td>Plan Id</td>
-						<td>Plan Name</td>
-						<td>Plan Description</td>
-						<td>Details</td>
-						<td>&nbsp;</td>
-					</tr>
+					<thead>
+						<tr>
+							<td>Plan Id</td>
+							<td>Plan Name</td>
+							<td>Plan Description</td>
+							<td>Details</td>
+							<td>&nbsp;</td>
+						</tr>
+					</thead>
 					<tr>
 						<td><a href="../compRule/CompRuleDetailsComposite.html">P001</a></td>
 						<td>High Performance</td>
 						<td>Compensation rule for high performers</td>
-						<td>When any of "Top Ranks", "Sales Performance", "Order booking" is achieved, pay 10% of "Sales performance"<br>
-							<table border="1">
-								<tr>
-									<td>Parameter</td>
-									<td>Default value</td>
-									<td>Overwrite</td>
-								</tr>
-								<tr>
-									<td>MIN_SALES</td>
-									<td>10000</td>
-									<td><input type="text" value=""></input></td>
-								</tr>
-								<tr>
-									<td>SALES_MODE</td>
-									<td>Direct</td>
-									<td><input type="text" value="Travel"></input></td>
-								</tr>
-							</table>
+						<td>When any of "Top Ranks", "Sales Performance", "Order booking" is achieved, pay 10% of "Sales performance"
+						<br>
+							<div id="planParameter1"></div>
 						</td>
 						<td><a href="#">Delete</a></td>
 					</tr>
 					<tr>
-						<td>P002</td>
+						<td><a href="../compRule/CompRuleDetailsSimpleRank.html">P002</a></td>
 						<td>Max Order booking</td>
 						<td>Compensation rule for maximum order booking</td>
-						<td>When within 10% of all the employees based on max(order total)</td>
+						<td>When within 10% of all the employees based on max(order total)
+						<br>
+							<div id="planParameter2"></div>
+						
+						</td>
 						<td><a href="#">Delete</a></td>
 					</tr>
 					<tr>
