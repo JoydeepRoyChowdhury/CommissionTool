@@ -58,8 +58,14 @@ li.menu:hover ul {
 				<td>Rollup Plan validity :
 				</td>
 				<td>
-					From <input type="text"></input><input type="button" value="Calendar"></input>
-					To <input type="text"></input><input type="button" value="Calendar"></input>
+					From <input type="text"></input>
+							<script>
+								printChooseCal();
+							</script>
+					To <input type="text"></input>
+							<script>
+								printChooseCal();
+							</script>
 				</td>
 			</tr>
 			<tr>
@@ -163,6 +169,13 @@ li.menu:hover ul {
 		</table>
 		<br><br>
 		<input type="button" value="Update"></input>
+	<script>
+		showCancel();
+	</script>
+	</div>
+	<script>
+		footer();
+	</script>
 	</div>
 
 </body>

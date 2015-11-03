@@ -19,13 +19,24 @@ li.menu:hover ul { display: block; }
 <div id="menu"></div>
 	<div id="buffer" class="body"></div>
 	<script>
-showMenu();
-</script>
+		var showMenuParam = getUrlVars()["showMenu"];
+		if (showMenuParam != 'no') {
+			showMenu();
+		}
+		function clickLink() {
+			var showMenuParam = getUrlVars()["showMenu"];
+			if (showMenuParam != 'no') {
+				window.location = 'EditStructure.html';
+			} else {
+				close();
+			}
+		}
+	</script>
 	<div id="body" class="body">
 	
 <h1 align="center">Organisation Structure</h1>
 <ul class="non-bullet">
-     <li><span class="Collapsable">- &nbsp; <a href='EditStructure.html'>CEO</a></span><ul class="non-bullet">
+     <li><span class="Collapsable">- &nbsp;</span> <a href='#' onclick='clickLink();'>CEO</a><ul class="non-bullet">
         <li><span class="Collapsable">- &nbsp; <a href='EditStructure.html'>VPF</a></span></li>
         <li><span class="Collapsable">- &nbsp; <a href='EditStructure.html'>VPO</a></span></li>
         <li><span class="Collapsable">- &nbsp; <a href='EditStructure.html'>VPS</a></span></li>

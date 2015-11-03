@@ -2,6 +2,10 @@
 <html>
 <head>
 <style type="text/css"> 
+thead {
+	font-size: medium;
+	font-weight: bold;
+}
 ul.menu { padding: 0; margin: 0; list-style: none; } 
 li.menu { float: left; position: relative; width: 8em; } 
 li.menu ul { display: none; position: absolute; top: 1em; left: 0; } 
@@ -53,83 +57,67 @@ showMenu();
   <tr>
   <td>Reports To:</td>
   <td>
-  <select>
-  <option value="volvo">MGR-001</option>
-  <option value="saab">MGR-002</option>
-  <option value="opel">MGR-003</option>
-  <option value="audi">MGR-004</option>
-</select>
+  	<img onclick="window.open('../orgStructure/OrgStructure.html?showMenu=no', 'empSearch', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=no, resizable=no, height=400, width=600')" src="../../image/search.png" style="width:30px;height:20px;"/>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+	<h2>Set Targets</h2>
+	<table border="1">
+		<thead>
+			<tr>
+				<td>Parameter Name</td>
+				<td>Start Date</td>
+				<td>End Date</td>
+				<td>Repeat Frequency</td>
+			</tr>
+		</thead>
+			<tr>
+				<td>
+					<select>
+						<option value="volvo" selected="selected">MIN_SALES</option>
+						<option value="volvo">SERVICE_AMOUNT</option>
+						<option value="saab">PROMOTIONAL_SALES</option>
+						<option value="mercedes">NEW_PRODUCT_SALES</option>
+						<option value="saab">SALE_REMOTELY</option>
+					</select>
+				</td>
+				<td><input type="text" size="11"></input><script>printChooseCal();</script>
+				</td>
+				<td><input type="text" size="11"></input><script>printChooseCal();</script>
+				</td>
+				<td>
+					<select>
+						<option value="volvo" selected="selected">-None-</option>
+						<option value="volvo">Weekly</option>
+						<option value="saab">Fortnightly</option>
+						<option value="mercedes">Monthly</option>
+						<option value="saab">Quarterly</option>
+						<option value="saab">Annualy</option>
+					</select>
+				</td>
+				<td><a href="#">Delete</a>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="5" align="right"><a href="#">Add New</a></td>
+			</tr>
+	</table>
 </td>
 </tr>
 <tr>
 <td>
 &nbsp;</td>
  <td>
- <div id="blanket" style="display:none;"></div>
-    <div id="popUpDiv" style="display:none;">
-
-        <a href="#" onclick="popup('popUpDiv')" >Close</a>
-    </div>  
-   <a id="link" onclick="popup('popUpDiv')">Click to choose reports to person</a>
-  <input type="submit" value="Save">
-  <input type="button" value="Cancel">
+  <input type="submit" value="Update">
+  <input type="submit" value="Add New Parameter">
+	<script>
+		showCancel();
+	</script>
  </td>
  </tr>
 </table>
 </form>
 </div>
-<script type="text/javascript">
-function toggle(div_id) {
-    var el = document.getElementById(div_id);
-    if ( el.style.display == 'none' ) { el.style.display = 'block';}
-    else {el.style.display = 'none';}
-}
-function blanket_size(popUpDivVar) {
-    if (typeof window.innerWidth != 'undefined') {
-        viewportheight = window.innerHeight;
-    } else {
-        viewportheight = document.documentElement.clientHeight;
-    }
-    if ((viewportheight > document.body.parentNode.scrollHeight) && (viewportheight > document.body.parentNode.clientHeight)) {
-        blanket_height = viewportheight;
-    } else {
-        if (document.body.parentNode.clientHeight > document.body.parentNode.scrollHeight) {
-            blanket_height = document.body.parentNode.clientHeight;
-        } else {
-            blanket_height = document.body.parentNode.scrollHeight;
-        }
-    }
-    var blanket = document.getElementById('blanket');
-    blanket.style.height = blanket_height + 'px';
-    var popUpDiv = document.getElementById(popUpDivVar);
-    popUpDiv_height=blanket_height/2-200;//200 is half popup's height
-    popUpDiv.style.top = popUpDiv_height + 'px';
-}
-function window_pos(popUpDivVar) {
-    if (typeof window.innerWidth != 'undefined') {
-        viewportwidth = window.innerHeight;
-    } else {
-        viewportwidth = document.documentElement.clientHeight;
-    }
-    if ((viewportwidth > document.body.parentNode.scrollWidth) && (viewportwidth > document.body.parentNode.clientWidth)) {
-        window_width = viewportwidth;
-    } else {
-        if (document.body.parentNode.clientWidth > document.body.parentNode.scrollWidth) {
-            window_width = document.body.parentNode.clientWidth;
-        } else {
-            window_width = document.body.parentNode.scrollWidth;
-        }
-    }
-    var popUpDiv = document.getElementById(popUpDivVar);
-    window_width=window_width/2-200;//200 is half popup's width
-    popUpDiv.style.left = window_width + 'px';
-}
-function popup(windowname) {
-    blanket_size(windowname);
-    window_pos(windowname);
-    toggle('blanket');
-    toggle(windowname);     
-}
-</script>
 </body>
 </html>
