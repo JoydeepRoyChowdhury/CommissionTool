@@ -23,20 +23,14 @@ $(window).load(function(){
 <title>Sales Commissioning Tool</title>
 </head>
 <body>
-	<div style="background:#999; font-size:22px; text-align:center; line-height:50px; color:#FFF; font-weight:bold;">
-		Sales Commission Tool
-    </div>
-	<!-- start header -->
-	<header>	
-		<div id="headerMenu" class="container">
 			<script>
+			var showMenuParam = getUrlVars()["showMenu"];
+			if (showMenuParam != 'no') {
 				var url = window.location.href;
 				url = url.split("?")[0];
 				document.write(httpGet(url + "/../components/menu.html"));
+			}
 			</script>
-		</div>
-	</header>	
-	<!-- end header -->
 	
 
     <!-- javascript

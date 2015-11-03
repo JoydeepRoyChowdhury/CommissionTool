@@ -1,8 +1,8 @@
 <h1 align="center">Organisation Structure</h1>
 <ul class="non-bullet">
      <li><span class="Collapsable">- &nbsp;</span> <a href='#' onclick='clickLink();'>CEO</a><ul class="non-bullet">
-        <li><span class="Collapsable">- &nbsp; <a href='./App.html?content=/../orgStructure/EditStructure.html'>VPF</a></span></li>
-        <li><span class="Collapsable">- &nbsp; <a href='EditStructure.html'>VPO</a></span></li>
+        <li><span class="Collapsable">- &nbsp; <a href='clickLink();'>VPF</a></span></li>
+        <li><span class="Collapsable">- &nbsp; <a href='clickLink();'>VPO</a></span></li>
         <li><span class="Collapsable">- &nbsp; <a href='EditStructure.html'>VPS</a></span></li>
         <li><span class="Collapsable">- &nbsp; <a href='EditStructure.html'>VPE</a></span><ul class="non-bullet">
             <li><span class="Collapsable">- &nbsp; <a href='EditStructure.html'>DiV</a></span></li>
@@ -29,3 +29,14 @@
     </ul>
     </li>
     </ul>
+    <script>
+		function clickLink() {
+			var showMenuParam = getUrlVars()["showMenu"];
+			if (showMenuParam != 'no') {
+				window.location = './App.html?content=/../orgStructure/EditStructure.html';
+			} else {
+				close();
+			}
+		}
+	</script>
+    
