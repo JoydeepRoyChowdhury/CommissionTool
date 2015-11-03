@@ -56,12 +56,6 @@ header ul.nav li a i {
 }
 .container,
 .navbar-static-top .container{
-  width: 940px;
-}
-.container {
-  margin-right: auto;
-  margin-left: auto;
-  *zoom: 1;
 }
 .container:before,
 .container:after {
@@ -78,7 +72,6 @@ header ul.nav li a i {
   position: relative;
 }
 .nav {
-  margin-bottom: 20px;
   margin-left: 0;
   list-style: none;
 }
@@ -157,9 +150,7 @@ header ul.nav li a i {
   left: 9px;
   display: inline-block;
   border-right: 7px solid transparent;
-  border-bottom: 7px solid #ccc;
   border-left: 7px solid transparent;
-  border-bottom-color: rgba(0, 0, 0, 0.2);
   content: '';
 }
 
@@ -169,7 +160,6 @@ header ul.nav li a i {
   left: 10px;
   display: inline-block;
   border-right: 6px solid transparent;
-  border-bottom: 6px solid #ffffff;
   border-left: 6px solid transparent;
   content: '';
 }
@@ -319,7 +309,6 @@ border-top:none;
   padding:10px 15px 10px 15px;
   margin:0;
   text-shadow:none;
-  border-bottom:1px solid #303030;
   text-decoration:none;
 }
 
@@ -364,7 +353,7 @@ border-top:none;
 	  margin-top:0;
 	  color:#111;
 	  margin-right:20px;
-	  line-height:30px;
+	  line-height:20px;
 		font-size:13px;
 		
     }
@@ -396,7 +385,6 @@ border-top:none;
       display: block;
 	  width:100%;
 	  float:left;
-	  margin-bottom:20px;
 	  color:#111;
 	  margin-right:20px;
 	  line-height:30px;
@@ -414,6 +402,5 @@ border-top:none;
 	.headnav {
 		text-align:center;
 		float:none;
-		margin:10px 0 0 0;
 	}
 }

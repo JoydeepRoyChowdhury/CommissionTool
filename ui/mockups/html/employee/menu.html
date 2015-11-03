@@ -11,6 +11,14 @@
     <meta name="author" content="">
     <!-- css -->
     <link href="../../css/menu.css" rel="stylesheet">
+<script src="../../js/jquery-2.1.4.min.js"></script>
+<script>
+		$(document).ready(function() {
+			$("#setTarget").load("../components/setTarget.html");
+			$("#rolePicker").load("../components/rolePicker.html");
+		});
+</script>
+<title>Employee Details</title>
 </head>
 <body>
 	<div style="background:#999; font-size:22px; text-align:center; line-height:160px; color:#FFF; font-weight:bold;">Sales Commission Tool
@@ -71,5 +79,63 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="../../js/jquery.js"></script>
 	<script src="../../js/custom.js"></script>
-
+<div id="menu"></div>
+	<div id="buffer" class="body"></div>
+	<script>
+		showMenu();
+	</script>
+	<div id="body" class="body">
+		<h1 align="center">Employee Details</h1>
+		<form>
+			<table border=0 align="center">
+				<tr>
+					<td>Name:</td>
+					<td>Ginda Basett</td>
+				</tr>
+				<tr>
+					<td>Start date:</td>
+					<td>dd/mm/yyyy</td>
+				</tr>
+				<tr>
+					<td>Termination date:</td>
+					<td>dd/mm/yyyy</td>
+				</tr>
+				<tr>
+					<td>Role:</td>
+					<td>Sales Rep<div style="display: inline" id="rolePicker"></div></td>
+				</tr>
+				<tr>
+					<td>Job title:</td>
+					<td>Sales Representative</td>
+				</tr>
+				<tr>
+					<td>Base Salary:</td>
+					<td><input type="text" name="salary"></td>
+				</tr>
+				<tr>
+					<td>Manager Id:</td>
+					<td>Timothy Samson
+					<script>
+						printChooseEmployee();
+					</script></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<div id="setTarget"></div>
+					</td>
+				</tr>
+			</table>
+			<br>
+			<br>
+			<div align="center">
+				<input type="submit" value="Save">
+				<script>
+		showCancel();
+	</script>
+			</div>
+			<script>
+		footer();
+	</script>
+		</form>
+	</div>
 </body></html>
