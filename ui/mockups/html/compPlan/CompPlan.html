@@ -2,6 +2,10 @@
 <html>
 <head>
 <style type="text/css"> 
+thead {
+	font-size: medium;
+	font-weight: bold;
+}
 ul.menu { padding: 0; margin: 0; list-style: none; } 
 li.menu { float: left; position: relative; width: 8em; } 
 li.menu ul { display: none; position: absolute; top: 1em; left: 0; } 
@@ -18,6 +22,9 @@ $(document).ready(function(){
         $(this).parent().children().toggle();
         $(this).toggle();
     });
+
+	$("#planParameter1").load("../components/planParameters.html");
+	$("#planParameter2").load("../components/planParameters.html");
     
 });
 </script>
@@ -105,49 +112,22 @@ showMenu();
 			<tr><td>
 				Selected Plans <br>
 				<table border="1">
-					<tr>
-						<td>Plan Id</td>
-						<td>Plan Name</td>
-						<td>Plan Description</td>
-						<td>Details</td>
-						<td>&nbsp;</td>
-					</tr>
+					<thead>
+						<tr>
+							<td>Plan Id</td>
+							<td>Plan Name</td>
+							<td>Plan Description</td>
+							<td>Details</td>
+							<td>&nbsp;</td>
+						</tr>
+					</thead>
 					<tr>
 						<td><a href="../compRule/CompRuleDetailsComposite.html">P001</a></td>
 						<td>High Performance</td>
 						<td>Compensation rule for high performers</td>
 						<td>When any of "Top Ranks", "Sales Performance", "Order booking" is achieved, pay 10% of "Sales performance"
 						<br>
-							<table border="1">
-								<tr>
-									<td>Parameter</td>
-									<td>Default value</td>
-									<td>Overwrite</td>
-								</tr>
-								<tr>
-									<td>MIN_SALES</td>
-									<td>10000</td>
-									<td><input type="text" value=""></input> Or,
-											<select>
-												<option value="volvo">-None-</option>
-												<option value="volvo" selected="true">Employee Sales Target</option>
-												<option value="saab">Employee Order Count Target</option>
-												<option value="mercedes">Promotional Product Booking Target</option>
-											</select>
-									</td>
-								</tr>
-								<tr>
-									<td>SALES_MODE</td>
-									<td>Direct</td>
-									<td><input type="text" value="Travel"></input> Or,
-											<select>
-												<option value="volvo" selected="true">-None-</option>
-												<option value="volvo">Employee Sales Target</option>
-												<option value="saab">Employee Order Count Target</option>
-												<option value="mercedes">Promotional Product Booking Target</option>
-									</td>
-								</tr>
-							</table>
+							<div id="planParameter1"></div>
 						</td>
 						<td><a href="#">Delete</a></td>
 					</tr>
@@ -157,23 +137,8 @@ showMenu();
 						<td>Compensation rule for maximum order booking</td>
 						<td>When within 10% of all the employees based on max(order total)
 						<br>
-							<table border="1">
-								<tr>
-									<td>Parameter</td>
-									<td>Default value</td>
-									<td>Overwrite</td>
-								</tr>
-								<tr>
-									<td>MIN_SALES</td>
-									<td>10000</td>
-									<td><input type="text" value=""></input></td>
-								</tr>
-								<tr>
-									<td>SALES_MODE</td>
-									<td>Direct</td>
-									<td><input type="text" value="Travel"></input></td>
-								</tr>
-							</table>
+							<div id="planParameter2"></div>
+						
 						</td>
 						<td><a href="#">Delete</a></td>
 					</tr>
