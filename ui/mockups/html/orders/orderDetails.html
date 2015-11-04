@@ -1,127 +1,37 @@
-<!DOCTYPE html>
-<html>
-<head>
-<style type="text/css">
-ul.menu {
-	padding: 0;
-	margin: 0;
-	list-style: none;
-}
+		<h1 align="center">Imported Orders</h1>
+		<table border=1 align="center">
+			<thead>
+				<tr>
+					<td><a href='#'>Order Id</a></td>
+					<td><a href='#'>Order Date<a></a></td>
+					<td><a href='#'>Sales Rep<a></a></td>
+					<td><a href='#'>Customer<a></a></td>
+					<td><a href='#'>Products<a></a></td>
+					<td><a href='#'>Product total<a></a></td>
+					<td><a href='#'>Service total<a></a></td>
+					<td><a href='#'>Discount<a></a></td>
+					<td><a href='#'>Order total<a></a></td>
+				</tr>
+			</thead>
+			<tbody>
+					<td><a href="">O1234</a></td>
+					<td>10/11/2015</td>
+					<td>Matt Buddy</td>
+					<td>Intel Corporation</td>
+					<td>Router (R001) -2, Install & commissioning (S001) - 1</td>
+					<td>$1234.34</td>
+					<td>$500.00</td>
+					<td>5%</td>
+					<td>$5678.89</td>
+			</tbody>
+		</table>
+		<p align="center"><a href=""><<</a> <a href=""><</a> Prev Next > >></p>
+		<table>
+			<tr><td width="60%">&nbsp;</td><td>Page 41 of 120 (Displaying 460-475 of 1550 records)</td></tr>
+			<tr><td>&nbsp;</td><td>Go to Page 1 2 3 .. 38 39 40 42 43 44 45 56 ..1549 1550</td></tr>
+		</table>
 
-li.menu {
-	float: left;
-	position: relative;
-	width: 8em;
-}
-
-li.menu ul {
-	display: none;
-	position: absolute;
-	top: 1em;
-	left: 0;
-}
-
-li.menu>ul {
-	top: auto;
-	left: auto;
-}
-
-li.menu:hover ul {
-	display: block;
-}
-</style>
-<script src="../../js/SalesCommission.js"></script>
-<script src="../../js/jquery-2.1.4.min.js"></script>
-<title>Page Title</title>
-</head>
-<body>
-
-	<div id="menu"></div>
-	<div id="buffer" class="body"></div>
-	<script>
-		showMenu();
-	</script>
-	<div id="body" class="body">
-		<h1 align="center">Order Details</h1>
-		<form>
-			<table border=0 align="center">
-				<tr>
-					<td>Order id:</td>
-					<td><input type="text" name="id"></td>
-				</tr>
-				<tr>
-					<td>Order line:</td>
-					<td><input type="text" name="line"></td>
-				</tr>
-				<tr>
-					<td>Order type:</td>
-					<td><input type="text" name="type"></td>
-				</tr>
-				<tr>
-					<td>Order date:</td>
-					<td>dd/mm/yyyy</td>
-				</tr>
-				<tr>
-					<td>Customer id:</td>
-					<td><input type="text" name="id"></td>
-				</tr>
-				<tr>
-					<td>Customer name:</td>
-					<td><input type="text" name="name"></td>
-				</tr>
-				<tr>
-					<td>Customer PO:</td>
-					<td><input type="text" name="po"></td>
-				</tr>
-				<tr>
-					<td>Sales rep id:</td>
-					<td><input type="text" name="id"></td>
-				</tr>
-				<tr>
-					<td>Sales rep name :</td>
-					<td><input type="text" name="name"></td>
-				</tr>
-				<tr>
-					<td>Service Engineer id :</td>
-					<td><input type="text" name="id"></td>
-				</tr>
-				<tr>
-					<td>Management support id :</td>
-					<td><input type="text" name="id"></td>
-				</tr>
-				<tr>
-					<td>Product Description:</td>
-					<td><input type="text" name="description"></td>
-				</tr>
-				<tr>
-					<td>Product category:</td>
-					<td><input type="text" name="category"></td>
-				</tr>
-				<tr>
-					<td>Order line price:</td>
-					<td><input type="text" name="price"></td>
-				</tr>
-				<tr>
-					<td>Order line quantity:</td>
-					<td><input type="text" name="quantity"></td>
-				</tr>
-				<tr>
-					<td>Order line unit :</td>
-					<td><input type="text" name="unit"></td>
-				</tr>
-				<tr>
-					<td>order value:</td>
-					<td><input type="text" name="value"></td>
-				</tr>
-				<tr>
-					<td>Order currency:</td>
-					<td><input type="text" name="currency"></td>
-				</tr>
-			</table>
 			<div align="center">
 			<script>
 				showCancel();
 			</script>
-			</div>
-</body>
-</html>

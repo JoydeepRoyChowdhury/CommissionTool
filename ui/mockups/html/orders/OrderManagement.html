@@ -1,25 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-<style type="text/css"> 
-thead {
-	font-size: medium;
-	font-weight: bold;
-}
-ul.menu { padding: 0; margin: 0; list-style: none; } 
-li.menu { float: left; position: relative; width: 8em; } 
-li.menu ul { display: none; position: absolute; top: 1em; left: 0; } 
-li.menu > ul { top: auto; left: auto; } 
-li.menu:hover ul { display: block; } 
-</style> 
-<script src="../../js/SalesCommission.js"></script>
-<script src="../../js/jquery-2.1.4.min.js"></script>
-<title>Page Title</title>
-</head>
-<body>
-
-	<div id="menu"></div>
-	<div id="buffer" class="body"></div>
 	<script language="JavaScript" type="text/javascript">
 function HandleBrowseClick()
 {
@@ -33,10 +11,6 @@ var textinput = document.getElementById("filename");
 textinput.value = fileinput.value;
 }
 </script>
-	<script>
-showMenu();
-</script>
-	<div id="body" class="body">
 		<h1 align="center">Order Management</h1>
 		<h2 align="center">List of Imports</h2> 
 		<table border=1 align="center">
@@ -53,14 +27,14 @@ showMenu();
 			<tbody>
 				<tr>
 					
-					<td><a href='OrderDetails.html'>01453<a></a></td>
+					<td><a href='./App.html?content=/../orders/orderDetails.html'>01453<a></a></td>
 					<td>16/10/2015</td>
 					<td align="center"> 20</td>
 					<td>Will Morgan</td>
 					<td>Verified</td>
 				</tr>
 			     <tr>
-			       <td><a href='OrderDetails.html'>01454<a></a></td>
+			       <td><a href='./App.html?content=/../orders/orderDetails.html'>01454<a></a></td>
 			       <td>20/10/2015</td>
 					<td align="center"> 10</td>
 					<td>Will Smith</td>
@@ -68,7 +42,7 @@ showMenu();
 			     </tr>
 			     <tr>
 			       
-					<td><a href='OrderDetails.html'>01455<a></a></td>
+					<td><a href='./App.html?content=/../orders/orderDetails.html'>01455<a></a></td>
 					<td>25/10/2015</td>
 					<td align="center"> 15</td>
 					<td>Nicolus Creaz</td>
@@ -76,7 +50,7 @@ showMenu();
 			     </tr>
 			     <tr>
 			       
-					<td><a href='OrderDetails.html'>01456<a></a></td>
+					<td><a href='./App.html?content=/../orders/orderDetails.html'>01456<a></a></td>
 					<td>01/11/2015</td>
 					<td align="center"> 30</td>
 					<td>Marcellano Torresse</td>
@@ -92,11 +66,8 @@ showMenu();
 		      <center><td> Import new: </td>
 		      <td><input type="file" id="browse" name="fileupload" style="display: none" onChange="Handlechange();"/>
 				<input type="text" id="filename" readonly="true"/>
-				<input type="button" value="Browser" id="fakeBrowse" onclick="HandleBrowseClick();"/></td>
+				<input type="button" value="Select File" id="fakeBrowse" onclick="HandleBrowseClick();"/></td>
 			<td><input type="button" value="Import" onclick="HandleClick();" /></td>
 		  </tr>
 	  </table>
 	
-	</div>
-</body>
-</html>
