@@ -1,3 +1,5 @@
+package com.pursuit.salesCommission.app;
+
 import static org.junit.Assert.*;
 
 import org.junit.Before;
