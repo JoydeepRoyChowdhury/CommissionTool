@@ -3,7 +3,7 @@
 	<!-- project-specific variables -->
 	<property name="jsp.dir.name" value="CommissionTool" />
 	<property name="package.name" value="${jsp.dir.name}.war" />
-	<property name="webapp.dir" value="C:\MyPrograms\apache-tomcat-8.0.28\webapps" />
+	<property name="webapp.dir" value="F:\apache-tomcat-8.0.28\webapps" />
 
 	<property environment="env" />
 	<property name="build.dir" value="build" />
