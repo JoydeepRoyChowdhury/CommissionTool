@@ -77,6 +77,7 @@
 		<copy file="${resources.dir}/navigation-rules.xml" tofile="${temp.dir.web-inf}/navigation-rules.xml" overwrite="true" />
 		-->
 		<copy file="WebContent/WEB-INF/web.xml" tofile="${temp.dir.web-inf}/web.xml" overwrite="true" />
+		<copy file="WebContent/WEB-INF/CommissionTool-servlet.xml" tofile="${temp.dir.web-inf}/CommissionTool-servlet.xml" overwrite="true" />
 		<copy todir="${temp.dir.classes}">
 			<fileset dir="${src.dir}">
 				<include name="**/*.xml"/>
