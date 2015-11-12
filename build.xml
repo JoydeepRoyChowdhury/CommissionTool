@@ -76,8 +76,17 @@
 		<copy file="${resources.dir}/managed-beans.xml" tofile="${temp.dir.web-inf}/managed-beans.xml" overwrite="true" />
 		<copy file="${resources.dir}/navigation-rules.xml" tofile="${temp.dir.web-inf}/navigation-rules.xml" overwrite="true" />
 		-->
-		<copy file="WebContent/WEB-INF/web.xml" tofile="${temp.dir.web-inf}/web.xml" overwrite="true" />
-		<copy file="WebContent/WEB-INF/CommissionTool-servlet.xml" tofile="${temp.dir.web-inf}/CommissionTool-servlet.xml" overwrite="true" />
+		<copy todir="${temp.dir.web-inf}" overwrite="true">
+			<fileset dir="WebContent/WEB-INF">
+			</fileset>
+		</copy>
+
+		<copy todir="${temp.dir.lib}" overwrite="true" flatten="true">
+			<fileset dir="lib">
+				<include name="**/*.jar" />
+			</fileset>
+		</copy>
+
 		<copy todir="${temp.dir.classes}">
 			<fileset dir="${src.dir}">
 				<include name="**/*.xml"/>
@@ -88,7 +97,7 @@
 		<!-- the ant war task. with all resources in place, create the war file -->
 		<war destfile="${package.file}" webxml="${temp.dir.web-inf}/web.xml" basedir="${temp.dir}">
 			<fileset dir="${pages.dir}"/>
-			<lib dir="${lib.dir}" />
+			<lib dir="${temp.dir.lib}" />
 			<classes dir="${temp.dir.classes}" />
 		</war>
 	</target>
