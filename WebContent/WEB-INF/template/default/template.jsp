@@ -1,8 +1,29 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
-<html>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Default tiles template</title>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>SB Admin - Bootstrap Admin Template</title>
+<spring:url value="/resources/css/bootstrap.min.css" var="mainCss" />
+<spring:url value="/resources/css/sb-admin.css" var="mainCss1" />
+<spring:url value="/resources/font-awesome/css/font-awesome.min.css"
+	var="mainCss2" />
+<spring:url value="/resources/js/jquery.js" var="jqueryJs" />
+<spring:url value="/resources/js/bootstrap.min.js" var="mainJs" />
+
+<link href="${mainCss}" rel="stylesheet" />
+<link href="${mainCss1}" rel="stylesheet" />
+<link href="${mainCss2}" rel="stylesheet" type="text/css" />
+<script src="${jqueryJs}"></script>
+<script src="${mainJs}"></script>
 <style type="text/css">
 body {
 	margin: 0px;
@@ -30,7 +51,7 @@ body {
 
 .menu {
 	padding: 50px 10px 0px 10px;
-	width: 200px;
+	width: 20px;
 	float: left;
 }
 
@@ -50,13 +71,25 @@ body {
 </style>
 </head>
 <body>
-	<div class="page">
-		<tiles:insertAttribute name="header" />
-		<div class="content">
-			<tiles:insertAttribute name="menu" />
-			<tiles:insertAttribute name="body" />
+	<div id="wrapper">
+		<div class="page">
+			<tiles:insertAttribute name="header" />
+			<div class="content">
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+				<tiles:insertAttribute name="menu" />
+				</ul>
+				</div>
+				<div id="page-wrapper">
+
+            <div class="container-fluid">
+				
+				<tiles:insertAttribute name="body" />
+			</div>
+			</div>
+			</div>
+			<tiles:insertAttribute name="footer" />
 		</div>
-		<tiles:insertAttribute name="footer" />
 	</div>
 </body>
 </html>

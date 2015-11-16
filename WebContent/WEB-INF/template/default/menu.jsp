@@ -4,11 +4,11 @@ Menu
     <ul>
         <li>
             <spring:url value="/home" var="homeUrl" htmlEscape="true"/>
-            <a href="${homeUrl}">Home</a>
+            <a href="${homeUrl}"></a>
         </li>
         <li>
             <spring:url value="/about" var="aboutUrl" htmlEscape="true"/>
-            <a href="${aboutUrl}">About</a>
+            <a href="${aboutUrl}"></a>
         </li>
     </ul>
 </div>
