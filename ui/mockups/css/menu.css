@@ -8,7 +8,7 @@ www.freshdesignweb.com
 /* === fontawesome === */
 @import url('font-awesome.css');
 /* === custom icon === */
-body {
+.body {
   margin: 0;
   font-family:'Open Sans', Arial, sans-serif;
   font-size: 14px;
@@ -21,7 +21,7 @@ body {
 }
 
 /* --- header -- */
-header{
+.header{
 	background: url(../img/header-pattern-150.png) repeat;
 	margin:0;
 	padding:0 0 20px;
