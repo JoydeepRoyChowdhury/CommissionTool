@@ -5,8 +5,8 @@ import java.util.List;
 import com.pursuit.salesCommission.app.model.Result;
 
 public class ResponseData {
-	
-	 private List<Result> results;
+
+	private List<Result> results;
 
 	public List<Result> getResults() {
 		return results;

@@ -8,70 +8,87 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>
+	
 </script>
 <script>
-$(document).ready(function(){
-	
-		$(document).keydown(function(e) {
-          if (e.keyCode == '32' && e.keyCode!='0') {
-        	  doAjaxPost();
-          }
-        });
-		
-   /* $("#myName").keyup(function(){
-        $("#myName").css("background-color", "yellow");
-        doAjaxPost();
-        console.log(document.getElementById("myName").value.endsWith(" "));
-    }); */
-    function doAjaxPost() {
-    $.ajax({
-        type : "POST",
-        url : "http://localhost:8080/CommissionTool/jsonresponse1?name=" + $("#myName").val(),
-        success: function(response){
-            	//$('#info').html(response);
-            console.log(response);
-            	//alert(response);  
-               /* jQuery.each(response, function(index, item) {
-                   $('#info').html(item.url);
-                }); */
-            $("#info").html('');
-            var div3Content = '';
-            for(var i = 0; i < response.length; i++)
-            {
-               div3Content += '<p>' + response[i] + '</p>'; // if Name is property of your Person object
-            }
-            $("#info").append(div3Content);
-  
-            },
-            error:  function(e, x, settings, exception) {
-                var message;
-                var statusErrorMap = {
-                    '400' : "Server understood the request, but request content was invalid.",
-                    '401' : "Unauthorized access.",
-                    '403' : "Forbidden resource can't be accessed.",
-                    '500' : "Internal server error.",
-                    '503' : "Service unavailable."
-                };
-                if (x.status) {
-                    message =statusErrorMap[x.status];
-                                    if(!message){
-                                          message="Unknown Error \n.";
-                                      }
-                }else if(exception=='parsererror'){
-                    message="Error.\nParsing JSON Request failed.";
-                }else if(exception=='timeout'){
-                    message="Request Time out.";
-                }else if(exception=='abort'){
-                    message="Request was aborted by the server";
-                }else {
-                    message="Unknown Error \n.";
-                }
-                $(this).css("display","inline");
-                $(this).html(message);
-            }       
-    });
-    }
-});
+	$(document)
+			.ready(
+					function() {
+
+						$(document).keydown(function(e) {
+							if (e.keyCode == '32' && e.keyCode != '0') {
+								doAjaxPost();
+							}
+						});
+						/* $("#myName").keyup(function(){
+						     $("#myName").css("background-color", "yellow");
+						     doAjaxPost();
+						     console.log(document.getElementById("myName").value.endsWith(" "));
+						 }); */
+						function doAjaxPost() {
+							$
+									.ajax({
+										type : "POST",
+										url : "http://localhost:8080/CommissionTool/jsonresponse1?name="
+												+ $("#myName").val(),
+										success : function(response) {
+											//$('#info').html(response);
+											console.log(response);
+											$("#info").html('');
+											var div3Content = '';
+											for (var i = 0; i < response.length; i++) {
+
+												div3Content += '<p><a href="' + response[i].url + '">'
+														+ response[i].title
+														+ '</a></p>';
+
+											}
+
+											$("#info").append(div3Content);
+											//-----------------------------------------------------------------------  
+											$("#content").html('');
+											var div4Content = '';
+											for (var i = 0; i < response.length; i++) {
+
+												div4Content += '<p><a onmouseover="showDetails(\''
+														+ response[i].contents
+														+ '\')"' + '</a></p>';
+												
+											}
+
+											$("#content").append(div4Content);
+											//----------------------------------------------------------------------------
+										},
+										error : function(e, x, settings,
+												exception) {
+											var message;
+											var statusErrorMap = {
+												'400' : "Server understood the request, but request content was invalid.",
+												'401' : "Unauthorized access.",
+												'403' : "Forbidden resource can't be accessed.",
+												'500' : "Internal server error.",
+												'503' : "Service unavailable."
+											};
+											if (x.status) {
+												message = statusErrorMap[x.status];
+												if (!message) {
+													message = "Unknown Error \n.";
+												}
+											} else if (exception == 'parsererror') {
+												message = "Error.\nParsing JSON Request failed.";
+											} else if (exception == 'timeout') {
+												message = "Request Time out.";
+											} else if (exception == 'abort') {
+												message = "Request was aborted by the server";
+											} else {
+												message = "Unknown Error \n.";
+											}
+											$(this).css("display", "inline");
+											$(this).html(message);
+										}
+									});
+						}
+					});
 </script>
 </head>
 <tiles:insertDefinition name="defaultTemplate">
@@ -101,7 +118,7 @@ $(document).ready(function(){
 							<table>
 
 								<tr>
-									<td><form:label path="name">Enter Data</form:label></td>
+									<td><form:label path="name">Enter Query</form:label></td>
 									<td><form:input path="name" id="myName" /></td>
 								</tr>
 
@@ -109,6 +126,9 @@ $(document).ready(function(){
 
 								<tr>
 									<td colspan="2"><div id="info" style="color: green;"></div></td>
+								</tr>
+								<tr>
+									<td colspan="8"><div id="content" style="color: yello;"></div></td>
 								</tr>
 							</table>
 						</form:form>

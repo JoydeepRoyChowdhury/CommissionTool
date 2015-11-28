@@ -1,6 +1,5 @@
 package com.pursuit.salesCommission.app.model;
 
-
 public class Result {
 	private String url;
 	private String title;
@@ -31,6 +30,7 @@ public class Result {
 	}
 
 	public String toString() {
-		return "Result[url:" + url + ",title:" + title + "content:" + content+ "]";
+		return "Result[url:" + url + ",title:" + title + "content:" + content
+				+ "]";
 	}
 }

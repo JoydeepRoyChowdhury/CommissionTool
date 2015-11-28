@@ -60,7 +60,7 @@ public class TestController {
 
 	@RequestMapping(value = "/jsonresponse1", method = RequestMethod.POST)
 	@ResponseBody
-	public List<String> check(HttpServletRequest request,
+	public List<Result> check(HttpServletRequest request,
 			HttpServletResponse response,
 			@ModelAttribute("SpringWeb") Result res, ModelMap model)
 			throws IOException, IOException {
@@ -81,22 +81,23 @@ public class TestController {
 		// System.out.println(res2.getResults());
 		int size = res2.getResults().size();
 
-		/*List<Result> result1 = new ArrayList<Result>();
+		List<Result> result1 = new ArrayList<>();
 		Result res3 = new Result();
 		for (int j = 0; j <= size - 1; j++) {
 			res3.setUrl(res2.getResults().get(j).getUrl());
 			res3.setContent(res2.getResults().get(j).getContent());
 			res3.setTitle(res2.getResults().get(j).getTitle());
-			result1.add(res3);
-		} */
-
-		List<String> res5 = new ArrayList<>();
+			//System.out.println(res3.getContent()+"----------------"+res3.getTitle()+"------------------------" + res3.getUrl());
+			result1.add(res2.getResults().get(j));
+		} 
+ 
+		/*List<String> res5 = new ArrayList<>();
 		for (int i = 0; i <= size - 1; i++) {
 			res5.add(res2.getResults().get(i).getTitle());
-		}
+		}*/
 		//System.out.println(res5);
-		//System.out.println(result1);
-		return res5;
+		//System.out.println("hiii"+result1);
+		return result1;
 
 	}
 

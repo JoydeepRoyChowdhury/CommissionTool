@@ -1,6 +1,5 @@
 package com.pursuit.salesCommission.app.model;
 
-
 public class GoogleResults {
 	private ResponseData responseData;
 
@@ -16,7 +15,4 @@ public class GoogleResults {
 		return "ResponseData[" + responseData + "]";
 	}
 
-	
-
-	
 }
