@@ -92,7 +92,7 @@ public class TestController {
 
 		List<String> res5 = new ArrayList<>();
 		for (int i = 0; i <= size - 1; i++) {
-			res5.add(res2.getResults().get(i).getUrl());
+			res5.add(res2.getResults().get(i).getTitle());
 		}
 		//System.out.println(res5);
 		//System.out.println(result1);
