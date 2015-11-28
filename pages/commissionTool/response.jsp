@@ -11,22 +11,33 @@
 </script>
 <script>
 $(document).ready(function(){
+	//if(document.getElementById("myName").value == " ")
+//{
     $("#myName").keyup(function(){
         $("#myName").css("background-color", "yellow");
         doAjaxPost();
     });
-    $("#myButton").click(function(){
-    	var nameParam = $("#myName").val();
-    	alert(nameParam);
-    	//doAjaxPost();
-    });
+	
     function doAjaxPost() {
     $.ajax({
-        type : "GET",
+        type : "POST",
         url : "http://localhost:8080/CommissionTool/jsonresponse1?name=" + $("#myName").val(),
         success: function(response){
             // we have the response
-            	$('#info').html(response);
+            	//$('#info').html(response);
+            console.log(response);
+            	//alert(response);  
+               /* jQuery.each(response, function(index, item) {
+                   $('#info').html(item.url);
+                }); */
+            $("#info").html('');
+            var div3Content = '';
+            for(var i = 0; i < response.length; i++)
+            {
+               div3Content += '<p>' + response[i] + '</p>'; // if Name is property of your Person object
+            }
+            $("#info").append(div3Content);
+  
             },
             error:  function(e, x, settings, exception) {
                 var message;
@@ -56,6 +67,7 @@ $(document).ready(function(){
             }       
     });
     }
+//}
 });
 </script>
 
@@ -72,7 +84,8 @@ $(document).ready(function(){
 					<div class="col-lg-12">
 						<h3 class="page-header">Ajax Result</h3>
 						<ol class="breadcrumb">
-							<li><i class="fa fa-dashboard"></i> <a href="#">Master Data</a></li>
+							<li><i class="fa fa-dashboard"></i> <a href="#">Master
+									Data</a></li>
 							<li class="active"><i class="fa fa-edit"></i> Result</li>
 						</ol>
 					</div>
@@ -82,7 +95,7 @@ $(document).ready(function(){
 				<div class="row">
 					<div class="col-lg-6">
 
-						<form:form method="GET" action="/CommissionTool/jsonresponse1">
+						<form:form method="POST" action="/CommissionTool/jsonresponse1">
 							<table>
 
 								<tr>
@@ -91,7 +104,7 @@ $(document).ready(function(){
 								</tr>
 
 
-							
+
 								<tr>
 									<td colspan="2"><div id="info" style="color: green;"></div></td>
 								</tr>
@@ -102,9 +115,6 @@ $(document).ready(function(){
 				</div>
 			</div>
 		</div>
-
-
-
 
 	</tiles:putAttribute>
 </tiles:insertDefinition>
