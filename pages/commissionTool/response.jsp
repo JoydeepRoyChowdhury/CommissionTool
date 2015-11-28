@@ -11,19 +11,23 @@
 </script>
 <script>
 $(document).ready(function(){
-	//if(document.getElementById("myName").value == " ")
-//{
-    $("#myName").keyup(function(){
+	
+		$(document).keydown(function(e) {
+          if (e.keyCode == '32' && e.keyCode!='0') {
+        	  doAjaxPost();
+          }
+        });
+		
+   /* $("#myName").keyup(function(){
         $("#myName").css("background-color", "yellow");
         doAjaxPost();
-    });
-	
+        console.log(document.getElementById("myName").value.endsWith(" "));
+    }); */
     function doAjaxPost() {
     $.ajax({
         type : "POST",
         url : "http://localhost:8080/CommissionTool/jsonresponse1?name=" + $("#myName").val(),
         success: function(response){
-            // we have the response
             	//$('#info').html(response);
             console.log(response);
             	//alert(response);  
@@ -67,10 +71,8 @@ $(document).ready(function(){
             }       
     });
     }
-//}
 });
 </script>
-
 </head>
 <tiles:insertDefinition name="defaultTemplate">
 	<tiles:putAttribute name="body">
