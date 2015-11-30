@@ -10,7 +10,8 @@ public class Result {
 	}
 
 	public void setContent(String content) {
-		this.content = content;
+		String revisedContent = content.replaceAll("\n", "");
+		this.content = revisedContent;
 	}
 
 	public String getUrl() {

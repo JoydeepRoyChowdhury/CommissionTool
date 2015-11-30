@@ -38,26 +38,14 @@
 											var div3Content = '';
 											for (var i = 0; i < response.length; i++) {
 
-												div3Content += '<p><a href="' + response[i].url + '">'
-														+ response[i].title
-														+ '</a></p>';
+												div3Content += '<p><a href="' + response[i].url +
+														'" onmouseout="clearText();" onmouseover="showDetails(\'' +
+														response[i].content +
+																'\');">' + response[i].title + '</a></p>';
 
 											}
 
 											$("#info").append(div3Content);
-											//-----------------------------------------------------------------------  
-											$("#content").html('');
-											var div4Content = '';
-											for (var i = 0; i < response.length; i++) {
-
-												div4Content += '<p><a onmouseover="showDetails(\''
-														+ response[i].contents
-														+ '\')"' + '</a></p>';
-												
-											}
-
-											$("#content").append(div4Content);
-											//----------------------------------------------------------------------------
 										},
 										error : function(e, x, settings,
 												exception) {
@@ -88,7 +76,17 @@
 										}
 									});
 						}
+
 					});
+	function showDetails(details) {
+//		var span = document.getElementById("googleLinkDetails");
+//		span.textContent = details;
+		$("[id$='googleLinkDetails']").text(details);
+	}
+
+	function clearText() {
+		$("[id$='googleLinkDetails']").html('');
+	}
 </script>
 </head>
 <tiles:insertDefinition name="defaultTemplate">
@@ -128,7 +126,10 @@
 									<td colspan="2"><div id="info" style="color: green;"></div></td>
 								</tr>
 								<tr>
-									<td colspan="8"><div id="content" style="color: yello;"></div></td>
+									<td colspan="2"><div id="break" style="color: green;"><br/><br/></div></td>
+								</tr>
+								<tr>
+									<td colspan="2"><span id="googleLinkDetails" style="color: green;"></span></td>
 								</tr>
 							</table>
 						</form:form>

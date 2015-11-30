@@ -76,18 +76,16 @@ public class TestController {
 		res1.setResponseData(result.getResponseData());
 		// System.out.println(res1.getResponseData());
 
+		for (Result result1 : res1.getResponseData().getResults()) {
+			result1.setContent(result1.getContent());
+		}
 		ResponseData res2 = new ResponseData();
 		res2.setResults(res1.getResponseData().getResults());
 		// System.out.println(res2.getResults());
 		int size = res2.getResults().size();
 
 		List<Result> result1 = new ArrayList<>();
-		Result res3 = new Result();
 		for (int j = 0; j <= size - 1; j++) {
-			res3.setUrl(res2.getResults().get(j).getUrl());
-			res3.setContent(res2.getResults().get(j).getContent());
-			res3.setTitle(res2.getResults().get(j).getTitle());
-			//System.out.println(res3.getContent()+"----------------"+res3.getTitle()+"------------------------" + res3.getUrl());
 			result1.add(res2.getResults().get(j));
 		} 
  
