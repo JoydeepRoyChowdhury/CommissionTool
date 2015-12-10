@@ -64,7 +64,7 @@
 		<loadfile property="menu" srcFile="${temp.mockup}/mockup/html/components/menu.html"/>
 		<replace file="${temp.mockup}/mockup/html/App.template" token="@@MENU@@" value="${menu}"/>
 		<antcall target="includeTemplate">
-			<param name="fileLoaction" value="${temp.mockup}/mockup/html/compPlan/CompPlan.html"/>
+			<param name="fileLoaction" value="${temp.mockup}/mockup/html/pages/compPlan/CompPlan.html"/>
 		</antcall>
 	</target>
 	
