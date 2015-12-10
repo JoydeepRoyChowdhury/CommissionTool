@@ -44,7 +44,7 @@ function printChooseEmployee() {
 }
 function printChooseCal() {
 	var empTxt = '';
-	empTxt += '<img onclick="window.open(\'popups/calendar.html\', \'cal\', \'toolbar=no, location=no, status=no, menubar=no, scrollbars=no, resizable=no, height=200, width=200\')" src="../image/calendar.png" style="width:30px;height:20px;"/>';
+	empTxt += '<img onclick="window.open(\'../popups/calendar.html\', \'cal\', \'toolbar=no, location=no, status=no, menubar=no, scrollbars=no, resizable=no, height=200, width=200\')" src="../../image/calendar.png" style="width:30px;height:20px;"/>';
 	document.write(empTxt);
 }
 function getUrlVars() {

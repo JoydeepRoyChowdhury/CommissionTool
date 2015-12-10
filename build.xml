@@ -23,6 +23,8 @@
 	<property name="temp.dir.classes" value="${temp.dir.web-inf}/classes" />
 	<property name="temp.dir.meta-inf" value="${temp.dir}/META-INF" />
 
+	<property name="temp.mockup" value="tempMockup" />
+
 	<property name="package.file" value="${dest.dir}/${package.name}" />
 
 	<path id="build.class.path">
@@ -39,6 +41,7 @@
 		<delete dir="${temp.dir.classes}" />
 		<delete dir="${temp.dir.meta-inf}" />
 		<delete dir="${temp.dir.web-inf}" />
+		<delete dir="${temp.mockup}" />
 	</target>
 
 	<target name="prepare" depends="clean">
@@ -48,6 +51,27 @@
 		<mkdir dir="${temp.dir.meta-inf}" />
 		<mkdir dir="${temp.dir.web-inf}" />
 		<mkdir dir="${temp.dir.classes}" />
+		<mkdir dir="${temp.mockup}" />
+	</target>
+
+	<!-- PACK Mockups -->
+	<target name="packMockup" depends="prepare">
+		<echo>=== PACKAGE ===</echo>
+		<copy todir="${temp.mockup}/mockup" overwrite="true">
+			<fileset dir="ui/mockups"/>
+		</copy>
+		<mkdir dir="${temp.mockup}/mockup/dist" />
+		<loadfile property="menu" srcFile="${temp.mockup}/mockup/html/components/menu.html"/>
+		<replace file="${temp.mockup}/mockup/html/App.template" token="@@MENU@@" value="${menu}"/>
+		<antcall target="includeTemplate">
+			<param name="fileLoaction" value="${temp.mockup}/mockup/html/compPlan/CompPlan.html"/>
+		</antcall>
+	</target>
+	
+	<target name="includeTemplate">
+		<loadfile property="fileContent" srcFile="${fileLoaction}"/>
+		<copy file="${temp.mockup}/mockup/html/App.template" tofile="${fileLoaction}"/>
+		<replace file="${fileLoaction}" token="@@FILECONTENT@@" value="${fileContent}"/>
 	</target>
 
 	<!-- COMPILE -->
@@ -120,7 +144,7 @@
 	</target>
 
 	<!-- INSTALL -->
-	<target name="install" depends="package">
+	<target name="install" depends="package, packMockup">
 		<echo>=== INSTALL ===</echo>
 		<copy file="${package.file}" tofile="${webapp.dir}/${package.name}" overwrite="true" />
 	</target>
