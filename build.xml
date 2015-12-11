@@ -3,7 +3,7 @@
 	<!-- project-specific variables -->
 	<property name="jsp.dir.name" value="CommissionTool" />
 	<property name="package.name" value="${jsp.dir.name}.war" />
-	<property name="webapp.dir" value="F:\apache-tomcat-8.0.28\webapps" />
+	<property name="webapp.dir" value="C:\Users\Pramita\Documents\apache-tomcat-8.0.28\webapps" />
 
 	<property environment="env" />
 	<property name="build.dir" value="build" />
@@ -27,6 +27,12 @@
 
 	<property name="package.file" value="${dest.dir}/${package.name}" />
 
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties">
+		<classpath>
+			<pathelement location="C:/Users/Pramita/git/CommissionTool/lib/ant-contrib-0.3.jar" />
+		</classpath>
+	</taskdef>
+
 	<path id="build.class.path">
 		<fileset dir="lib">
 			<include name="**/*.jar" />
@@ -35,7 +41,7 @@
 
 	<target name="clean">
 		<delete>
-			<fileset dir="${dest.dir}" includes="**/*"/>
+			<fileset dir="${dest.dir}" includes="**/*" />
 		</delete>
 		<delete dir="${temp.dir}" />
 		<delete dir="${temp.dir.classes}" />
@@ -58,20 +64,25 @@
 	<target name="packMockup" depends="prepare">
 		<echo>=== PACKAGE ===</echo>
 		<copy todir="${temp.mockup}/mockup" overwrite="true">
-			<fileset dir="ui/mockups"/>
+			<fileset dir="ui/mockups" />
 		</copy>
 		<mkdir dir="${temp.mockup}/mockup/dist" />
-		<loadfile property="menu" srcFile="${temp.mockup}/mockup/html/components/menu.html"/>
-		<replace file="${temp.mockup}/mockup/html/App.template" token="@@MENU@@" value="${menu}"/>
-		<antcall target="includeTemplate">
-			<param name="fileLoaction" value="${temp.mockup}/mockup/html/pages/compPlan/CompPlan.html"/>
-		</antcall>
+		<loadfile property="menu" srcFile="${temp.mockup}/mockup/html/components/menu.html" />
+		<replace file="${temp.mockup}/mockup/html/App.template" token="@@MENU@@" value="${menu}" />
+		<foreach target="includeTemplate" param="fileLoaction">
+			<fileset dir="${temp.mockup}" casesensitive="yes">
+				<include name="**/*.html" />
+			</fileset>
+		</foreach>
+		<!--<antcall target="includeTemplate">
+			<param name="fileLoaction" value="${temp.mockup}/mockup/html/pages/compReport/CompReport.html"/>
+				</antcall> -->
 	</target>
-	
+
 	<target name="includeTemplate">
-		<loadfile property="fileContent" srcFile="${fileLoaction}"/>
-		<copy file="${temp.mockup}/mockup/html/App.template" tofile="${fileLoaction}"/>
-		<replace file="${fileLoaction}" token="@@FILECONTENT@@" value="${fileContent}"/>
+		<loadfile property="fileContent" srcFile="${fileLoaction}" />
+		<copy file="${temp.mockup}/mockup/html/App.template" tofile="${fileLoaction}" />
+		<replace file="${fileLoaction}" token="@@FILECONTENT@@" value="${fileContent}" />
 	</target>
 
 	<!-- COMPILE -->
@@ -113,14 +124,14 @@
 
 		<copy todir="${temp.dir.classes}">
 			<fileset dir="${src.dir}">
-				<include name="**/*.xml"/>
-				<include name="**/*.xsl"/>
+				<include name="**/*.xml" />
+				<include name="**/*.xsl" />
 			</fileset>
 		</copy>
 
 		<!-- the ant war task. with all resources in place, create the war file -->
 		<war destfile="${package.file}" webxml="${temp.dir.web-inf}/web.xml" basedir="${temp.dir}">
-			<fileset dir="${pages.dir}"/>
+			<fileset dir="${pages.dir}" />
 			<lib dir="${temp.dir.lib}" />
 			<classes dir="${temp.dir.classes}" />
 		</war>
@@ -132,13 +143,13 @@
 		<!-- i'm trying to be explicit about what i put out there -->
 		<copy todir="${webapp.dir}/${jsp.dir.name}">
 			<fileset dir="${pages.dir}">
-				<include name="**/*.jsp"/>
-				<include name="**/*.html"/>
-				<include name="**/*.css"/>
-				<include name="**/*.gif"/>
-				<include name="**/*.jpg"/>
-				<include name="**/*.png"/>
-				<include name="**/*.js"/>
+				<include name="**/*.jsp" />
+				<include name="**/*.html" />
+				<include name="**/*.css" />
+				<include name="**/*.gif" />
+				<include name="**/*.jpg" />
+				<include name="**/*.png" />
+				<include name="**/*.js" />
 			</fileset>
 		</copy>
 	</target>

@@ -14,6 +14,7 @@
 <script src="../../../js/jquery-2.1.4.min.js"></script>
 <script src="../../../js/custom.js"></script>
 <script src="../../../js/SalesCommission.js"></script>
+<img src="../../../img/header-pattern-150.png" style="width:100%;height:20px;"/>'
 <script>
 $(window).load(function(){
 		execJS();
