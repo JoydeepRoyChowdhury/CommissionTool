@@ -67,6 +67,7 @@
 			<fileset dir="ui/mockups" />
 		</copy>
 		<mkdir dir="${temp.mockup}/mockup/dist" />
+		<!--  PACK Mockups for menu -->
 		<loadfile property="menu" srcFile="${temp.mockup}/mockup/html/components/menu.html" />
 		<replace file="${temp.mockup}/mockup/html/App.template" token="@@MENU@@" value="${menu}" />
 		<foreach target="includeTemplate" param="fileLoaction">

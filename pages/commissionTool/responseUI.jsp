@@ -28,9 +28,9 @@
 						function doAjaxPost() {
 							$
 									.ajax({
-										type : "POST",
-										url : "http://localhost:8080/CommissionTool/jsonresponse1?name="
-												+ $("#myName").val(),
+										type : "GET",
+										url : "http://localhost:8081/CommissionTool/jsonresponse1?name="
+											+ $("#myName").val(),
 										success : function(response) {
 											//$('#info').html(response);
 											console.log(response);
@@ -41,11 +41,11 @@
 												div3Content += '<p><a href="' + response[i].url +
 														'" onmouseout="clearText();" onmouseover="showDetails(\'' +
 														response[i].content +
-																'\');">' + response[i].title + '</a></p>';
+																'\');">' + response[i].title + '</a></p>'; 
 
 											}
 
-											$("#info").append(div3Content);
+											$("#info").append(div3Content); 
 										},
 										error : function(e, x, settings,
 												exception) {
@@ -112,7 +112,7 @@
 				<div class="row">
 					<div class="col-lg-6">
 
-						<form:form method="POST" action="/CommissionTool/jsonresponse1">
+						<form:form>
 							<table>
 
 								<tr>

@@ -31,7 +31,7 @@ import com.pursuit.salesCommission.app.model.Result;
 
 @Controller
 // @RequestMapping("/test")
-public class TestController {
+public class TestControllerUI {
 
 	@Autowired
 	private EmployeeDao employeeDao;
@@ -55,10 +55,10 @@ public class TestController {
 
 	@RequestMapping(value = "/jsonresponse", method = RequestMethod.GET)
 	public ModelAndView showForm() {
-		return new ModelAndView("response", "command", new Employee());
+		return new ModelAndView("responseUI", "command", new Employee());
 	}
 
-	@RequestMapping(value = "/jsonresponse1", method = RequestMethod.POST)
+ /*	@RequestMapping(value = "/jsonresponse1", method = RequestMethod.POST)
 	@ResponseBody
 	public List<Result> check(HttpServletRequest request,
 			HttpServletResponse response,
@@ -88,16 +88,9 @@ public class TestController {
 		for (int j = 0; j <= size - 1; j++) {
 			result1.add(res2.getResults().get(j));
 		} 
- 
-		/*List<String> res5 = new ArrayList<>();
-		for (int i = 0; i <= size - 1; i++) {
-			res5.add(res2.getResults().get(i).getTitle());
-		}*/
-		//System.out.println(res5);
-		//System.out.println("hiii"+result1);
 		return result1;
 
-	}
+	} */
 
 	@RequestMapping(value = "/employee", method = RequestMethod.GET)
 	public ModelAndView employee() {
