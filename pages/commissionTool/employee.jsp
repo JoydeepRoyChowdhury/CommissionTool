@@ -43,8 +43,24 @@
         <td><form:input path="name" /></td>
     </tr>
     <tr>
+        <td><form:label path="startDate">Start Date</form:label></td>
+        <td><form:input path="startDate" /></td>
+    </tr>
+    <tr>
+        <td><form:label path="termDate">Termination Date</form:label></td>
+        <td><form:input path="termDate" /></td>
+    </tr>
+    <tr>
         <td><form:label path="salary">Salary</form:label></td>
         <td><form:input path="salary" /></td>
+    </tr>
+    <tr>
+        <td><form:label path="role">Role</form:label></td>
+        <td><form:input path="role" /></td>
+    </tr>
+    <tr>
+        <td><form:label path="managerId">Manager Id</form:label></td>
+        <td><form:input path="managerId" /></td>
     </tr>
     <tr>
         <td colspan="2">

@@ -18,9 +18,25 @@
         <td>Name</td>
         <td>${name}</td>
     </tr>
+     <tr>
+        <td>Start Date</td>
+        <td>${startDate}</td>
+    </tr>
+     <tr>
+        <td>Termination Date</td>
+        <td>${termDate}</td>
+    </tr>
     <tr>
         <td>Salary</td>
         <td>${salary}</td>
+    </tr>
+    <tr>
+        <td>Role</td>
+        <td>${role}</td>
+    </tr>
+    <tr>
+        <td>Manager Id</td>
+        <td>${managerId}</td>
     </tr>
    
 </table>  

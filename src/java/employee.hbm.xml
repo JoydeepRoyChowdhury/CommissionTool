@@ -11,6 +11,10 @@
           
           <property name="name"></property>
           <property name="salary"></property>
+           <property name="role"></property>
+            <property name="startDate"></property>
+             <property name="termDate"></property>
+             <property name="managerId"></property>
           </class>
           
           </hibernate-mapping>
