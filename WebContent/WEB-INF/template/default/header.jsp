@@ -51,7 +51,7 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Compensation Plan</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#">Assign Compensation Plan</a>
+                                        <li><a href="#">Assign</a>
                                         </li>
                                     </ul>
                                 </li>
