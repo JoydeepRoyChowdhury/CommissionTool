@@ -32,7 +32,7 @@ public class EmployeeDaoAnotherTest {
     } */
 	EmployeeDaoAnother dao = new EmployeeDaoAnother();
 	 Employee emp = new Employee();
-     emp.setId(25);
+     emp.setId(222);
      emp.setName("John");
 
      dao.createEmployee(emp.getId(), emp.getName());
