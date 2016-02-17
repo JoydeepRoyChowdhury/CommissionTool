@@ -3,8 +3,6 @@ package com.pursuit.salesCommission.ui;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -110,12 +108,19 @@ public class TestControllerUI {
 		return "result";
 	}
 
-	@RequestMapping(value = "/employeeList", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/employeeList", method = RequestMethod.GET)
 	@ResponseBody
 	public Collection<Employee> employeeList(@ModelAttribute("SpringWeb") Employee employee, ModelMap model) {
 		System.out.println("Hello    ----    " + employee.getId());
 		
 		return employeeDao.searchEmployee(employee);
-	}
+	} */
+	
+	 @RequestMapping(value = "/persons", method = RequestMethod.GET)
+	    public String listEmployees(ModelMap model) {
+	        model.addAttribute("employee", new Employee());
+	        model.addAttribute("listEmployee", employeeDao.listEmployee());
+	        return "empList";
+	    }
 
 }

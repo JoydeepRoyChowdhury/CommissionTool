@@ -19,10 +19,10 @@ public static void main(String[] args) {
 	EmployeeDao dao=(EmployeeDao)factory.getBean("d");
 	
 	Employee e=new Employee();
-	e.setName("kumar");
-	Collection employees = dao.searchEmployee(e);
+//	e.setName("kumar");
+	//Collection employees = dao.searchEmployee(e);
 	
-	System.out.println("employee count =" + employees.size());
+	//System.out.println("employee count =" + employees.size());
 	// dao.updateEmployee(e);
 }
 }

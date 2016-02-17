@@ -1,4 +1,4 @@
-package com.pursuit.salesCommission.app;
+/*package com.pursuit.salesCommission.app;
 
 import static org.junit.Assert.*;
 
@@ -30,9 +30,9 @@ public class EmployeeDaoAnotherTest {
         //Assert.assertEquals(3, employee.getId());
         //assertEquals("hh", user.getName());
     } */
-	EmployeeDaoAnother dao = new EmployeeDaoAnother();
+/*	EmployeeDaoAnother dao = new EmployeeDaoAnother();
 	 Employee emp = new Employee();
-     emp.setId(222);
+     emp.setId(202);
      emp.setName("John");
 
      dao.createEmployee(emp.getId(), emp.getName());
@@ -42,4 +42,4 @@ public class EmployeeDaoAnotherTest {
      Assert.assertEquals("John", newMember.getName());
 	}
 
-}
+}*/
