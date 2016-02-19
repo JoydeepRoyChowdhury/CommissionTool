@@ -23,8 +23,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.pursuit.salesCommission.app.api.EmployeeAPI;
 import com.pursuit.salesCommission.app.api.dao.EmployeeDao;
 import com.pursuit.salesCommission.app.model.Employee;
+import com.pursuit.salesCommission.app.model.EmployeeOld;
 import com.pursuit.salesCommission.app.model.GoogleResults;
 import com.pursuit.salesCommission.app.model.ResponseData;
 import com.pursuit.salesCommission.app.model.Result;
@@ -36,7 +38,7 @@ public class TestControllerUI {
 	@Autowired
 	private EmployeeDao employeeDao;
 	private HibernateTemplate template;
-
+	private EmployeeAPI empAPI;
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public String printResult(ModelMap model) throws IOException {
 		String google = "http://ajax.googleapis.com/ajax/services/search/web?v=1.0&q=";
@@ -91,11 +93,14 @@ public class TestControllerUI {
 
 	@RequestMapping(value = "/employee", method = RequestMethod.GET)
 	public ModelAndView employee() {
-		return new ModelAndView("employee", "command", new Employee());
+		return new ModelAndView("employee", "command", new EmployeeOld());
 	}
-
+	@RequestMapping(value = "/employee1", method = RequestMethod.GET)
+	public ModelAndView employee1() {
+		return new ModelAndView("hello", "command", new Employee());
+	}
 	@RequestMapping(value = "/submit", method = RequestMethod.POST)
-	public String addEmployee(@ModelAttribute("SpringWeb") Employee employee, ModelMap model) {
+	public String addEmployee(@ModelAttribute("SpringWeb") EmployeeOld employee, ModelMap model) {
 		model.addAttribute("id", employee.getId());
 		model.addAttribute("name", employee.getName());
 		model.addAttribute("salary", employee.getSalary());
@@ -107,18 +112,25 @@ public class TestControllerUI {
 
 		return "result";
 	}
+	
+	@RequestMapping(value = "/submit1", method = RequestMethod.POST)
+	public String addEmployee1(@ModelAttribute("SpringWeb") Employee employee, ModelMap model) {
+		// model.addAttribute("id", employee.getId());
+		 model.addAttribute("firstName", employee.getFirstName());
+		 model.addAttribute("lastName", employee.getLastName());
+		 model.addAttribute("salary", employee.getSalary());
+		//model.addAttribute("role", employee.getRole());
+		//model.addAttribute("startDate", employee.getStartDate());
+		//model.addAttribute("termDate", employee.getTermDate());
+		//model.addAttribute("managerId", employee.getManagerId());
+		//empAPI.addEmployee(employee);
 
-	/*@RequestMapping(value = "/employeeList", method = RequestMethod.GET)
-	@ResponseBody
-	public Collection<Employee> employeeList(@ModelAttribute("SpringWeb") Employee employee, ModelMap model) {
-		System.out.println("Hello    ----    " + employee.getId());
-		
-		return employeeDao.searchEmployee(employee);
-	} */
+		return "hello1";
+	}
 	
 	 @RequestMapping(value = "/persons", method = RequestMethod.GET)
 	    public String listEmployees(ModelMap model) {
-	        model.addAttribute("employee", new Employee());
+	        model.addAttribute("employee", new EmployeeOld());
 	        model.addAttribute("listEmployee", employeeDao.listEmployee());
 	        return "empList";
 	    }

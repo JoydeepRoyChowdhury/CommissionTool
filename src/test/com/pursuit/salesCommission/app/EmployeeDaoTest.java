@@ -43,7 +43,7 @@ public class EmployeeDaoTest {
 	 @Transactional
 	 @Rollback(true)
 	public void testGetById() {
-		 Employee employee = employeeDao.getById(1);
+		// Employee employee = employeeDao.getById(1);
     //   Assert.assertEquals("PP", employee.getName());
 	}
 

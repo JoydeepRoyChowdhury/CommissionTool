@@ -1,80 +1,46 @@
 package com.pursuit.salesCommission.app.model;
 
-import java.util.Date;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "EMPLOYEE")
 public class Employee {
-	private int id;
-	private String name;
-	private float salary;
-	
-	private Date startDate;
-	private Date termDate;
-	private String role;
-	private String jobTitle;
-	private int managerId;
-	
+   @Id @GeneratedValue
+   @Column(name = "id")
+   private int id;
 
-	public int getId() {
-		return id;
-	}
+   @Column(name = "first_name")
+   private String firstName;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+   @Column(name = "last_name")
+   private String lastName;
 
-	public String getName() {
-		return name;
-	}
+   @Column(name = "salary")
+   private int salary;  
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public float getSalary() {
-		return salary;
-	}
-
-	public void setSalary(float salary) {
-		this.salary = salary;
-	}
-	
-	public Date getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-
-	public Date getTermDate() {
-		return termDate;
-	}
-
-	public void setTermDate(Date termDate) {
-		this.termDate = termDate;
-	}
-
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
-
-	public String getJobTitle() {
-		return jobTitle;
-	}
-
-	public void setJobTitle(String jobTitle) {
-		this.jobTitle = jobTitle;
-	}
-	
-	public int getManagerId() {
-		return managerId;
-	}
-
-	public void setManagerId(int managerId) {
-		this.managerId = managerId;
-	}
+   public Employee() {}
+   public int getId() {
+      return id;
+   }
+   public void setId( int id ) {
+      this.id = id;
+   }
+   public String getFirstName() {
+      return firstName;
+   }
+   public void setFirstName( String first_name ) {
+      this.firstName = first_name;
+   }
+   public String getLastName() {
+      return lastName;
+   }
+   public void setLastName( String last_name ) {
+      this.lastName = last_name;
+   }
+   public int getSalary() {
+      return salary;
+   }
+   public void setSalary( int salary ) {
+      this.salary = salary;
+   }
 }

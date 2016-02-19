@@ -42,14 +42,14 @@
         <td><form:label path="name">Name</form:label></td>
         <td><form:input path="name" /></td>
     </tr>
-    <tr>
+      <tr>
         <td><form:label path="startDate">Start Date</form:label></td>
         <td><form:input path="startDate" /></td>
     </tr>
     <tr>
         <td><form:label path="termDate">Termination Date</form:label></td>
         <td><form:input path="termDate" /></td>
-    </tr>
+    </tr> 
     <tr>
         <td><form:label path="salary">Salary</form:label></td>
         <td><form:input path="salary" /></td>
@@ -61,8 +61,8 @@
     <tr>
         <td><form:label path="managerId">Manager Id</form:label></td>
         <td><form:input path="managerId" /></td>
-    </tr>
-    <tr>
+    </tr>  
+    <tr> 
         <td colspan="2">
             <input type="submit" value="Submit"/>
         </td>

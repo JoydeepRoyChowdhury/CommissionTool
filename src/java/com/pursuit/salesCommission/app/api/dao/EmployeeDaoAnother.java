@@ -46,7 +46,7 @@ public class EmployeeDaoAnother {
 	            if (rs.next()) {
 	                employee = new Employee();
 	                employee.setId(rs.getInt("id"));
-	                employee.setName(rs.getString("name"));
+	               // employee.setName(rs.getString("name"));
 	               // employee.setRole(rs.getString("role"));
 	               // employee.setSalary(rs.getInt("salary"));
 	                //employee.setDeptId((rs.getInt("managerId")));
