@@ -37,8 +37,7 @@ public class TestControllerUI {
 
 	@Autowired
 	private EmployeeDao employeeDao;
-	private HibernateTemplate template;
-	private EmployeeAPI empAPI;
+	
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public String printResult(ModelMap model) throws IOException {
 		String google = "http://ajax.googleapis.com/ajax/services/search/web?v=1.0&q=";
@@ -91,15 +90,12 @@ public class TestControllerUI {
 	 * }
 	 */
 
-	@RequestMapping(value = "/employee", method = RequestMethod.GET)
+	@RequestMapping(value = "/employee1", method = RequestMethod.GET)
 	public ModelAndView employee() {
 		return new ModelAndView("employee", "command", new EmployeeOld());
 	}
-	@RequestMapping(value = "/employee1", method = RequestMethod.GET)
-	public ModelAndView employee1() {
-		return new ModelAndView("hello", "command", new Employee());
-	}
-	@RequestMapping(value = "/submit", method = RequestMethod.POST)
+	
+	@RequestMapping(value = "/submit1", method = RequestMethod.POST)
 	public String addEmployee(@ModelAttribute("SpringWeb") EmployeeOld employee, ModelMap model) {
 		model.addAttribute("id", employee.getId());
 		model.addAttribute("name", employee.getName());
@@ -111,28 +107,6 @@ public class TestControllerUI {
 		employeeDao.saveEmployee(employee);
 
 		return "result";
-	}
-	
-	@RequestMapping(value = "/submit1", method = RequestMethod.POST)
-	public String addEmployee1(@ModelAttribute("SpringWeb") Employee employee, ModelMap model) {
-		// model.addAttribute("id", employee.getId());
-		 model.addAttribute("firstName", employee.getFirstName());
-		 model.addAttribute("lastName", employee.getLastName());
-		 model.addAttribute("salary", employee.getSalary());
-		//model.addAttribute("role", employee.getRole());
-		//model.addAttribute("startDate", employee.getStartDate());
-		//model.addAttribute("termDate", employee.getTermDate());
-		//model.addAttribute("managerId", employee.getManagerId());
-		//empAPI.addEmployee(employee);
-
-		return "hello1";
-	}
-	
-	 @RequestMapping(value = "/persons", method = RequestMethod.GET)
-	    public String listEmployees(ModelMap model) {
-	        model.addAttribute("employee", new EmployeeOld());
-	        model.addAttribute("listEmployee", employeeDao.listEmployee());
-	        return "empList";
-	    }
+	}		
 
 }

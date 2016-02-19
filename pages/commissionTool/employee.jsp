@@ -32,7 +32,7 @@
                 <div class="row">
                     <div class="col-lg-6">
 
-<form:form method="POST" action="/CommissionTool/submit">
+<form:form method="POST" action="/CommissionTool/submit1">
    <table>
     <tr>
         <td><form:label path="id">Id</form:label></td>

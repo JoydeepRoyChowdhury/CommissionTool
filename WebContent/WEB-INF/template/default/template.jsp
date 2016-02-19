@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>SB Admin - Bootstrap Admin Template</title>
+
 <spring:url value="/resources/css/bootstrap.min.css" var="mainCss" />
 <spring:url value="/resources/css/sb-admin.css" var="mainCss1" />
 <spring:url value="/resources/font-awesome/css/font-awesome.min.css"

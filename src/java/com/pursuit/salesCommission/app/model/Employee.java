@@ -9,10 +9,10 @@ public class Employee {
    @Column(name = "id")
    private int id;
 
-   @Column(name = "first_name")
+   @Column(name = "firstName")
    private String firstName;
 
-   @Column(name = "last_name")
+   @Column(name = "lastName")
    private String lastName;
 
    @Column(name = "salary")
@@ -28,14 +28,14 @@ public class Employee {
    public String getFirstName() {
       return firstName;
    }
-   public void setFirstName( String first_name ) {
-      this.firstName = first_name;
+   public void setFirstName( String firstName ) {
+      this.firstName = firstName;
    }
    public String getLastName() {
       return lastName;
    }
-   public void setLastName( String last_name ) {
-      this.lastName = last_name;
+   public void setLastName( String lastName ) {
+      this.lastName = lastName;
    }
    public int getSalary() {
       return salary;
