@@ -30,6 +30,18 @@ public class EmployeeAPITest {
 	     Assert.assertEquals("Hari", emp.getFirstName());
 	}
 
+ 	@Test
+	public void testCreateEmployee() {
+		EmployeeAPI api = new EmployeeAPI();
+		Employee e = new Employee();
+		e.setFirstName("Rama");
+		e.setLastName("Bagh");
+		e.setSalary(60000);
+	    api.createEmployee(e);
+	    Employee emp = api.getEmployee(e.getId());
+	     Assert.assertEquals("Rama", emp.getFirstName());
+	}
+
 /*  @Test
 	public void testListEmployees() {
 		EmployeeAPI api = new EmployeeAPI();
@@ -44,7 +56,21 @@ public class EmployeeAPITest {
 		 Assert.assertEquals(80000, emp.getSalary());
 		
 	}
-
+ 	 @Test
+ 	public void testEditEmployee() {
+ 		EmployeeAPI api = new EmployeeAPI();
+ 		Employee e = new Employee();
+		e.setFirstName("Rama");
+		e.setLastName("Bagh");
+		e.setSalary(60000);
+	    api.createEmployee(e);
+	    Employee emp = api.getEmployee(e.getId());
+	    emp.setSalary(18900);
+ 		api.editEmployee(emp);
+ 		 Employee emp1 = api.getEmployee(emp.getId());
+ 		 Assert.assertEquals(18900, emp1.getSalary());
+ 		
+ 	}
 	@Test
 	public void testDeleteEmployee() {
 		EmployeeAPI api = new EmployeeAPI();
