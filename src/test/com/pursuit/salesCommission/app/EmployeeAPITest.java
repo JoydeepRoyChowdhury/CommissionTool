@@ -17,8 +17,8 @@ public class EmployeeAPITest {
 	@Test
 	public void testGetEmployees() {
 		EmployeeAPI api = new EmployeeAPI();
-		 Employee employee = api.getEmployee(3); 
-        Assert.assertEquals("John", employee.getFirstName());
+		 Employee employee = api.getEmployee(7); 
+        Assert.assertEquals("ss", employee.getFirstName());
 	} 
 	
  	@Test

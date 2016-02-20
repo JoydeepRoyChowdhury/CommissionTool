@@ -109,14 +109,13 @@ public class EmployeeAPI {
 				.buildSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = null;
-		// Integer employeeID = null;
 		try {
 			tx = session.beginTransaction();
 			Employee employee1 = new Employee();
 			employee1.setFirstName(employee.getFirstName());
 			employee1.setLastName(employee.getLastName());
 			employee1.setSalary(employee.getSalary());
-			session.save(employee);
+			session.update(employee);
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null)
@@ -127,4 +126,28 @@ public class EmployeeAPI {
 		}
 
 	}
+	public void editEmployee(Employee employee) {
+		factory = new AnnotationConfiguration().configure("hibernate.cfg.xml").addAnnotatedClass(Employee.class)
+				.buildSessionFactory();
+		Session session = factory.openSession();
+		Transaction tx = null;
+		try {
+		tx = session.beginTransaction();
+		Employee employee1 = (Employee) session.get(Employee.class, employee.getId());
+		employee1.setId(employee.getId());
+		employee1.setFirstName(employee.getFirstName());
+		employee1.setLastName(employee.getLastName());
+		employee1.setSalary(employee.getSalary());
+		session.save(employee1);
+		tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
+	}
+
 }

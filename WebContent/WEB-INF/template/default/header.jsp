@@ -25,7 +25,7 @@
                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Master Data <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#">Employee</a>
+                                        <li><a href="/CommissionTool/employeeList">Employee</a>
                                         </li>
                                         <li class="divider"></li>
                         				<li>

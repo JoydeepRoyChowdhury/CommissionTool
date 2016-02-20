@@ -36,7 +36,7 @@
       <table>  
        <tr>  
            <td><form:label path="id">Employee ID:</form:label></td>  
-           <td><form:input path="id" value="${employee.id}" readonly="true"/></td>  
+           <td><form:input path="id" value="${employee.id}" readonly="true" disabled="true"/></td>  
        </tr>  
        <tr>  
            <td><form:label path="firstName">Employee First Name:</form:label></td>  
@@ -51,8 +51,9 @@
            <td><form:input path="salary" value="${employee.salary}"/></td>  
        </tr>  
 
-          <tr>  
-         <td colspan="2"><input type="submit" value="Submit"/></td>  
+         <tr>  
+        <td><input type="submit" value="Submit"/>
+			| <a href="<c:url value='/employeeList' />">Cancel</a></td>
         </tr>  
    </table>   
   </form:form>  

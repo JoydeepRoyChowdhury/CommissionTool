@@ -1,10 +1,13 @@
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
- <head>
+ <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%> 
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
+<head>
     <title>Add Employee</title>
 </head>
 <tiles:insertDefinition name="defaultTemplate">
     <tiles:putAttribute name="body">
-<div id="page-wrapper">
+ 
+ <div id="page-wrapper">
    
             <div class="container-fluid">
 
@@ -29,45 +32,34 @@
                 <div class="row">
                     <div class="col-lg-6">
 
-                        <form role="form">
-							
-							<div class="form-group">
-                                <label>Employee Id</label>
-                                <input class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label>Employee Name</label>
-                                <input class="form-control">
-                            </div>
-                             <div class="form-group">
-                                <label>Salary</label>
-                                <input class="form-control">
-                            </div>
-							<!--   <div class="form-group">
-                                <label>Start Date</label>
-                                <input class="form-control">
-                            </div>
-                           <div class="form-group">
-                                <label>Termination Date</label>
-                                <input class="form-control">
-                            </div>
-							<div class="form-group">
-                                <label>Role</label>
-                                <input class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label>Job Title</label>
-                                <input class="form-control">
-                            </div>
-                           
-                            <div class="form-group">
-                                <label>Manager Id</label>
-                                <input class="form-control">
-                            </div>  -->
-                            <button type="submit" value="Submit" class="btn btn-default">Submit</button>
-                            <button type="reset" class="btn btn-default">Cancel</button>
-</form>
-  </div></div></div></div>
- 
-    </tiles:putAttribute>
+  <form:form method="POST" action="/CommissionTool/submit">  
+      <table>  
+       <tr>  
+           <td><form:label path="id">Employee ID:</form:label></td>  
+           <td><form:input path="id" value="${employee.id}" readonly="true"/></td>  
+       </tr>  
+       <tr>  
+           <td><form:label path="firstName">Employee First Name:</form:label></td>  
+           <td><form:input path="firstName" value="${employee.firstName}"/></td>  
+       </tr>  
+       <tr>  
+           <td><form:label path="lastName">Employee Last Name:</form:label></td>  
+           <td><form:input path="lastName" value="${employee.lastName}"/></td>  
+       </tr>  
+       <tr>  
+           <td><form:label path="salary">Employee Salary:</form:label></td>  
+           <td><form:input path="salary" value="${employee.salary}"/></td>  
+       </tr>  
+
+          <tr>  
+         <td colspan="2"><input type="submit" value="Submit"/></td>  
+        </tr>  
+   </table>   
+  </form:form>  
+ </div>
+ </div>
+ </div>
+ </div>
+  </tiles:putAttribute>
 </tiles:insertDefinition>
+  
