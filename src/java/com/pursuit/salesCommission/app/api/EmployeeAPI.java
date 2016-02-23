@@ -115,7 +115,7 @@ public class EmployeeAPI {
 			employee1.setFirstName(employee.getFirstName());
 			employee1.setLastName(employee.getLastName());
 			employee1.setSalary(employee.getSalary());
-			session.update(employee);
+			session.save(employee);
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null)
