@@ -18,11 +18,11 @@ public class Rule {
 	@Column(name = "ruleType")
 	private String ruleType;
 	
-	@Column(name = "rulesConnectedas")
+	/*@Column(name = "rulesConnectedas")
 	private String rulesConnectedas;
 	
 	@Column(name = "listofRules")
-	private String listofRules;
+	private String listofRules;*/
 
 	public int getId() {
 		return id;
@@ -56,7 +56,7 @@ public class Rule {
 		this.ruleType = ruleType;
 	}
 
-	public String getRulesConnectedas() {
+	/*public String getRulesConnectedas() {
 		return rulesConnectedas;
 	}
 
@@ -70,7 +70,7 @@ public class Rule {
 
 	public void setListofRules(String listofRules) {
 		this.listofRules = listofRules;
-	}
+	}*/
 
 	
 	
