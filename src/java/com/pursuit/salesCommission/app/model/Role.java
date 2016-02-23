@@ -9,6 +9,7 @@ public class Role {
 	@GeneratedValue
 	@Column(name = "id")
 	private int id;
+	
 	@Column(name = "RoleName")
 	private String RoleName;
 
@@ -18,8 +19,6 @@ public class Role {
 	@Column(name = "ReportTo")
 	private String ReportTo;
 
-	public Role() {
-	}
 	public int getId() {
 		return id;
 	}
