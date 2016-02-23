@@ -18,14 +18,15 @@ public class RuleAPITest {
 	@Test
 	public void testGetRules() {
 		RuleAPI api = new RuleAPI();
-		 Rule rul = api.getRule(7); 
+		 Rule rul = api.getRule(1); 
+		 Assert.assertEquals("ABCD", rul.getRuleName());
         
 	} 
 	
 	@Test
 	public void testAddRule() {
 		RuleAPI api = new RuleAPI();
-		int i = api.addRule("ABCD", "EFGH","XYZ");
+		int i = api.addRule("ABCD", "EFGH","XYZ","PQRS","MNOP");
 		Assert.assertNotNull(i);
 		Rule rul = api.getRule(i);
 		Assert.assertEquals("ABCD", rul.getRuleName());
@@ -39,8 +40,11 @@ public class RuleAPITest {
 		r.setRuleName("ABCD");
 		r.setDescription("EFGH");
 		r.setRuleType("XYZ");
+		r.setRulesConnectedas("PQRS");
+		r.setListofRules("MNOP");
 	    api.createRule(r);
 	    Rule ru = api.getRule(r.getId());
+	    Assert.assertEquals("ABCD", ru.getRuleName());
 	     
 	}
 }

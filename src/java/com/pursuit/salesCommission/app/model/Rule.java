@@ -9,6 +9,21 @@ public class Rule {
 	@Column(name = "id")
 	private int id;
 	
+	@Column(name = "ruleName")
+	private String ruleName;
+	
+	@Column(name = "description")
+	private String description;
+	
+	@Column(name = "ruleType")
+	private String ruleType;
+	
+	@Column(name = "rulesConnectedas")
+	private String rulesConnectedas;
+	
+	@Column(name = "listofRules")
+	private String listofRules;
+
 	public int getId() {
 		return id;
 	}
@@ -41,13 +56,23 @@ public class Rule {
 		this.ruleType = ruleType;
 	}
 
-	@Column(name = "ruleName")
-	private String ruleName;
+	public String getRulesConnectedas() {
+		return rulesConnectedas;
+	}
+
+	public void setRulesConnectedas(String rulesConnectedas) {
+		this.rulesConnectedas = rulesConnectedas;
+	}
+
+	public String getListofRules() {
+		return listofRules;
+	}
+
+	public void setListofRules(String listofRules) {
+		this.listofRules = listofRules;
+	}
+
 	
-	@Column(name = "description")
-	private String description;
 	
-	@Column(name = "ruleType")
-	private String ruleType;
-  
+	
 }

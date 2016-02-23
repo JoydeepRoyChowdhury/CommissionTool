@@ -17,7 +17,7 @@ public class RuleAPI {
 	private static SessionFactory factory;
 
 	/* Method to CREATE an rule in the database */
-	public Integer addRule(String ruleName, String description, String ruleType) {
+	public Integer addRule(String RuleName, String Description, String RuleType, String RulesConnectedas, String ListofRules) {
 
 		factory = new AnnotationConfiguration().configure("hibernate.cfg.xml").addAnnotatedClass(Rule.class)
 				.buildSessionFactory();
@@ -26,10 +26,12 @@ public class RuleAPI {
 		Integer ruleID = null;
 		try {
 			tx = session.beginTransaction();
-			Rule rule = new Rule();
-			rule.setRuleName(ruleName);
-			rule.setDescription(description);
-			rule.setRuleType(ruleType);
+			Rule rule = new Rule(); 
+			rule.setRuleName(RuleName);
+			rule.setDescription(Description);
+			rule.setRuleType(RuleType);
+			rule.setRulesConnectedas(RulesConnectedas);
+			rule.setListofRules(ListofRules);
 			ruleID = (Integer) session.save(rule);
 			tx.commit();
 		} catch (HibernateException e) {
@@ -39,7 +41,7 @@ public class RuleAPI {
 		} finally {
 			session.close();
 		}
-		System.out.println("hiii...." +ruleName);
+		//System.out.println("hiii...." +ruleName);
 		return ruleID;
 		
 	}
@@ -127,7 +129,10 @@ public class RuleAPI {
 			rule1.setRuleName(rule.getRuleName());
 			rule.setDescription(rule.getDescription());
 			rule1.setRuleType(rule.getRuleType());
-			session.update(rule);
+			rule1.setRulesConnectedas(rule.getRulesConnectedas());
+			rule1.setListofRules(rule.getListofRules());
+			
+			session.save(rule);
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null)
