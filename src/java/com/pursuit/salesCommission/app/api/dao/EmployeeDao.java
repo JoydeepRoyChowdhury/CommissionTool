@@ -1,20 +1,18 @@
 package com.pursuit.salesCommission.app.api.dao;
 
-import java.util.Collection;
 import java.util.List;
 
-import org.springframework.orm.hibernate3.HibernateTemplate;
-import org.hibernate.Criteria;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.pursuit.salesCommission.app.model.EmployeeOld;
 @Repository
 @Transactional
 public class EmployeeDao {
+	@Autowired
 	HibernateTemplate template;
 	@Autowired
 	 private SessionFactory sessionFactory;

@@ -15,6 +15,8 @@ import com.pursuit.salesCommission.app.model.Role;
 
 @Controller
 public class RoleController {
+	/*
+}
 	@RequestMapping(value = "/role", method = RequestMethod.GET)
 	public ModelAndView role1() {
 		System.out.println("hello..............................************");
@@ -24,14 +26,14 @@ public class RoleController {
 	public String addRole(@ModelAttribute("SpringWeb") Role role, ModelMap model) {
 		RoleAPI obj1 = new RoleAPI();
 		System.out.println("hello............................................");
-		/*if (role.getId() != 0) {
+		*if (role.getId() != 0) {
 			model.addAttribute("id", role.getId());
 			model.addAttribute("RoleName", role.getRoleName());
 			model.addAttribute("Description", role.getDescription());
 			model.addAttribute("ReportTo", role.getReportTo());
 			
 			obj1.addRole(role);
-		} else {*/ 
+		} else {/ 
 		model.addAttribute("id", role.getId());
 			model.addAttribute("RoleName", role.getRoleName());
 			model.addAttribute("Description", role.getDescription());
@@ -50,5 +52,6 @@ public class RoleController {
 		model.addAttribute("listRole", empApi.listRoles());
 		return "Rolelist";
 	}
+	*/
 }
 

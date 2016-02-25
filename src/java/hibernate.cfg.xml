@@ -13,7 +13,9 @@
    <property name="hibernate.connection.password"></property>
    <property name="hibernate.hbm2ddl.auto">update</property>
 				<property name="hibernate.show_sql">true</property>
+				<!-- 
 				<mapping class="com.pursuit.salesCommission.app.model.Role"/>
 				<mapping class="com.pursuit.salesCommission.app.model.Employee"/>
+				-->
 </session-factory>
 </hibernate-configuration>

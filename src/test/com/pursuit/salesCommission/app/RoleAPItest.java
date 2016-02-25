@@ -15,7 +15,7 @@ import com.pursuit.salesCommission.app.model.Employee;
 import com.pursuit.salesCommission.app.model.Role;
 
 public class RoleAPItest {
-	
+	/*
 	
 	@Test
 	public void testAddRole() {
@@ -46,5 +46,5 @@ public class RoleAPItest {
         Assert.assertEquals("gmanager", role.getRoleName());
 	} 
 
-	
+	*/
 }

@@ -14,7 +14,7 @@ import com.pursuit.salesCommission.app.model.Employee;
 import com.pursuit.salesCommission.app.model.Rule;
 
 public class RuleAPITest {
-
+/*
 	@Test
 	public void testGetRules() {
 		RuleAPI api = new RuleAPI();
@@ -40,9 +40,9 @@ public class RuleAPITest {
 		r.setRuleName("dfdbf");
 		r.setDescription("rgbrfbvfr");
 		r.setRuleType("gftgnbgnm");
-		/*
+		*
 		 * r.setRulesConnectedas("PQRS"); r.setListofRules("MNOP");
-		 */
+		 /
 		api.createRule(r);
 		Rule ru = api.getRule(r.getId());
 		Assert.assertEquals("dfdbf", ru.getRuleName());
@@ -56,14 +56,14 @@ public class RuleAPITest {
 		Assert.assertNull(api.getRule(i));
 	} 
 	
-	/*@Test
+	*@Test
 	public void testUpdateRule() {
 		RuleAPI api = new RuleAPI();
 		int i = api.addRule("ABCD", "EFGH", "XYZ");
 		Rule rul= api.updateRule(i,"Rashid");
 		 Assert.assertEquals("Rashid", rul.getRuleType());
 		
-	}*/
+	}*
 	
 	@Test
  	public void testEditRule() {
@@ -80,6 +80,6 @@ public class RuleAPITest {
  		 Assert.assertEquals("rule 456", emp1.getRuleName());
  		
  	}
-	
+	*/
 	
 }

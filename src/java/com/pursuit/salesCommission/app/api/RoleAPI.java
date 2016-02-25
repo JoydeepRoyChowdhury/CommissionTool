@@ -1,24 +1,13 @@
 package com.pursuit.salesCommission.app.api;
 
-import java.util.List;
-import java.util.Date;
-import java.util.Iterator;
-
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-
-import com.pursuit.salesCommission.app.model.Employee;
-import com.pursuit.salesCommission.app.model.Role;
 
 public class RoleAPI {
 	private static SessionFactory factory;
 
 	/* ...............Add role in Database.................... */
 
+	/*
 	public int addRole(String rolename, String description, String reportTo) {
 		factory = new AnnotationConfiguration().configure("hibernate.cfg.xml").addAnnotatedClass(Role.class)
 				.buildSessionFactory();
@@ -45,7 +34,7 @@ public class RoleAPI {
 
 	}
 
-	/* ........getRole...... */
+	* ........getRole...... /
 
 	public Role getRole(Integer RoleID) {
 		factory = new AnnotationConfiguration().configure("hibernate.cfg.xml").addAnnotatedClass(Role.class)
@@ -56,7 +45,7 @@ public class RoleAPI {
 		return (Role) session.get(Role.class, RoleID);
 	}
 
-	/* .............create role............. */
+	* .............create role............. *
 
 	public void createRole(Role role) {
 
@@ -82,7 +71,7 @@ public class RoleAPI {
 
 	}
 	
-	/* Method to READ all the employees */
+	* Method to READ all the employees/
 	public List<Role> listRoles() {
 		factory = new AnnotationConfiguration().configure("hibernate.cfg.xml").addAnnotatedClass(Role.class)
 				.buildSessionFactory();
@@ -98,5 +87,5 @@ public class RoleAPI {
 		}
 		return roles;
 	}
-
+*/
 }

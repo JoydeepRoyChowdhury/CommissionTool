@@ -1,37 +1,41 @@
 package com.pursuit.salesCommission.app.api;
 
-import java.util.List;
-import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.pursuit.salesCommission.app.model.Employee;
 
+@Component
 public class EmployeeAPI {
-	private static SessionFactory factory;
+	
+	@Autowired
+	private SessionFactory sessionFactory;
+
+	public void setSessionFactory(SessionFactory factory) {
+		sessionFactory = factory;
+	}
 
 	/* Method to CREATE an employee in the database */
 	public Integer addEmployee(String fname, String lname, int salary) {
 
-		factory = new AnnotationConfiguration().configure("hibernate.cfg.xml").addAnnotatedClass(Employee.class)
-				.buildSessionFactory();
-		Session session = factory.openSession();
-		Transaction tx = null;
+		Session session = sessionFactory.openSession();
 		Integer employeeID = null;
+		Transaction tx = null;
 		try {
-			tx = session.beginTransaction();
+			tx  = session.beginTransaction();
 			Employee employee = new Employee();
 			employee.setFirstName(fname);
 			employee.setLastName(lname);
 			employee.setSalary(salary);
 			employeeID = (Integer) session.save(employee);
-			tx.commit();
+			 tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
@@ -44,9 +48,7 @@ public class EmployeeAPI {
 
 	/* Method to READ all the employees */
 	public List<Employee> listEmployees() {
-		factory = new AnnotationConfiguration().configure("hibernate.cfg.xml").addAnnotatedClass(Employee.class)
-				.buildSessionFactory();
-		Session session = factory.openSession();
+		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		tx = session.beginTransaction();
 		List employees = session.createQuery("FROM Employee").list();
@@ -61,9 +63,7 @@ public class EmployeeAPI {
 
 	/* Method to UPDATE salary for an employee */
 	public Employee updateEmployee(Integer EmployeeID, int salary) {
-		factory = new AnnotationConfiguration().configure("hibernate.cfg.xml").addAnnotatedClass(Employee.class)
-				.buildSessionFactory();
-		Session session = factory.openSession();
+		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 
 		tx = session.beginTransaction();
@@ -76,9 +76,7 @@ public class EmployeeAPI {
 
 	/* Method to DELETE an employee from the records */
 	public void deleteEmployee(Integer EmployeeID) {
-		factory = new AnnotationConfiguration().configure("hibernate.cfg.xml").addAnnotatedClass(Employee.class)
-				.buildSessionFactory();
-		Session session = factory.openSession();
+		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
@@ -95,19 +93,14 @@ public class EmployeeAPI {
 	}
 
 	public Employee getEmployee(Integer EmployeeID) {
-		factory = new AnnotationConfiguration().configure("hibernate.cfg.xml").addAnnotatedClass(Employee.class)
-				.buildSessionFactory();
-		Session session = factory.openSession();
+		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		tx = session.beginTransaction();
 		return (Employee) session.get(Employee.class, EmployeeID);
 	}
 
 	public void createEmployee(Employee employee) {
-
-		factory = new AnnotationConfiguration().configure("hibernate.cfg.xml").addAnnotatedClass(Employee.class)
-				.buildSessionFactory();
-		Session session = factory.openSession();
+		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
@@ -127,9 +120,7 @@ public class EmployeeAPI {
 
 	}
 	public void editEmployee(Employee employee) {
-		factory = new AnnotationConfiguration().configure("hibernate.cfg.xml").addAnnotatedClass(Employee.class)
-				.buildSessionFactory();
-		Session session = factory.openSession();
+		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 		tx = session.beginTransaction();

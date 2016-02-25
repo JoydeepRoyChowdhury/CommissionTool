@@ -3,7 +3,7 @@
 	<!-- project-specific variables -->
 	<property name="jsp.dir.name" value="CommissionTool" />
 	<property name="package.name" value="${jsp.dir.name}.war" />
-	<property name="webapp.dir" value="D:\apache-tomcat-8.0.28\apache-tomcat-8.0.28\webapps" />
+	<property name="webapp.dir" value="F:\apache-tomcat-8.0.28\webapps" />
 
 	<property environment="env" />
 	<property name="build.dir" value="build" />
@@ -12,7 +12,7 @@
 	<property name="lib.dir" value="lib" />
 	<property name="pages.dir" value="pages" />
 	<property name="src.dir" value="src/java" />
-	<property name="src.tests.dir" value="src/test" />
+	<!--<property name="src.tests.dir" value="src/test" /> -->
 	<property name="resources.dir" value="resources" />
 	<property name="dest.dir" value="target" />
 
@@ -29,7 +29,7 @@
 
 	<taskdef resource="net/sf/antcontrib/antcontrib.properties">
 		<classpath>
-			<pathelement location="E:/Swarup/CommissionTool/lib/ant-contrib-0.3.jar" />
+			<pathelement location="./antlib/ant/ant-contrib-0.3.jar" />
 		</classpath>
 	</taskdef>
 
@@ -95,11 +95,11 @@
 		</javac>
 
 		<!-- compile files on the src-tests path -->
-		<echo>Compiling ${src.tests.dir} files ...</echo>
+	<!--	<echo>Compiling ${src.tests.dir} files ...</echo>
 		<javac debug="on" srcdir="${src.tests.dir}" destdir="${temp.dir.classes}" includes="com/**">
 			<classpath refid="build.class.path" />
-		</javac>
-	</target>
+		</javac> -->
+	</target> 
 
 	<!-- PACKAGE -->
 	<target name="package" depends="compile">
