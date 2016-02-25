@@ -1,5 +1,6 @@
 package com.pursuit.salesCommission.ui;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,9 @@ import com.pursuit.salesCommission.app.model.Employee;
 @Controller
 public class EmployeeController {
 
+	@Autowired
+		private EmployeeAPI employeeApi;
+	
 	@RequestMapping(value = "/employee", method = RequestMethod.GET)
 	public ModelAndView employee1() {
 		return new ModelAndView("addEmployee", "command", new Employee());
@@ -21,7 +25,7 @@ public class EmployeeController {
 
 	@RequestMapping(value = "/submit", method = RequestMethod.POST)
 	public String addEmployee1(@ModelAttribute("SpringWeb") Employee employee, ModelMap model) {
-		EmployeeAPI empApi = new EmployeeAPI();
+		
 		if (employee.getId() != 0) {
 			model.addAttribute("id", employee.getId());
 			model.addAttribute("firstName", employee.getFirstName());
@@ -31,7 +35,7 @@ public class EmployeeController {
 			// model.addAttribute("startDate", employee.getStartDate());
 			// model.addAttribute("termDate", employee.getTermDate());
 			// model.addAttribute("managerId", employee.getManagerId());
-			empApi.editEmployee(employee);
+			employeeApi.editEmployee(employee);
 		} else {
 			model.addAttribute("id", employee.getId());
 			model.addAttribute("firstName", employee.getFirstName());
@@ -41,7 +45,7 @@ public class EmployeeController {
 			// model.addAttribute("startDate", employee.getStartDate());
 			// model.addAttribute("termDate", employee.getTermDate());
 			// model.addAttribute("managerId", employee.getManagerId());
-			empApi.createEmployee(employee);
+			employeeApi.createEmployee(employee);
 			
 		}
 
@@ -51,24 +55,21 @@ public class EmployeeController {
 
 	@RequestMapping(value = "/employeeList", method = RequestMethod.GET)
 	public String listEmployees(ModelMap model) {
-		EmployeeAPI empApi = new EmployeeAPI();
 		model.addAttribute("employee", new Employee());
-		model.addAttribute("listEmployee", empApi.listEmployees());
+		model.addAttribute("listEmployee", employeeApi.listEmployees());
 		return "empList";
 	}
 
 	@RequestMapping("/removeEmployee/{id}")
 	public String removeEmployee(@PathVariable("id") int id, Employee employee, ModelMap model) {
-		EmployeeAPI empApi = new EmployeeAPI();
-		empApi.deleteEmployee(id);
+		employeeApi.deleteEmployee(id);
 		return "redirect:/employeeList";
 	}
 
 	@RequestMapping("/editEmployee/{id}")
 	public String editEmployee(@PathVariable("id") int id, ModelMap model) {
-		EmployeeAPI empApi = new EmployeeAPI();
-		model.addAttribute("employee", empApi.getEmployee(id));
-		model.addAttribute("listEmployee", empApi.listEmployees());
+		model.addAttribute("employee", employeeApi.getEmployee(id));
+		model.addAttribute("listEmployee", employeeApi.listEmployees());
 		return "editEmployee";
 	}
 }

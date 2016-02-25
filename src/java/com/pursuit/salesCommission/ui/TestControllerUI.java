@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.pursuit.salesCommission.app.api.EmployeeAPI;
-import com.pursuit.salesCommission.app.api.dao.EmployeeDao;
+//import com.pursuit.salesCommission.app.api.dao.EmployeeDao;
 import com.pursuit.salesCommission.app.model.Employee;
 import com.pursuit.salesCommission.app.model.EmployeeOld;
 import com.pursuit.salesCommission.app.model.GoogleResults;
@@ -35,8 +35,8 @@ import com.pursuit.salesCommission.app.model.Result;
 // @RequestMapping("/test")
 public class TestControllerUI {
 
-	@Autowired
-	private EmployeeDao employeeDao;
+	//@Autowired
+	//private EmployeeDao employeeDao;
 	
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public String printResult(ModelMap model) throws IOException {
@@ -104,7 +104,7 @@ public class TestControllerUI {
 		model.addAttribute("startDate", employee.getStartDate());
 		model.addAttribute("termDate", employee.getTermDate());
 		model.addAttribute("managerId", employee.getManagerId());
-		employeeDao.saveEmployee(employee);
+		//employeeDao.saveEmployee(employee);
 
 		return "result";
 	}		
