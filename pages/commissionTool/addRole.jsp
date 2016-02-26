@@ -6,24 +6,55 @@
 <head>
 <title>Insert Role</title>
 </head>
+<style>
+#textboxid {
+	background-color: #FFF;
+	min-height: 80px;
+	min-width: 120px;
+}
+</style>
 <tiles:insertDefinition name="defaultTemplate">
-    <tiles:putAttribute name="body">
-<body>
-	<div align="center">
-		<h1>Role Details</h1>
-		<form action="/CommissionTool/submitRole" method="post">
+	<tiles:putAttribute name="body">
+		<body>
 
-			<b>Role Name:</b><input type="text" name="RoleName" /><br /> 
-			<b>Description:</b><input type="text" name="Description" /><br /> 
-			<b>Report To:</b><input type="text" name="ReportTo" /><br /> 
-			<input type="submit" value="Submit" />
+			<form action="/CommissionTool/submitRole" method="post">
 
-		</form>
+				<div id="menu"></div>
+				<div id="buffer" class="body"></div>
+				<div id="body" class="body" align="center">
+					<h1 align="center">Role Details</h1>
+					<table border=0 align="center">
+						<tr>
+							<td><b>Role Name:</b></td>
+							<td><input type="text" name="RoleName"></td>
+						</tr>
+						<tr>
+							<td><b>Description:</b></td>
+							<td><input type="text" name="Description"></td>
+						</tr>
+						<tr>
+							<td><b>Reports To:</b></td>
+							<td><input type="text" name="ReportTo"></td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<div id="setTarget"></div>
+							</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td><input type="submit" value="Submit"> <input
+								type="submit" value="Add New Parameter"> <input
+								type="submit" value="cancel"></td>
+						</tr>
+					</table>
+				</div>
+
+			</form>
 
 
 
-	</div>
 
-</body>
-</tiles:putAttribute>
+		</body>
+	</tiles:putAttribute>
 </tiles:insertDefinition>

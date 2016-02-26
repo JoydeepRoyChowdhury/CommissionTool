@@ -1,4 +1,4 @@
-package com.pursuit.salesCommission.app.api.dao;
+/*package com.pursuit.salesCommission.app.api.dao;
 
 import java.util.List;
 
@@ -44,11 +44,11 @@ public class EmployeeDao {
 	/*public Collection<Employee> searchEmployee(Employee e) {
 		return (Collection<Employee>) template.find("from Employee e");
 	} */
-	 @SuppressWarnings("unchecked")
+/*	 @SuppressWarnings("unchecked")
 	    public List<EmployeeOld> listEmployee() {
 	       // Session session = this.sessionFactory.getCurrentSession();
 	       // List<Employee> empList = session.createQuery("from Employee").list();
 		 List<EmployeeOld> empList = (List<EmployeeOld>) template.find("from EmployeeOld e");
 	        return empList;
 	    }
-}
+} */

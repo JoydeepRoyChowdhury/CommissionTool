@@ -19,8 +19,8 @@
 
 		<property name="annotatedClasses">
 			<list>
-				<value>com.pursuit.salesCommission.app.model.Employee
-				</value>
+				<value>com.pursuit.salesCommission.app.model.Employee</value>
+				<value>com.pursuit.salesCommission.app.model.Role</value>
 			</list>
 		</property>
 
@@ -30,6 +30,9 @@
 	</bean>
 
 	<bean id="employeeApi" class="com.pursuit.salesCommission.app.api.EmployeeAPI">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="roleApi" class="com.pursuit.salesCommission.app.api.RoleAPI">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 

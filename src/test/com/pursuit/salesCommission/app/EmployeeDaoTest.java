@@ -1,4 +1,4 @@
-package com.pursuit.salesCommission.app;
+/*package com.pursuit.salesCommission.app;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -39,17 +39,17 @@ public class EmployeeDaoTest {
 		fail("Not yet implemented");
 	} */
 
-	 @Test
+	/* @Test
 	 @Transactional
 	 @Rollback(true)
 	public void testGetById() {
 		// Employee employee = employeeDao.getById(1);
     //   Assert.assertEquals("PP", employee.getName());
-	}
+	}*/
 
 	/* @Test
 	public void testSearchEmployee() {
 		fail("Not yet implemented");
 	}
 */
-}
+//}

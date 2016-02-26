@@ -1,17 +1,31 @@
 package com.pursuit.salesCommission.app.api;
 
-import org.hibernate.SessionFactory;
+import java.util.Iterator;
+import java.util.List;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import com.pursuit.salesCommission.app.model.Role;
+
+@Component
 public class RoleAPI {
-	private static SessionFactory factory;
+	
+	@Autowired
+	private static SessionFactory sessionFactory;
+	public void setSessionFactory(SessionFactory factory) {
+		sessionFactory = factory;
+	}
+
 
 	/* ...............Add role in Database.................... */
 
-	/*
 	public int addRole(String rolename, String description, String reportTo) {
-		factory = new AnnotationConfiguration().configure("hibernate.cfg.xml").addAnnotatedClass(Role.class)
-				.buildSessionFactory();
-		Session session = factory.openSession();
+		
+		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		Integer roleID = null;
 		try {
@@ -34,24 +48,21 @@ public class RoleAPI {
 
 	}
 
-	* ........getRole...... /
+	/* ........getRole...... */
 
 	public Role getRole(Integer RoleID) {
-		factory = new AnnotationConfiguration().configure("hibernate.cfg.xml").addAnnotatedClass(Role.class)
-				.buildSessionFactory();
-		Session session = factory.openSession();
+		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		tx = session.beginTransaction();
 		return (Role) session.get(Role.class, RoleID);
 	}
 
-	* .............create role............. *
+	/* .............create role............. */
 
 	public void createRole(Role role) {
 
-		factory = new AnnotationConfiguration().configure("hibernate.cfg.xml").addAnnotatedClass(Role.class)
-				.buildSessionFactory();
-		Session session = factory.openSession();
+		
+		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
@@ -70,12 +81,11 @@ public class RoleAPI {
 		}
 
 	}
-	
-	* Method to READ all the employees/
+
+	/* Method to READ all role */
 	public List<Role> listRoles() {
-		factory = new AnnotationConfiguration().configure("hibernate.cfg.xml").addAnnotatedClass(Role.class)
-				.buildSessionFactory();
-		Session session = factory.openSession();
+		
+		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		tx = session.beginTransaction();
 		List roles = session.createQuery("FROM Role").list();
@@ -87,5 +97,47 @@ public class RoleAPI {
 		}
 		return roles;
 	}
-*/
+
+	/* ............. delete role........ */
+
+	public void deleteRole(Integer RoleID) {
+		
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			Role role = (Role) session.get(Role.class, RoleID);
+			session.delete(role);
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}
+
+	public void editRole(Role role) {
+		
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			Role role1 = (Role) session.get(Role.class, role.getId());
+			role1.setId(role.getId());
+			role1.setRoleName(role.getRoleName());
+			role1.setDescription(role.getDescription());
+			role1.setReportTo(role.getReportTo());
+			session.save(role1);
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
+	}
 }
