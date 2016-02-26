@@ -1,50 +1,62 @@
 package com.pursuit.salesCommission.app;
 
-import static org.junit.Assert.*;
-
-import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.pursuit.salesCommission.app.api.EmployeeAPI;
-//import com.pursuit.salesCommission.app.api.EmployeeAPI;
 import com.pursuit.salesCommission.app.api.RoleAPI;
-import com.pursuit.salesCommission.app.model.Employee;
 import com.pursuit.salesCommission.app.model.Role;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("/applicationContext.xml")
+
 public class RoleAPItest {
-	/*
-	
+	@Autowired
+	private RoleAPI roleAPI;
+
 	@Test
 	public void testAddRole() {
-		RoleAPI api = new RoleAPI();
-	     int i = api.addRole("gmanager","super", "peo");
-	     Assert.assertNotNull(i);
-	     Role emp = api.getRole(i);
-	     Assert.assertEquals("gmanager", emp.getRoleName());
+		
+		int i = roleAPI.addRole("gmanager", "super", "peo");
+		Assert.assertNotNull(i);
+		Role emp = roleAPI.getRole(i);
+		Assert.assertEquals("gmanager", emp.getRoleName());
 	}
 
 	@Test
 	public void testCreateRole() {
-		RoleAPI api = new RoleAPI();
 		Role e = new Role();
 		e.setRoleName("tester");
 		e.setDescription("good");
 		e.setReportTo("deo");
-		api.createRole(e);
-		Role emp = api.getRole(e.getId());
+		roleAPI.createRole(e);
+		Role emp = roleAPI.getRole(e.getId());
 		Assert.assertEquals("tester", emp.getRoleName());
 
 	}
-	
+
 	@Test
 	public void testGetRoles() {
-		RoleAPI api = new RoleAPI();
-		 Role role = api.getRole(2); 
-        Assert.assertEquals("gmanager", role.getRoleName());
-	} 
+		Role role = roleAPI.getRole(2);
+		Assert.assertEquals("cc", role.getRoleName());
+	}
 
-	*/
+	@Test
+	public void testEditRole() {
+		Role e = new Role();
+		e.setRoleName("cc");
+		e.setDescription("dd");
+		e.setReportTo("ff");
+		roleAPI.createRole(e);
+		Role emp = roleAPI.getRole(e.getId());
+		emp.setRoleName("joydeepda");
+		roleAPI.editRole(emp);
+		Role emp1 = roleAPI.getRole(emp.getId());
+		Assert.assertEquals("joydeepda", emp1.getRoleName());
+
+	}
+
 }

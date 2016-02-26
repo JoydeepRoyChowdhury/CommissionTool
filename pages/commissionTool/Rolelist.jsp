@@ -1,38 +1,98 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%@ page session="false"%>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>View Role</title>
+<title>Role List</title>
 </head>
-<head>
-<style>
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
+<tiles:insertDefinition name="defaultTemplate">
+	<tiles:putAttribute name="body">
+	<div style="height:540px;overflow:auto;">
+		<div id="page-wrapper">
+			<div class="container-fluid">
+				<style type="text/css">
+.tg {
+	border-collapse: collapse;
+	border-spacing: 0;
+	border-color: #ccc;
 }
-th, td {
-    padding: 5px;
-}
-</style>
-</head>
-<body>
-<table style="width:100%">
-  <tr>
-  	<th>Id</th>
-    <th>RoleName</th>
-    <th>Description</th>		
-    <th>ReportTo</th>
-  </tr>
-   
-  <tr>
-    <td>${role.id}</td>
-    <td>${role.RoleName}</td>		
-    <td>${role.Description}</td>
-    <td>${role.ReportTo}</td>
-  </tr>
-</table>
-</body>
 
-</html>
+.tg td {
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	padding: 10px 5px;
+	border-style: solid;
+	border-width: 1px;
+	overflow: hidden;
+	word-break: normal;
+	border-color: #ccc;
+	color: #333;
+	background-color: #fff;
+}
+
+.tg th {
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	padding: 10px 5px;
+	border-style: solid;
+	border-width: 1px;
+	overflow: hidden;
+	word-break: normal;
+	border-color: #ccc;
+	color: #333;
+	background-color: #f0f0f0;
+}
+
+.tg .tg-4eph {
+	background-color: #f9f9f9
+}
+
+</style>
+
+
+				<div align="center">
+				
+				<h2>Role List</h2>
+				<c:if test="${!empty listRole}">
+					<table class="tg">
+						<tr>
+							<th><b>ID</b></th>
+							<th><b>Role Name</b></th>
+							<th><b>Description</b></th>
+							<th><b>Report To</b></th>
+							<th align="center"><b>Actions on Row</b></th>
+						</tr>
+						
+						<c:forEach items="${listRole}" var="role">
+							<tr>
+							
+								<td>${role.id}</td>
+								<td>${role.roleName}</td>
+								<td>${role.description}</td>
+								<td>${role.reportTo}</td>
+								<td><a
+									href="<c:url value='/editRole/${role.id}' />">Edit</a>
+									| <a href="<c:url value='/deleterole/${role.id}' />">Delete</a></td>
+								
+							</tr>
+							
+						</c:forEach>
+						
+						
+					</table>
+				</c:if>
+				</div>
+				</div>
+				</div>
+				<div class="well">
+					<a href="<c:url value='/role' />">Add Role</a>
+				</div>
+				</div>
+				
+				
+			
+	</tiles:putAttribute>
+</tiles:insertDefinition>	
+	
