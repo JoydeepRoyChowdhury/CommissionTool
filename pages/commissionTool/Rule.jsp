@@ -1,20 +1,29 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%@ page session="false"%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>insert records</title>
+<title>Update Compensation Rule Details</title>
 </head>
-<body>
-	<form action="/CommissionTool/sub" method="post">
 
-		<b>Ruleid:</b><input type="number" name="Ruleid"/><br/><br/><br/>
-		<b>Rulename:</b><input type="text" name="Rulename"/><br/><br/><br/>
-	    <b>Ruledescription:</b><input type="text" name="Ruledescription" /><br/><br/><br/>
-	    <b>RuleType:</b><input type="text" name="Ruletype" /><br><br><br>
-		<input type="submit" value="Submit"/>
+<tiles:insertDefinition name="defaultTemplate">
+    <tiles:putAttribute name="body">
+<body>
+<div align="center">
+
+	<h1> Compensation Rule Details </h1>
+	<form action="/CommissionTool/submitRule" method="post">
+
+		
+		<b>Rule name :</b>    <input type="text" name="RuleName"/><br/><br/>
+	    <b>Description :</b>  <input type="text" name="Description" /><br/><br/>
+	    <b>Rule type :</b>    <input type="text" name="RuleType" /><br><br/>
+		<input type="submit" value="Update"/>
 
 	</form>
+	</div>>
 </body>
-</html>
+</tiles:putAttribute>
+</tiles:insertDefinition>
