@@ -39,7 +39,12 @@ function footer() {
 }
 function printChooseEmployee() {
 	var empTxt = '';
-	empTxt += '<img onclick="window.open(\'employee/EmployeeSelection.html\', \'empSearch\', \'toolbar=no, location=no, status=no, menubar=no, scrollbars=no, resizable=no, height=400, width=600\')" src="../image/search.png" style="width:30px;height:20px;"/>';
+	empTxt += '<img onclick="window.open(\'../../popups/EmployeeSelection.html\', \'empSearch\', \'toolbar=no, location=no, status=no, menubar=no, scrollbars=no, resizable=no, height=400, width=600\')" src="../../../image/search.png" style="width:30px;height:20px;"/>';
+	document.write(empTxt);
+}
+function selectRole() {
+	var empTxt = '';
+	empTxt += '<img onclick="window.open(\'../../popups/Org.html\', \'empSearch\', \'toolbar=no, location=no, status=no, menubar=no, scrollbars=no, resizable=no, height=400, width=600\')" src="../../../image/search.png" style="width:30px;height:20px;"/>';
 	document.write(empTxt);
 }
 function printChooseCal() {

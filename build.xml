@@ -69,12 +69,18 @@
 		<mkdir dir="${temp.mockup}/mockup/dist" />
 		<!--  PACK Mockups for menu -->
 		<loadfile property="menu" srcFile="${temp.mockup}/mockup/html/components/menu.html" />
-		<replace file="${temp.mockup}/mockup/html/App.template" token="@@MENU@@" value="${menu}" />
+	    <replace file="${temp.mockup}/mockup/html/App.template" token="@@MENU@@" value="${menu}" />
 		<foreach target="includeTemplate" param="fileLoaction">
-			<fileset dir="${temp.mockup}" casesensitive="yes">
+			<fileset dir="${temp.mockup}/mockup/html/pages" casesensitive="yes">
 				<include name="**/*.html" />
 			</fileset>
 		</foreach>
+		
+		<loadfile property="setTarget" srcFile="${temp.mockup}/mockup/html/components/setTarget.html" />
+		<replace file="${temp.mockup}/mockup/html/pages/employee/EmployeeDetailsComponent.html" token="@@TARGETCONTENT@@" value="${setTarget}" />
+	    <replace file="${temp.mockup}/mockup/html/pages/orgStructure/EditStructure.html" token="@@TARGETCONTENT@@" value="${setTarget}" />
+	    <loadfile property="setParameter" srcFile="${temp.mockup}/mockup/html/components/planParameters.html" />
+	    <replace file="${temp.mockup}/mockup/html/pages/compPlan/CompPlan.html" token="@@PLANPARAMETER@@" value="${setParameter}" />
 		<!--<antcall target="includeTemplate">
 			<param name="fileLoaction" value="${temp.mockup}/mockup/html/pages/compReport/CompReport.html"/>
 				</antcall> -->
@@ -95,11 +101,11 @@
 		</javac>
 
 		<!-- compile files on the src-tests path -->
-	<!--	<echo>Compiling ${src.tests.dir} files ...</echo>
+		<!--	<echo>Compiling ${src.tests.dir} files ...</echo>
 		<javac debug="on" srcdir="${src.tests.dir}" destdir="${temp.dir.classes}" includes="com/**">
 			<classpath refid="build.class.path" />
 		</javac> -->
-	</target> 
+	</target>
 
 	<!-- PACKAGE -->
 	<target name="package" depends="compile">
