@@ -33,7 +33,7 @@
                                         </li>
                                         <li class="divider"></li>
                         				<li>
-                                        <li><a href="#">Compensation Rule</a>
+                                        <li><a href="/CommissionTool/ruleList">Compensation Rule</a>
                                         </li>
                                         <li class="divider"></li>
                        					<li>
