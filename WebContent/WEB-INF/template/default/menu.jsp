@@ -1,7 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <div class="menu">
-Menu
-    <ul>
+
+ <!--    <ul>
         <li>
             <spring:url value="/home" var="homeUrl" htmlEscape="true"/>
             <a href="${homeUrl}"></a>
@@ -10,5 +10,5 @@ Menu
             <spring:url value="/about" var="aboutUrl" htmlEscape="true"/>
             <a href="${aboutUrl}"></a>
         </li>
-    </ul>
+    </ul>  -->
 </div>

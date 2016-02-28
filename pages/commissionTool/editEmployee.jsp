@@ -31,7 +31,7 @@
                         </ol>
                     </div>
                 </div>
-  <c:url var="addAction" value="/submit" ></c:url>
+  <c:url var="addAction" value="/submitEmployee" ></c:url>
  
 <form:form action="${addAction}" commandName="employee">
       <table>  

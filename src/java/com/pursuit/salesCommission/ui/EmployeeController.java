@@ -19,11 +19,11 @@ public class EmployeeController {
 		private EmployeeAPI employeeApi;
 	
 	@RequestMapping(value = "/employee", method = RequestMethod.GET)
-	public ModelAndView employee1() {
+	public ModelAndView employee() {
 		return new ModelAndView("addEmployee", "command", new Employee());
 	}
 
-	@RequestMapping(value = "/submit", method = RequestMethod.POST)
+	@RequestMapping(value = "/submitEmployee", method = RequestMethod.POST)
 	public String addEmployee1(@ModelAttribute("SpringWeb") Employee employee, ModelMap model) {
 		
 		if (employee.getId() != 0) {

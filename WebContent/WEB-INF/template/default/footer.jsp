@@ -1,1 +1,1 @@
-<div class="footer">I am the Footer !</div>
+<div class="footer">designed and developed by Simpsoft Solution Pvt. Ltd.</div>

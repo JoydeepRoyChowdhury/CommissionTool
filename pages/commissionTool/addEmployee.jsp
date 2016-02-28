@@ -27,7 +27,7 @@
 				<div class="row">
 					<div class="col-lg-6">
 
-						<form:form method="POST" action="/CommissionTool/submit">
+						<form:form method="POST" action="/CommissionTool/submitEmployee">
 							<table>
 								<tr>
 									<td><form:label path="firstName">Employee First Name:</form:label></td>
