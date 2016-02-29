@@ -60,6 +60,8 @@
 		<mkdir dir="${temp.dir.web-inf}" />
 		<mkdir dir="${temp.dir.classes}" />
 		<mkdir dir="${temp.mockup}" />
+		
+		<copy file="build.properties" tofile="src/java/app.properties"/>
 	</target>
 
 	<!-- PACK Mockups -->
@@ -135,6 +137,7 @@
 			<fileset dir="${src.dir}">
 				<include name="**/*.xml" />
 				<include name="**/*.xsl" />
+				<include name="**/*.properties" />
 			</fileset>
 		</copy>
 
