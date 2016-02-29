@@ -10,7 +10,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Sales Commission Tool</a>
+                <a class="navbar-brand" href="/CommissionTool/home">Sales Commission Tool</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-center top-nav">
