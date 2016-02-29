@@ -28,6 +28,9 @@
 	<property name="temp.mockup" value="tempMockup" />
 
 	<property name="package.file" value="${dest.dir}/${package.name}" />
+	
+	<property name="docs.dir" value="doc" />
+
 
 	<taskdef resource="net/sf/antcontrib/antcontrib.properties">
 		<classpath>
@@ -50,6 +53,7 @@
 		<delete dir="${temp.dir.meta-inf}" />
 		<delete dir="${temp.dir.web-inf}" />
 		<delete dir="${temp.mockup}" />
+	    <delete dir="${docs.dir}" />
 	</target>
 
 	<target name="prepare" depends="clean">
@@ -60,7 +64,7 @@
 		<mkdir dir="${temp.dir.web-inf}" />
 		<mkdir dir="${temp.dir.classes}" />
 		<mkdir dir="${temp.mockup}" />
-		
+		<mkdir dir="${docs.dir}" />
 		<copy file="build.properties" tofile="src/java/app.properties"/>
 	</target>
 
@@ -110,7 +114,17 @@
 			<classpath refid="build.class.path" />
 		</javac> -->
 	</target>
-
+    <!-- Creates Javadoc -->
+	  <target name="docs" depends="compile">
+	  	<echo>=== JAVADOC ===</echo>
+	    <javadoc packagenames="src" sourcepath="${src.dir}" destdir="${docs.dir}">
+	      <!-- Define which files / directory should get included, we include all -->
+	       <fileset dir="${src.dir}">
+	                <include name="**/*.java" />
+	           </fileset>
+	    </javadoc>
+	  </target>
+	
 	<!-- PACKAGE -->
 	<target name="package" depends="compile">
 		<echo>=== PACKAGE ===</echo>
@@ -167,7 +181,7 @@
 	</target>
 
 	<!-- INSTALL -->
-	<target name="install" depends="package, packMockup">
+	<target name="install" depends="package, packMockup, docs">
 		<echo>=== INSTALL ===</echo>
 		<copy file="${package.file}" tofile="${webapp.dir}/${package.name}" overwrite="true" />
 	</target>
