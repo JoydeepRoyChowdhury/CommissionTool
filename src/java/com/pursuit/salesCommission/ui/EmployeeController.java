@@ -1,5 +1,6 @@
 package com.pursuit.salesCommission.ui;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,8 +19,12 @@ public class EmployeeController {
 	@Autowired
 		private EmployeeAPI employeeApi;
 	
+	private static final Logger logger = Logger.getLogger(EmployeeController.class);
+	
 	@RequestMapping(value = "/employee", method = RequestMethod.GET)
 	public ModelAndView employee() {
+		
+		logger.debug("RENDERING TO EPLOYEE FORM LOAD PAGE");
 		return new ModelAndView("addEmployee", "command", new Employee());
 	}
 
@@ -36,6 +41,7 @@ public class EmployeeController {
 			// model.addAttribute("termDate", employee.getTermDate());
 			// model.addAttribute("managerId", employee.getManagerId());
 			employeeApi.editEmployee(employee);
+			logger.debug("EDITED AN EMPLOYEE INTO DATABASE" + employee);
 		} else {
 			model.addAttribute("id", employee.getId());
 			model.addAttribute("firstName", employee.getFirstName());
@@ -46,6 +52,7 @@ public class EmployeeController {
 			// model.addAttribute("termDate", employee.getTermDate());
 			// model.addAttribute("managerId", employee.getManagerId());
 			employeeApi.createEmployee(employee);
+			logger.debug("A NEW EMPLOYEE HAS CREATED" + employee);
 			
 		}
 

@@ -3,6 +3,7 @@ package com.pursuit.salesCommission.app.api;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,18 +13,26 @@ import org.springframework.stereotype.Component;
 
 import com.pursuit.salesCommission.app.model.Employee;
 
+/**
+ * Class for database operations on Employee 
+ * @author NEW2
+ *
+ */
 @Component
 public class EmployeeAPI {
 
 	@Autowired
 	private SessionFactory sessionFactory;
+	
+	private static final Logger logger = Logger.getLogger(EmployeeAPI.class);
 
 	public void setSessionFactory(SessionFactory factory) {
 		sessionFactory = factory;
 	}
 
 	/**
-	 * Method for Create an Employee database
+	 * Method for Create an Employee in database
+	 * This method is used to create new employee record in database table.
 	 * 
 	 * @param employee
 	 *            the object that taking all parameters of employee from
@@ -40,6 +49,7 @@ public class EmployeeAPI {
 			employee1.setSalary(employee.getSalary());
 			session.save(employee);
 			tx.commit();
+			logger.debug("CREATED AN EMPLOYEE INTO DATABASE" + employee);
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
@@ -61,6 +71,7 @@ public class EmployeeAPI {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		tx = session.beginTransaction();
+		logger.debug("GET THE EMPLOYEE DETAILS FROM DATABASE");
 		return (Employee) session.get(Employee.class, EmployeeID);
 	}
 
@@ -74,11 +85,11 @@ public class EmployeeAPI {
 		Transaction tx = null;
 		tx = session.beginTransaction();
 		List employees = session.createQuery("FROM Employee").list();
+		
 		for (Iterator iterator = employees.iterator(); iterator.hasNext();) {
 			Employee employee = (Employee) iterator.next();
-			System.out.print("First Name: " + employee.getFirstName());
-			System.out.print("  Last Name: " + employee.getLastName());
-			System.out.println("  Salary: " + employee.getSalary());
+			logger.debug("GET THE EMPLOYEE DETAILS FROM DATABASE" +  employee.getFirstName()+ employee.getLastName() +employee.getSalary() );
+			
 		}
 		return employees;
 	}
@@ -96,6 +107,7 @@ public class EmployeeAPI {
 			tx = session.beginTransaction();
 			Employee employee = (Employee) session.get(Employee.class, EmployeeID);
 			session.delete(employee);
+			logger.debug("DELETE THE EMPLOYEE DETAILS FROM DATABASE" + employee);
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null)
@@ -123,6 +135,7 @@ public class EmployeeAPI {
 			employee1.setLastName(employee.getLastName());
 			employee1.setSalary(employee.getSalary());
 			session.save(employee1);
+			logger.debug("EDIT THE EMPLOYEE DETAILS FROM DATABASE" + employee1);
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null)
