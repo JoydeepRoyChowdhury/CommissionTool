@@ -58,9 +58,9 @@
 						<table border="1" class="tg">
 							<tr>
 								<th><b>ID</b></th>
-								<th><b>Role Name</b></th>
+								<th><b>Rule Name</b></th>
 								<th><b>Description</b></th>
-								<th><b>Report To</b></th>
+								<th><b>Rule To</b></th>
 								<th align="center"><b>Actions on Row</b></th>
 							</tr>
 
