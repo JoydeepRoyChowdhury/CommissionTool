@@ -1,10 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%@ page session="false"%>
+
+  <tiles:insertDefinition name="defaultTemplate">
+	<tiles:putAttribute name="body">
 <head>
     <title>View</title>
+  
+   
     
     <link rel="stylesheet" href="resources/css/kendo.common.min.css" />
     <link rel="stylesheet" href="resources/css/kendo.default.min.css" />
@@ -17,7 +22,8 @@
                 $(document).ready(function() {
                     $("#grid").kendoGrid({
                     	 pageSize: 20,
-                    	  height: 550,
+                    	 height: 500,
+                    	    width: 900,
                           scrollable: true,
                           sortable: true,
                           filterable: false,
@@ -31,7 +37,6 @@
                 });
             </script>
 </head>
-<body>
 
   <div id="example">
             <table id="grid">
@@ -77,5 +82,5 @@
 				</div>
            
         </div>
-</body>
-</html>
+	</tiles:putAttribute>
+</tiles:insertDefinition>
