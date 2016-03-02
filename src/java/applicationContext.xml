@@ -25,6 +25,8 @@
 			<list>
 				<value>com.pursuit.salesCommission.app.model.Employee</value>
 				<value>com.pursuit.salesCommission.app.model.Role</value>
+				<value>com.pursuit.salesCommission.app.model.Rule</value>
+				
 			</list>
 		</property>
 
@@ -37,6 +39,9 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<bean id="roleApi" class="com.pursuit.salesCommission.app.api.RoleAPI">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="ruleApi" class="com.pursuit.salesCommission.app.api.RuleAPI">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 
