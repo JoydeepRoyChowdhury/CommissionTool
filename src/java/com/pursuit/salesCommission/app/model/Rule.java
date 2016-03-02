@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table (name = "RULE")
 public class Rule {
 	@Id @GeneratedValue
-	@Column(name = "id")
+	@Column(name = "rule_id")
 	private int id;
 	
 	@Column(name = "ruleName")

@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "EMPLOYEE")
 public class Employee {
    @Id @GeneratedValue
-   @Column(name = "id")
+   @Column(name = "emp_id")
    private int id;
 
    @Column(name = "firstName")
@@ -17,7 +17,12 @@ public class Employee {
 
    @Column(name = "salary")
    private int salary;  
-
+   
+   @OneToOne(cascade = CascadeType.ALL)
+   @PrimaryKeyJoinColumn
+   private Role role;
+   
+   
    public Employee() {}
    public int getId() {
       return id;
@@ -42,5 +47,13 @@ public class Employee {
    }
    public void setSalary( int salary ) {
       this.salary = salary;
+   }
+  
+   public Role getRole() {
+       return role;
+   }
+
+   public void setRole(Role role) {
+       this.role = role;
    }
 }

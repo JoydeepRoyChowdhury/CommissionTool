@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Role {
 	@Id
 	@GeneratedValue
-	@Column(name = "id")
+	@Column(name = "role_id")
 	private int id;
 	
 	@Column(name = "RoleName")
@@ -19,6 +19,15 @@ public class Role {
 	@Column(name = "ReportTo")
 	private String ReportTo;
 
+	 public Role() {
+	    }
+	             
+	    public Role(String RoleName, String Description, String ReportTo) {
+	        this.RoleName = RoleName;
+	        this.Description = Description;
+	        this.ReportTo = ReportTo;
+	    }
+	 
 	public int getId() {
 		return id;
 	}

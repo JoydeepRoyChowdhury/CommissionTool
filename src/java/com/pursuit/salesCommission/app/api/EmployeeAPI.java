@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.pursuit.salesCommission.app.model.Employee;
+import com.pursuit.salesCommission.app.model.Role;
 
 /**
  * Class for database operations on Employee 
@@ -47,6 +48,11 @@ public class EmployeeAPI {
 			employee1.setFirstName(employee.getFirstName());
 			employee1.setLastName(employee.getLastName());
 			employee1.setSalary(employee.getSalary());
+			Role role = new Role();
+			role.setRoleName(employee.getRole().getRoleName());
+			role.setDescription(employee.getRole().getDescription());
+			role.setReportTo(employee.getRole().getReportTo());
+			employee1.setRole(role);
 			session.save(employee);
 			tx.commit();
 			logger.debug("CREATED AN EMPLOYEE INTO DATABASE" + employee);

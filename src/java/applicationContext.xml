@@ -21,14 +21,14 @@
 
 		<property name="configLocation" value="classpath:hibernate.cfg.xml" />
 
-		<property name="annotatedClasses">
+	<!--  	<property name="annotatedClasses">
 			<list>
 				<value>com.pursuit.salesCommission.app.model.Employee</value>
 				<value>com.pursuit.salesCommission.app.model.Role</value>
 				<value>com.pursuit.salesCommission.app.model.Rule</value>
 				
 			</list>
-		</property>
+		</property> -->
 
 	</bean>
 	<bean id="template" class="org.springframework.orm.hibernate3.HibernateTemplate">
