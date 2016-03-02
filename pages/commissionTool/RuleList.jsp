@@ -8,11 +8,8 @@
 </head>
 <tiles:insertDefinition name="defaultTemplate">
 	<tiles:putAttribute name="body">
-	
 		<div id="page-wrapper">
-		<div style="height:540px;overflow:auto;">
 			<div class="container-fluid">
-			
 				<style type="text/css">
 .tg {
 	border-collapse: collapse;
@@ -86,14 +83,10 @@
 					</c:if>
 				</div>
 			</div>
-			
 			<div class="well">
 				<a href="<c:url value='/rule' />">Add Rule</a>
 			</div>
-			</div>
-			</div>
-		
-		
+		</div>
 
 
 

@@ -9,21 +9,22 @@
 </head>
 
 <tiles:insertDefinition name="defaultTemplate">
-    <tiles:putAttribute name="body">
-<body>
-<div align="center">
+	<tiles:putAttribute name="body">
+		<body>
+			<div align="center">
 
-	<h1> Compensation Rule Details </h1>
-	<form action="/CommissionTool/submitRule" method="post">
+				<h1>Compensation Rule Details</h1>
+				<form action="/CommissionTool/submitRule" method="post">
 
-		
-		<b>Rule name :</b>    <input type="text" name="RuleName"/><br/><br/>
-	    <b>Description :</b>  <input type="text" name="Description" /><br/><br/>
-	    <b>Rule type :</b>    <input type="text" name="RuleType" /><br><br/>
-		<input type="submit" value="Update"/>
 
-	</form>
-	</div>>
-</body>
-</tiles:putAttribute>
+					<b>Rule name :</b> <input type="text" name="RuleName" /><br />
+					<br /> <b>Description :</b> <input type="text" name="Description" /><br />
+					<br /> <b>Rule type :</b> <input type="text" name="RuleType" /><br>
+					<br /> <input type="submit" value="Update" />
+
+				</form>
+			</div>
+			>
+		</body>
+	</tiles:putAttribute>
 </tiles:insertDefinition>

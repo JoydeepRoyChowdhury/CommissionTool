@@ -9,37 +9,32 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import com.pursuit.salesCommission.app.model.Employee;
 import com.pursuit.salesCommission.app.model.Rule;
 
 @Component
 public class RuleAPI {
-	
+
 	@Autowired
-	private SessionFactory sessionFactory;
+	private static SessionFactory sessionFactory;
 
 	public void setSessionFactory(SessionFactory factory) {
 		sessionFactory = factory;
 	}
-	/* Method to CREATE an rule in the database */
-	public Integer addRule(String RuleName, String Description, String RuleType) {
 
-		
+	/* ...............Add rule in Database.................... */
+
+	public int addRule(String rulename, String description, String ruleType) {
+
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		Integer ruleID = null;
 		try {
 			tx = session.beginTransaction();
-			Rule rule = new Rule();
-			rule.setRuleName(RuleName);
-			rule.setDescription(Description);
-			rule.setRuleType(RuleType);
-			/*
-			 * rule.setRulesConnectedas(RulesConnectedas);
-			 * rule.setListofRules(ListofRules);
-			 */
-			ruleID = (Integer) session.save(rule);
+			Rule rule1 = new Rule();
+			rule1.setRuleName(rulename);
+			rule1.setDescription(description);
+			rule1.setRuleType(ruleType);
+			ruleID = (int) session.save(rule1);
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null)
@@ -48,23 +43,64 @@ public class RuleAPI {
 		} finally {
 			session.close();
 		}
-		// System.out.println("hiii...." +ruleName);
+		System.out.println("Hello........" + rulename + " " + description + " " + ruleType);
 		return ruleID;
 
 	}
 
-	public Rule getRule(Integer ruleID) {
-		
+	/* ........getRule...... */
+
+	public Rule getRule(Integer RuleID) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		tx = session.beginTransaction();
-		return (Rule) session.get(Rule.class, ruleID);
+		return (Rule) session.get(Rule.class, RuleID);
+	}
+
+	/* .............create role............. */
+
+	public void createRule(Rule rule) {
+
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			Rule rule2 = new Rule();
+			rule2.setRuleName(rule.getRuleName());
+			rule2.setDescription(rule.getDescription());
+			rule2.setRuleType(rule.getRuleType());
+			session.save(rule);
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
 
 	}
 
-	/* Method to DELETE an Rule from the records */
+	/* Method to READ all rule */
+	public List<Rule> listRules() {
+
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		tx = session.beginTransaction();
+		List rules = session.createQuery("FROM Rule").list();
+		for (Iterator iterator = rules.iterator(); iterator.hasNext();) {
+			Rule rule = (Rule) iterator.next();
+			System.out.print("RuleName: " + rule.getRuleName());
+			System.out.print("  Description: " + rule.getDescription());
+			System.out.println("  RuleType: " + rule.getRuleType());
+		}
+		return rules;
+	}
+
+	/* ............. delete rule........ */
+
 	public void deleteRule(Integer RuleID) {
-		
+
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
@@ -81,22 +117,18 @@ public class RuleAPI {
 		}
 	}
 
-	public void createRule(Rule rule) {
-		
+	public void editRule(Rule rule) {
+
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			Rule rule1 = new Rule();
+			Rule rule1 = (Rule) session.get(Rule.class, rule.getId());
+			rule1.setId(rule.getId());
 			rule1.setRuleName(rule.getRuleName());
 			rule1.setDescription(rule.getDescription());
 			rule1.setRuleType(rule.getRuleType());
-			/*
-			 * rule1.setRulesConnectedas(rule.getRulesConnectedas());
-			 * rule1.setListofRules(rule.getListofRules());
-			 */
-
-			session.save(rule);
+			session.save(rule1);
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null)
@@ -108,45 +140,6 @@ public class RuleAPI {
 
 	}
 
-	public void editRule(Rule rule) {
-		
-		Session session = sessionFactory.openSession();
-		Transaction tx = null;
-		try {
-			tx = session.beginTransaction();
-			Rule rul1 = (Rule) session.get(Rule.class, rule.getId());
-			rul1.setId(rule.getId());
-			rul1.setRuleName(rule.getRuleName());
-			rul1.setDescription(rule.getDescription());
-			rul1.setRuleType(rule.getRuleType());
-			session.update(rul1);
-			tx.commit();
-		} catch (HibernateException e) {
-			if (tx != null)
-				tx.rollback();
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-
-	}
-
-	public List<Rule> listRules() {
-		Session session = sessionFactory.openSession();
-		Transaction tx = null;
-		tx = session.beginTransaction();
-		List rules = session.createQuery("FROM Rule").list();
-		for (Iterator iterator = rules.iterator(); iterator.hasNext();) {
-			Rule rule = (Rule) iterator.next();
-			System.out.println("RuleName: " + rule.getRuleName());
-			System.out.println("Description: " + rule.getDescription());
-			System.out.println("RuleType: " + rule.getRuleType());
-			System.out.println("........... working..........");
-		}
-		return rules;
-	}
-	
-	/* Method to UPDATE Rule */
 	public Rule updateRule(Integer RuleID, String RuleName) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
@@ -157,6 +150,5 @@ public class RuleAPI {
 		session.update(rul);
 		return rul;
 
-}
-
+	}
 }
