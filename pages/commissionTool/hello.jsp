@@ -11,51 +11,14 @@
    
             <div class="container-fluid">
 
-                <!-- Page Heading -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h3 class="page-header">
-                            Employees Details
-                        </h3>
-                        <ol class="breadcrumb">
-                            <li>
-                                <i class="fa fa-dashboard"></i>  <a href="index.html">Master Data</a>
-                            </li>
-                            <li class="active">
-                                <i class="fa fa-edit"></i> Employee
-                            </li>
-                        </ol>
-                    </div>
-                </div>
+               
                 <!-- /.row -->
 
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
+<h2>Welcome to Sales Commission Tool..</h2>
 
-  <form:form method="POST" action="/CommissionTool/submit">  
-      <table>  
-       <tr>  
-           <td><form:label path="id">Employee ID:</form:label></td>  
-           <td><form:input path="id" value="${employee.id}" readonly="true"/></td>  
-       </tr>  
-       <tr>  
-           <td><form:label path="firstName">Employee First Name:</form:label></td>  
-           <td><form:input path="firstName" value="${employee.firstName}"/></td>  
-       </tr>  
-       <tr>  
-           <td><form:label path="lastName">Employee Last Name:</form:label></td>  
-           <td><form:input path="lastName" value="${employee.lastName}"/></td>  
-       </tr>  
-       <tr>  
-           <td><form:label path="salary">Employee Salary:</form:label></td>  
-           <td><form:input path="salary" value="${employee.salary}"/></td>  
-       </tr>  
-
-          <tr>  
-         <td colspan="2"><input type="submit" value="Submit"/></td>  
-        </tr>  
-   </table>   
-  </form:form>  
+ 
  </div>
  </div>
  </div>

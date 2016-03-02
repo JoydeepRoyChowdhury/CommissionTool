@@ -37,7 +37,7 @@
       <table>  
        <tr>  
            <td><form:label path="id">Employee ID:</form:label></td>  
-           <td><form:label path="id">${employee.id}</form:label></td>  
+           <td><form:input path="id" value="${employee.id}" readonly="true" /></td>    
        </tr>  
        <tr>  
            <td><form:label path="firstName">Employee First Name:</form:label></td>  
