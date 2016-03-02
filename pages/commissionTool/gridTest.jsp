@@ -6,8 +6,9 @@
 
   <tiles:insertDefinition name="defaultTemplate">
 	<tiles:putAttribute name="body">
+	<div align="center"><h3>Role List</h3></div>
 <head>
-    <title>View</title>
+    <title>Role list</title>
   
    
     
@@ -16,23 +17,20 @@
 
     <script src="resources/js/jquery-1.12.1.min.js"></script>
     <script src="resources/js/kendo.all.min.js"></script>
-    
-     
+ 
       <script>
                 $(document).ready(function() {
                     $("#grid").kendoGrid({
                     	 pageSize: 20,
                     	 height: 500,
-                    	    width: 900,
                           scrollable: true,
                           sortable: true,
-                          filterable: false,
+                          resizable: true,
                           pageable: {
                         	  refresh: true,
                               pageSizes: true,
                               buttonCount: 5
                           },
-                        
                     });
                 });
             </script>
@@ -41,19 +39,19 @@
   <div id="example">
             <table id="grid">
                 <colgroup>
+                    <col style="width:110px"/>
                     <col />
                     <col />
-                    <col style="width:110px" />
                     <col style="width:120px" />
                     <col style="width:130px" />
                 </colgroup>
                 <thead>
                     <tr>
-                        <th data-field="id">Id</th>
-                        <th data-field="roleName">Role Name</th>
-                        <th data-field="description">Description</th>
-                        <th data-field="reportTo">Report To</th>
-                         <th data-field="editdelete">Edit/Delete</th>
+                        <th data-field="id"><b>ID</b></th>
+                        <th data-field="roleName"><b>Role Name</b></th>
+                        <th data-field="description"><b>Description</b></th>
+                        <th data-field="reportTo"><b>Reports To</b></th>
+                         <th data-field="editdelete"><b>Edit/Delete</b></th>
                        
                     </tr>
                 </thead>
