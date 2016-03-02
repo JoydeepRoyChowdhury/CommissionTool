@@ -54,7 +54,7 @@ public class RoleController {
 		model.addAttribute("listRole", roleApi.listRoles());
 		System.out.println("working");
 		System.out.println(".........list done..........");
-		return "Rolelist";
+		return "gridTest";
 	}
 
 	@RequestMapping("/deleterole/{id}")
