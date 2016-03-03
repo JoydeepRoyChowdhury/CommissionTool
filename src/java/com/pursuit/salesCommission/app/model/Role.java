@@ -22,12 +22,12 @@ public class Role {
 	 public Role() {
 	    }
 	             
-	    public Role(String RoleName, String Description, String ReportTo) {
+	 /*   public Role(String RoleName, String Description, String ReportTo) {
 	        this.RoleName = RoleName;
 	        this.Description = Description;
 	        this.ReportTo = ReportTo;
 	    }
-	 
+	 */
 	public int getId() {
 		return id;
 	}

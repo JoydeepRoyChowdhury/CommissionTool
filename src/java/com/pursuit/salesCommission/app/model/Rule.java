@@ -1,28 +1,52 @@
 package com.pursuit.salesCommission.app.model;
 
+import java.util.List;
+
 import javax.persistence.*;
 
+import org.hibernate.annotations.IndexColumn;
+
 @Entity
-@Table (name = "RULE")
+@Table(name = "RULE")
 public class Rule {
-	@Id @GeneratedValue
+	@Id
+	@GeneratedValue
 	@Column(name = "rule_id")
 	private int id;
-	
+
 	@Column(name = "ruleName")
 	private String ruleName;
-	
+
 	@Column(name = "description")
 	private String description;
-	
+
 	@Column(name = "ruleType")
 	private String ruleType;
+
+	@Column(name = "ruleDetails")
+	private String ruleDetails;
+
+	/*
+	 * @Column(name = "connectionType") private String connectionType;
+	 * 
+	 * @Column(name = "compensationType") private String compensationType;
+	 * 
+	 * @Column(name = "fixedCompValue") private String fixedCompValue;
+	 * 
+	 * @Column(name = "compensationFormula") private String compensationFormula;
+	 * 
+	 * @Column(name = "compensationParameter") private String
+	 * compensationParameter;
+	 */
+
+	@OneToMany(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "department_id")
+	@IndexColumn(name = "idx")
+	private List<Employee> employees;
+
 	
-	/*@Column(name = "rulesConnectedas")
-	private String rulesConnectedas;
-	
-	@Column(name = "listofRules")
-	private String listofRules;*/
+	public Rule() {
+	}
 
 	public int getId() {
 		return id;
@@ -56,23 +80,48 @@ public class Rule {
 		this.ruleType = ruleType;
 	}
 
-	/*public String getRulesConnectedas() {
-		return rulesConnectedas;
+	public String getRuleDetails() {
+		return ruleDetails;
 	}
 
-	public void setRulesConnectedas(String rulesConnectedas) {
-		this.rulesConnectedas = rulesConnectedas;
+	public void setRuleDetails(String ruleDetails) {
+		this.ruleDetails = ruleDetails;
 	}
 
-	public String getListofRules() {
-		return listofRules;
+	/*
+	 * public String getConnectionType() { return connectionType; }
+	 * 
+	 * public void setConnectionType(String connectionType) {
+	 * this.connectionType = connectionType; }
+	 * 
+	 * public String getCompensationType() { return compensationType; }
+	 * 
+	 * public void setCompensationType(String compensationType) {
+	 * this.compensationType = compensationType; }
+	 * 
+	 * public String getFixedCompValue() { return fixedCompValue; }
+	 * 
+	 * public void setFixedCompValue(String fixedCompValue) {
+	 * this.fixedCompValue = fixedCompValue; }
+	 * 
+	 * public String getCompensationFormula() { return compensationFormula; }
+	 * 
+	 * public void setCompensationFormula(String compensationFormula) {
+	 * this.compensationFormula = compensationFormula; }
+	 * 
+	 * public String getCompensationParameter() { return compensationParameter;
+	 * }
+	 * 
+	 * public void setCompensationParameter(String compensationParameter) {
+	 * this.compensationParameter = compensationParameter; }
+	 */
+	
+	public List<Employee> getEmployees() {
+		return employees;
 	}
 
-	public void setListofRules(String listofRules) {
-		this.listofRules = listofRules;
-	}*/
+	public void setEmployees(List<Employee> employees) {
+		this.employees = employees;
+	}
 
-	
-	
-	
 }
