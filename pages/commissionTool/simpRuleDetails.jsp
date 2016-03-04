@@ -3,11 +3,11 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 
 
-
 <tiles:insertDefinition name="defaultTemplate">
 	<tiles:putAttribute name="body">
 
-		<title>CompRuleDetails</title>
+<title>SimpleRuleDetails</title>
+
 
 		<style>
 td {
@@ -16,7 +16,7 @@ td {
 }
 </style>
 
-		<div align="center">
+	<div align="center">
 			<h1>Compensation Rule Details</h1>
 
 
@@ -35,22 +35,45 @@ td {
 						<input type="checkbox" name="composite" value="Composite" checked>Composite</td>
 				</tr>
 				<tr>
-					<td><b>Rules connected as: </b></td>
-					<td><input type="checkbox" name="all" value="All">All
-						<input type="checkbox" name="all" value="Any" checked>Any</td>
+					<td><b>Parameters: </b></td>
+					<td>Parameter Name<br/><input type="text" name="parametername">
+						Default value<br/><input type="text" name="parametername">
+						<a href="#">Delete</a>
+						<a href="#">Add row</a></td>
+				</tr>
+				
+				<tr>
+					<td><b>Calculation model:</b></td>
+					<td><input type="checkbox" name="individual" value="Individual">individual
+						<input type="checkbox" name="composite" value="Composite" checked>Composite</td>
 				</tr>
 
 				<tr>
-					<td><b>List of Rules: </b></td>
-					<td><select><option value="#">Rule1</option>
-							<option value="#">Rule2</option>
-							<option value="#">Rule3</option>
-							<option value="#">Rule4</option>
-					</select><a href="#">Delete</a><br /> <select><option value="#">Rule1</option>
-							<option value="#">Rule2</option>
-							<option value="#">Rule3</option>
-							<option value="#">Rule4</option></select><a href="#">Delete</a><br /> <a
-						href="#">Add row</a><br /></td>
+					<td><b>Based on: </b></td>
+					<td>Aggregate function<br/><select><option value="#">sum</option>
+							<option value="#">max</option>
+							<option value="#">min</option>
+							<option value="#">count</option>
+					</select> Field<select><option value="#">order total</option>
+							<option value="#">service total</option>
+							</select></td>
+						
+				</tr>
+				
+				<tr>
+					<td><b>Qualifying clause: </b></td>
+					<td>Field<br/><select><option value="#">Customer Name</option>
+							<option value="#">order Total</option>
+							<option value="#">Discount%</option>
+							
+					</select>Not<input type="checkbox" name="not" value="Not">
+					Condition<select><option value="#">Equal</option>
+							<option value="#">Greater than</option>
+							<option value="#">Less than</option>
+							</select>Parameter Name<input type="text" name="parametername">
+							<a href="#">Delete</a>
+						<a href="#">/Add row</a></td>
+						
 				</tr>
 				<tr>
 					<td><b>Compensation</b></td>
@@ -72,6 +95,7 @@ td {
 
 
 			</table>
-		</div>
+		</div>	
+		
 	</tiles:putAttribute>
 </tiles:insertDefinition>
