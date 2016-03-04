@@ -24,11 +24,11 @@ public class EmployeeAPITest {
 		e.setFirstName("Rama");
 		e.setLastName("Bagh");
 		e.setSalary(60000);
-		Role role = new Role();
-		role.setRoleName("manager");
-		role.setDescription("hello");
-		role.setReportTo("CEO");
-		e.setRole(role);
+		//Role role = new Role();
+		//role.setRoleName("manager");
+		//role.setDescription("hello");
+		//role.setReportTo("CEO");
+		//e.setRole(role);
 		employeeAPI.createEmployee(e);
 		Employee emp = employeeAPI.getEmployee(e.getId());
 		Assert.assertEquals("Rama", emp.getFirstName());

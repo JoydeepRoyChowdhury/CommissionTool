@@ -49,10 +49,10 @@ public class EmployeeAPI {
 			employee1.setLastName(employee.getLastName());
 			employee1.setSalary(employee.getSalary());
 			Role role = new Role();
-			role.setRoleName(employee.getRole().getRoleName());
-			role.setDescription(employee.getRole().getDescription());
-			role.setReportTo(employee.getRole().getReportTo());
-			employee1.setRole(role);
+			//role.setRoleName(employee.getRole().getRoleName());
+			//role.setDescription(employee.getRole().getDescription());
+			//role.setReportTo(employee.getRole().getReportTo());
+			//employee1.setRole(role);
 			session.save(employee);
 			tx.commit();
 			logger.debug("CREATED AN EMPLOYEE INTO DATABASE" + employee);
@@ -69,16 +69,16 @@ public class EmployeeAPI {
 	/**
 	 * Method for getting employee by employeeId from database
 	 * 
-	 * @param EmployeeID
+	 * @param l
 	 *            the Id of the employee for whom the details searching for
 	 * @return the complete employee details of whom the Id has entered
 	 */
-	public Employee getEmployee(Integer EmployeeID) {
+	public Employee getEmployee(long l) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		tx = session.beginTransaction();
 		logger.debug("GET THE EMPLOYEE DETAILS FROM DATABASE");
-		return (Employee) session.get(Employee.class, EmployeeID);
+		return (Employee) session.get(Employee.class, l);
 	}
 
 	/**

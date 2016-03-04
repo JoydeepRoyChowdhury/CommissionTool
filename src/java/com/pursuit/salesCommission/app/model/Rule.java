@@ -1,5 +1,7 @@
 package com.pursuit.salesCommission.app.model;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.*;
@@ -12,7 +14,7 @@ public class Rule {
 	@Id
 	@GeneratedValue
 	@Column(name = "rule_id")
-	private int id;
+	private long id;
 
 	@Column(name = "ruleName")
 	private String ruleName;
@@ -20,13 +22,13 @@ public class Rule {
 	@Column(name = "description")
 	private String description;
 
-	@Column(name = "ruleType")
+	/*	@Column(name = "ruleType")
 	private String ruleType;
 
 	@Column(name = "ruleDetails")
 	private String ruleDetails;
 
-	/*
+	
 	 * @Column(name = "connectionType") private String connectionType;
 	 * 
 	 * @Column(name = "compensationType") private String compensationType;
@@ -38,21 +40,31 @@ public class Rule {
 	 * @Column(name = "compensationParameter") private String
 	 * compensationParameter;
 	 */
+	@OneToMany(cascade={CascadeType.ALL})
+    @JoinColumn(name="RULE_ID")
+    @IndexColumn(name="idx")
+    private List<Employee> employees;
 
-	@OneToMany(cascade = { CascadeType.ALL })
-	@JoinColumn(name = "department_id")
-	@IndexColumn(name = "idx")
-	private List<Employee> employees;
-
+	/*@OneToMany(cascade=CascadeType.ALL)  
+	 @JoinTable(name="RULE_EMPLOYEE",joinColumns={@JoinColumn(name="rule_id")},inverseJoinColumns={@JoinColumn(name="emp_id")})  
+	 Collection<Employee> listOfEmployees=new ArrayList<Employee>();  
 	
+	public Collection<Employee> getListOfEmployees() {
+		return listOfEmployees;
+	}
+
+	public void setListOfEmployees(Collection<Employee> listOfEmployees) {
+		this.listOfEmployees = listOfEmployees;
+	}
+*/
 	public Rule() {
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -72,7 +84,7 @@ public class Rule {
 		this.description = description;
 	}
 
-	public String getRuleType() {
+	/*public String getRuleType() {
 		return ruleType;
 	}
 
@@ -116,12 +128,14 @@ public class Rule {
 	 * this.compensationParameter = compensationParameter; }
 	 */
 	
-	public List<Employee> getEmployees() {
-		return employees;
+	public ArrayList<Employee> getEmployees() {
+		return (ArrayList<Employee>) employees;
 	}
 
-	public void setEmployees(List<Employee> employees) {
+	public void setEmployees(ArrayList<Employee> employees) {
 		this.employees = employees;
-	}
+	} 
+	
+	
 
 }

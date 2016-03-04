@@ -8,7 +8,7 @@ public class Employee {
 	@Id
 	@GeneratedValue
 	@Column(name = "emp_id")
-	private int id;
+	private long id;
 
 	@Column(name = "firstName")
 	private String firstName;
@@ -19,22 +19,31 @@ public class Employee {
 	@Column(name = "salary")
 	private int salary;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	/*@OneToOne(cascade = CascadeType.ALL)
 	@PrimaryKeyJoinColumn
-	private Role role;
-	@ManyToOne
-	@JoinColumn(name = "rule_id", insertable = false, updatable = false, nullable = false)
+	private Role role; */
+	/* @ManyToOne
+	    @JoinColumn(name="RULE_ID", 
+	                insertable=false, updatable=false, 
+	                nullable=false)
+	    private Rule rule; 
+	*/
+	
 
-	private Rule rule;
-
-	public Employee() {
+	public Employee(){}
+	
+	public Employee(String firstName, String lastName, int salary) {
+		
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.salary = salary;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -62,19 +71,19 @@ public class Employee {
 		this.salary = salary;
 	}
 
-	public Role getRole() {
+	/*public Role getRole() {
 		return role;
 	}
 
 	public void setRole(Role role) {
 		this.role = role;
-	}
+	} */
 	
-	public Rule getRule() {
+	/*public Rule getRule() {
 		return rule;
 	}
 
 	public void setRule(Rule rule) {
 		this.rule = rule;
-	}
+	} */
 }
