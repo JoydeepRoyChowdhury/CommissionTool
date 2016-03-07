@@ -24,8 +24,8 @@ public class RuleSimple {
 	@Column(name = "calculationMode")
 	private String calculationMode;
 
-	/*@Column(name = "rankCount")
-	private String rankCount;
+	@Column(name = "rankCount")
+	private int rankCount;
 
 	@Column(name = "rankingType")
 	private String rankingType;
@@ -34,14 +34,14 @@ public class RuleSimple {
 	private String populationType;
 
 	@Column(name = "populationUpto")
-	private String populationUpto;
+	private int populationUpto;
 
 	@Column(name = "compensationType")
 	private String compensationType;
 
 	@Column(name = "fixedCompValue")
 	private String fixedCompValue;
-	*/
+	
 	public long getId() {
 		return id;
 	}
@@ -64,5 +64,52 @@ public class RuleSimple {
 
 	public void setCalculationMode(String calculationMode) {
 		this.calculationMode = calculationMode;
+	}
+	public int getRankCount() {
+		return rankCount;
+	}
+
+	public void setRankCount(int rankCount) {
+		this.rankCount = rankCount;
+	}
+
+	public String getRankingType() {
+		return rankingType;
+	}
+
+	public void setRankingType(String rankingType) {
+		this.rankingType = rankingType;
+	}
+
+	public String getPopulationType() {
+		return populationType;
+	}
+
+	public void setPopulationType(String populationType) {
+		this.populationType = populationType;
+	}
+
+	public int getPopulationUpto() {
+		return populationUpto;
+	}
+
+	public void setPopulationUpto(int populationUpto) {
+		this.populationUpto = populationUpto;
+	}
+
+	public String getCompensationType() {
+		return compensationType;
+	}
+
+	public void setCompensationType(String compensationType) {
+		this.compensationType = compensationType;
+	}
+
+	public String getFixedCompValue() {
+		return fixedCompValue;
+	}
+
+	public void setFixedCompValue(String fixedCompValue) {
+		this.fixedCompValue = fixedCompValue;
 	}
 }

@@ -7,7 +7,7 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.pursuit.salesCommission.app.model.Rule;
+
 import com.pursuit.salesCommission.app.model.RuleSimple;
 
 @Component
@@ -31,10 +31,16 @@ public class RuleSimpleAPI {
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			RuleSimple ruleSimp = new RuleSimple();
-			ruleSimp.setRule(ruleSimple.getRule());
-			ruleSimp.setCalculationMode(ruleSimple.getCalculationMode());
-			session.save(ruleSimp);
+			RuleSimple ruleSmpl = new RuleSimple();
+			ruleSmpl.setRule(ruleSimple.getRule());
+			ruleSmpl.setCalculationMode(ruleSimple.getCalculationMode());
+			ruleSmpl.setRankCount(ruleSimple.getRankCount());
+			ruleSmpl.setRankingType(ruleSimple.getRankingType());
+			ruleSmpl.setPopulationType(ruleSimple.getPopulationType());
+			ruleSmpl.setPopulationUpto(ruleSimple.getPopulationUpto());
+			ruleSmpl.setCompensationType(ruleSimple.getCompensationType());
+			ruleSmpl.setFixedCompValue(ruleSimple.getFixedCompValue());
+			session.save(ruleSmpl);
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null)
