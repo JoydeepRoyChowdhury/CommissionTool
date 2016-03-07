@@ -1,4 +1,4 @@
-package com.pursuit.salesCommission.app;
+ package com.pursuit.salesCommission.app;
 
 import java.util.ArrayList;
 
@@ -34,9 +34,9 @@ public class RuleAPItest {
 		r.setDescription("efgh");
 		Employee emp1 = new Employee("Nina", "Mayers", 111);
 		Employee emp2 = new Employee("Tony", "Almeida", 222);
-		 r.setEmployees(new ArrayList<Employee>());
-	     r.getEmployees().add(emp1);
-	     r.getEmployees().add(emp2);
+		// r.setEmployees(new ArrayList<Employee>());
+	   //  r.getEmployees().add(emp1);
+	   //  r.getEmployees().add(emp2);
 		ruleAPI.createRule(r);
 		//Rule ru = ruleAPI.getRule(r.getId());
 		//Assert.assertEquals("abcd", ru.getRuleName());

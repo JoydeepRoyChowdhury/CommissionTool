@@ -22,41 +22,35 @@ public class Rule {
 	@Column(name = "description")
 	private String description;
 
-	/*	@Column(name = "ruleType")
+	@Column(name = "ruleType")
 	private String ruleType;
 
 	@Column(name = "ruleDetails")
 	private String ruleDetails;
 
-	
-	 * @Column(name = "connectionType") private String connectionType;
+	/*@Column(name = "connectionType")
+	private String connectionType; 
+
+	@Column(name = "compensationType")
+	private String compensationType;
+
+	@Column(name = "fixedCompValue")
+	private String fixedCompValue;
+
+	@Column(name = "compensationFormula")
+	private String compensationFormula;
+
+	@Column(name = "compensationParameter")
+	private String compensationParameter; */
+
+	/*
+	 * @OneToMany(cascade={CascadeType.ALL})
 	 * 
-	 * @Column(name = "compensationType") private String compensationType;
+	 * @JoinColumn(name="RULE_ID")
 	 * 
-	 * @Column(name = "fixedCompValue") private String fixedCompValue;
-	 * 
-	 * @Column(name = "compensationFormula") private String compensationFormula;
-	 * 
-	 * @Column(name = "compensationParameter") private String
-	 * compensationParameter;
+	 * @IndexColumn(name="idx") private List<Employee> employees;
 	 */
-	@OneToMany(cascade={CascadeType.ALL})
-    @JoinColumn(name="RULE_ID")
-    @IndexColumn(name="idx")
-    private List<Employee> employees;
 
-	/*@OneToMany(cascade=CascadeType.ALL)  
-	 @JoinTable(name="RULE_EMPLOYEE",joinColumns={@JoinColumn(name="rule_id")},inverseJoinColumns={@JoinColumn(name="emp_id")})  
-	 Collection<Employee> listOfEmployees=new ArrayList<Employee>();  
-	
-	public Collection<Employee> getListOfEmployees() {
-		return listOfEmployees;
-	}
-
-	public void setListOfEmployees(Collection<Employee> listOfEmployees) {
-		this.listOfEmployees = listOfEmployees;
-	}
-*/
 	public Rule() {
 	}
 
@@ -84,7 +78,7 @@ public class Rule {
 		this.description = description;
 	}
 
-	/*public String getRuleType() {
+	public String getRuleType() {
 		return ruleType;
 	}
 
@@ -100,42 +94,52 @@ public class Rule {
 		this.ruleDetails = ruleDetails;
 	}
 
-	/*
-	 * public String getConnectionType() { return connectionType; }
-	 * 
-	 * public void setConnectionType(String connectionType) {
-	 * this.connectionType = connectionType; }
-	 * 
-	 * public String getCompensationType() { return compensationType; }
-	 * 
-	 * public void setCompensationType(String compensationType) {
-	 * this.compensationType = compensationType; }
-	 * 
-	 * public String getFixedCompValue() { return fixedCompValue; }
-	 * 
-	 * public void setFixedCompValue(String fixedCompValue) {
-	 * this.fixedCompValue = fixedCompValue; }
-	 * 
-	 * public String getCompensationFormula() { return compensationFormula; }
-	 * 
-	 * public void setCompensationFormula(String compensationFormula) {
-	 * this.compensationFormula = compensationFormula; }
-	 * 
-	 * public String getCompensationParameter() { return compensationParameter;
-	 * }
-	 * 
-	 * public void setCompensationParameter(String compensationParameter) {
-	 * this.compensationParameter = compensationParameter; }
-	 */
-	
-	public ArrayList<Employee> getEmployees() {
-		return (ArrayList<Employee>) employees;
+	/*public String getConnectionType() {
+		return connectionType;
 	}
 
-	public void setEmployees(ArrayList<Employee> employees) {
-		this.employees = employees;
-	} 
-	
-	
+	public void setConnectionType(String connectionType) {
+		this.connectionType = connectionType;
+	}*/
+
+/*	public String getCompensationType() {
+		return compensationType;
+	}
+
+	public void setCompensationType(String compensationType) {
+		this.compensationType = compensationType;
+	}
+
+	public String getFixedCompValue() {
+		return fixedCompValue;
+	}
+
+	public void setFixedCompValue(String fixedCompValue) {
+		this.fixedCompValue = fixedCompValue;
+	}
+
+	public String getCompensationFormula() {
+		return compensationFormula;
+	}
+
+	public void setCompensationFormula(String compensationFormula) {
+		this.compensationFormula = compensationFormula;
+	}
+
+	public String getCompensationParameter() {
+		return compensationParameter;
+	}
+
+	public void setCompensationParameter(String compensationParameter) {
+		this.compensationParameter = compensationParameter;
+	}
+*/
+	/*
+	 * public ArrayList<Employee> getEmployees() { return (ArrayList<Employee>)
+	 * employees; }
+	 * 
+	 * public void setEmployees(ArrayList<Employee> employees) { this.employees
+	 * = employees; }
+	 */
 
 }

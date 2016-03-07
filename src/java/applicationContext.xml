@@ -44,6 +44,8 @@
 	<bean id="ruleApi" class="com.pursuit.salesCommission.app.api.RuleAPI">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-
+    <bean id="ruleSimpleApi" class="com.pursuit.salesCommission.app.api.RuleSimpleAPI">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 
 </beans>

@@ -72,8 +72,8 @@ public class RuleAPI {
 			rule2.setRuleName(rule.getRuleName());
 			rule2.setDescription(rule.getDescription());
 			// rule2.setRuleType(rule.getRuleType());
-			ArrayList<Employee> emplist1 = rule.getEmployees();
-			rule2.setEmployees(emplist1);
+			//ArrayList<Employee> emplist1 = rule.getEmployees();
+			//rule2.setEmployees(emplist1);
 			session.save(rule2);
 			tx.commit();
 		} catch (HibernateException e) {
