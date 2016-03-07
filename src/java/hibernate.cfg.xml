@@ -10,5 +10,6 @@
 		<mapping class="com.pursuit.salesCommission.app.model.Employee"/>
         <mapping class="com.pursuit.salesCommission.app.model.Role"/>
         <mapping class="com.pursuit.salesCommission.app.model.Rule"/>
+         <mapping class="com.pursuit.salesCommission.app.model.RuleSimple"/>
 	</session-factory>
 </hibernate-configuration>

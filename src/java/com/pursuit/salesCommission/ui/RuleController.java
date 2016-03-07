@@ -31,14 +31,14 @@ public class RuleController {
 			model.addAttribute("Id", rule.getId());
 			model.addAttribute("RuleName", rule.getRuleName());
 			model.addAttribute("Description", rule.getDescription());
-			model.addAttribute("RuleType", rule.getRuleType());
+			//model.addAttribute("RuleType", rule.getRuleType());
 			ruleApi.editRule(rule);
 		} else {
 
 			model.addAttribute("Id", rule.getId());
 			model.addAttribute("RuleName", rule.getRuleName());
 			model.addAttribute("Description", rule.getDescription());
-			model.addAttribute("RuleType", rule.getRuleType());
+			//model.addAttribute("RuleType", rule.getRuleType());
 
 			ruleApi.createRule(rule);
 

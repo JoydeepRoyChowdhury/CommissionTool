@@ -1,5 +1,6 @@
 package com.pursuit.salesCommission.app.api;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -9,6 +10,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.pursuit.salesCommission.app.model.Employee;
 import com.pursuit.salesCommission.app.model.Rule;
 
 @Component
@@ -20,7 +23,7 @@ public class RuleAPI {
 	public void setSessionFactory(SessionFactory factory) {
 		sessionFactory = factory;
 	}
-
+	
 	/* ...............Add rule in Database.................... */
 
 	public int addRule(String rulename, String description, String ruleType) {
@@ -33,7 +36,7 @@ public class RuleAPI {
 			Rule rule1 = new Rule();
 			rule1.setRuleName(rulename);
 			rule1.setDescription(description);
-			rule1.setRuleType(ruleType);
+			// rule1.setRuleType(ruleType);
 			ruleID = (int) session.save(rule1);
 			tx.commit();
 		} catch (HibernateException e) {
@@ -50,15 +53,15 @@ public class RuleAPI {
 
 	/* ........getRule...... */
 
-	public Rule getRule(Integer RuleID) {
+	public Rule getRule(long l) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		tx = session.beginTransaction();
-		return (Rule) session.get(Rule.class, RuleID);
+		return (Rule) session.get(Rule.class, l);
 	}
 
 	/* .............create role............. */
-
+	@SuppressWarnings("unchecked")
 	public void createRule(Rule rule) {
 
 		Session session = sessionFactory.openSession();
@@ -68,8 +71,10 @@ public class RuleAPI {
 			Rule rule2 = new Rule();
 			rule2.setRuleName(rule.getRuleName());
 			rule2.setDescription(rule.getDescription());
-			rule2.setRuleType(rule.getRuleType());
-			session.save(rule);
+			// rule2.setRuleType(rule.getRuleType());
+			//ArrayList<Employee> emplist1 = rule.getEmployees();
+			//rule2.setEmployees(emplist1);
+			session.save(rule2);
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null)
@@ -79,7 +84,7 @@ public class RuleAPI {
 			session.close();
 		}
 
-	}
+	} 
 
 	/* Method to READ all rule */
 	public List<Rule> listRules() {
@@ -92,7 +97,7 @@ public class RuleAPI {
 			Rule rule = (Rule) iterator.next();
 			System.out.print("RuleName: " + rule.getRuleName());
 			System.out.print("  Description: " + rule.getDescription());
-			System.out.println("  RuleType: " + rule.getRuleType());
+			// System.out.println(" RuleType: " + rule.getRuleType());
 		}
 		return rules;
 	}
@@ -127,7 +132,7 @@ public class RuleAPI {
 			rule1.setId(rule.getId());
 			rule1.setRuleName(rule.getRuleName());
 			rule1.setDescription(rule.getDescription());
-			rule1.setRuleType(rule.getRuleType());
+			// rule1.setRuleType(rule.getRuleType());
 			session.save(rule1);
 			tx.commit();
 		} catch (HibernateException e) {
@@ -151,4 +156,6 @@ public class RuleAPI {
 		return rul;
 
 	}
+	
+		
 }
