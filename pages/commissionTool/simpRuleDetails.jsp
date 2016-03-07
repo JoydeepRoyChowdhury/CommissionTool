@@ -88,7 +88,7 @@ td {
 				<tr>
 					<td><input type="submit" value="Update">
 					<input type="submit" value="Submit" /> 
-					<a href="/CommissionTool/CompRule"> <input type="button"
+					<a href="/CommissionTool/ruledetails"> <input type="button"
 							value="Cancel" /></a></td>
 				</tr>
 

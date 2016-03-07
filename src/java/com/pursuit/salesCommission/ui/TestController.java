@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-
-import com.pursuit.salesCommission.app.api.RuleAPI;
 import com.pursuit.salesCommission.app.model.Rule;
+import com.pursuit.salesCommission.app.model.Array;
 
 @Controller
 public class TestController {
+	
 	
 
 	@RequestMapping(value = "/CompRule", method = RequestMethod.GET)
@@ -27,6 +27,14 @@ public class TestController {
 	@RequestMapping(value = "/submitSimpRule", method = RequestMethod.GET)
 	public ModelAndView rule3() {
 		return new ModelAndView("simpRuleDetails", "command", new Rule());
+	}
+	
+
+	@RequestMapping(value = "/ruledetails", method = RequestMethod.GET)
+	public String listRules(ModelMap model) {
+		Array obj = new Array();
+		model.addAttribute("listRule", obj.addRule());
+		return "compRule";
 	}
 	
 }

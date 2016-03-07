@@ -19,7 +19,7 @@ th, td {
 }
 </style>
 
-
+<div style="height:540px;overflow:auto;">
 			<div align="center">
 				<h1>Compensation Rules</h1>
 			</div>
@@ -32,24 +32,25 @@ th, td {
 
 				</tr>
 
-				<tr>
-					<td><a href="/CommissionTool/submitCompRuleEdit">HighPerformance</a></td>
-					<td>null</td>
-					<td>null</td>
-					<td>null</td>
-				</tr>
-				<tr>
-					<td><a href="/CommissionTool/submitSimpRule">SalesPerformance</a></td>
-					<td>null</td>
-					<td>null</td>
-					<td>null</td>
-				</tr>
+				
+					<c:forEach items="${listRule}" var="rule">
+								<tr>
+
+									<td><a href="/CommissionTool/submitSimpRule">${rule}</a></td>
+									<td>null</td>
+									<td>null</td>
+									<td>null</td>
+									
+								</tr>
+
+							</c:forEach>
 
 			</table>
 			<div align="center">
 				<br />
 				<input type="submit" value="Add composite Rule"> <input
 					type="submit" value="Add simple rule">
+			</div>
 			</div>
 
 	</tiles:putAttribute>
