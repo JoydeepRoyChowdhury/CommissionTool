@@ -32,7 +32,7 @@ public class RuleController {
 			model.addAttribute("RuleName", rule.getRuleName());
 			model.addAttribute("Description", rule.getDescription());
 			//model.addAttribute("RuleType", rule.getRuleType());
-			ruleApi.editRule(rule);
+			//ruleApi.editRule(rule);
 		} else {
 
 			model.addAttribute("Id", rule.getId());
@@ -40,7 +40,7 @@ public class RuleController {
 			model.addAttribute("Description", rule.getDescription());
 			//model.addAttribute("RuleType", rule.getRuleType());
 
-			ruleApi.createRule(rule);
+			//ruleApi.createRule(rule);
 
 		}
 		System.out.println(".........successfully submit..........");
@@ -59,7 +59,7 @@ public class RuleController {
 
 	@RequestMapping("/deleteRule/{id}")
 	public String deleterule(@PathVariable("id") int id, Rule rule, ModelMap model) {
-		ruleApi.deleteRule(id);
+		//ruleApi.deleteRule(id);
 		System.out.println(".........deleted..........");
 		return "redirect:/ruleList";
 	}

@@ -37,7 +37,7 @@ public class RuleAPItest {
 		// r.setEmployees(new ArrayList<Employee>());
 	   //  r.getEmployees().add(emp1);
 	   //  r.getEmployees().add(emp2);
-		ruleAPI.createRule(r);
+		//ruleAPI.createRule(r);
 		//Rule ru = ruleAPI.getRule(r.getId());
 		//Assert.assertEquals("abcd", ru.getRuleName());
 		Assert.assertNotNull(r);

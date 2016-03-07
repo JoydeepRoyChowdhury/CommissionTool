@@ -8,10 +8,11 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.pursuit.salesCommission.app.model.Employee;
+
 import com.pursuit.salesCommission.app.model.Rule;
 
 @Component
@@ -20,38 +21,11 @@ public class RuleAPI {
 	@Autowired
 	private static SessionFactory sessionFactory;
 
+	private static final Logger logger = Logger.getLogger(RuleAPI.class);
+
 	public void setSessionFactory(SessionFactory factory) {
 		sessionFactory = factory;
 	}
-	
-	/* ...............Add rule in Database.................... */
-
-	public int addRule(String rulename, String description, String ruleType) {
-
-		Session session = sessionFactory.openSession();
-		Transaction tx = null;
-		Integer ruleID = null;
-		try {
-			tx = session.beginTransaction();
-			Rule rule1 = new Rule();
-			rule1.setRuleName(rulename);
-			rule1.setDescription(description);
-			// rule1.setRuleType(ruleType);
-			ruleID = (int) session.save(rule1);
-			tx.commit();
-		} catch (HibernateException e) {
-			if (tx != null)
-				tx.rollback();
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-		System.out.println("Hello........" + rulename + " " + description + " " + ruleType);
-		return ruleID;
-
-	}
-
-	/* ........getRule...... */
 
 	public Rule getRule(long l) {
 		Session session = sessionFactory.openSession();
@@ -60,8 +34,10 @@ public class RuleAPI {
 		return (Rule) session.get(Rule.class, l);
 	}
 
-	/* .............create role............. */
-	@SuppressWarnings("unchecked")
+	/**
+	 * 
+	 * @param rule
+	 */
 	public void createRule(Rule rule) {
 
 		Session session = sessionFactory.openSession();
@@ -72,8 +48,8 @@ public class RuleAPI {
 			rule2.setRuleName(rule.getRuleName());
 			rule2.setDescription(rule.getDescription());
 			// rule2.setRuleType(rule.getRuleType());
-			//ArrayList<Employee> emplist1 = rule.getEmployees();
-			//rule2.setEmployees(emplist1);
+			// ArrayList<Employee> emplist1 = rule.getEmployees();
+			// rule2.setEmployees(emplist1);
 			session.save(rule2);
 			tx.commit();
 		} catch (HibernateException e) {
@@ -84,9 +60,13 @@ public class RuleAPI {
 			session.close();
 		}
 
-	} 
+	}
 
-	/* Method to READ all rule */
+	/**
+	 * Method for getting list of roles for employee
+	 * 
+	 * @return
+	 */
 	public List<Rule> listRules() {
 
 		Session session = sessionFactory.openSession();
@@ -95,67 +75,11 @@ public class RuleAPI {
 		List rules = session.createQuery("FROM Rule").list();
 		for (Iterator iterator = rules.iterator(); iterator.hasNext();) {
 			Rule rule = (Rule) iterator.next();
-			System.out.print("RuleName: " + rule.getRuleName());
-			System.out.print("  Description: " + rule.getDescription());
-			// System.out.println(" RuleType: " + rule.getRuleType());
+			logger.debug("GET THE RULE DETAILS FROM DATABASE" + rule.getRuleName() + rule.getRuleDetails()
+					+ rule.getRuleType());
+
 		}
 		return rules;
 	}
 
-	/* ............. delete rule........ */
-
-	public void deleteRule(Integer RuleID) {
-
-		Session session = sessionFactory.openSession();
-		Transaction tx = null;
-		try {
-			tx = session.beginTransaction();
-			Rule rule = (Rule) session.get(Rule.class, RuleID);
-			session.delete(rule);
-			tx.commit();
-		} catch (HibernateException e) {
-			if (tx != null)
-				tx.rollback();
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-	}
-
-	public void editRule(Rule rule) {
-
-		Session session = sessionFactory.openSession();
-		Transaction tx = null;
-		try {
-			tx = session.beginTransaction();
-			Rule rule1 = (Rule) session.get(Rule.class, rule.getId());
-			rule1.setId(rule.getId());
-			rule1.setRuleName(rule.getRuleName());
-			rule1.setDescription(rule.getDescription());
-			// rule1.setRuleType(rule.getRuleType());
-			session.save(rule1);
-			tx.commit();
-		} catch (HibernateException e) {
-			if (tx != null)
-				tx.rollback();
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-
-	}
-
-	public Rule updateRule(Integer RuleID, String RuleName) {
-		Session session = sessionFactory.openSession();
-		Transaction tx = null;
-
-		tx = session.beginTransaction();
-		Rule rul = (Rule) session.get(Rule.class, RuleID);
-		rul.setRuleName(RuleName);
-		session.update(rul);
-		return rul;
-
-	}
-	
-		
 }
