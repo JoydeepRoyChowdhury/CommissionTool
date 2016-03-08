@@ -1,6 +1,6 @@
 package com.pursuit.salesCommission.app.api;
 
-import java.util.ArrayList;
+
 import java.util.Iterator;
 import java.util.List;
 
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 
 import com.pursuit.salesCommission.app.model.Rule;
-import com.pursuit.salesCommission.app.model.RuleSimple;
+
 
 @Component
 public class RuleAPI {

@@ -3,6 +3,8 @@
  */
 package com.pursuit.salesCommission.app;
 
+import java.util.ArrayList;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,6 +13,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.pursuit.salesCommission.app.api.RuleSimpleAPI;
+import com.pursuit.salesCommission.app.model.ConditionList;
+import com.pursuit.salesCommission.app.model.FieldList;
+import com.pursuit.salesCommission.app.model.QualifyingClause;
 import com.pursuit.salesCommission.app.model.Rule;
 import com.pursuit.salesCommission.app.model.RuleSimple;
 
@@ -32,7 +37,7 @@ public class RuleSimpleAPITest {
 	/**
 	 * Test method for {@link com.pursuit.salesCommission.app.api.RuleSimpleAPI#createSimpleRule(com.pursuit.salesCommission.app.model.RuleSimple)}.
 	 */
-	@Test
+/*	@Test
 	public void testCreateSimpleRule() {
 		RuleSimple ruleSimple = new RuleSimple();
 		ruleSimple.setCalculationMode("Individual");
@@ -53,11 +58,37 @@ public class RuleSimpleAPITest {
 		//Assert.assertEquals("Individual",rSimple.getCalculationMode());
 		Assert.assertNotNull(ruleSimple);
 	}
-	
+*/	
 /*	@Test
 	public void testGetSimpleRule() {
 		RuleSimple rsimp = ruleSimpleApi.getRuleSimple(4);
 		Assert.assertEquals("Individual",rsimp.getCalculationMode());
 	}
 */
+	@Test
+	public void testCreateQualifyingClause() {
+		QualifyingClause qClause = new QualifyingClause();
+		qClause.setValue("Qualifying Clause");
+		FieldList fldlst1 = new FieldList();
+		FieldList fldlst2 = new FieldList();
+		fldlst1.setFieldName("fieldlstvalue1");
+		fldlst1.setDisplayName("hello");
+		fldlst2.setFieldName("fieldlstvalue2");
+		fldlst2.setDisplayName("hii");
+		//qClause.setFieldList(new ArrayList<FieldList>());
+		//qClause.getFieldList().add(fldlst1);
+		//qClause.getFieldList().add(fldlst2);
+		//ConditionList cndlst1 = new ConditionList();
+		//ConditionList cndlst2 = new ConditionList();
+		//cndlst1.setEnabled(true);
+		//cndlst1.setCondition("condition1");
+		//cndlst2.setNotFlag(false);
+		//cndlst2.setCondition("condition2");
+		//qClause.setConditionList(new ArrayList<ConditionList>());
+		//qClause.getConditionList().add(cndlst1);
+		//qClause.getConditionList().add(cndlst2);
+		ruleSimpleApi.createQualifyingClause(qClause);
+
+		Assert.assertNotNull(qClause);
+	} 
 }

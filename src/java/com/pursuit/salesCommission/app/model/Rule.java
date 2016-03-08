@@ -165,12 +165,6 @@ public class Rule {
 		this.compensationParameter = compensationParameter;
 	}
 */
-	/*
-	 * public ArrayList<Employee> getEmployees() { return (ArrayList<Employee>)
-	 * employees; }
-	 * 
-	 * public void setEmployees(ArrayList<Employee> employees) { this.employees
-	 * = employees; }
-	 */
+
 
 }
