@@ -27,6 +27,14 @@ public class Rule {
 
 	@Column(name = "ruleDetails")
 	private String ruleDetails;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@PrimaryKeyJoinColumn
+	private RuleSimple ruleSimple;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@PrimaryKeyJoinColumn
+	private RuleComposite ruleComposite;
 
 	/*@Column(name = "connectionType")
 	private String connectionType; 
@@ -93,7 +101,22 @@ public class Rule {
 	public void setRuleDetails(String ruleDetails) {
 		this.ruleDetails = ruleDetails;
 	}
+	
+	public RuleSimple getRuleSimple() {
+		return ruleSimple;
+	}
 
+	public void setRuleSimple(RuleSimple ruleSimple) {
+		this.ruleSimple = ruleSimple;
+	}
+
+	public RuleComposite getRuleComposite() {
+		return ruleComposite;
+	}
+
+	public void setRuleComposite(RuleComposite ruleComposite) {
+		this.ruleComposite = ruleComposite;
+	}
 	/*public String getConnectionType() {
 		return connectionType;
 	}

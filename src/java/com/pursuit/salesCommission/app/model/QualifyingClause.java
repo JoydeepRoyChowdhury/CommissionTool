@@ -1,17 +1,16 @@
 package com.pursuit.salesCommission.app.model;
 
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.IndexColumn;
+
 
 @Entity
 @Table(name = "QualifyingClause")
@@ -20,19 +19,18 @@ public class QualifyingClause {
 	@GeneratedValue
 	@Column(name = "clause_id")
 	private long id;
-	
-	/*@GeneratedValue
-	@Column(name = "detailSerial")
-	private int detailSerial; */
-	
-	
+
 	@Column(name = "value")
 	private String value;
-	
-	@OneToMany(cascade={CascadeType.ALL})
-	@JoinColumn(name="Clause_ID")
-	@IndexColumn(name="idx") 
-	private List<FieldList> fieldList;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@PrimaryKeyJoinColumn
+	private FieldList fieldList;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@PrimaryKeyJoinColumn
+	private ConditionList conditionList;
+
 	
 	public long getId() {
 		return id;
@@ -50,12 +48,21 @@ public class QualifyingClause {
 		this.value = value;
 	}
 
-	public List<FieldList> getFieldList() {
+	public FieldList getFieldList() {
 		return fieldList;
 	}
 
-	public void setFieldList(List<FieldList> fieldList) {
+	public void setFieldList(FieldList fieldList) {
 		this.fieldList = fieldList;
 	}
+
+	public ConditionList getConditionList() {
+		return conditionList;
+	}
+
+	public void setConditionList(ConditionList conditionList) {
+		this.conditionList = conditionList;
+	}
+
 
 }

@@ -14,9 +14,34 @@ public class ConditionList {
 	@Column(name = "con_lst_id")
 	private long id;
 
-	@Column(name = "notFlag")
+	@Column(nullable = false, columnDefinition = "TINYINT", length = 1)
 	private boolean notFlag;
-	
+
 	@Column(name = "condition")
 	private String condition;
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public boolean isNotFlag() {
+		return notFlag;
+	}
+
+	public void setNotFlag(boolean notFlag) {
+		this.notFlag = notFlag;
+	}
+
+	public String getCondition() {
+		return condition;
+	}
+
+	public void setCondition(String condition) {
+		this.condition = condition;
+	}
+
 }

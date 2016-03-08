@@ -16,10 +16,6 @@ public class RuleParameter {
 	@Column(name = "rule_param_id")
 	private long id;
 
-	/*@GeneratedValue
-	@Column(name = "detailSerial")
-	private long detailSerial; */
-
 	@Column(name = "parameterName")
 	private String parameterName;
 
