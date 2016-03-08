@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 
 import com.pursuit.salesCommission.app.model.Rule;
+import com.pursuit.salesCommission.app.model.RuleSimple;
 
 @Component
 public class RuleAPI {
@@ -38,7 +39,7 @@ public class RuleAPI {
 	 * 
 	 * @param rule
 	 */
-	public void createRule(Rule rule) {
+/*	public void createRule1(Rule rule) {
 
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
@@ -60,10 +61,40 @@ public class RuleAPI {
 			session.close();
 		}
 
-	}
+	} */
+	/**
+	 * Method for create simple rule
+	 * @param rule
+	 */
+	public void createRule(RuleSimple ruleSimple) {
+
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			RuleSimple ruleSmpl = new RuleSimple();
+			ruleSmpl.setRule(ruleSimple.getRule());
+			ruleSmpl.setCalculationMode(ruleSimple.getCalculationMode());
+			ruleSmpl.setRankCount(ruleSimple.getRankCount());
+			ruleSmpl.setRankingType(ruleSimple.getRankingType());
+			ruleSmpl.setPopulationType(ruleSimple.getPopulationType());
+			ruleSmpl.setPopulationUpto(ruleSimple.getPopulationUpto());
+			ruleSmpl.setCompensationType(ruleSimple.getCompensationType());
+			ruleSmpl.setFixedCompValue(ruleSimple.getFixedCompValue());
+			session.save(ruleSmpl);
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
+	} 
 
 	/**
-	 * Method for getting list of roles for employee
+	 * Method for getting list of roles for rule
 	 * 
 	 * @return
 	 */
