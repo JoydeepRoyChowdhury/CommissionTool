@@ -17,4 +17,19 @@ public class AggregateFunctions {
 	@Column(name = "functionName")
 	private String functionName;
 
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getFunctionName() {
+		return functionName;
+	}
+
+	public void setFunctionName(String functionName) {
+		this.functionName = functionName;
+	}
 }

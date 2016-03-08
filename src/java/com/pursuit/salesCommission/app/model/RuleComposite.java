@@ -23,7 +23,7 @@ public class RuleComposite {
 	
 	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "RULE_COMP_ID")
-	@IndexColumn(name = "idx")
+	@IndexColumn(name = "detailSrl")
 	private List<RuleSimple> ruleSimple;
 	
 	public long getId() {

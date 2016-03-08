@@ -20,4 +20,28 @@ public class RuleParameter {
 
 	@Column(name = "parameterValue")
 	private String parameterValue;
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getParameterName() {
+		return parameterName;
+	}
+
+	public void setParameterName(String parameterName) {
+		this.parameterName = parameterName;
+	}
+
+	public String getParameterValue() {
+		return parameterValue;
+	}
+
+	public void setParameterValue(String parameterValue) {
+		this.parameterValue = parameterValue;
+	}
 }

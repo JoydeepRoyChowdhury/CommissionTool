@@ -24,7 +24,7 @@ public class RuleSimple {
 	@Column(name = "calculationMode")
 	private String calculationMode;
 
-	/*@Column(name = "rankCount")
+	@Column(name = "rankCount")
 	private int rankCount;
 
 	@Column(name = "rankingType")
@@ -44,24 +44,24 @@ public class RuleSimple {
 
 	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "RULE_SIMP_ID")
-	@IndexColumn(name = "idx")
+	@IndexColumn(name = "detailSrl")
 	private List<RuleParameter> ruleParameter;
 
-	@OneToMany(cascade = { CascadeType.ALL })
+	/*@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "RULE_SIMP_ID")
-	@IndexColumn(name = "idx")
-	private List<QualifyingClause> qualifyingClause;
+	@IndexColumn(name = "detailSrl")
+	private List<QualifyingClause> qualifyingClause; */
 
 	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "RULE_SIMP_ID")
-	@IndexColumn(name = "idx")
+	@IndexColumn(name = "detailSrl")
 	private List<AggregateFunctions> aggregateFunctions;
 
 	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "RULE_SIMP_ID")
-	@IndexColumn(name = "idx")
+	@IndexColumn(name = "detailSrl")
 	private List<FieldList> fieldList;
-*/
+
 	public long getId() {
 		return id;
 	}
@@ -78,7 +78,7 @@ public class RuleSimple {
 		this.calculationMode = calculationMode;
 	}
 
-/*	public int getRankCount() {
+	public int getRankCount() {
 		return rankCount;
 	}
 
@@ -134,14 +134,14 @@ public class RuleSimple {
 		this.ruleParameter = ruleParameter;
 	}
 
-	public List<QualifyingClause> getQualifyingClause() {
+	/*public List<QualifyingClause> getQualifyingClause() {
 		return qualifyingClause;
 	}
 
 	public void setQualifyingClause(List<QualifyingClause> qualifyingClause) {
 		this.qualifyingClause = qualifyingClause;
 	}
-
+*/
 	public List<AggregateFunctions> getAggregateFunctions() {
 		return aggregateFunctions;
 	}
@@ -156,5 +156,5 @@ public class RuleSimple {
 
 	public void setFieldList(List<FieldList> fieldList) {
 		this.fieldList = fieldList;
-	} */
+	} 
 }

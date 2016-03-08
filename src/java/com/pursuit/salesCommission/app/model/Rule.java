@@ -41,22 +41,13 @@ public class Rule {
 	private String compensationType;
 
 	@Column(name = "fixedCompValue")
-	private String fixedCompValue;
+	private Number fixedCompValue;
 
 	@Column(name = "compensationFormula")
 	private String compensationFormula;
 
 	@Column(name = "compensationParameter")
 	private String compensationParameter; 
-
-	/*
-	 * @OneToMany(cascade={CascadeType.ALL})
-	 * 
-	 * @JoinColumn(name="RULE_ID")
-	 * 
-	 * @IndexColumn(name="idx") private List<Employee> employees;
-	 */
-
 
 	public Rule() {
 	}
@@ -141,11 +132,11 @@ public class Rule {
 		this.compensationType = compensationType;
 	}
 
-	public String getFixedCompValue() {
+	public Number getFixedCompValue() {
 		return fixedCompValue;
 	}
 
-	public void setFixedCompValue(String fixedCompValue) {
+	public void setFixedCompValue(Number fixedCompValue) {
 		this.fixedCompValue = fixedCompValue;
 	}
 

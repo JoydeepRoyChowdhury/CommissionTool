@@ -21,8 +21,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.pursuit.salesCommission.app.api.RuleAPI;
+import com.pursuit.salesCommission.app.model.AggregateFunctions;
+import com.pursuit.salesCommission.app.model.FieldList;
 import com.pursuit.salesCommission.app.model.Rule;
 import com.pursuit.salesCommission.app.model.RuleComposite;
+import com.pursuit.salesCommission.app.model.RuleParameter;
 import com.pursuit.salesCommission.app.model.RuleSimple;
 
 /**
@@ -83,11 +86,47 @@ public class RuleAPITest {
 		r.setCompensationFormula("Compensation formula");
 		r.setCompensationParameter("Compensation Parameter");
 		r.setCompensationType("fixed");
-		r.setFixedCompValue("sales*1000");
+		r.setFixedCompValue(1000);
 		r.setFlag("s");
+		
 		RuleSimple ruleSimple = new RuleSimple();
 		ruleSimple.setCalculationMode("Individual");
+		ruleSimple.setCompensationType("Compensation Type");
+		ruleSimple.setFixedCompValue("Fixed Comensation Value");
+		ruleSimple.setPopulationType("Population Type");
+		ruleSimple.setPopulationUpto(4);
+		
+		ruleSimple.setRuleParameter(new ArrayList<RuleParameter>());
+		RuleParameter rl1 = new RuleParameter();
+		RuleParameter rl2 = new RuleParameter();
+		rl1.setParameterName("Parameter 1");
+		rl1.setParameterValue("value 1");
+		rl2.setParameterName("Parameter 2");
+		rl2.setParameterValue("value 2");
+		ruleSimple.getRuleParameter().add(rl1);
+		ruleSimple.getRuleParameter().add(rl2);
+		
+		ruleSimple.setFieldList(new ArrayList<FieldList>());
+		FieldList fld1 = new FieldList();
+		FieldList fld2 = new FieldList();
+		fld1.setFieldName("fld 1");
+		fld1.setDisplayName("hii");
+		fld2.setFieldName("fld 2");
+		fld2.setDisplayName("hello");
+		ruleSimple.getFieldList().add(fld1);
+		ruleSimple.getFieldList().add(fld2);
+		
+		
+		ruleSimple.setAggregateFunctions(new ArrayList<AggregateFunctions>());
+		AggregateFunctions fn1 = new AggregateFunctions();
+		AggregateFunctions fn2 = new AggregateFunctions();
+		fn1.setFunctionName("Function 1");
+		fn1.setFunctionName("Function 2");
+		ruleSimple.getAggregateFunctions().add(fn1);
+		ruleSimple.getAggregateFunctions().add(fn2);
+		
 		r.setRuleSimple(ruleSimple);
+		
 		ruleAPI.createRule(r);
 		//Rule ru = ruleAPI.getRule(r.getId());
 		//Assert.assertEquals("abcd", ru.getRuleName());
