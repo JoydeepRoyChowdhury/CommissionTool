@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.pursuit.salesCommission.app.api.EmployeeAPI;
 import com.pursuit.salesCommission.app.api.RuleSimpleAPI;
 import com.pursuit.salesCommission.app.model.Rule;
 import com.pursuit.salesCommission.app.model.RuleSimple;
@@ -29,34 +28,7 @@ public class RuleSimpleAPITest {
 	
 	@Autowired
 	private RuleSimpleAPI ruleSimpleApi;
-	/**
-	 * @throws java.lang.Exception
-	 */
-/*	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-*/
-	/**
-	 * @throws java.lang.Exception
-	 */
-/*	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-*/
-	/**
-	 * @throws java.lang.Exception
-	 */
-/*	@Before
-	public void setUp() throws Exception {
-	}
-*/
-	/**
-	 * @throws java.lang.Exception
-	 */
-/*	@After
-	public void tearDown() throws Exception {
-	}
-*/
+	
 	/**
 	 * Test method for {@link com.pursuit.salesCommission.app.api.RuleSimpleAPI#createSimpleRule(com.pursuit.salesCommission.app.model.RuleSimple)}.
 	 */
@@ -64,6 +36,12 @@ public class RuleSimpleAPITest {
 	public void testCreateSimpleRule() {
 		RuleSimple ruleSimple = new RuleSimple();
 		ruleSimple.setCalculationMode("Individual");
+		ruleSimple.setRankCount(5);
+		ruleSimple.setRankingType("percentage");
+		ruleSimple.setPopulationType("fixed");
+		ruleSimple.setPopulationUpto(3);
+		ruleSimple.setCompensationType("fixed");
+		ruleSimple.setFixedCompValue("Comp value fixed");
 		Rule rule = new Rule();
 		rule.setRuleName("Rule1");
 		rule.setRuleDetails("details of rule");
@@ -71,7 +49,15 @@ public class RuleSimpleAPITest {
 		rule.setDescription("Description of rule");
 		ruleSimple.setRule(rule);
 		ruleSimpleApi.createSimpleRule(ruleSimple);
+		//RuleSimple rSimple = ruleSimpleApi.getRuleSimple(ruleSimple.getId());
+		//Assert.assertEquals("Individual",rSimple.getCalculationMode());
 		Assert.assertNotNull(ruleSimple);
 	}
-
+	
+/*	@Test
+	public void testGetSimpleRule() {
+		RuleSimple rsimp = ruleSimpleApi.getRuleSimple(4);
+		Assert.assertEquals("Individual",rsimp.getCalculationMode());
+	}
+*/
 }
