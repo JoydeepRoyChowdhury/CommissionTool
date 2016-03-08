@@ -12,6 +12,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.pursuit.salesCommission.app.api.RuleAPI;
 import com.pursuit.salesCommission.app.model.Employee;
 import com.pursuit.salesCommission.app.model.Rule;
+import com.pursuit.salesCommission.app.model.RuleComposite;
+import com.pursuit.salesCommission.app.model.RuleSimple;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/applicationContext.xml")
@@ -27,22 +29,22 @@ public class RuleAPItest {
 	 * Rule rul = ruleAPI.getRule(i); Assert.assertEquals("ABCD",
 	 * rul.getRuleName()); }
 	 */
-	@Test
+	/*@Test
 	public void testCreateRule() {
 		Rule r = new Rule();
 		r.setRuleName("abcd");
 		r.setDescription("efgh");
 		Employee emp1 = new Employee("Nina", "Mayers", 111);
 		Employee emp2 = new Employee("Tony", "Almeida", 222);
-		// r.setEmployees(new ArrayList<Employee>());
-	   //  r.getEmployees().add(emp1);
-	   //  r.getEmployees().add(emp2);
-		//ruleAPI.createRule(r);
+		 r.setEmployees(new ArrayList<Employee>());
+	     r.getEmployees().add(emp1);
+	     r.getEmployees().add(emp2);
+		ruleAPI.createRule(r);
 		//Rule ru = ruleAPI.getRule(r.getId());
 		//Assert.assertEquals("abcd", ru.getRuleName());
 		Assert.assertNotNull(r);
 
-	}
+	} */
 	/*
 	 * @Test public void testGetRules() { Rule rule = ruleAPI.getRule(45);
 	 * Assert.assertEquals("ABCD", rule.getRuleName());
@@ -72,4 +74,43 @@ public class RuleAPItest {
 	 * }
 	 * 
 	 */
+	
+	
+	/*@Test
+	public void testCreateRule1() {
+		Rule r = new Rule();
+		r.setRuleName("abcd");
+		r.setDescription("efgh");
+		r.setFlag("s");
+		RuleSimple ruleSimple = new RuleSimple();
+		ruleSimple.setCalculationMode("Individual");
+		r.setRuleSimple(ruleSimple);
+		ruleAPI.createRule(r);
+		//Rule ru = ruleAPI.getRule(r.getId());
+		//Assert.assertEquals("abcd", ru.getRuleName());
+		Assert.assertNotNull(r);
+
+	} */
+	
+	@Test
+	public void testCreateRule2() {
+		Rule r = new Rule();
+		r.setRuleName("abcd");
+		r.setDescription("efgh");
+		r.setFlag("c");
+		RuleComposite ruleComposite = new RuleComposite();
+		RuleSimple simple1 = new RuleSimple();
+		RuleSimple simple2 = new RuleSimple();
+		simple1.setCalculationMode("Individual");
+		simple2.setCalculationMode("Rank");
+		ruleComposite.setRuleSimple(new ArrayList<RuleSimple>());
+		ruleComposite.getRuleSimple().add(simple1);
+		ruleComposite.getRuleSimple().add(simple2);
+		r.setRuleComposite(ruleComposite);
+		ruleAPI.createRule(r);
+		//Rule ru = ruleAPI.getRule(r.getId());
+		//Assert.assertEquals("abcd", ru.getRuleName());
+		Assert.assertNotNull(r);
+
+	} 
 }

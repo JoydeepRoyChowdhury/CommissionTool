@@ -7,9 +7,13 @@
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="hibernate.hbm2ddl.auto">update</property>
 		<property name="hibernate.show_sql">true</property>
-		<mapping class="com.pursuit.salesCommission.app.model.Employee"/>
-        <mapping class="com.pursuit.salesCommission.app.model.Role"/>
-        <mapping class="com.pursuit.salesCommission.app.model.Rule"/>
-         <mapping class="com.pursuit.salesCommission.app.model.RuleSimple"/>
+		<mapping class="com.pursuit.salesCommission.app.model.Employee" />
+		<mapping class="com.pursuit.salesCommission.app.model.Role" />
+		<mapping class="com.pursuit.salesCommission.app.model.Rule" />
+		<mapping class="com.pursuit.salesCommission.app.model.RuleSimple" />
+		<mapping class="com.pursuit.salesCommission.app.model.RuleComposite" />
+		<mapping class="com.pursuit.salesCommission.app.model.QualifyingClause" />
+		<mapping class="com.pursuit.salesCommission.app.model.FieldList" />
+		<mapping class="com.pursuit.salesCommission.app.model.ConditionList" />
 	</session-factory>
 </hibernate-configuration>

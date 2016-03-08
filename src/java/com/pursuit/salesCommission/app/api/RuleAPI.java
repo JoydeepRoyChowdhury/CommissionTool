@@ -63,25 +63,30 @@ public class RuleAPI {
 
 	} */
 	/**
-	 * Method for create simple rule
+	 * Method for create rule
 	 * @param rule
 	 */
-	public void createRule(RuleSimple ruleSimple) {
+	public void createRule(Rule rule) {
 
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			RuleSimple ruleSmpl = new RuleSimple();
-			ruleSmpl.setRule(ruleSimple.getRule());
-			ruleSmpl.setCalculationMode(ruleSimple.getCalculationMode());
-			ruleSmpl.setRankCount(ruleSimple.getRankCount());
-			ruleSmpl.setRankingType(ruleSimple.getRankingType());
-			ruleSmpl.setPopulationType(ruleSimple.getPopulationType());
-			ruleSmpl.setPopulationUpto(ruleSimple.getPopulationUpto());
-			ruleSmpl.setCompensationType(ruleSimple.getCompensationType());
-			ruleSmpl.setFixedCompValue(ruleSimple.getFixedCompValue());
-			session.save(ruleSmpl);
+			Rule newRule = new Rule();
+			newRule.setRuleName(rule.getRuleName());
+			newRule.setDescription(rule.getDescription());
+			newRule.setRuleDetails(rule.getRuleDetails());
+			if(rule.getFlag() == "c"){
+			newRule.setFlag("c");
+			newRule.setRuleComposite(rule.getRuleComposite());
+			newRule.setRuleType("Composite");
+			}
+			else{
+			newRule.setFlag("s");
+			newRule.setRuleSimple(rule.getRuleSimple());
+			newRule.setRuleType("Simple");
+			}
+			session.save(newRule);
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null)

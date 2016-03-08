@@ -24,7 +24,7 @@ public class RuleSimple {
 	@Column(name = "calculationMode")
 	private String calculationMode;
 
-	@Column(name = "rankCount")
+	/*@Column(name = "rankCount")
 	private int rankCount;
 
 	@Column(name = "rankingType")
@@ -61,7 +61,7 @@ public class RuleSimple {
 	@JoinColumn(name = "RULE_SIMP_ID")
 	@IndexColumn(name = "idx")
 	private List<FieldList> fieldList;
-
+*/
 	public long getId() {
 		return id;
 	}
@@ -78,7 +78,7 @@ public class RuleSimple {
 		this.calculationMode = calculationMode;
 	}
 
-	public int getRankCount() {
+/*	public int getRankCount() {
 		return rankCount;
 	}
 
@@ -156,5 +156,5 @@ public class RuleSimple {
 
 	public void setFieldList(List<FieldList> fieldList) {
 		this.fieldList = fieldList;
-	}
+	} */
 }

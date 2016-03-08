@@ -1,12 +1,8 @@
 package com.pursuit.salesCommission.app.model;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 import javax.persistence.*;
 
-import org.hibernate.annotations.IndexColumn;
 
 @Entity
 @Table(name = "RULE")
@@ -35,6 +31,8 @@ public class Rule {
 	@OneToOne(cascade = CascadeType.ALL)
 	@PrimaryKeyJoinColumn
 	private RuleComposite ruleComposite;
+	
+	private String flag;
 
 	/*@Column(name = "connectionType")
 	private String connectionType; 
@@ -58,6 +56,7 @@ public class Rule {
 	 * 
 	 * @IndexColumn(name="idx") private List<Employee> employees;
 	 */
+
 
 	public Rule() {
 	}
@@ -117,6 +116,15 @@ public class Rule {
 	public void setRuleComposite(RuleComposite ruleComposite) {
 		this.ruleComposite = ruleComposite;
 	}
+	
+	public String getFlag() {
+		return flag;
+	}
+
+	public void setFlag(String flag) {
+		this.flag = flag;
+	}
+	
 	/*public String getConnectionType() {
 		return connectionType;
 	}
