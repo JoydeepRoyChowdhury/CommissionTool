@@ -34,7 +34,7 @@ public class Rule {
 	
 	private String flag;
 
-	/*@Column(name = "connectionType")
+	@Column(name = "connectionType")
 	private String connectionType; 
 
 	@Column(name = "compensationType")
@@ -47,7 +47,7 @@ public class Rule {
 	private String compensationFormula;
 
 	@Column(name = "compensationParameter")
-	private String compensationParameter; */
+	private String compensationParameter; 
 
 	/*
 	 * @OneToMany(cascade={CascadeType.ALL})
@@ -125,15 +125,15 @@ public class Rule {
 		this.flag = flag;
 	}
 	
-	/*public String getConnectionType() {
+	public String getConnectionType() {
 		return connectionType;
 	}
 
 	public void setConnectionType(String connectionType) {
 		this.connectionType = connectionType;
-	}*/
+	}
 
-/*	public String getCompensationType() {
+	public String getCompensationType() {
 		return compensationType;
 	}
 
@@ -164,7 +164,7 @@ public class Rule {
 	public void setCompensationParameter(String compensationParameter) {
 		this.compensationParameter = compensationParameter;
 	}
-*/
+
 
 
 }

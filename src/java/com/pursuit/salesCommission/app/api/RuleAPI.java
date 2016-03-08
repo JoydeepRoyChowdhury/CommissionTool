@@ -76,8 +76,13 @@ public class RuleAPI {
 			newRule.setRuleName(rule.getRuleName());
 			newRule.setDescription(rule.getDescription());
 			newRule.setRuleDetails(rule.getRuleDetails());
+			newRule.setCompensationType(rule.getCompensationType());
+			newRule.setFixedCompValue(rule.getFixedCompValue());
+			newRule.setCompensationFormula(rule.getCompensationFormula());
+			newRule.setCompensationParameter(rule.getCompensationParameter());
 			if(rule.getFlag() == "c"){
 			newRule.setFlag("c");
+			newRule.setConnectionType(rule.getConnectionType());
 			newRule.setRuleComposite(rule.getRuleComposite());
 			newRule.setRuleType("Composite");
 			}

@@ -79,6 +79,11 @@ public class RuleAPITest {
 		Rule r = new Rule();
 		r.setRuleName("abcd");
 		r.setDescription("efgh");
+		r.setRuleDetails("Details of Rule");
+		r.setCompensationFormula("Compensation formula");
+		r.setCompensationParameter("Compensation Parameter");
+		r.setCompensationType("fixed");
+		r.setFixedCompValue("sales*1000");
 		r.setFlag("s");
 		RuleSimple ruleSimple = new RuleSimple();
 		ruleSimple.setCalculationMode("Individual");
