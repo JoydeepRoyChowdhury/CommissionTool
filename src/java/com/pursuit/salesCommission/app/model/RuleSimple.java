@@ -36,21 +36,15 @@ public class RuleSimple {
 	@Column(name = "populationUpto")
 	private int populationUpto;
 
-	@Column(name = "compensationType")
-	private String compensationType;
-
-	@Column(name = "fixedCompValue")
-	private String fixedCompValue;
-
 	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "RULE_SIMP_ID")
 	@IndexColumn(name = "detailSrl")
 	private List<RuleParameter> ruleParameter;
 
-	/*@OneToMany(cascade = { CascadeType.ALL })
+	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "RULE_SIMP_ID")
 	@IndexColumn(name = "detailSrl")
-	private List<QualifyingClause> qualifyingClause; */
+	private List<QualifyingClause> qualifyingClause; 
 
 	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "RULE_SIMP_ID")
@@ -110,21 +104,6 @@ public class RuleSimple {
 		this.populationUpto = populationUpto;
 	}
 
-	public String getCompensationType() {
-		return compensationType;
-	}
-
-	public void setCompensationType(String compensationType) {
-		this.compensationType = compensationType;
-	}
-
-	public String getFixedCompValue() {
-		return fixedCompValue;
-	}
-
-	public void setFixedCompValue(String fixedCompValue) {
-		this.fixedCompValue = fixedCompValue;
-	}
 
 	public List<RuleParameter> getRuleParameter() {
 		return ruleParameter;

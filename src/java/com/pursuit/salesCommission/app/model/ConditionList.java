@@ -6,20 +6,26 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+
+import com.sun.istack.internal.NotNull;
+
 @Entity
 @Table(name = "ConditionList")
 public class ConditionList {
+	
 	@Id
 	@GeneratedValue
-	@Column(name = "con_lst_id")
+	@Column(name = "condition_id")
 	private long id;
+	
+	@Type(type= "org.hibernate.type.NumericBooleanType")
+	@Column(name = "notFlag", nullable = false)
+	private boolean notFlag; 
 
-	@Column(nullable = false, columnDefinition = "TINYINT", length = 1)
-	private boolean notFlag;
-
-	@Column(name = "condition")
-	private String condition;
-
+	@Column(name = "conditionValue")
+	private String conditionValue;
+	
 	public long getId() {
 		return id;
 	}
@@ -28,7 +34,7 @@ public class ConditionList {
 		this.id = id;
 	}
 
-	public boolean isNotFlag() {
+	public boolean getNotFlag() {
 		return notFlag;
 	}
 
@@ -36,12 +42,13 @@ public class ConditionList {
 		this.notFlag = notFlag;
 	}
 
-	public String getCondition() {
-		return condition;
+	public String getConditionValue() {
+		return conditionValue;
 	}
 
-	public void setCondition(String condition) {
-		this.condition = condition;
+	public void setConditionValue(String conditionValue) {
+		this.conditionValue = conditionValue;
 	}
+
 
 }

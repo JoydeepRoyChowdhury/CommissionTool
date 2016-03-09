@@ -70,23 +70,16 @@ public class RuleSimpleAPITest {
 		QualifyingClause qClause = new QualifyingClause();
 		qClause.setValue("Qualifying Clause");
 		FieldList fldlst1 = new FieldList();
-		FieldList fldlst2 = new FieldList();
 		fldlst1.setFieldName("fieldlstvalue1");
 		fldlst1.setDisplayName("hello");
-		fldlst2.setFieldName("fieldlstvalue2");
-		fldlst2.setDisplayName("hii");
-		//qClause.setFieldList(new ArrayList<FieldList>());
-		//qClause.getFieldList().add(fldlst1);
-		//qClause.getFieldList().add(fldlst2);
-		//ConditionList cndlst1 = new ConditionList();
-		//ConditionList cndlst2 = new ConditionList();
-		//cndlst1.setEnabled(true);
-		//cndlst1.setCondition("condition1");
-		//cndlst2.setNotFlag(false);
-		//cndlst2.setCondition("condition2");
-		//qClause.setConditionList(new ArrayList<ConditionList>());
-		//qClause.getConditionList().add(cndlst1);
-		//qClause.getConditionList().add(cndlst2);
+		
+		qClause.setFieldList(fldlst1);
+		
+		ConditionList cndlst1 = new ConditionList();
+		cndlst1.setNotFlag(true);
+		cndlst1.setConditionValue("condition1");
+		qClause.setConditionList(cndlst1);
+		
 		ruleSimpleApi.createQualifyingClause(qClause);
 
 		Assert.assertNotNull(qClause);

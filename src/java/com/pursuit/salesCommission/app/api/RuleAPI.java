@@ -66,13 +66,13 @@ public class RuleAPI {
 	 * Method for create rule
 	 * @param rule
 	 */
-	public void createRule(Rule rule) {
+	public long createRule(Rule rule) {
 
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
+		Rule newRule = new Rule();
 		try {
 			tx = session.beginTransaction();
-			Rule newRule = new Rule();
 			newRule.setRuleName(rule.getRuleName());
 			newRule.setDescription(rule.getDescription());
 			newRule.setRuleDetails(rule.getRuleDetails());
@@ -80,16 +80,16 @@ public class RuleAPI {
 			newRule.setFixedCompValue(rule.getFixedCompValue());
 			newRule.setCompensationFormula(rule.getCompensationFormula());
 			newRule.setCompensationParameter(rule.getCompensationParameter());
-			if(rule.getFlag() == "c"){
-			newRule.setFlag("c");
-			newRule.setConnectionType(rule.getConnectionType());
-			newRule.setRuleComposite(rule.getRuleComposite());
-			newRule.setRuleType("Composite");
+			if(rule.getRuleType() == "c"){
+			//newRule.setFlag("c");
+				newRule.setConnectionType(rule.getConnectionType());
+				newRule.setRuleComposite(rule.getRuleComposite());
+				newRule.setRuleType("Composite");
 			}
-			else{
-			newRule.setFlag("s");
-			newRule.setRuleSimple(rule.getRuleSimple());
-			newRule.setRuleType("Simple");
+			else {
+			//newRule.setFlag("s");
+				newRule.setRuleSimple(rule.getRuleSimple());
+				newRule.setRuleType("Simple");
 			}
 			session.save(newRule);
 			tx.commit();
@@ -101,6 +101,7 @@ public class RuleAPI {
 			session.close();
 		}
 
+		return newRule.getId();
 	} 
 
 	/**

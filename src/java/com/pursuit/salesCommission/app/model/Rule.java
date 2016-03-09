@@ -32,7 +32,7 @@ public class Rule {
 	@PrimaryKeyJoinColumn
 	private RuleComposite ruleComposite;
 	
-	private String flag;
+	//private String flag;
 
 	@Column(name = "connectionType")
 	private String connectionType; 
@@ -41,7 +41,7 @@ public class Rule {
 	private String compensationType;
 
 	@Column(name = "fixedCompValue")
-	private Number fixedCompValue;
+	private int fixedCompValue;
 
 	@Column(name = "compensationFormula")
 	private String compensationFormula;
@@ -108,13 +108,13 @@ public class Rule {
 		this.ruleComposite = ruleComposite;
 	}
 	
-	public String getFlag() {
+	/*public String getFlag() {
 		return flag;
 	}
 
 	public void setFlag(String flag) {
 		this.flag = flag;
-	}
+	}*/
 	
 	public String getConnectionType() {
 		return connectionType;
@@ -132,11 +132,11 @@ public class Rule {
 		this.compensationType = compensationType;
 	}
 
-	public Number getFixedCompValue() {
+	public int getFixedCompValue() {
 		return fixedCompValue;
 	}
 
-	public void setFixedCompValue(Number fixedCompValue) {
+	public void setFixedCompValue(int fixedCompValue) {
 		this.fixedCompValue = fixedCompValue;
 	}
 

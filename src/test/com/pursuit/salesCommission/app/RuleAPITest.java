@@ -13,6 +13,7 @@ import org.junit.Test;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import junit.framework.TestCase;
 
 import java.util.ArrayList;
 
@@ -35,67 +36,42 @@ import com.pursuit.salesCommission.app.model.RuleSimple;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/applicationContext.xml")
-public class RuleAPITest {
+public class RuleAPITest extends TestCase {
 	@Autowired
 	private RuleAPI ruleAPI;
-	/**
-	 * @throws java.lang.Exception
-	 */
-/*	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
+
+	private Rule rule;
+
+	@BeforeClass
+	public static void oneTimeSetUp() {
+		// one-time initialization code
+		System.out.println("@BeforeClass - oneTimeSetUp");
 	}
-*/
-	/**
-	 * @throws java.lang.Exception
-	 */
-/*	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
+
+	@AfterClass
+	public static void oneTimeTearDown() {
+		// one-time cleanup code
+		System.out.println("@AfterClass - oneTimeTearDown");
 	}
-*/
-	/**
-	 * @throws java.lang.Exception
-	 */
-/*	@Before
+
+	@Before
 	public void setUp() throws Exception {
-	}
-*/
-	/**
-	 * @throws java.lang.Exception
-	 */
-/*	@After
-	public void tearDown() throws Exception {
-	}
-*/
-	/**
-	 * Test method for {@link com.pursuit.salesCommission.app.api.RuleAPI#getRule(long)}.
-	 */
-/*	@Test
-	public void testGetRule() {
-		fail("Not yet implemented");
-	}
-*/
-	/**
-	 * Test method for {@link com.pursuit.salesCommission.app.api.RuleAPI#createRule(com.pursuit.salesCommission.app.model.Rule)}.
-	 */
-	@Test
-	public void testCreateRule1() {
-		Rule r = new Rule();
-		r.setRuleName("abcd");
-		r.setDescription("efgh");
-		r.setRuleDetails("Details of Rule");
-		r.setCompensationFormula("Compensation formula");
-		r.setCompensationParameter("Compensation Parameter");
-		r.setCompensationType("fixed");
-		r.setFixedCompValue(1000);
-		r.setFlag("s");
-		
+
+		System.out.println("Setting it up!");
+		rule = new Rule();
+		rule.setRuleName("abcd");
+		rule.setDescription("efgh");
+		rule.setRuleDetails("Details of Rule");
+		rule.setCompensationFormula("Compensation formula");
+		rule.setCompensationParameter("Compensation Parameter");
+		rule.setCompensationType("fixed");
+		rule.setFixedCompValue(10);
+
 		RuleSimple ruleSimple = new RuleSimple();
 		ruleSimple.setCalculationMode("Individual");
-		ruleSimple.setCompensationType("Compensation Type");
-		ruleSimple.setFixedCompValue("Fixed Comensation Value");
 		ruleSimple.setPopulationType("Population Type");
 		ruleSimple.setPopulationUpto(4);
-		
+
 		ruleSimple.setRuleParameter(new ArrayList<RuleParameter>());
 		RuleParameter rl1 = new RuleParameter();
 		RuleParameter rl2 = new RuleParameter();
@@ -105,7 +81,7 @@ public class RuleAPITest {
 		rl2.setParameterValue("value 2");
 		ruleSimple.getRuleParameter().add(rl1);
 		ruleSimple.getRuleParameter().add(rl2);
-		
+
 		ruleSimple.setFieldList(new ArrayList<FieldList>());
 		FieldList fld1 = new FieldList();
 		FieldList fld2 = new FieldList();
@@ -115,8 +91,7 @@ public class RuleAPITest {
 		fld2.setDisplayName("hello");
 		ruleSimple.getFieldList().add(fld1);
 		ruleSimple.getFieldList().add(fld2);
-		
-		
+
 		ruleSimple.setAggregateFunctions(new ArrayList<AggregateFunctions>());
 		AggregateFunctions fn1 = new AggregateFunctions();
 		AggregateFunctions fn2 = new AggregateFunctions();
@@ -124,45 +99,73 @@ public class RuleAPITest {
 		fn1.setFunctionName("Function 2");
 		ruleSimple.getAggregateFunctions().add(fn1);
 		ruleSimple.getAggregateFunctions().add(fn2);
-		
-		r.setRuleSimple(ruleSimple);
-		
-		ruleAPI.createRule(r);
-		//Rule ru = ruleAPI.getRule(r.getId());
-		//Assert.assertEquals("abcd", ru.getRuleName());
-		Assert.assertNotNull(r);
 
-	} 
+		rule.setRuleSimple(ruleSimple);
+
+		long ruleId = ruleAPI.createRule(rule);
+		rule.setId(ruleId);
+	}
+
 	/**
-	 * Test method for {@link com.pursuit.salesCommission.app.api.RuleAPI#createRule(com.pursuit.salesCommission.app.model.Rule)}.
+	 * @throws java.lang.Exception
+	 */
+	
+	@After
+	public void tearDown() throws Exception {
+		System.out.println("Running: tearDown");
+		Rule ru = ruleAPI.getRule(rule.getId());
+		ru = null;
+		assertNull(ru);
+	}
+	 
+	/**
+	 * Test method for
+	 * {@link com.pursuit.salesCommission.app.api.RuleAPI#getRule(long)}.
+	 */
+
+	/*
+	 * @Test public void testGetRule() { fail("Not yet implemented"); }
+	 */
+	/**
+	 * Test method for
+	 * {@link com.pursuit.salesCommission.app.api.RuleAPI#createRule(com.pursuit.salesCommission.app.model.Rule)}
+	 * .
 	 */
 	@Test
-	public void testCreateRule2() {
-		Rule r = new Rule();
-		r.setRuleName("abcd");
-		r.setDescription("efgh");
-		r.setFlag("c");
-		RuleComposite ruleComposite = new RuleComposite();
-		RuleSimple simple1 = new RuleSimple();
-		RuleSimple simple2 = new RuleSimple();
-		simple1.setCalculationMode("Individual");
-		simple2.setCalculationMode("Rank");
-		ruleComposite.setRuleSimple(new ArrayList<RuleSimple>());
-		ruleComposite.getRuleSimple().add(simple1);
-		ruleComposite.getRuleSimple().add(simple2);
-		r.setRuleComposite(ruleComposite);
-		ruleAPI.createRule(r);
-		//Rule ru = ruleAPI.getRule(r.getId());
-		//Assert.assertEquals("abcd", ru.getRuleName());
-		Assert.assertNotNull(r);
+	public void testCreateRule1() {
 
-	} 
-	/**
-	 * Test method for {@link com.pursuit.salesCommission.app.api.RuleAPI#listRules()}.
-	 */
-/*	@Test
-	public void testListRules() {
-		fail("Not yet implemented");
+		Rule ru = ruleAPI.getRule(rule.getId());
+		Assert.assertEquals("abcd", ru.getRuleName());
+
+		System.out.println("Running: testDummyRule");
+
 	}
-*/
+
+	/**
+	 * Test method for
+	 * {@link com.pursuit.salesCommission.app.api.RuleAPI#createRule(com.pursuit.salesCommission.app.model.Rule)}
+	 * .
+	 */
+	/*
+	 * @Test public void testCreateRule2() { Rule r = new Rule();
+	 * r.setRuleName("abcd"); r.setDescription("efgh"); r.setRuleType("c");
+	 * RuleComposite ruleComposite = new RuleComposite(); RuleSimple simple1 =
+	 * new RuleSimple(); RuleSimple simple2 = new RuleSimple();
+	 * simple1.setCalculationMode("Individual");
+	 * simple2.setCalculationMode("Rank"); ruleComposite.setRuleSimple(new
+	 * ArrayList<RuleSimple>()); ruleComposite.getRuleSimple().add(simple1);
+	 * ruleComposite.getRuleSimple().add(simple2);
+	 * r.setRuleComposite(ruleComposite); ruleAPI.createRule(r); // Rule ru =
+	 * ruleAPI.getRule(r.getId()); // Assert.assertEquals("abcd",
+	 * ru.getRuleName()); Assert.assertNotNull(r);
+	 * 
+	 * }
+	 */
+	/**
+	 * Test method for
+	 * {@link com.pursuit.salesCommission.app.api.RuleAPI#listRules()}.
+	 */
+	/*
+	 * @Test public void testListRules() { fail("Not yet implemented"); }
+	 */
 }

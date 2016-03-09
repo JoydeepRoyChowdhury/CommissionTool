@@ -67,8 +67,8 @@ public class RuleSimpleAPI {
 			tx = session.beginTransaction();
 			QualifyingClause qfyClause = new QualifyingClause();
 			qfyClause.setValue(qClause.getValue());
-			//qfyClause.setFieldList(qClause.getFieldList());
-			//qfyClause.setConditionList(qClause.getConditionList());
+			qfyClause.setFieldList(qClause.getFieldList());
+			qfyClause.setConditionList(qClause.getConditionList());
 			session.save(qfyClause);
 			tx.commit();
 		} catch (HibernateException e) {
