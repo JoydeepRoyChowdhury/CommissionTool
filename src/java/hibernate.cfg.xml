@@ -16,6 +16,8 @@
 		<mapping class="com.pursuit.salesCommission.app.model.RuleComposite" />
 		<mapping class="com.pursuit.salesCommission.app.model.QualifyingClause" />
 		<mapping class="com.pursuit.salesCommission.app.model.FieldList" />
+		<mapping class="com.pursuit.salesCommission.app.model.Frequency" />
+		<mapping class="com.pursuit.salesCommission.app.model.RuleAssignment" />
 		<mapping class="com.pursuit.salesCommission.app.model.ConditionList" />
 		<mapping class="com.pursuit.salesCommission.app.model.AggregateFunctions" />
 		<mapping class="com.pursuit.salesCommission.app.model.RuleParameter" />
