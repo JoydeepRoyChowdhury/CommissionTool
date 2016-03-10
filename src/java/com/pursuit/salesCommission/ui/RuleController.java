@@ -1,3 +1,4 @@
+
 package com.pursuit.salesCommission.ui;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-
 import com.pursuit.salesCommission.app.api.RuleAPI;
+import com.pursuit.salesCommission.app.api.RuleSimpleAPI;
 
+import com.pursuit.salesCommission.app.model.RuleSimple;
 import com.pursuit.salesCommission.app.model.Rule;
 
 @Controller
@@ -21,55 +23,35 @@ public class RuleController {
 	@RequestMapping(value = "/rule", method = RequestMethod.GET)
 	public ModelAndView rule1() {
 		System.out.println(".......servlet running.......");
-		return new ModelAndView("Rule", "command", new Rule());
+		return new ModelAndView("simpRuleDetails", "command", new RuleSimple());
 	}
 
-	@RequestMapping(value = "/submitRule", method = RequestMethod.POST)
+	@RequestMapping(value = "/submitSimpRule", method = RequestMethod.POST)
 	public String addRule(@ModelAttribute("SpringWeb") Rule rule, ModelMap model) {
-		if (rule.getId() != 0) {
-
+		
 			model.addAttribute("Id", rule.getId());
 			model.addAttribute("RuleName", rule.getRuleName());
 			model.addAttribute("Description", rule.getDescription());
-			//model.addAttribute("RuleType", rule.getRuleType());
-			//ruleApi.editRule(rule);
-		} else {
+			model.addAttribute("RuleType", rule.getRuleType());
+			model.addAttribute("RuleDetails", rule.getRuleDetails());
+			//model.addAttribute("CalculationMode", rule);
+			//model.addAttribute("RankCount", rulesimple.getRankCount());
+			//model.addAttribute("RankingType", rulesimple.getRankingType());
+			//model.addAttribute("PopulationType", rulesimple.getPopulationType());
+			//model.addAttribute("CompensationType", rulesimple.getCompensationType());
+			//model.addAttribute("FixedCompValue", rulesimple.getFixedCompValue());
+			ruleApi.createRule(rule);
 
-			model.addAttribute("Id", rule.getId());
-			model.addAttribute("RuleName", rule.getRuleName());
-			model.addAttribute("Description", rule.getDescription());
-			//model.addAttribute("RuleType", rule.getRuleType());
-
-			//ruleApi.createRule(rule);
-
-		}
-		System.out.println(".........successfully submit..........");
+		
 		return "redirect:/ruleList";
-
 	}
+
 
 	@RequestMapping(value = "/ruleList", method = RequestMethod.GET)
 	public String listRules(ModelMap model) {
 		model.addAttribute("rule", new Rule());
 		model.addAttribute("listRule", ruleApi.listRules());
-		System.out.println("working");
-		System.out.println(".........list done..........");
-		return "RuleList";
+		System.out.println("..........working..........");
+		return "hello1";
 	}
-
-	@RequestMapping("/deleteRule/{id}")
-	public String deleterule(@PathVariable("id") int id, Rule rule, ModelMap model) {
-		//ruleApi.deleteRule(id);
-		System.out.println(".........deleted..........");
-		return "redirect:/ruleList";
-	}
-
-	@RequestMapping("/editRule/{id}")
-	public String editRule(@PathVariable("id") int id, ModelMap model) {
-		model.addAttribute("rule", ruleApi.getRule(id));
-		model.addAttribute("listRule", ruleApi.listRules());
-		System.out.println(".........edit rule running..........");
-		return "editRule";
-	}
-
 }
