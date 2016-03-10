@@ -31,14 +31,14 @@ public class RoleController {
 			model.addAttribute("id", role.getId());
 			model.addAttribute("RoleName", role.getRoleName());
 			model.addAttribute("Description", role.getDescription());
-			model.addAttribute("ReportTo", role.getReportTo());
+			//model.addAttribute("ReportTo", role.getReportTo());
 			roleApi.editRole(role);
 		} else {
 
 			model.addAttribute("id", role.getId());
 			model.addAttribute("RoleName", role.getRoleName());
 			model.addAttribute("Description", role.getDescription());
-			model.addAttribute("ReportTo", role.getReportTo());
+			//model.addAttribute("ReportTo", role.getReportTo());
 
 			roleApi.createRole(role);
 

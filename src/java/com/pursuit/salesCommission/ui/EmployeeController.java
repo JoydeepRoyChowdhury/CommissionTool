@@ -33,9 +33,9 @@ public class EmployeeController {
 		
 		if (employee.getId() != 0) {
 			model.addAttribute("id", employee.getId());
-			model.addAttribute("firstName", employee.getFirstName());
-			model.addAttribute("lastName", employee.getLastName());
-			model.addAttribute("salary", employee.getSalary());
+			//model.addAttribute("firstName", employee.getFirstName());
+			//model.addAttribute("lastName", employee.getLastName());
+			//model.addAttribute("salary", employee.getSalary());
 			// model.addAttribute("role", employee.getRole());
 			// model.addAttribute("startDate", employee.getStartDate());
 			// model.addAttribute("termDate", employee.getTermDate());
@@ -44,9 +44,9 @@ public class EmployeeController {
 			logger.debug("EDITED AN EMPLOYEE INTO DATABASE" + employee);
 		} else {
 			model.addAttribute("id", employee.getId());
-			model.addAttribute("firstName", employee.getFirstName());
-			model.addAttribute("lastName", employee.getLastName());
-			model.addAttribute("salary", employee.getSalary());
+			//model.addAttribute("firstName", employee.getFirstName());
+			//model.addAttribute("lastName", employee.getLastName());
+			//model.addAttribute("salary", employee.getSalary());
 			// model.addAttribute("role", employee.getRole());
 			// model.addAttribute("startDate", employee.getStartDate());
 			// model.addAttribute("termDate", employee.getTermDate());

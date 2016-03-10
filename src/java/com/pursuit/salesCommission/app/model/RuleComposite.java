@@ -25,21 +25,35 @@ public class RuleComposite {
 	@JoinColumn(name = "RULE_COMP_ID")
 	@IndexColumn(name = "detailSrl")
 	private List<RuleSimple> ruleSimple;
-	
+
+	/**
+	 * @return the id
+	 */
 	public long getId() {
 		return id;
 	}
 
+	/**
+	 * @param id the id to set
+	 */
 	public void setId(long id) {
 		this.id = id;
 	}
 
+	/**
+	 * @return the ruleSimple
+	 */
 	public List<RuleSimple> getRuleSimple() {
 		return ruleSimple;
 	}
 
+	/**
+	 * @param ruleSimple the ruleSimple to set
+	 */
 	public void setRuleSimple(List<RuleSimple> ruleSimple) {
 		this.ruleSimple = ruleSimple;
 	}
+	
+	
 
 }

@@ -33,7 +33,7 @@ public class RoleAPI {
 			Role obj1 = new Role();
 			obj1.setRoleName(rolename);
 			obj1.setDescription(description);
-			obj1.setReportTo(reportTo);
+			//obj1.setReportTo(reportTo);
 			roleID = (int) session.save(obj1);
 			tx.commit();
 		} catch (HibernateException e) {
@@ -69,7 +69,7 @@ public class RoleAPI {
 			Role obj2 = new Role();
 			obj2.setRoleName(role.getRoleName());
 			obj2.setDescription(role.getDescription());
-			obj2.setReportTo(role.getReportTo());
+			//obj2.setReportTo(role.getReportTo());
 			session.save(role);
 			tx.commit();
 		} catch (HibernateException e) {
@@ -93,7 +93,7 @@ public class RoleAPI {
 			Role role = (Role) iterator.next();
 			System.out.print("Role Name: " + role.getRoleName());
 			System.out.print("  Description: " + role.getDescription());
-			System.out.println("  Report To: " + role.getReportTo());
+			//System.out.println("  Report To: " + role.getReportTo());
 		}
 		return roles;
 	}
@@ -128,7 +128,7 @@ public class RoleAPI {
 			role1.setId(role.getId());
 			role1.setRoleName(role.getRoleName());
 			role1.setDescription(role.getDescription());
-			role1.setReportTo(role.getReportTo());
+			//role1.setReportTo(role.getReportTo());
 			session.save(role1);
 			tx.commit();
 		} catch (HibernateException e) {

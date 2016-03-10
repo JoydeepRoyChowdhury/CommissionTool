@@ -1,32 +1,37 @@
 package com.pursuit.salesCommission.app.model;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 @Entity
-@Table(name = "Employee")
-public class Employee {
+@Table(name = "EmployeeRoleMap")
+public class EmployeeRoleMap {
 	@Id
 	@GeneratedValue
-	@Column(name = "emp_id")
+	@Column(name = "er_map_id")
 	private long id;
 
-	@Column(name = "employeeName")
-	private String employeeName;
+	@OneToOne(cascade = CascadeType.ALL)
+	@PrimaryKeyJoinColumn
+	private Employee employee;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@PrimaryKeyJoinColumn
+	private Role role;
 
 	@Column(name = "startDate")
 	private Date startDate;
 
 	@Column(name = "terminationDate")
 	private Date terminationDate;
-
-
-	public Employee() {
-	}
-
 
 	/**
 	 * @return the id
@@ -35,7 +40,6 @@ public class Employee {
 		return id;
 	}
 
-
 	/**
 	 * @param id the id to set
 	 */
@@ -43,22 +47,33 @@ public class Employee {
 		this.id = id;
 	}
 
-
 	/**
-	 * @return the employeeName
+	 * @return the employee
 	 */
-	public String getEmployeeName() {
-		return employeeName;
+	public Employee getEmployee() {
+		return employee;
 	}
 
-
 	/**
-	 * @param employeeName the employeeName to set
+	 * @param employee the employee to set
 	 */
-	public void setEmployeeName(String employeeName) {
-		this.employeeName = employeeName;
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 
+	/**
+	 * @return the role
+	 */
+	public Role getRole() {
+		return role;
+	}
+
+	/**
+	 * @param role the role to set
+	 */
+	public void setRole(Role role) {
+		this.role = role;
+	}
 
 	/**
 	 * @return the startDate
@@ -67,14 +82,12 @@ public class Employee {
 		return startDate;
 	}
 
-
 	/**
 	 * @param startDate the startDate to set
 	 */
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
-
 
 	/**
 	 * @return the terminationDate
@@ -83,7 +96,6 @@ public class Employee {
 		return terminationDate;
 	}
 
-
 	/**
 	 * @param terminationDate the terminationDate to set
 	 */
@@ -91,6 +103,4 @@ public class Employee {
 		this.terminationDate = terminationDate;
 	}
 
-
-	
 }
