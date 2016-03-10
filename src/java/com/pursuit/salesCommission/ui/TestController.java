@@ -16,25 +16,23 @@ public class TestController {
 	
 	
 
-	@RequestMapping(value = "/CompRule", method = RequestMethod.GET)
-	public ModelAndView rule1() {
-		return new ModelAndView("compRule", "command", new Rule());
-	}
-	@RequestMapping(value = "/submitCompRuleEdit", method = RequestMethod.GET)
-	public ModelAndView rule2() {
-		return new ModelAndView("ruleDetails", "command", new Rule());
-	}
-	@RequestMapping(value = "/submitSimpRule", method = RequestMethod.GET)
-	public ModelAndView rule3() {
-		return new ModelAndView("simpRuleDetails", "command", new Rule());
-	}
-	
-
 	@RequestMapping(value = "/ruledetails", method = RequestMethod.GET)
 	public String listRules(ModelMap model) {
 		Array obj = new Array();
 		model.addAttribute("listRule", obj.addRule());
 		return "compRule";
 	}
+
+	@RequestMapping(value = "/simpRule", method = RequestMethod.GET)
+	public ModelAndView rule1() {
+		return new ModelAndView("simpRuleDetails", "command", new Rule());
+	}
+
 	
+	@RequestMapping(value = "/compRule", method = RequestMethod.GET)
+	public String listRules1(ModelMap model) {
+		Array obj = new Array();
+		model.addAttribute("listRule", obj.addRule());
+		return "ruleDetails";
+	}
 }
