@@ -15,7 +15,8 @@ import com.pursuit.salesCommission.app.model.Employee;
 import com.pursuit.salesCommission.app.model.Role;
 
 /**
- * Class for database operations on Employee 
+ * Class for database operations on Employee
+ * 
  * @author NEW2
  *
  */
@@ -24,7 +25,7 @@ public class EmployeeAPI {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
 	private static final Logger logger = Logger.getLogger(EmployeeAPI.class);
 
 	public void setSessionFactory(SessionFactory factory) {
@@ -32,8 +33,8 @@ public class EmployeeAPI {
 	}
 
 	/**
-	 * Method for Create an Employee in database
-	 * This method is used to create new employee record in database table.
+	 * Method for Create an Employee in database This method is used to create
+	 * new employee record in database table.
 	 * 
 	 * @param employee
 	 *            the object that taking all parameters of employee from
@@ -42,17 +43,13 @@ public class EmployeeAPI {
 	public void createEmployee(Employee employee) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
+		Employee emp = new Employee();
 		try {
 			tx = session.beginTransaction();
-			Employee employee1 = new Employee();
-			employee1.setFirstName(employee.getFirstName());
-			employee1.setLastName(employee.getLastName());
-			employee1.setSalary(employee.getSalary());
-			Role role = new Role();
-			//role.setRoleName(employee.getRole().getRoleName());
-			//role.setDescription(employee.getRole().getDescription());
-			//role.setReportTo(employee.getRole().getReportTo());
-			//employee1.setRole(role);
+			emp.setEmployeeName(employee.getEmployeeName());
+			emp.setStartDate(employee.getStartDate());
+			emp.setTerminationDate(employee.getTerminationDate());
+			//emp.setManager(employee.getManager());
 			session.save(employee);
 			tx.commit();
 			logger.debug("CREATED AN EMPLOYEE INTO DATABASE" + employee);
@@ -91,11 +88,13 @@ public class EmployeeAPI {
 		Transaction tx = null;
 		tx = session.beginTransaction();
 		List employees = session.createQuery("FROM Employee").list();
-		
+
 		for (Iterator iterator = employees.iterator(); iterator.hasNext();) {
 			Employee employee = (Employee) iterator.next();
-			logger.debug("GET THE EMPLOYEE DETAILS FROM DATABASE" +  employee.getFirstName()+ employee.getLastName() +employee.getSalary() );
-			
+			// logger.debug("GET THE EMPLOYEE DETAILS FROM DATABASE" +
+			// employee.getFirstName()+ employee.getLastName()
+			// +employee.getSalary() );
+
 		}
 		return employees;
 	}
@@ -137,9 +136,9 @@ public class EmployeeAPI {
 			tx = session.beginTransaction();
 			Employee employee1 = (Employee) session.get(Employee.class, employee.getId());
 			employee1.setId(employee.getId());
-			employee1.setFirstName(employee.getFirstName());
-			employee1.setLastName(employee.getLastName());
-			employee1.setSalary(employee.getSalary());
+			// employee1.setFirstName(employee.getFirstName());
+			// employee1.setLastName(employee.getLastName());
+			// employee1.setSalary(employee.getSalary());
 			session.save(employee1);
 			logger.debug("EDIT THE EMPLOYEE DETAILS FROM DATABASE" + employee1);
 			tx.commit();

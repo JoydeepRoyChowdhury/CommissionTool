@@ -9,6 +9,8 @@
 		<property name="hibernate.show_sql">true</property>
 		<mapping class="com.pursuit.salesCommission.app.model.Employee" />
 		<mapping class="com.pursuit.salesCommission.app.model.Role" />
+		<mapping class="com.pursuit.salesCommission.app.model.EmployeeRoleMap" />
+		<mapping class="com.pursuit.salesCommission.app.model.EmployeeManagerMap" />
 		<mapping class="com.pursuit.salesCommission.app.model.Rule" />
 		<mapping class="com.pursuit.salesCommission.app.model.RuleSimple" />
 		<mapping class="com.pursuit.salesCommission.app.model.RuleComposite" />

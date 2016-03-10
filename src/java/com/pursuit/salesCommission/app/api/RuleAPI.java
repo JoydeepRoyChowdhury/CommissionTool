@@ -1,6 +1,5 @@
 package com.pursuit.salesCommission.app.api;
 
-
 import java.util.Iterator;
 import java.util.List;
 
@@ -12,9 +11,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-
 import com.pursuit.salesCommission.app.model.Rule;
-
 
 @Component
 public class RuleAPI {
@@ -39,31 +36,24 @@ public class RuleAPI {
 	 * 
 	 * @param rule
 	 */
-/*	public void createRule1(Rule rule) {
-
-		Session session = sessionFactory.openSession();
-		Transaction tx = null;
-		try {
-			tx = session.beginTransaction();
-			Rule rule2 = new Rule();
-			rule2.setRuleName(rule.getRuleName());
-			rule2.setDescription(rule.getDescription());
-			// rule2.setRuleType(rule.getRuleType());
-			// ArrayList<Employee> emplist1 = rule.getEmployees();
-			// rule2.setEmployees(emplist1);
-			session.save(rule2);
-			tx.commit();
-		} catch (HibernateException e) {
-			if (tx != null)
-				tx.rollback();
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-
-	} */
+	/*
+	 * public void createRule1(Rule rule) {
+	 * 
+	 * Session session = sessionFactory.openSession(); Transaction tx = null;
+	 * try { tx = session.beginTransaction(); Rule rule2 = new Rule();
+	 * rule2.setRuleName(rule.getRuleName());
+	 * rule2.setDescription(rule.getDescription()); //
+	 * rule2.setRuleType(rule.getRuleType()); // ArrayList<Employee> emplist1 =
+	 * rule.getEmployees(); // rule2.setEmployees(emplist1);
+	 * session.save(rule2); tx.commit(); } catch (HibernateException e) { if (tx
+	 * != null) tx.rollback(); e.printStackTrace(); } finally { session.close();
+	 * }
+	 * 
+	 * }
+	 */
 	/**
 	 * Method for create rule
+	 * 
 	 * @param rule
 	 */
 	public long createRule(Rule rule) {
@@ -80,14 +70,13 @@ public class RuleAPI {
 			newRule.setFixedCompValue(rule.getFixedCompValue());
 			newRule.setCompensationFormula(rule.getCompensationFormula());
 			newRule.setCompensationParameter(rule.getCompensationParameter());
-			if(rule.getRuleType() == "c"){
-			//newRule.setFlag("c");
+			if (rule.getRuleType() == "c") {
+				// newRule.setFlag("c");
 				newRule.setConnectionType(rule.getConnectionType());
 				newRule.setRuleComposite(rule.getRuleComposite());
 				newRule.setRuleType("Composite");
-			}
-			else {
-			//newRule.setFlag("s");
+			} else {
+				// newRule.setFlag("s");
 				newRule.setRuleSimple(rule.getRuleSimple());
 				newRule.setRuleType("Simple");
 			}
@@ -102,7 +91,7 @@ public class RuleAPI {
 		}
 
 		return newRule.getId();
-	} 
+	}
 
 	/**
 	 * Method for getting list of roles for rule
