@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
 
-import com.sun.istack.internal.NotNull;
+
 
 @Entity
 @Table(name = "ConditionList")
