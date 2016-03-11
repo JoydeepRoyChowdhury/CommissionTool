@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page isErrorPage="true" %>
 <html>
 <head>
@@ -30,4 +30,4 @@
 </tr>
 </table>
 </body>
-</html>
+</html>  -->

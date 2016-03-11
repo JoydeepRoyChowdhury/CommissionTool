@@ -23,9 +23,9 @@ public class Role {
 	@JoinColumn(name = "reportsTo")
 	private Role reportsTo;
 
-	@OneToMany(mappedBy = "reportsTo")
+/*	@OneToMany(mappedBy = "reportsTo")
 	private Set<Role> subordinates = new HashSet<Role>();
-
+*/
 	public Role() {
 	}
 
@@ -88,16 +88,15 @@ public class Role {
 	/**
 	 * @return the subordinates
 	 */
-	public Set<Role> getSubordinates() {
+/*	public Set<Role> getSubordinates() {
 		return subordinates;
 	}
-
+*/
 	/**
 	 * @param subordinates the subordinates to set
 	 */
-	public void setSubordinates(Set<Role> subordinates) {
+/*	public void setSubordinates(Set<Role> subordinates) {
 		this.subordinates = subordinates;
 	}
-
-	
+*/	
 }

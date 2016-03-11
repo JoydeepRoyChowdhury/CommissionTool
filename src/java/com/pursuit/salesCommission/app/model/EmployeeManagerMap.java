@@ -37,8 +37,8 @@ public class EmployeeManagerMap {
 	@JoinColumn(name = "manager_id")
 	private Employee manager;
 	
-	@OneToMany(mappedBy = "manager")
-	private Set<Employee> subordinates = new HashSet<Employee>();
+/*	@OneToMany(mappedBy = "manager")
+	private Set<Employee> subordinates = new HashSet<Employee>(); */
 
 	/**
 	 * @return the id
@@ -113,16 +113,16 @@ public class EmployeeManagerMap {
 	/**
 	 * @return the subordinates
 	 */
-	public Set<Employee> getSubordinates() {
+/*	public Set<Employee> getSubordinates() {
 		return subordinates;
 	}
-
+*/
 	/**
 	 * @param subordinates the subordinates to set
 	 */
-	public void setSubordinates(Set<Employee> subordinates) {
+/*	public void setSubordinates(Set<Employee> subordinates) {
 		this.subordinates = subordinates;
 	}
-	
+*/	
 	
 }
