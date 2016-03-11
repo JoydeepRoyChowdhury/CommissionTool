@@ -134,10 +134,10 @@ td {
 								&nbsp;Apply formula&nbsp;<input type="text" name="variableValue"><br />
 								<br />&nbsp; parameters&nbsp;<input type="text" name="parameterValue"><br />
 							</td>
-
 						</tr>
+				
 						<tr>
-							<td><input type="submit" value="Update"> <a
+							<td><input type="submit" value="Submit"> <a
 								href="/CommissionTool/ruledetails"> <input type="button"
 									value="Cancel" /></a></td>
 						</tr>
