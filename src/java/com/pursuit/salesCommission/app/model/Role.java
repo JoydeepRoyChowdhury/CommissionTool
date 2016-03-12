@@ -1,9 +1,12 @@
 package com.pursuit.salesCommission.app.model;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
+
+import org.hibernate.annotations.IndexColumn;
 
 @Entity
 @Table(name = "Role")
@@ -23,6 +26,11 @@ public class Role {
 	@JoinColumn(name = "reportsTo")
 	private Role reportsTo;
 
+	@OneToMany(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "ROLE_ID")
+	@IndexColumn(name = "detailSrl")
+	private List<Target> target;
+	
 /*	@OneToMany(mappedBy = "reportsTo")
 	private Set<Role> subordinates = new HashSet<Role>();
 */
@@ -83,6 +91,20 @@ public class Role {
 	 */
 	public void setReportsTo(Role reportsTo) {
 		this.reportsTo = reportsTo;
+	}
+
+	/**
+	 * @return the target
+	 */
+	public List<Target> getTarget() {
+		return target;
+	}
+
+	/**
+	 * @param target the target to set
+	 */
+	public void setTarget(List<Target> target) {
+		this.target = target;
 	}
 
 	/**

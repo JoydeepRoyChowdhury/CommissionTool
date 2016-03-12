@@ -2,9 +2,12 @@ package com.pursuit.salesCommission.app.model;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
+
+import org.hibernate.annotations.IndexColumn;
 
 @Entity
 @Table(name = "Employee")
@@ -22,7 +25,11 @@ public class Employee {
 
 	@Column(name = "terminationDate")
 	private Date terminationDate;
-
+	
+	@OneToMany(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "EMP_ID")
+	@IndexColumn(name = "detailSrl")
+	private List<Target> target;
 
 	public Employee() {
 	}
@@ -89,6 +96,22 @@ public class Employee {
 	 */
 	public void setTerminationDate(Date terminationDate) {
 		this.terminationDate = terminationDate;
+	}
+
+
+	/**
+	 * @return the target
+	 */
+	public List<Target> getTarget() {
+		return target;
+	}
+
+
+	/**
+	 * @param target the target to set
+	 */
+	public void setTarget(List<Target> target) {
+		this.target = target;
 	}
 
 

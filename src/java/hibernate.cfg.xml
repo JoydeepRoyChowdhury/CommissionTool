@@ -21,5 +21,9 @@
 		<mapping class="com.pursuit.salesCommission.app.model.ConditionList" />
 		<mapping class="com.pursuit.salesCommission.app.model.AggregateFunctions" />
 		<mapping class="com.pursuit.salesCommission.app.model.RuleParameter" />
+		<mapping class="com.pursuit.salesCommission.app.model.RuleAssignmentDetails" />
+		<mapping class="com.pursuit.salesCommission.app.model.RuleAssignmentParameter" />
+		<mapping class="com.pursuit.salesCommission.app.model.Target" />
+		<mapping class="com.pursuit.salesCommission.app.model.TargetDefinition" />	
 	</session-factory>
 </hibernate-configuration>

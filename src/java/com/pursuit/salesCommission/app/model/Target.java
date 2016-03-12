@@ -1,49 +1,46 @@
 package com.pursuit.salesCommission.app.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.IndexColumn;
+
 @Entity
-@Table(name = "RuleAssignment")
-public class RuleAssignment {
+@Table(name = "TargetDefinition")
+public class Target {
 	@Id
 	@GeneratedValue
-	@Column(name = "rule_ass_id")
+	@Column(name = "tgt_id")
 	private long id;
-
-	@OneToOne(cascade = CascadeType.ALL)
-	@PrimaryKeyJoinColumn
-	private Employee employee;
-
-	@OneToOne(cascade = CascadeType.ALL)
-	@PrimaryKeyJoinColumn
-	private Role role;
 	
-	@Column(name = "validityType")
-	private String validityType;
-
+	@OneToOne(cascade = { CascadeType.ALL })
+	@PrimaryKeyJoinColumn
+	private TargetDefinition targetDefinition;
+	
 	@Column(name = "startDate")
 	private Date startDate;
 
 	@Column(name = "terminationDate")
 	private Date terminationDate;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = { CascadeType.ALL })
 	@PrimaryKeyJoinColumn
 	private Frequency frequency;
-
-	@OneToOne(cascade = CascadeType.ALL)
-	@PrimaryKeyJoinColumn
-	private RuleAssignmentDetails ruleAssignmentDetails;
 	
+	@Column(name = "value")
+	private int value;
+
 	/**
 	 * @return the id
 	 */
@@ -59,45 +56,17 @@ public class RuleAssignment {
 	}
 
 	/**
-	 * @return the employee
+	 * @return the targetDefinition
 	 */
-	public Employee getEmployee() {
-		return employee;
+	public TargetDefinition getTargetDefinition() {
+		return targetDefinition;
 	}
 
 	/**
-	 * @param employee the employee to set
+	 * @param targetDefinition the targetDefinition to set
 	 */
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
-
-	/**
-	 * @return the role
-	 */
-	public Role getRole() {
-		return role;
-	}
-
-	/**
-	 * @param role the role to set
-	 */
-	public void setRole(Role role) {
-		this.role = role;
-	}
-
-	/**
-	 * @return the validityType
-	 */
-	public String getValidityType() {
-		return validityType;
-	}
-
-	/**
-	 * @param validityType the validityType to set
-	 */
-	public void setValidityType(String validityType) {
-		this.validityType = validityType;
+	public void setTargetDefinition(TargetDefinition targetDefinition) {
+		this.targetDefinition = targetDefinition;
 	}
 
 	/**
@@ -143,16 +112,16 @@ public class RuleAssignment {
 	}
 
 	/**
-	 * @return the ruleAssignmentDetails
+	 * @return the value
 	 */
-	public RuleAssignmentDetails getRuleAssignmentDetails() {
-		return ruleAssignmentDetails;
+	public int getValue() {
+		return value;
 	}
 
 	/**
-	 * @param ruleAssignmentDetails the ruleAssignmentDetails to set
+	 * @param value the value to set
 	 */
-	public void setRuleAssignmentDetails(RuleAssignmentDetails ruleAssignmentDetails) {
-		this.ruleAssignmentDetails = ruleAssignmentDetails;
+	public void setValue(int value) {
+		this.value = value;
 	}
 }
