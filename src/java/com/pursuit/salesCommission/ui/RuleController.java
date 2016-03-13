@@ -1,6 +1,6 @@
 
 package com.pursuit.salesCommission.ui;
-/*
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,38 +23,81 @@ public class RuleController {
 	
 	private static final Logger logger = Logger.getLogger(RuleController.class);
 
-	@RequestMapping(value = "/rule", method = RequestMethod.GET)
-	public ModelAndView rule1() {
+	@RequestMapping(value = "/simpleRule", method = RequestMethod.GET)
+	public ModelAndView ruleSimp() {
 		logger.debug("RENDERING TO Rule FORM LOAD PAGE");
 		return new ModelAndView("simpRuleDetails", "command", new RuleSimple());
 	}
 
 	@RequestMapping(value = "/submitSimpRule", method = RequestMethod.POST)
 	public String addRule(@ModelAttribute("SpringWeb") Rule rule, ModelMap model) {
-		System.out.println("..........working.....12.....");
 			model.addAttribute("Id", rule.getId());
 			model.addAttribute("RuleName", rule.getRuleName());
 			model.addAttribute("Description", rule.getDescription());
 			model.addAttribute("RuleType", rule.getRuleType());
 			model.addAttribute("RuleDetails", rule.getRuleDetails());
-			model.addAttribute("Parameters", rule.getCompensationParameter());
-			model.addAttribute("CalculationMode", rule.);
-			model.addAttribute("RankingType", rulesimple.getRankingType());
-			model.addAttribute("PopulationType", rulesimple.getPopulationType());
-			model.addAttribute("CompensationType", rulesimple.getCompensationType());
-			model.addAttribute("FixedCompValue", rulesimple.getFixedCompValue());
-			ruleApi.createRule(rule);
+			model.addAttribute("Parameters", rule.getRuleSimple().getRuleParameter());
+			model.addAttribute("CalculationMode", rule.getRuleSimple().getCalculationMode());
+			model.addAttribute("PopulationType", rule.getRuleSimple().getPopulationType());
+			model.addAttribute("PopulationUpto", rule.getRuleSimple().getPopulationUpto());
+			model.addAttribute("AggregateFunction", rule.getRuleSimple().getAggregateFunctions());
+			model.addAttribute("QualifyingClause", rule.getRuleSimple().getQualifyingClause());
+			model.addAttribute("CompensationType", rule.getCompensationType());
+			model.addAttribute("CompensationFormula", rule.getCompensationFormula());
+			model.addAttribute("CompensationParameter", rule.getCompensationParameter());
+			
+			
 			logger.debug("A NEW rule HAS CREATED" + rule);
-		return "redirect:/ruleList";
+		return "redirect:/SimpRuleList";
 	}
 
 
-	@RequestMapping(value = "/ruleList", method = RequestMethod.GET)
-	public String listRules(ModelMap model) {
+	@RequestMapping(value = "/SimpRuleList", method = RequestMethod.GET)
+	public String listSimpRules(ModelMap model) {
 		model.addAttribute("rule", new Rule());
 		model.addAttribute("listRule", ruleApi.listRules());
 		logger.debug("A NEW List HAS CREATED");
-		return "hello1";
+		return "compRule";
 	}
+	
+	
+	@RequestMapping(value = "/compositeRule", method = RequestMethod.GET)
+	public ModelAndView ruleComp() {
+		logger.debug("RENDERING TO Rule FORM LOAD PAGE");
+		return new ModelAndView("ruleDetails", "command", new RuleSimple());
+	}
+	
+	@RequestMapping(value = "/submitCompRule", method = RequestMethod.POST)
+	public String addcompRule(@ModelAttribute("SpringWeb") Rule rule, ModelMap model) {
+			model.addAttribute("Id", rule.getId());
+			model.addAttribute("RuleName", rule.getRuleName());
+			model.addAttribute("Description", rule.getDescription());
+			model.addAttribute("RuleType", rule.getRuleType());
+			model.addAttribute("RuleDetails", rule.getRuleDetails());
+			model.addAttribute("RuleConnectedAs", rule.getConnectionType());
+			model.addAttribute("CompensationType", rule.getCompensationType());
+			model.addAttribute("CompensationFormula", rule.getCompensationFormula());
+			model.addAttribute("CompensationParameter", rule.getCompensationParameter());
+			
+			logger.debug("A NEW rule HAS CREATED" + rule);
+		return "redirect:/compRuleList";
+	}
+
+
+	@RequestMapping(value = "/compRuleList", method = RequestMethod.GET)
+	public String listCompRules(ModelMap model) {
+		model.addAttribute("rule", new Rule());
+		model.addAttribute("listRule", ruleApi.listRules());
+		logger.debug("A NEW List HAS CREATED");
+		return "compRule";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
-*/

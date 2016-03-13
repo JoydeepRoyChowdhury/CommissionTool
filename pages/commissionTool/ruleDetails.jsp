@@ -31,13 +31,11 @@ var count = "1";
     var row = document.createElement("TR");
 
     var td1 = document.createElement("TD")
-  
-    var RuleArray= "${listRule}";
+  var RuleArray=new Array();
+     RuleArray= "${listRule}";
     var len=RuleArray.length;
-   
-    
-  
-   var strHtml1= "<select Name=\"Rule\"><OPTION VALUE=\"Demo\">Demo<OPTION VALUE=\"Demo\">Demo<OPTION VALUE=\"Demo\">Demo</SELECT>"
+
+   var strHtml1= "<SELECT NAME=\"Rule\"><OPTION VALUE=\"Null\">Null<OPTION VALUE=\"Null\">Null<OPTION VALUE=\"Null\">Null</SELECT>";
    
    
     td1.innerHTML = strHtml1.replace(/!count!/g,count);
@@ -60,6 +58,26 @@ var count = "1";
     while ( (current = current.parentElement)  && current.tagName !="TR");
          current.parentElement.removeChild(current);
   }
+  
+  function dateGenerate() {
+	   var date = new Date(), dateArray = new Array(), i;
+	   curYear = date.getValue();
+	    for(i = 0; i<5; i++) {
+	        dateArray[i] = curYear+i;
+	    }
+	    return dateArray;
+	}
+
+	function addSelect(divname) {
+	   var newDiv=document.createElement('div');
+	   var html = '<select>', dates = dateGenerate(), i;
+	   for(i = 0; i < dates.length; i++) {
+	       html += "<option value='"+dates[i]+"'>"+dates[i]+"</option>";
+	   }
+	   html += '</select>';
+	   newDiv.innerHTML= html;
+	   document.getElementById(divname).appendChild(newDiv);
+	}
 </script>
 
 		<div align="center">
@@ -106,6 +124,13 @@ var count = "1";
 							</tr>
 						</table>
 					</td>
+				</tr>
+				<tr>
+				<td>
+<div id="select-container">
+</div>
+<button id="add" onclick="addSelect('select-container');">Add Dropdown</button></td>
+				
 				</tr>
 
 				<tr>

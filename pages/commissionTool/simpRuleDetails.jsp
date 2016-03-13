@@ -10,10 +10,13 @@
 
 
 		<style>
+
 td {
 	padding-top: .5em;
 	padding-bottom: .5em;
+	
 }
+
 </style>
 
 		<script>
@@ -22,7 +25,7 @@ td {
 				var tbody = document.getElementById(Quali_input);
 				var row = document.createElement("TR");
 				var td1 = document.createElement("TD");
-				var strHtml1 = "<select><option value=\"#\">Customer Name</option><option value=\"#\">order Total</option><option value=\"#\">Discount%</option></select>&nbsp;Not&nbsp;<input type=\"checkbox\" name=\"not\" value=\"Not\">&nbsp;Condition&nbsp;<select><option value=\"#\">Equal</option><option value=\"#\">Greater than</option><option value=\"#\">Less than</option></select>&nbsp;Parameter Name&nbsp;<input type=\"text\" name=\"parametername\">";
+				var strHtml1 = "<select><option value=\"Customer Name\">Customer Name</option><option value=\"order Total\">order Total</option><option value=\"Discount%\">Discount%</option></select>&nbsp;Not&nbsp;<input type=\"checkbox\" name=\"not\" value=\"Not\">&nbsp;Condition&nbsp;<select><option value=\"Equal\">Equal</option><option value=\"Greater than\">Greater than</option><option value=\"Less than\">Less than</option></select>&nbsp;Parameter Name&nbsp;<input type=\"text\" name=\"parametername\">";
 				td1.innerHTML = strHtml1.replace(/!count!/g, count);
 				var td2 = document.createElement("TD")
 				var strHtml2 = "&nbsp;<INPUT TYPE=\"Button\" CLASS=\"Button\" onClick=\"delRow()\" VALUE=\"Delete Row\">";
@@ -60,9 +63,9 @@ td {
 		<form action="/CommissionTool/submitSimpRule" method="POST">
 			<div style="height: 580px; overflow: auto;">
 				
-					<div align="center"><h1>Compensation Rule Details</h1></div>
+					<h1 align="center">Compensation Rule Details</h1>
 
-					<table>
+					<table border="1">
 						<tr>
 							<td><b>Rule name:</b></td>
 							<td><input type="text" name="RuleName"><br /></td>
@@ -91,10 +94,16 @@ td {
 						</tr>
 
 						<tr>
-							<td><b>Calculation model:</b></td>
+							<td><b>Calculation mode:&nbsp;</b></td>
 							<td><input type="checkbox" name="individual"
 								value="Individual">&nbsp;individual&nbsp;<input type="checkbox"
-								name="composite" value="Composite" checked>&nbsp;Composite&nbsp;</td>
+								name="composite" value="Composite" checked>&nbsp;Composite&nbsp;<br/>
+								Within&nbsp;<input type="text" value="" size="4">&nbsp;ranks in&nbsp;<input type="checkbox" value="Number">&nbsp;number&nbsp;<input type="checkbox" value="percentage">&nbsp;percentage
+							<br/><br/>Population&nbsp;<input type="checkbox" value="">&nbsp;Under same reporting manager<br/>
+					<input type="checkbox" value="">&nbsp;Same role<br/>
+					<input type="checkbox" value="">&nbsp;Global Upto &nbsp;<input type="text" size="4">&nbsp;level up</td>
+									
+					
 						</tr>
 
 						<tr>
@@ -136,15 +145,14 @@ td {
 							</td>
 						</tr>
 				
-						<tr>
-							<td><input type="submit" value="Submit"> <a
-								href="/CommissionTool/ruledetails"> <input type="button"
-									value="Cancel" /></a></td>
-						</tr>
-
-
-
+					
 					</table>
+			
+						<div align="center">	<input type="submit" value="Submit"> <a
+								href="/CommissionTool/ruledetails"> <input type="button"
+									value="Cancel" /></a></div>
+						
+				
 				</div>
 		
 		</form>

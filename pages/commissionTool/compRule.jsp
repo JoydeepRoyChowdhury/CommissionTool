@@ -82,10 +82,10 @@
 					<c:forEach items="${listRule}" var="rule">
 								<tr>
 
-									<td><a href="/CommissionTool/submitSimpRule">${rule}</a></td>
-									<td>null</td>
-									<td>null</td>
-									<td>null</td>
+									<td><a href="/CommissionTool/submitSimpRule">${rule.ruleName}</a></td>
+									<td>${rule.ruleType}</td>
+									<td>${rule.ruleDescription}</td>
+									<td>${rule.ruleDescription}</td>
 									
 								</tr>
 
