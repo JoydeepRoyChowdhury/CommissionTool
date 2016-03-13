@@ -1,6 +1,5 @@
 package com.pursuit.salesCommission.app.model;
 
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,8 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-
-
 
 @Entity
 @Table(name = "QualifyingClause")
@@ -39,7 +36,8 @@ public class QualifyingClause {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(long id) {
 		this.id = id;
@@ -53,7 +51,8 @@ public class QualifyingClause {
 	}
 
 	/**
-	 * @param value the value to set
+	 * @param value
+	 *            the value to set
 	 */
 	public void setValue(String value) {
 		this.value = value;
@@ -67,7 +66,8 @@ public class QualifyingClause {
 	}
 
 	/**
-	 * @param fieldList the fieldList to set
+	 * @param fieldList
+	 *            the fieldList to set
 	 */
 	public void setFieldList(FieldList fieldList) {
 		this.fieldList = fieldList;
@@ -81,13 +81,11 @@ public class QualifyingClause {
 	}
 
 	/**
-	 * @param conditionList the conditionList to set
+	 * @param conditionList
+	 *            the conditionList to set
 	 */
 	public void setConditionList(ConditionList conditionList) {
 		this.conditionList = conditionList;
 	}
-
-	
-	
 
 }

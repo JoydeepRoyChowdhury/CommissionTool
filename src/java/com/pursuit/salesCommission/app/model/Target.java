@@ -23,21 +23,21 @@ public class Target {
 	@GeneratedValue
 	@Column(name = "tgt_id")
 	private long id;
-	
+
 	@OneToOne(cascade = { CascadeType.ALL })
 	@PrimaryKeyJoinColumn
 	private TargetDefinition targetDefinition;
-	
+
 	@Column(name = "startDate")
 	private Date startDate;
 
 	@Column(name = "terminationDate")
 	private Date terminationDate;
-	
+
 	@OneToOne(cascade = { CascadeType.ALL })
 	@PrimaryKeyJoinColumn
 	private Frequency frequency;
-	
+
 	@Column(name = "value")
 	private int value;
 
@@ -49,7 +49,8 @@ public class Target {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(long id) {
 		this.id = id;
@@ -63,7 +64,8 @@ public class Target {
 	}
 
 	/**
-	 * @param targetDefinition the targetDefinition to set
+	 * @param targetDefinition
+	 *            the targetDefinition to set
 	 */
 	public void setTargetDefinition(TargetDefinition targetDefinition) {
 		this.targetDefinition = targetDefinition;
@@ -77,7 +79,8 @@ public class Target {
 	}
 
 	/**
-	 * @param startDate the startDate to set
+	 * @param startDate
+	 *            the startDate to set
 	 */
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
@@ -91,7 +94,8 @@ public class Target {
 	}
 
 	/**
-	 * @param terminationDate the terminationDate to set
+	 * @param terminationDate
+	 *            the terminationDate to set
 	 */
 	public void setTerminationDate(Date terminationDate) {
 		this.terminationDate = terminationDate;
@@ -105,7 +109,8 @@ public class Target {
 	}
 
 	/**
-	 * @param frequency the frequency to set
+	 * @param frequency
+	 *            the frequency to set
 	 */
 	public void setFrequency(Frequency frequency) {
 		this.frequency = frequency;
@@ -119,7 +124,8 @@ public class Target {
 	}
 
 	/**
-	 * @param value the value to set
+	 * @param value
+	 *            the value to set
 	 */
 	public void setValue(int value) {
 		this.value = value;

@@ -19,8 +19,8 @@ public class RuleComposite {
 	@Id
 	@GeneratedValue
 	@Column(name = "rule_comp_id")
-	private long id; 
-	
+	private long id;
+
 	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "RULE_COMP_ID")
 	@IndexColumn(name = "detailSrl")
@@ -34,7 +34,8 @@ public class RuleComposite {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(long id) {
 		this.id = id;
@@ -48,12 +49,11 @@ public class RuleComposite {
 	}
 
 	/**
-	 * @param ruleSimple the ruleSimple to set
+	 * @param ruleSimple
+	 *            the ruleSimple to set
 	 */
 	public void setRuleSimple(List<RuleSimple> ruleSimple) {
 		this.ruleSimple = ruleSimple;
 	}
-	
-	
 
 }

@@ -1,8 +1,6 @@
 package com.pursuit.salesCommission.app.model;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.*;
 
@@ -30,10 +28,11 @@ public class Role {
 	@JoinColumn(name = "ROLE_ID")
 	@IndexColumn(name = "detailSrl")
 	private List<Target> target;
-	
-/*	@OneToMany(mappedBy = "reportsTo")
-	private Set<Role> subordinates = new HashSet<Role>();
-*/
+
+	/*
+	 * @OneToMany(mappedBy = "reportsTo") private Set<Role> subordinates = new
+	 * HashSet<Role>();
+	 */
 	public Role() {
 	}
 
@@ -45,7 +44,8 @@ public class Role {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(int id) {
 		this.id = id;
@@ -59,7 +59,8 @@ public class Role {
 	}
 
 	/**
-	 * @param roleName the roleName to set
+	 * @param roleName
+	 *            the roleName to set
 	 */
 	public void setRoleName(String roleName) {
 		RoleName = roleName;
@@ -73,7 +74,8 @@ public class Role {
 	}
 
 	/**
-	 * @param description the description to set
+	 * @param description
+	 *            the description to set
 	 */
 	public void setDescription(String description) {
 		Description = description;
@@ -87,7 +89,8 @@ public class Role {
 	}
 
 	/**
-	 * @param reportsTo the reportsTo to set
+	 * @param reportsTo
+	 *            the reportsTo to set
 	 */
 	public void setReportsTo(Role reportsTo) {
 		this.reportsTo = reportsTo;
@@ -101,7 +104,8 @@ public class Role {
 	}
 
 	/**
-	 * @param target the target to set
+	 * @param target
+	 *            the target to set
 	 */
 	public void setTarget(List<Target> target) {
 		this.target = target;
@@ -110,15 +114,15 @@ public class Role {
 	/**
 	 * @return the subordinates
 	 */
-/*	public Set<Role> getSubordinates() {
-		return subordinates;
-	}
-*/
-	/**
-	 * @param subordinates the subordinates to set
+	/*
+	 * public Set<Role> getSubordinates() { return subordinates; }
 	 */
-/*	public void setSubordinates(Set<Role> subordinates) {
-		this.subordinates = subordinates;
-	}
-*/	
+	/**
+	 * @param subordinates
+	 *            the subordinates to set
+	 */
+	/*
+	 * public void setSubordinates(Set<Role> subordinates) { this.subordinates =
+	 * subordinates; }
+	 */
 }

@@ -26,7 +26,7 @@ public class RuleAssignment {
 	@OneToOne(cascade = CascadeType.ALL)
 	@PrimaryKeyJoinColumn
 	private Role role;
-	
+
 	@Column(name = "validityType")
 	private String validityType;
 
@@ -35,7 +35,7 @@ public class RuleAssignment {
 
 	@Column(name = "terminationDate")
 	private Date terminationDate;
-	
+
 	@OneToOne(cascade = CascadeType.ALL)
 	@PrimaryKeyJoinColumn
 	private Frequency frequency;
@@ -43,7 +43,7 @@ public class RuleAssignment {
 	@OneToOne(cascade = CascadeType.ALL)
 	@PrimaryKeyJoinColumn
 	private RuleAssignmentDetails ruleAssignmentDetails;
-	
+
 	/**
 	 * @return the id
 	 */
@@ -52,7 +52,8 @@ public class RuleAssignment {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(long id) {
 		this.id = id;
@@ -66,7 +67,8 @@ public class RuleAssignment {
 	}
 
 	/**
-	 * @param employee the employee to set
+	 * @param employee
+	 *            the employee to set
 	 */
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
@@ -80,7 +82,8 @@ public class RuleAssignment {
 	}
 
 	/**
-	 * @param role the role to set
+	 * @param role
+	 *            the role to set
 	 */
 	public void setRole(Role role) {
 		this.role = role;
@@ -94,7 +97,8 @@ public class RuleAssignment {
 	}
 
 	/**
-	 * @param validityType the validityType to set
+	 * @param validityType
+	 *            the validityType to set
 	 */
 	public void setValidityType(String validityType) {
 		this.validityType = validityType;
@@ -108,7 +112,8 @@ public class RuleAssignment {
 	}
 
 	/**
-	 * @param startDate the startDate to set
+	 * @param startDate
+	 *            the startDate to set
 	 */
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
@@ -122,7 +127,8 @@ public class RuleAssignment {
 	}
 
 	/**
-	 * @param terminationDate the terminationDate to set
+	 * @param terminationDate
+	 *            the terminationDate to set
 	 */
 	public void setTerminationDate(Date terminationDate) {
 		this.terminationDate = terminationDate;
@@ -136,7 +142,8 @@ public class RuleAssignment {
 	}
 
 	/**
-	 * @param frequency the frequency to set
+	 * @param frequency
+	 *            the frequency to set
 	 */
 	public void setFrequency(Frequency frequency) {
 		this.frequency = frequency;
@@ -150,7 +157,8 @@ public class RuleAssignment {
 	}
 
 	/**
-	 * @param ruleAssignmentDetails the ruleAssignmentDetails to set
+	 * @param ruleAssignmentDetails
+	 *            the ruleAssignmentDetails to set
 	 */
 	public void setRuleAssignmentDetails(RuleAssignmentDetails ruleAssignmentDetails) {
 		this.ruleAssignmentDetails = ruleAssignmentDetails;

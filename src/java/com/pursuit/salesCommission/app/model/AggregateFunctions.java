@@ -25,7 +25,8 @@ public class AggregateFunctions {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(long id) {
 		this.id = id;
@@ -39,11 +40,11 @@ public class AggregateFunctions {
 	}
 
 	/**
-	 * @param functionName the functionName to set
+	 * @param functionName
+	 *            the functionName to set
 	 */
 	public void setFunctionName(String functionName) {
 		this.functionName = functionName;
 	}
 
-	
 }

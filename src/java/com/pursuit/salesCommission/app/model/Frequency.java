@@ -28,7 +28,8 @@ public class Frequency {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(long id) {
 		this.id = id;
@@ -42,7 +43,8 @@ public class Frequency {
 	}
 
 	/**
-	 * @param frequencyName the frequencyName to set
+	 * @param frequencyName
+	 *            the frequencyName to set
 	 */
 	public void setFrequencyName(String frequencyName) {
 		this.frequencyName = frequencyName;
@@ -56,11 +58,11 @@ public class Frequency {
 	}
 
 	/**
-	 * @param type the type to set
+	 * @param type
+	 *            the type to set
 	 */
 	public void setType(String type) {
 		this.type = type;
 	}
 
-	
 }

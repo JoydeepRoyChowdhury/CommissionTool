@@ -41,7 +41,8 @@ public class EmployeeRoleMap {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(long id) {
 		this.id = id;
@@ -55,7 +56,8 @@ public class EmployeeRoleMap {
 	}
 
 	/**
-	 * @param employee the employee to set
+	 * @param employee
+	 *            the employee to set
 	 */
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
@@ -69,7 +71,8 @@ public class EmployeeRoleMap {
 	}
 
 	/**
-	 * @param role the role to set
+	 * @param role
+	 *            the role to set
 	 */
 	public void setRole(Role role) {
 		this.role = role;
@@ -83,7 +86,8 @@ public class EmployeeRoleMap {
 	}
 
 	/**
-	 * @param startDate the startDate to set
+	 * @param startDate
+	 *            the startDate to set
 	 */
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
@@ -97,7 +101,8 @@ public class EmployeeRoleMap {
 	}
 
 	/**
-	 * @param terminationDate the terminationDate to set
+	 * @param terminationDate
+	 *            the terminationDate to set
 	 */
 	public void setTerminationDate(Date terminationDate) {
 		this.terminationDate = terminationDate;

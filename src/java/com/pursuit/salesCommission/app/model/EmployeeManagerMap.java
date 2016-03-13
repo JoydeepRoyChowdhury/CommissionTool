@@ -36,9 +36,11 @@ public class EmployeeManagerMap {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "manager_id")
 	private Employee manager;
-	
-/*	@OneToMany(mappedBy = "manager")
-	private Set<Employee> subordinates = new HashSet<Employee>(); */
+
+	/*
+	 * @OneToMany(mappedBy = "manager") private Set<Employee> subordinates = new
+	 * HashSet<Employee>();
+	 */
 
 	/**
 	 * @return the id
@@ -48,7 +50,8 @@ public class EmployeeManagerMap {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(long id) {
 		this.id = id;
@@ -62,7 +65,8 @@ public class EmployeeManagerMap {
 	}
 
 	/**
-	 * @param employee the employee to set
+	 * @param employee
+	 *            the employee to set
 	 */
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
@@ -76,7 +80,8 @@ public class EmployeeManagerMap {
 	}
 
 	/**
-	 * @param startDate the startDate to set
+	 * @param startDate
+	 *            the startDate to set
 	 */
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
@@ -90,7 +95,8 @@ public class EmployeeManagerMap {
 	}
 
 	/**
-	 * @param terminationDate the terminationDate to set
+	 * @param terminationDate
+	 *            the terminationDate to set
 	 */
 	public void setTerminationDate(Date terminationDate) {
 		this.terminationDate = terminationDate;
@@ -104,7 +110,8 @@ public class EmployeeManagerMap {
 	}
 
 	/**
-	 * @param manager the manager to set
+	 * @param manager
+	 *            the manager to set
 	 */
 	public void setManager(Employee manager) {
 		this.manager = manager;
@@ -113,16 +120,16 @@ public class EmployeeManagerMap {
 	/**
 	 * @return the subordinates
 	 */
-/*	public Set<Employee> getSubordinates() {
-		return subordinates;
-	}
-*/
-	/**
-	 * @param subordinates the subordinates to set
+	/*
+	 * public Set<Employee> getSubordinates() { return subordinates; }
 	 */
-/*	public void setSubordinates(Set<Employee> subordinates) {
-		this.subordinates = subordinates;
-	}
-*/	
-	
+	/**
+	 * @param subordinates
+	 *            the subordinates to set
+	 */
+	/*
+	 * public void setSubordinates(Set<Employee> subordinates) {
+	 * this.subordinates = subordinates; }
+	 */
+
 }

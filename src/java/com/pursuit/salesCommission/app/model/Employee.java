@@ -25,7 +25,7 @@ public class Employee {
 
 	@Column(name = "terminationDate")
 	private Date terminationDate;
-	
+
 	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "EMP_ID")
 	@IndexColumn(name = "detailSrl")
@@ -34,7 +34,6 @@ public class Employee {
 	public Employee() {
 	}
 
-
 	/**
 	 * @return the id
 	 */
@@ -42,14 +41,13 @@ public class Employee {
 		return id;
 	}
 
-
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(long id) {
 		this.id = id;
 	}
-
 
 	/**
 	 * @return the employeeName
@@ -58,14 +56,13 @@ public class Employee {
 		return employeeName;
 	}
 
-
 	/**
-	 * @param employeeName the employeeName to set
+	 * @param employeeName
+	 *            the employeeName to set
 	 */
 	public void setEmployeeName(String employeeName) {
 		this.employeeName = employeeName;
 	}
-
 
 	/**
 	 * @return the startDate
@@ -74,14 +71,13 @@ public class Employee {
 		return startDate;
 	}
 
-
 	/**
-	 * @param startDate the startDate to set
+	 * @param startDate
+	 *            the startDate to set
 	 */
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
-
 
 	/**
 	 * @return the terminationDate
@@ -90,14 +86,13 @@ public class Employee {
 		return terminationDate;
 	}
 
-
 	/**
-	 * @param terminationDate the terminationDate to set
+	 * @param terminationDate
+	 *            the terminationDate to set
 	 */
 	public void setTerminationDate(Date terminationDate) {
 		this.terminationDate = terminationDate;
 	}
-
 
 	/**
 	 * @return the target
@@ -106,14 +101,12 @@ public class Employee {
 		return target;
 	}
 
-
 	/**
-	 * @param target the target to set
+	 * @param target
+	 *            the target to set
 	 */
 	public void setTarget(List<Target> target) {
 		this.target = target;
 	}
 
-
-	
 }

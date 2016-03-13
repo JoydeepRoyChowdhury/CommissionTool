@@ -56,7 +56,8 @@ public class Rule {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(long id) {
 		this.id = id;
@@ -70,7 +71,8 @@ public class Rule {
 	}
 
 	/**
-	 * @param ruleName the ruleName to set
+	 * @param ruleName
+	 *            the ruleName to set
 	 */
 	public void setRuleName(String ruleName) {
 		this.ruleName = ruleName;
@@ -84,7 +86,8 @@ public class Rule {
 	}
 
 	/**
-	 * @param description the description to set
+	 * @param description
+	 *            the description to set
 	 */
 	public void setDescription(String description) {
 		this.description = description;
@@ -98,7 +101,8 @@ public class Rule {
 	}
 
 	/**
-	 * @param ruleType the ruleType to set
+	 * @param ruleType
+	 *            the ruleType to set
 	 */
 	public void setRuleType(String ruleType) {
 		this.ruleType = ruleType;
@@ -112,7 +116,8 @@ public class Rule {
 	}
 
 	/**
-	 * @param ruleDetails the ruleDetails to set
+	 * @param ruleDetails
+	 *            the ruleDetails to set
 	 */
 	public void setRuleDetails(String ruleDetails) {
 		this.ruleDetails = ruleDetails;
@@ -126,7 +131,8 @@ public class Rule {
 	}
 
 	/**
-	 * @param ruleSimple the ruleSimple to set
+	 * @param ruleSimple
+	 *            the ruleSimple to set
 	 */
 	public void setRuleSimple(RuleSimple ruleSimple) {
 		this.ruleSimple = ruleSimple;
@@ -140,7 +146,8 @@ public class Rule {
 	}
 
 	/**
-	 * @param ruleComposite the ruleComposite to set
+	 * @param ruleComposite
+	 *            the ruleComposite to set
 	 */
 	public void setRuleComposite(RuleComposite ruleComposite) {
 		this.ruleComposite = ruleComposite;
@@ -154,7 +161,8 @@ public class Rule {
 	}
 
 	/**
-	 * @param connectionType the connectionType to set
+	 * @param connectionType
+	 *            the connectionType to set
 	 */
 	public void setConnectionType(String connectionType) {
 		this.connectionType = connectionType;
@@ -168,7 +176,8 @@ public class Rule {
 	}
 
 	/**
-	 * @param compensationType the compensationType to set
+	 * @param compensationType
+	 *            the compensationType to set
 	 */
 	public void setCompensationType(String compensationType) {
 		this.compensationType = compensationType;
@@ -182,7 +191,8 @@ public class Rule {
 	}
 
 	/**
-	 * @param fixedCompValue the fixedCompValue to set
+	 * @param fixedCompValue
+	 *            the fixedCompValue to set
 	 */
 	public void setFixedCompValue(int fixedCompValue) {
 		this.fixedCompValue = fixedCompValue;
@@ -196,7 +206,8 @@ public class Rule {
 	}
 
 	/**
-	 * @param compensationFormula the compensationFormula to set
+	 * @param compensationFormula
+	 *            the compensationFormula to set
 	 */
 	public void setCompensationFormula(String compensationFormula) {
 		this.compensationFormula = compensationFormula;
@@ -210,11 +221,11 @@ public class Rule {
 	}
 
 	/**
-	 * @param compensationParameter the compensationParameter to set
+	 * @param compensationParameter
+	 *            the compensationParameter to set
 	 */
 	public void setCompensationParameter(String compensationParameter) {
 		this.compensationParameter = compensationParameter;
 	}
 
-	
 }

@@ -44,7 +44,7 @@ public class RuleSimple {
 	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "RULE_SIMP_ID")
 	@IndexColumn(name = "detailSrl")
-	private List<QualifyingClause> qualifyingClause; 
+	private List<QualifyingClause> qualifyingClause;
 
 	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "RULE_SIMP_ID")
@@ -64,7 +64,8 @@ public class RuleSimple {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(long id) {
 		this.id = id;
@@ -78,7 +79,8 @@ public class RuleSimple {
 	}
 
 	/**
-	 * @param calculationMode the calculationMode to set
+	 * @param calculationMode
+	 *            the calculationMode to set
 	 */
 	public void setCalculationMode(String calculationMode) {
 		this.calculationMode = calculationMode;
@@ -92,7 +94,8 @@ public class RuleSimple {
 	}
 
 	/**
-	 * @param rankCount the rankCount to set
+	 * @param rankCount
+	 *            the rankCount to set
 	 */
 	public void setRankCount(int rankCount) {
 		this.rankCount = rankCount;
@@ -106,7 +109,8 @@ public class RuleSimple {
 	}
 
 	/**
-	 * @param rankingType the rankingType to set
+	 * @param rankingType
+	 *            the rankingType to set
 	 */
 	public void setRankingType(String rankingType) {
 		this.rankingType = rankingType;
@@ -120,7 +124,8 @@ public class RuleSimple {
 	}
 
 	/**
-	 * @param populationType the populationType to set
+	 * @param populationType
+	 *            the populationType to set
 	 */
 	public void setPopulationType(String populationType) {
 		this.populationType = populationType;
@@ -134,7 +139,8 @@ public class RuleSimple {
 	}
 
 	/**
-	 * @param populationUpto the populationUpto to set
+	 * @param populationUpto
+	 *            the populationUpto to set
 	 */
 	public void setPopulationUpto(int populationUpto) {
 		this.populationUpto = populationUpto;
@@ -148,7 +154,8 @@ public class RuleSimple {
 	}
 
 	/**
-	 * @param ruleParameter the ruleParameter to set
+	 * @param ruleParameter
+	 *            the ruleParameter to set
 	 */
 	public void setRuleParameter(List<RuleParameter> ruleParameter) {
 		this.ruleParameter = ruleParameter;
@@ -162,7 +169,8 @@ public class RuleSimple {
 	}
 
 	/**
-	 * @param qualifyingClause the qualifyingClause to set
+	 * @param qualifyingClause
+	 *            the qualifyingClause to set
 	 */
 	public void setQualifyingClause(List<QualifyingClause> qualifyingClause) {
 		this.qualifyingClause = qualifyingClause;
@@ -176,7 +184,8 @@ public class RuleSimple {
 	}
 
 	/**
-	 * @param aggregateFunctions the aggregateFunctions to set
+	 * @param aggregateFunctions
+	 *            the aggregateFunctions to set
 	 */
 	public void setAggregateFunctions(List<AggregateFunctions> aggregateFunctions) {
 		this.aggregateFunctions = aggregateFunctions;
@@ -190,11 +199,11 @@ public class RuleSimple {
 	}
 
 	/**
-	 * @param fieldList the fieldList to set
+	 * @param fieldList
+	 *            the fieldList to set
 	 */
 	public void setFieldList(List<FieldList> fieldList) {
 		this.fieldList = fieldList;
 	}
 
-	
 }

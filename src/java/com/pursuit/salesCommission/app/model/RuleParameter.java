@@ -29,7 +29,8 @@ public class RuleParameter {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(long id) {
 		this.id = id;
@@ -43,7 +44,8 @@ public class RuleParameter {
 	}
 
 	/**
-	 * @param parameterName the parameterName to set
+	 * @param parameterName
+	 *            the parameterName to set
 	 */
 	public void setParameterName(String parameterName) {
 		this.parameterName = parameterName;
@@ -57,11 +59,11 @@ public class RuleParameter {
 	}
 
 	/**
-	 * @param parameterValue the parameterValue to set
+	 * @param parameterValue
+	 *            the parameterValue to set
 	 */
 	public void setParameterValue(String parameterValue) {
 		this.parameterValue = parameterValue;
 	}
 
-	
 }

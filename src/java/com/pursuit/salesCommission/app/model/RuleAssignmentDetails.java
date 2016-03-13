@@ -21,12 +21,12 @@ public class RuleAssignmentDetails {
 	@Id
 	@GeneratedValue
 	@Column(name = "assn_dtl_id")
-	private long id; 
-	
+	private long id;
+
 	@OneToOne(cascade = CascadeType.ALL)
 	@PrimaryKeyJoinColumn
 	private RuleAssignment ruleAssignment;
-	
+
 	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "ASSN_DTL_ID")
 	@IndexColumn(name = "detailSrl")
@@ -36,7 +36,7 @@ public class RuleAssignmentDetails {
 	@JoinColumn(name = "ASSN_DTL_ID")
 	@IndexColumn(name = "detailSrl")
 	private List<RuleAssignmentParameter> ruleAssignmentParameter;
-	
+
 	/**
 	 * @return the id
 	 */
@@ -45,7 +45,8 @@ public class RuleAssignmentDetails {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(long id) {
 		this.id = id;
@@ -59,7 +60,8 @@ public class RuleAssignmentDetails {
 	}
 
 	/**
-	 * @param ruleAssignment the ruleAssignment to set
+	 * @param ruleAssignment
+	 *            the ruleAssignment to set
 	 */
 	public void setRuleAssignment(RuleAssignment ruleAssignment) {
 		this.ruleAssignment = ruleAssignment;
@@ -73,7 +75,8 @@ public class RuleAssignmentDetails {
 	}
 
 	/**
-	 * @param rule the rule to set
+	 * @param rule
+	 *            the rule to set
 	 */
 	public void setRule(List<Rule> rule) {
 		this.rule = rule;
@@ -87,7 +90,8 @@ public class RuleAssignmentDetails {
 	}
 
 	/**
-	 * @param ruleAssignmentParameter the ruleAssignmentParameter to set
+	 * @param ruleAssignmentParameter
+	 *            the ruleAssignmentParameter to set
 	 */
 	public void setRuleAssignmentParameter(List<RuleAssignmentParameter> ruleAssignmentParameter) {
 		this.ruleAssignmentParameter = ruleAssignmentParameter;

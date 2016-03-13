@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 @Entity
 @Table(name = "TargetDefinition")
 public class TargetDefinition {
@@ -12,10 +13,10 @@ public class TargetDefinition {
 	@GeneratedValue
 	@Column(name = "tgt_def_id")
 	private long id;
-	
+
 	@Column(name = "targetName")
 	private String targetName;
-	
+
 	@Column(name = "displayName")
 	private String displayName;
 
@@ -27,7 +28,8 @@ public class TargetDefinition {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(long id) {
 		this.id = id;
@@ -41,7 +43,8 @@ public class TargetDefinition {
 	}
 
 	/**
-	 * @param targetName the targetName to set
+	 * @param targetName
+	 *            the targetName to set
 	 */
 	public void setTargetName(String targetName) {
 		this.targetName = targetName;
@@ -55,7 +58,8 @@ public class TargetDefinition {
 	}
 
 	/**
-	 * @param displayName the displayName to set
+	 * @param displayName
+	 *            the displayName to set
 	 */
 	public void setDisplayName(String displayName) {
 		this.displayName = displayName;

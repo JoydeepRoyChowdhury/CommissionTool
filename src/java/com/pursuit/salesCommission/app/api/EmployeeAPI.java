@@ -49,7 +49,7 @@ public class EmployeeAPI {
 			emp.setEmployeeName(employee.getEmployeeName());
 			emp.setStartDate(employee.getStartDate());
 			emp.setTerminationDate(employee.getTerminationDate());
-			//emp.setManager(employee.getManager());
+			// emp.setManager(employee.getManager());
 			session.save(employee);
 			tx.commit();
 			logger.debug("CREATED AN EMPLOYEE INTO DATABASE" + employee);

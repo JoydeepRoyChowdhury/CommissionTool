@@ -29,7 +29,8 @@ public class FieldList {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(long id) {
 		this.id = id;
@@ -43,7 +44,8 @@ public class FieldList {
 	}
 
 	/**
-	 * @param fieldName the fieldName to set
+	 * @param fieldName
+	 *            the fieldName to set
 	 */
 	public void setFieldName(String fieldName) {
 		this.fieldName = fieldName;
@@ -57,11 +59,11 @@ public class FieldList {
 	}
 
 	/**
-	 * @param displayName the displayName to set
+	 * @param displayName
+	 *            the displayName to set
 	 */
 	public void setDisplayName(String displayName) {
 		this.displayName = displayName;
 	}
 
-	
 }

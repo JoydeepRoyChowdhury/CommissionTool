@@ -16,16 +16,16 @@ public class RuleAssignmentParameter {
 	@GeneratedValue
 	@Column(name = "ass_param_id")
 	private long id;
-	
+
 	@Column(name = "parameterName")
 	private String parameterName;
-	
+
 	@Column(name = "valueType")
 	private String valueType;
-	
+
 	@Column(name = "overwriteValue")
 	private String overwriteValue;
-	
+
 	@OneToOne(cascade = CascadeType.ALL)
 	@PrimaryKeyJoinColumn
 	private TargetDefinition targetDefinition;
@@ -38,7 +38,8 @@ public class RuleAssignmentParameter {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(long id) {
 		this.id = id;
@@ -52,7 +53,8 @@ public class RuleAssignmentParameter {
 	}
 
 	/**
-	 * @param parameterName the parameterName to set
+	 * @param parameterName
+	 *            the parameterName to set
 	 */
 	public void setParameterName(String parameterName) {
 		this.parameterName = parameterName;
@@ -66,7 +68,8 @@ public class RuleAssignmentParameter {
 	}
 
 	/**
-	 * @param valueType the valueType to set
+	 * @param valueType
+	 *            the valueType to set
 	 */
 	public void setValueType(String valueType) {
 		this.valueType = valueType;
@@ -80,7 +83,8 @@ public class RuleAssignmentParameter {
 	}
 
 	/**
-	 * @param overwriteValue the overwriteValue to set
+	 * @param overwriteValue
+	 *            the overwriteValue to set
 	 */
 	public void setOverwriteValue(String overwriteValue) {
 		this.overwriteValue = overwriteValue;
@@ -94,10 +98,11 @@ public class RuleAssignmentParameter {
 	}
 
 	/**
-	 * @param targetDefinition the targetDefinition to set
+	 * @param targetDefinition
+	 *            the targetDefinition to set
 	 */
 	public void setTargetDefinition(TargetDefinition targetDefinition) {
 		this.targetDefinition = targetDefinition;
 	}
-	
+
 }

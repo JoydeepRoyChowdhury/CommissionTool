@@ -11,7 +11,9 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.pursuit.salesCommission.app.model.Employee;
 import com.pursuit.salesCommission.app.model.Rule;
+import com.pursuit.salesCommission.app.model.RuleSimple;
 
 @Component
 public class RuleAPI {
@@ -25,34 +27,8 @@ public class RuleAPI {
 		sessionFactory = factory;
 	}
 
-	public Rule getRule(long l) {
-		Session session = sessionFactory.openSession();
-		Transaction tx = null;
-		tx = session.beginTransaction();
-		return (Rule) session.get(Rule.class, l);
-	}
-
 	/**
-	 * 
-	 * @param rule
-	 */
-	/*
-	 * public void createRule1(Rule rule) {
-	 * 
-	 * Session session = sessionFactory.openSession(); Transaction tx = null;
-	 * try { tx = session.beginTransaction(); Rule rule2 = new Rule();
-	 * rule2.setRuleName(rule.getRuleName());
-	 * rule2.setDescription(rule.getDescription()); //
-	 * rule2.setRuleType(rule.getRuleType()); // ArrayList<Employee> emplist1 =
-	 * rule.getEmployees(); // rule2.setEmployees(emplist1);
-	 * session.save(rule2); tx.commit(); } catch (HibernateException e) { if (tx
-	 * != null) tx.rollback(); e.printStackTrace(); } finally { session.close();
-	 * }
-	 * 
-	 * }
-	 */
-	/**
-	 * Method for create rule
+	 * Method for creating rule in Database
 	 * 
 	 * @param rule
 	 */
@@ -61,24 +37,88 @@ public class RuleAPI {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		Rule newRule = new Rule();
+		RuleSimple newRuleSimple = new RuleSimple();
 		try {
 			tx = session.beginTransaction();
-			newRule.setRuleName(rule.getRuleName());
-			newRule.setDescription(rule.getDescription());
-			newRule.setRuleDetails(rule.getRuleDetails());
-			newRule.setCompensationType(rule.getCompensationType());
-			newRule.setFixedCompValue(rule.getFixedCompValue());
-			newRule.setCompensationFormula(rule.getCompensationFormula());
-			newRule.setCompensationParameter(rule.getCompensationParameter());
-			if (rule.getRuleType() == "c") {
-				// newRule.setFlag("c");
-				newRule.setConnectionType(rule.getConnectionType());
-				newRule.setRuleComposite(rule.getRuleComposite());
-				newRule.setRuleType("Composite");
+			if (rule.getId() == 0) {
+				newRule.setRuleName(rule.getRuleName());
+				newRule.setDescription(rule.getDescription());
+				newRule.setRuleDetails(rule.getRuleDetails());
+				newRule.setCompensationType(rule.getCompensationType());
+				newRule.setFixedCompValue(rule.getFixedCompValue());
+				newRule.setCompensationFormula(rule.getCompensationFormula());
+				newRule.setCompensationParameter(rule.getCompensationParameter());
+				if (rule.getRuleType() == "c") {
+					newRule.setConnectionType(rule.getConnectionType());
+					newRule.setRuleComposite(rule.getRuleComposite());
+					newRule.setRuleType("Composite");
+				} else if (rule.getRuleType() == "s" && rule.getRuleSimple().getCalculationMode() == "r") {
+
+					newRule.setRuleType("Simple");
+					newRuleSimple.setCalculationMode("Rank");
+					newRuleSimple.setAggregateFunctions(rule.getRuleSimple().getAggregateFunctions());
+					newRuleSimple.setFieldList(rule.getRuleSimple().getFieldList());
+					newRuleSimple.setPopulationType(rule.getRuleSimple().getPopulationType());
+					newRuleSimple.setPopulationUpto(rule.getRuleSimple().getPopulationUpto());
+					newRuleSimple.setQualifyingClause(rule.getRuleSimple().getQualifyingClause());
+					newRuleSimple.setRankCount(rule.getRuleSimple().getRankCount());
+					newRuleSimple.setRankingType(rule.getRuleSimple().getRankingType());
+					newRuleSimple.setRuleParameter(rule.getRuleSimple().getRuleParameter());
+					newRule.setRuleSimple(newRuleSimple);
+
+				} else if (rule.getRuleType() == "s" && rule.getRuleSimple().getCalculationMode() == "i") {
+					newRule.setRuleType("Simple");
+					newRuleSimple.setCalculationMode("Individual");
+					newRuleSimple.setAggregateFunctions(rule.getRuleSimple().getAggregateFunctions());
+					newRuleSimple.setFieldList(rule.getRuleSimple().getFieldList());
+					newRuleSimple.setPopulationType(rule.getRuleSimple().getPopulationType());
+					newRuleSimple.setPopulationUpto(rule.getRuleSimple().getPopulationUpto());
+					newRuleSimple.setQualifyingClause(rule.getRuleSimple().getQualifyingClause());
+					newRuleSimple.setRankCount(rule.getRuleSimple().getRankCount());
+					newRuleSimple.setRankingType(rule.getRuleSimple().getRankingType());
+					newRuleSimple.setRuleParameter(rule.getRuleSimple().getRuleParameter());
+					newRule.setRuleSimple(newRuleSimple);
+				}
 			} else {
-				// newRule.setFlag("s");
-				newRule.setRuleSimple(rule.getRuleSimple());
-				newRule.setRuleType("Simple");
+				newRule.setId(rule.getId());
+				newRule.setRuleName(rule.getRuleName());
+				newRule.setDescription(rule.getDescription());
+				newRule.setRuleDetails(rule.getRuleDetails());
+				newRule.setCompensationType(rule.getCompensationType());
+				newRule.setFixedCompValue(rule.getFixedCompValue());
+				newRule.setCompensationFormula(rule.getCompensationFormula());
+				newRule.setCompensationParameter(rule.getCompensationParameter());
+				if (rule.getRuleType() == "c") {
+					newRule.setConnectionType(rule.getConnectionType());
+					newRule.setRuleComposite(rule.getRuleComposite());
+					newRule.setRuleType("Composite");
+				} else if (rule.getRuleType() == "s" && rule.getRuleSimple().getCalculationMode() == "r") {
+
+					newRule.setRuleType("Simple");
+					newRuleSimple.setCalculationMode("Rank");
+					newRuleSimple.setAggregateFunctions(rule.getRuleSimple().getAggregateFunctions());
+					newRuleSimple.setFieldList(rule.getRuleSimple().getFieldList());
+					newRuleSimple.setPopulationType(rule.getRuleSimple().getPopulationType());
+					newRuleSimple.setPopulationUpto(rule.getRuleSimple().getPopulationUpto());
+					newRuleSimple.setQualifyingClause(rule.getRuleSimple().getQualifyingClause());
+					newRuleSimple.setRankCount(rule.getRuleSimple().getRankCount());
+					newRuleSimple.setRankingType(rule.getRuleSimple().getRankingType());
+					newRuleSimple.setRuleParameter(rule.getRuleSimple().getRuleParameter());
+					newRule.setRuleSimple(newRuleSimple);
+
+				} else if (rule.getRuleType() == "s" && rule.getRuleSimple().getCalculationMode() == "i") {
+					newRule.setRuleType("Simple");
+					newRuleSimple.setCalculationMode("Individual");
+					newRuleSimple.setAggregateFunctions(rule.getRuleSimple().getAggregateFunctions());
+					newRuleSimple.setFieldList(rule.getRuleSimple().getFieldList());
+					newRuleSimple.setPopulationType(rule.getRuleSimple().getPopulationType());
+					newRuleSimple.setPopulationUpto(rule.getRuleSimple().getPopulationUpto());
+					newRuleSimple.setQualifyingClause(rule.getRuleSimple().getQualifyingClause());
+					newRuleSimple.setRankCount(rule.getRuleSimple().getRankCount());
+					newRuleSimple.setRankingType(rule.getRuleSimple().getRankingType());
+					newRuleSimple.setRuleParameter(rule.getRuleSimple().getRuleParameter());
+					newRule.setRuleSimple(newRuleSimple);
+				}
 			}
 			session.save(newRule);
 			tx.commit();
@@ -94,7 +134,7 @@ public class RuleAPI {
 	}
 
 	/**
-	 * Method for getting list of roles for rule
+	 * Method for getting list of rules 
 	 * 
 	 * @return
 	 */
@@ -111,6 +151,40 @@ public class RuleAPI {
 
 		}
 		return rules;
+	}
+
+	/**
+	 * Method for getting one rule details by ID
+	 * 
+	 * @param l
+	 * @return
+	 */
+	public Rule getRule(long ruleID) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		tx = session.beginTransaction();
+		return (Rule) session.get(Rule.class, ruleID);
+	}
+/**
+ * 
+ * @param ruleID
+ */
+	public void deleteRule(Integer ruleID) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			Rule rule = (Rule) session.get(Rule.class, ruleID);
+			session.delete(rule);
+			logger.debug("DELETE THE RULE DETAILS FROM DATABASE" + rule);
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
 	}
 
 }
