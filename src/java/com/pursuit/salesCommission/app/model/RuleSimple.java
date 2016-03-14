@@ -36,22 +36,22 @@ public class RuleSimple {
 	@Column(name = "populationUpto")
 	private int populationUpto;
 
-	@OneToMany(cascade = { CascadeType.ALL })
+	@OneToMany(cascade = { CascadeType.ALL }, orphanRemoval = true)
 	@JoinColumn(name = "RULE_SIMP_ID")
 	@IndexColumn(name = "detailSrl")
 	private List<RuleParameter> ruleParameter;
 
-	@OneToMany(cascade = { CascadeType.ALL })
+	@OneToMany(cascade = { CascadeType.ALL }, orphanRemoval = true)
 	@JoinColumn(name = "RULE_SIMP_ID")
 	@IndexColumn(name = "detailSrl")
 	private List<QualifyingClause> qualifyingClause;
 
-	@OneToMany(cascade = { CascadeType.ALL })
+	@OneToMany(cascade = { CascadeType.ALL }, orphanRemoval = true)
 	@JoinColumn(name = "RULE_SIMP_ID")
 	@IndexColumn(name = "detailSrl")
 	private List<AggregateFunctions> aggregateFunctions;
 
-	@OneToMany(cascade = { CascadeType.ALL })
+	@OneToMany(cascade = { CascadeType.ALL }, orphanRemoval = true)
 	@JoinColumn(name = "RULE_SIMP_ID")
 	@IndexColumn(name = "detailSrl")
 	private List<FieldList> fieldList;

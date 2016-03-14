@@ -22,11 +22,11 @@ public class Rule {
 	@Column(name = "ruleDetails")
 	private String ruleDetails;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	@PrimaryKeyJoinColumn
 	private RuleSimple ruleSimple;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	@PrimaryKeyJoinColumn
 	private RuleComposite ruleComposite;
 

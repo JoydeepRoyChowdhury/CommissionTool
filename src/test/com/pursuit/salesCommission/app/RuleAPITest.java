@@ -66,9 +66,30 @@ public class RuleAPITest extends TestCase {
 		rule.setCompensationParameter("Compensation Parameter");
 		rule.setCompensationType("fixed");
 		rule.setFixedCompValue(10);
+		
+	}
 
+	
+	 
+	/**
+	 * Test method for
+	 * {@link com.pursuit.salesCommission.app.api.RuleAPI#getRule(long)}.
+	 */
+
+	/*
+	 * @Test public void testGetRule() { fail("Not yet implemented"); }
+	 */
+	/**
+	 * Test method for
+	 * {@link com.pursuit.salesCommission.app.api.RuleAPI#createRule(com.pursuit.salesCommission.app.model.Rule)}
+	 * .
+	 */
+	@Test
+	public void testCreateRule1() {
+		
+		rule.setRuleType("s");
 		RuleSimple ruleSimple = new RuleSimple();
-		ruleSimple.setCalculationMode("Individual");
+		ruleSimple.setCalculationMode("r");
 		ruleSimple.setPopulationType("Population Type");
 		ruleSimple.setPopulationUpto(4);
 
@@ -104,39 +125,8 @@ public class RuleAPITest extends TestCase {
 
 		long ruleId = ruleAPI.createRule(rule);
 		rule.setId(ruleId);
-	}
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	
-	@After
-	public void tearDown() throws Exception {
-		System.out.println("Running: tearDown");
-		Rule ru = ruleAPI.getRule(rule.getId());
-		ru = null;
-		assertNull(ru);
-	}
-	 
-	/**
-	 * Test method for
-	 * {@link com.pursuit.salesCommission.app.api.RuleAPI#getRule(long)}.
-	 */
-
-	/*
-	 * @Test public void testGetRule() { fail("Not yet implemented"); }
-	 */
-	/**
-	 * Test method for
-	 * {@link com.pursuit.salesCommission.app.api.RuleAPI#createRule(com.pursuit.salesCommission.app.model.Rule)}
-	 * .
-	 */
-	@Test
-	public void testCreateRule1() {
-
-		Rule ru = ruleAPI.getRule(rule.getId());
+		Rule ru = ruleAPI.getRule(ruleId);
 		Assert.assertEquals("abcd", ru.getRuleName());
-
 		System.out.println("Running: testDummyRule");
 
 	}
@@ -167,5 +157,17 @@ public class RuleAPITest extends TestCase {
 	 */
 	/*
 	 * @Test public void testListRules() { fail("Not yet implemented"); }
+	 * 
 	 */
+	
+	/**
+	 * @throws java.lang.Exception
+	 */
+	
+	@After
+	public void tearDown() throws Exception {
+		System.out.println("Running: tearDown");
+		ruleAPI.deleteRule(rule.getId());
+		Assert.assertNull(ruleAPI.getRule(rule.getId()));
+	}
 }

@@ -20,11 +20,11 @@ public class QualifyingClause {
 	@Column(name = "value")
 	private String value;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	@PrimaryKeyJoinColumn
 	private FieldList fieldList;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	@PrimaryKeyJoinColumn
 	private ConditionList conditionList;
 

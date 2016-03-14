@@ -37,7 +37,6 @@ public class RuleAPI {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		Rule newRule = new Rule();
-		RuleSimple newRuleSimple = new RuleSimple();
 		try {
 			tx = session.beginTransaction();
 			if (rule.getId() == 0) {
@@ -55,29 +54,12 @@ public class RuleAPI {
 				} else if (rule.getRuleType() == "s" && rule.getRuleSimple().getCalculationMode() == "r") {
 
 					newRule.setRuleType("Simple");
-					newRuleSimple.setCalculationMode("Rank");
-					newRuleSimple.setAggregateFunctions(rule.getRuleSimple().getAggregateFunctions());
-					newRuleSimple.setFieldList(rule.getRuleSimple().getFieldList());
-					newRuleSimple.setPopulationType(rule.getRuleSimple().getPopulationType());
-					newRuleSimple.setPopulationUpto(rule.getRuleSimple().getPopulationUpto());
-					newRuleSimple.setQualifyingClause(rule.getRuleSimple().getQualifyingClause());
-					newRuleSimple.setRankCount(rule.getRuleSimple().getRankCount());
-					newRuleSimple.setRankingType(rule.getRuleSimple().getRankingType());
-					newRuleSimple.setRuleParameter(rule.getRuleSimple().getRuleParameter());
-					newRule.setRuleSimple(newRuleSimple);
-
+					RuleSimple simpleRule = createSimpleRuleRank(rule.getRuleSimple());
+					newRule.setRuleSimple(simpleRule);
 				} else if (rule.getRuleType() == "s" && rule.getRuleSimple().getCalculationMode() == "i") {
 					newRule.setRuleType("Simple");
-					newRuleSimple.setCalculationMode("Individual");
-					newRuleSimple.setAggregateFunctions(rule.getRuleSimple().getAggregateFunctions());
-					newRuleSimple.setFieldList(rule.getRuleSimple().getFieldList());
-					newRuleSimple.setPopulationType(rule.getRuleSimple().getPopulationType());
-					newRuleSimple.setPopulationUpto(rule.getRuleSimple().getPopulationUpto());
-					newRuleSimple.setQualifyingClause(rule.getRuleSimple().getQualifyingClause());
-					newRuleSimple.setRankCount(rule.getRuleSimple().getRankCount());
-					newRuleSimple.setRankingType(rule.getRuleSimple().getRankingType());
-					newRuleSimple.setRuleParameter(rule.getRuleSimple().getRuleParameter());
-					newRule.setRuleSimple(newRuleSimple);
+					RuleSimple simpleRule = createSimpleRuleIndivdual(rule.getRuleSimple());
+					newRule.setRuleSimple(simpleRule);
 				}
 			} else {
 				newRule.setId(rule.getId());
@@ -95,29 +77,12 @@ public class RuleAPI {
 				} else if (rule.getRuleType() == "s" && rule.getRuleSimple().getCalculationMode() == "r") {
 
 					newRule.setRuleType("Simple");
-					newRuleSimple.setCalculationMode("Rank");
-					newRuleSimple.setAggregateFunctions(rule.getRuleSimple().getAggregateFunctions());
-					newRuleSimple.setFieldList(rule.getRuleSimple().getFieldList());
-					newRuleSimple.setPopulationType(rule.getRuleSimple().getPopulationType());
-					newRuleSimple.setPopulationUpto(rule.getRuleSimple().getPopulationUpto());
-					newRuleSimple.setQualifyingClause(rule.getRuleSimple().getQualifyingClause());
-					newRuleSimple.setRankCount(rule.getRuleSimple().getRankCount());
-					newRuleSimple.setRankingType(rule.getRuleSimple().getRankingType());
-					newRuleSimple.setRuleParameter(rule.getRuleSimple().getRuleParameter());
-					newRule.setRuleSimple(newRuleSimple);
-
+					RuleSimple simpleRule = createSimpleRuleRank(rule.getRuleSimple());
+					newRule.setRuleSimple(simpleRule);
 				} else if (rule.getRuleType() == "s" && rule.getRuleSimple().getCalculationMode() == "i") {
 					newRule.setRuleType("Simple");
-					newRuleSimple.setCalculationMode("Individual");
-					newRuleSimple.setAggregateFunctions(rule.getRuleSimple().getAggregateFunctions());
-					newRuleSimple.setFieldList(rule.getRuleSimple().getFieldList());
-					newRuleSimple.setPopulationType(rule.getRuleSimple().getPopulationType());
-					newRuleSimple.setPopulationUpto(rule.getRuleSimple().getPopulationUpto());
-					newRuleSimple.setQualifyingClause(rule.getRuleSimple().getQualifyingClause());
-					newRuleSimple.setRankCount(rule.getRuleSimple().getRankCount());
-					newRuleSimple.setRankingType(rule.getRuleSimple().getRankingType());
-					newRuleSimple.setRuleParameter(rule.getRuleSimple().getRuleParameter());
-					newRule.setRuleSimple(newRuleSimple);
+					RuleSimple simpleRule = createSimpleRuleIndivdual(rule.getRuleSimple());
+					newRule.setRuleSimple(simpleRule);
 				}
 			}
 			session.save(newRule);
@@ -134,7 +99,46 @@ public class RuleAPI {
 	}
 
 	/**
-	 * Method for getting list of rules 
+	 * Method for Create rule simple individual
+	 * 
+	 * @param simpRule
+	 * @return
+	 */
+	private RuleSimple createSimpleRuleIndivdual(RuleSimple simpRule) {
+		RuleSimple newRuleSimple = new RuleSimple();
+		newRuleSimple.setCalculationMode("Individual");
+		newRuleSimple.setRuleParameter(simpRule.getRuleParameter());
+		newRuleSimple.setAggregateFunctions(simpRule.getAggregateFunctions());
+		newRuleSimple.setFieldList(simpRule.getFieldList());
+		newRuleSimple.setQualifyingClause(simpRule.getQualifyingClause());
+
+		return newRuleSimple;
+	}
+
+	/**
+	 * Method for Create rule simple rank
+	 * 
+	 * @param simpRule
+	 * @return
+	 */
+	private RuleSimple createSimpleRuleRank(RuleSimple simpRule) {
+		RuleSimple newRuleSimple = new RuleSimple();
+		newRuleSimple.setCalculationMode("Rank");
+		newRuleSimple.setAggregateFunctions(simpRule.getAggregateFunctions());
+		newRuleSimple.setFieldList(simpRule.getFieldList());
+		newRuleSimple.setPopulationType(simpRule.getPopulationType());
+		newRuleSimple.setPopulationUpto(simpRule.getPopulationUpto());
+		newRuleSimple.setQualifyingClause(simpRule.getQualifyingClause());
+		newRuleSimple.setRankCount(simpRule.getRankCount());
+		newRuleSimple.setRankingType(simpRule.getRankingType());
+		newRuleSimple.setRuleParameter(simpRule.getRuleParameter());
+
+		return newRuleSimple;
+
+	}
+
+	/**
+	 * Method for getting list of rules
 	 * 
 	 * @return
 	 */
@@ -165,11 +169,12 @@ public class RuleAPI {
 		tx = session.beginTransaction();
 		return (Rule) session.get(Rule.class, ruleID);
 	}
-/**
- * 
- * @param ruleID
- */
-	public void deleteRule(Integer ruleID) {
+
+	/**
+	 * 
+	 * @param ruleID
+	 */
+	public void deleteRule(long ruleID) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
