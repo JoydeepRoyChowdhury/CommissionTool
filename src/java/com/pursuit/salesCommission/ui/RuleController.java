@@ -26,78 +26,39 @@ public class RuleController {
 	@RequestMapping(value = "/simpleRule", method = RequestMethod.GET)
 	public ModelAndView ruleSimp() {
 		logger.debug("RENDERING TO Rule FORM LOAD PAGE");
-		return new ModelAndView("simpRuleDetails", "command", new RuleSimple());
+		return new ModelAndView("simpRuleDetails", "command", new Rule());
 	}
 
 	@RequestMapping(value = "/submitSimpRule", method = RequestMethod.POST)
 	public String addRule(@ModelAttribute("SpringWeb") Rule rule, ModelMap model) {
-			model.addAttribute("Id", rule.getId());
-			model.addAttribute("RuleName", rule.getRuleName());
-			model.addAttribute("Description", rule.getDescription());
-			model.addAttribute("RuleType", rule.getRuleType());
-			model.addAttribute("RuleDetails", rule.getRuleDetails());
-			model.addAttribute("Parameters", rule.getRuleSimple().getRuleParameter());
-			model.addAttribute("CalculationMode", rule.getRuleSimple().getCalculationMode());
-			model.addAttribute("PopulationType", rule.getRuleSimple().getPopulationType());
-			model.addAttribute("PopulationUpto", rule.getRuleSimple().getPopulationUpto());
-			model.addAttribute("AggregateFunction", rule.getRuleSimple().getAggregateFunctions());
-			model.addAttribute("QualifyingClause", rule.getRuleSimple().getQualifyingClause());
-			model.addAttribute("CompensationType", rule.getCompensationType());
-			model.addAttribute("CompensationFormula", rule.getCompensationFormula());
-			model.addAttribute("CompensationParameter", rule.getCompensationParameter());
+		
+		System.out.println("*****************post method**********************");
+			model.addAttribute("id", rule.getId());
+			System.out.println("*****************getId**********************" + rule.getId());
+			model.addAttribute("ruleName", rule.getRuleName());
+			System.out.println("*****************getRuleName*******************" + rule.getRuleName());
+			model.addAttribute("ruleName", rule.getDescription());
+			System.out.println("*****************getdescription*******************" + rule.getDescription());
+			model.addAttribute("ruleDetails", rule.getRuleDetails());
+			System.out.println("*****************getRuleDetails*****************" + rule.getRuleDetails());
+			model.addAttribute("ruleType", rule.getRuleType());
+			System.out.println("*************type value****************" + rule.getRuleType());
+			model.addAttribute("parameters", rule.getRuleSimple().getRuleParameter());
+			ruleApi.createRule(rule);
 			
-			
-			logger.debug("A NEW rule HAS CREATED" + rule);
+			logger.info("A NEW rule HAS CREATED" + rule);
 		return "redirect:/SimpRuleList";
 	}
 
 
 	@RequestMapping(value = "/SimpRuleList", method = RequestMethod.GET)
-	public String listSimpRules(ModelMap model) {
+	public String listRules(ModelMap model) {
 		model.addAttribute("rule", new Rule());
 		model.addAttribute("listRule", ruleApi.listRules());
-		logger.debug("A NEW List HAS CREATED");
-		return "compRule";
+		//logger.info("A NEW List HAS CREATED");
+		System.out.println("*****************ListDone**********************");
+		return "hello1";
 	}
-	
-	
-	@RequestMapping(value = "/compositeRule", method = RequestMethod.GET)
-	public ModelAndView ruleComp() {
-		logger.debug("RENDERING TO Rule FORM LOAD PAGE");
-		return new ModelAndView("ruleDetails", "command", new RuleSimple());
-	}
-	
-	@RequestMapping(value = "/submitCompRule", method = RequestMethod.POST)
-	public String addcompRule(@ModelAttribute("SpringWeb") Rule rule, ModelMap model) {
-			model.addAttribute("Id", rule.getId());
-			model.addAttribute("RuleName", rule.getRuleName());
-			model.addAttribute("Description", rule.getDescription());
-			model.addAttribute("RuleType", rule.getRuleType());
-			model.addAttribute("RuleDetails", rule.getRuleDetails());
-			model.addAttribute("RuleConnectedAs", rule.getConnectionType());
-			model.addAttribute("CompensationType", rule.getCompensationType());
-			model.addAttribute("CompensationFormula", rule.getCompensationFormula());
-			model.addAttribute("CompensationParameter", rule.getCompensationParameter());
-			
-			logger.debug("A NEW rule HAS CREATED" + rule);
-		return "redirect:/compRuleList";
-	}
-
-
-	@RequestMapping(value = "/compRuleList", method = RequestMethod.GET)
-	public String listCompRules(ModelMap model) {
-		model.addAttribute("rule", new Rule());
-		model.addAttribute("listRule", ruleApi.listRules());
-		logger.debug("A NEW List HAS CREATED");
-		return "compRule";
-	}
-	
-	
-	
-	
-	
-	
-	
 	
 	
 }

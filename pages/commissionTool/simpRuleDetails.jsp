@@ -53,33 +53,40 @@ td {
 			function delRow() {
 				var current = window.event.srcElement;
 				while ((current = current.parentElement)
-						&& current.tagName != "TR")
-					;
+						&& current.tagName != "TR");
 				current.parentElement.removeChild(current);
 			}
 		</script>
 
 
-		<form action="/CommissionTool/submitSimpRule" method="POST">
+<form action="/CommissionTool/submitSimpRule" method="post">
 			<div style="height: 580px; overflow: auto;">
 				
 					<h1 align="center">Compensation Rule Details</h1>
 
 					<table border="1">
 						<tr>
-							<td><b>Rule name:</b></td>
-							<td><input type="text" name="RuleName"><br /></td>
+							<td><b>Rule Name:</b></td>
+							<td><input type="text" name="ruleName"></td>
 						</tr>
 						<tr>
 							<td><b>Description:</b></td>
-							<td><input type="text" name="Description"></td>
+							<td><input type="text" name="description"></td>
 						</tr>
 						<tr>
-							<td><b>Rule type:</b></td>
-							<td><input type="text" name="RuleType"></td>
-
-
+							<td><b>RuleDetails</b></td>
+							<td><input type="text" name="ruleDetails"></td>
 						</tr>
+						<tr>
+							<td><b>Rule Type:</b></td>
+							<td><input type="text" name="ruleType"></td>
+						</tr>
+						
+						<tr>
+							<td><b>Parameter</b></td>
+							<td>Parameter Name&nbsp;<INPUT TYPE="text" name="parameterName">&nbsp;Default Value&nbsp;<INPUT TYPE="text" name="defaultValue"></td>
+						</tr>
+				<!--
 						<tr>
 							<td><b>Parameters</b></td>
 							<td>
@@ -92,7 +99,7 @@ td {
 								</table>
 							</td>
 						</tr>
-
+	
 						<tr>
 							<td><b>Calculation mode:&nbsp;</b></td>
 							<td><input type="checkbox" name="individual"
@@ -144,7 +151,7 @@ td {
 								<br />&nbsp; parameters&nbsp;<input type="text" name="parameterValue"><br />
 							</td>
 						</tr>
-				
+			-->
 					
 					</table>
 			
