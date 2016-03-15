@@ -14,6 +14,7 @@ import com.pursuit.salesCommission.app.api.RuleAPI;
 import com.pursuit.salesCommission.app.api.RuleSimpleAPI;
 
 import com.pursuit.salesCommission.app.model.RuleSimple;
+import com.pursuit.salesCommission.app.model.RuleUI;
 import com.pursuit.salesCommission.app.model.Rule;
 
 @Controller
@@ -30,21 +31,31 @@ public class RuleController {
 	}
 
 	@RequestMapping(value = "/submitSimpRule", method = RequestMethod.POST)
-	public String addRule(@ModelAttribute("SpringWeb") Rule rule, ModelMap model) {
-			model.addAttribute("id", rule.getId());
-			model.addAttribute("ruleName", rule.getRuleName());
-			model.addAttribute("ruleName", rule.getDescription());
-			model.addAttribute("ruleDetails", rule.getRuleDetails());
-			model.addAttribute("ruleType", rule.getRuleType());
+	public String addRule(@ModelAttribute("SpringWeb") RuleUI ruleUI, ModelMap model) {
+			model.addAttribute("id", ruleUI.getId());
+			model.addAttribute("ruleName", ruleUI.getRuleName());
+			model.addAttribute("ruleName", ruleUI.getDescription());
+			model.addAttribute("ruleDetails", ruleUI.getRuleDetails());
+			model.addAttribute("ruleType", ruleUI.getRuleType());
 			//model.addAttribute("parameters", rule.getRuleSimple().getRuleParameter());
-			model.addAttribute("compensationType", rule.getCompensationType());
-			model.addAttribute("fixedCompValue", rule.getFixedCompValue() );
-			model.addAttribute("compensationFormula", rule.getCompensationType());
-			model.addAttribute("compensationParameter", rule.getCompensationParameter());
-			model.addAttribute("calculationMode", rule.getRuleSimple().getCalculationMode());
-			
-			
-			
+			model.addAttribute("compensationType", ruleUI.getCompensationType());
+			model.addAttribute("fixedCompValue", ruleUI.getFixedCompValue() );
+			model.addAttribute("compensationFormula", ruleUI.getCompensationFormula());
+			model.addAttribute("compensationParameter", ruleUI.getCompensationParameter());
+			model.addAttribute("calculationMode", ruleUI.getCalculationMode());
+			Rule rule = new Rule();
+			rule.setId(ruleUI.getId());
+			rule.setRuleName(ruleUI.getRuleName());
+			rule.setDescription(ruleUI.getDescription());
+			rule.setRuleDetails(ruleUI.getRuleDetails());
+			rule.setRuleType(ruleUI.getRuleType());
+			rule.setCompensationType(ruleUI.getCompensationType());
+			rule.setFixedCompValue(ruleUI.getFixedCompValue());
+			rule.setCompensationFormula( ruleUI.getCompensationFormula());
+			rule.setCompensationParameter(ruleUI.getCompensationParameter());
+			RuleSimple ruleSimple = new RuleSimple();
+			ruleSimple.setCalculationMode(ruleUI.getCalculationMode());
+			rule.setRuleSimple(ruleSimple);
 			ruleApi.createRule(rule);
 			
 			logger.info("A NEW rule HAS CREATED" + rule);

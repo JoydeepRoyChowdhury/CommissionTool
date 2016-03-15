@@ -104,16 +104,16 @@ td {
 						<tr>
 							<td><b>Calculation mode:&nbsp;</b></td>
 							<td><input type="checkbox" name="calculationMode"
-								value="individual"></td>
-						<!--		
+								value="i">
+								
 								&nbsp;individual&nbsp;<input type="checkbox"
-								name="composite" value="Composite" checked>&nbsp;Composite&nbsp;<br/>
+								name="calculationMode" value="r">&nbsp;Rank&nbsp;<br/>
 								Within&nbsp;<input type="text" value="" size="4">&nbsp;ranks in&nbsp;<input type="checkbox" value="Number">&nbsp;number&nbsp;<input type="checkbox" value="percentage">&nbsp;percentage
 							<br/><br/>Population&nbsp;<input type="checkbox" value="">&nbsp;Under same reporting manager<br/>
 					<input type="checkbox" value="">&nbsp;Same role<br/>
 					<input type="checkbox" value="">&nbsp;Global Upto &nbsp;<input type="text" size="4">&nbsp;level up</td>
 									
-					-->
+					
 						</tr>
 
 						<tr>

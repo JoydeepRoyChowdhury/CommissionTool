@@ -32,20 +32,16 @@ public class RuleAPI {
 	 * 
 	 * @param rule
 	 */
-/*	public long createRule(Rule rule) {
+	public long createRule(Rule rule) {
 
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		Rule newRule = new Rule();
 		try {
 			tx = session.beginTransaction();
-		//	if (rule.getId() == 0) 
+			//if (rule.getId() == 0) 
 			//{
 				newRule.setRuleName(rule.getRuleName());
-				System.out.println("################################" +rule.getRuleName());
-				System.out.println("################################" +rule.getRuleType());
-				System.out.println("################################" +rule.getDescription());
-				System.out.println("################################" +rule.getRuleDetails());
 				newRule.setDescription(rule.getDescription());
 				newRule.setRuleDetails(rule.getRuleDetails());
 				newRule.setCompensationType(rule.getCompensationType());
@@ -74,42 +70,9 @@ public class RuleAPI {
 					newRule.setRuleType("Simple");
 					RuleSimple simpleRule = createSimpleRuleIndivdual(rule.getRuleSimple());
 					newRule.setRuleSimple(simpleRule);
-			/*	}
-			} else 
-			{
-				newRule.setId(rule.getId());
-				newRule.setRuleName(rule.getRuleName());
-				newRule.setDescription(rule.getDescription());
-				newRule.setRuleDetails(rule.getRuleDetails());
-				newRule.setCompensationType(rule.getCompensationType());
-				newRule.setFixedCompValue(rule.getFixedCompValue());
-				newRule.setCompensationFormula(rule.getCompensationFormula());
-				newRule.setCompensationParameter(rule.getCompensationParameter());
-				if (rule.getRuleType().equals("c")) 
-				{
-					newRule.setConnectionType(rule.getConnectionType());
-					newRule.setRuleComposite(rule.getRuleComposite());
-					newRule.setRuleType("Composite");
-				} else if (rule.getRuleType().equals("s") && rule.getRuleSimple().getCalculationMode().equals("r")) 
-				{
-
-					newRule.setRuleType("Simple");
-					RuleSimple simpleRule = createSimpleRuleRank(rule.getRuleSimple());
-					newRule.setRuleSimple(simpleRule);
-				} else if (rule.getRuleType().equals("s") && rule.getRuleSimple().getCalculationMode().equals("r")) 
-				{
-					newRule.setRuleType("Simple");
-					RuleSimple simpleRule = createSimpleRuleIndivdual(rule.getRuleSimple());
-					newRule.setRuleSimple(simpleRule);
 				}
-				else if (rule.getRuleType().equals("s")) 
-				{
-					newRule.setRuleType("Simple");
-					RuleSimple simpleRule = createSimpleRuleIndivdual(rule.getRuleSimple());
-					newRule.setRuleSimple(simpleRule);
-				}
-			}
-			session.save(newRule);
+		
+			session.saveOrUpdate(newRule);
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null)
@@ -120,63 +83,9 @@ public class RuleAPI {
 		}
 
 		return newRule.getId();
-	}
-*/
-	public long createRule(Rule rule) {
+	} 
 
-		Session session = sessionFactory.openSession();
-		Transaction tx = null;
-		Rule newRule = new Rule();
-		try {
-			tx = session.beginTransaction();
-			newRule.setRuleName(rule.getRuleName());
-			newRule.setDescription(rule.getDescription());
-			newRule.setRuleDetails(rule.getRuleDetails());
-			newRule.setCompensationType(rule.getCompensationType());
-			newRule.setFixedCompValue(rule.getFixedCompValue());
-			newRule.setCompensationFormula(rule.getCompensationFormula());
-			newRule.setCompensationParameter(rule.getCompensationParameter());
-			String type = rule.getRuleType();
-			if (type.equals("c")) {
-				
-				newRule.setConnectionType(rule.getConnectionType());
-				newRule.setRuleComposite(rule.getRuleComposite());
-				newRule.setRuleType("Composite");
-			} else if((type.equals("s"))) {
-				//RuleSimple newRuleSimple = new RuleSimple();
-				newRule.setRuleSimple(rule.getRuleSimple());
-				//newRuleSimple.setCalculationMode(rule.getRuleSimple().getCalculationMode());
-				//newRuleSimple.setRuleParameter(rule.getRuleSimple().getRuleParameter());
-				//newRuleSimple.setAggregateFunctions(rule.getRuleSimple().getAggregateFunctions());
-				//newRuleSimple.setFieldList(rule.getRuleSimple().getFieldList());
-				//newRuleSimple.setQualifyingClause(rule.getRuleSimple().getQualifyingClause());
-				//newRule.setRuleSimple(newRuleSimple);
-				newRule.setRuleType("Simple");
-			}
-			else if (rule.getRuleType().equals("s") && rule.getRuleSimple().getCalculationMode().equals("r")) 
-			{
 
-				newRule.setRuleType("Simple");
-				RuleSimple simpleRule = createSimpleRuleRank(rule.getRuleSimple());
-				newRule.setRuleSimple(simpleRule);
-			} else if (rule.getRuleType().equals("s") && rule.getRuleSimple().getCalculationMode().equals("i")) 
-			{
-				newRule.setRuleType("Simple");
-				RuleSimple simpleRule = createSimpleRuleIndivdual(rule.getRuleSimple());
-				newRule.setRuleSimple(simpleRule);
-			}
-			session.save(newRule);
-			tx.commit();
-		} catch (HibernateException e) {
-			if (tx != null)
-				tx.rollback();
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-
-		return newRule.getId();
-	}
 	/**
 	 * Method for Create rule simple individual
 	 * 
@@ -185,7 +94,7 @@ public class RuleAPI {
 	 */
 	private RuleSimple createSimpleRuleIndivdual(RuleSimple simpRule) {
 		RuleSimple newRuleSimple = new RuleSimple();
-		newRuleSimple.setCalculationMode("Individual");
+		newRuleSimple.setCalculationMode("individual");
 		newRuleSimple.setRuleParameter(simpRule.getRuleParameter());
 		newRuleSimple.setAggregateFunctions(simpRule.getAggregateFunctions());
 		newRuleSimple.setFieldList(simpRule.getFieldList());
@@ -202,7 +111,7 @@ public class RuleAPI {
 	 */
 	private RuleSimple createSimpleRuleRank(RuleSimple simpRule) {
 		RuleSimple newRuleSimple = new RuleSimple();
-		newRuleSimple.setCalculationMode("Rank");
+		newRuleSimple.setCalculationMode("rank");
 		newRuleSimple.setAggregateFunctions(simpRule.getAggregateFunctions());
 		newRuleSimple.setFieldList(simpRule.getFieldList());
 		newRuleSimple.setPopulationType(simpRule.getPopulationType());
