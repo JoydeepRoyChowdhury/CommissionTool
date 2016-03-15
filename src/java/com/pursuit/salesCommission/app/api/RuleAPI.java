@@ -32,36 +32,45 @@ public class RuleAPI {
 	 * 
 	 * @param rule
 	 */
-	public long createRule(Rule rule) {
+/*	public long createRule(Rule rule) {
 
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		Rule newRule = new Rule();
 		try {
 			tx = session.beginTransaction();
-			if (rule.getId() == 0) {
+			if (rule.getId() == 0) 
+			{
 				newRule.setRuleName(rule.getRuleName());
+				System.out.println("################################" +rule.getRuleName());
+				System.out.println("################################" +rule.getRuleType());
+				System.out.println("################################" +rule.getDescription());
+				System.out.println("################################" +rule.getRuleDetails());
 				newRule.setDescription(rule.getDescription());
 				newRule.setRuleDetails(rule.getRuleDetails());
 				newRule.setCompensationType(rule.getCompensationType());
 				newRule.setFixedCompValue(rule.getFixedCompValue());
 				newRule.setCompensationFormula(rule.getCompensationFormula());
 				newRule.setCompensationParameter(rule.getCompensationParameter());
-				if (rule.getRuleType() == "c") {
+				if (rule.getRuleType() == "c") 
+				{
 					newRule.setConnectionType(rule.getConnectionType());
 					newRule.setRuleComposite(rule.getRuleComposite());
 					newRule.setRuleType("Composite");
-				} else if (rule.getRuleType() == "s" && rule.getRuleSimple().getCalculationMode() == "r") {
+				} else if (rule.getRuleType() == "s" && rule.getRuleSimple().getCalculationMode() == "r") 
+				{
 
 					newRule.setRuleType("Simple");
 					RuleSimple simpleRule = createSimpleRuleRank(rule.getRuleSimple());
 					newRule.setRuleSimple(simpleRule);
-				} else if (rule.getRuleType() == "s" && rule.getRuleSimple().getCalculationMode() == "i") {
+				} else if (rule.getRuleType() == "s" && rule.getRuleSimple().getCalculationMode() == "i") 
+				{
 					newRule.setRuleType("Simple");
 					RuleSimple simpleRule = createSimpleRuleIndivdual(rule.getRuleSimple());
 					newRule.setRuleSimple(simpleRule);
 				}
-			} else {
+			} else 
+			{
 				newRule.setId(rule.getId());
 				newRule.setRuleName(rule.getRuleName());
 				newRule.setDescription(rule.getDescription());
@@ -70,16 +79,19 @@ public class RuleAPI {
 				newRule.setFixedCompValue(rule.getFixedCompValue());
 				newRule.setCompensationFormula(rule.getCompensationFormula());
 				newRule.setCompensationParameter(rule.getCompensationParameter());
-				if (rule.getRuleType() == "c") {
+				if (rule.getRuleType() == "c") 
+				{
 					newRule.setConnectionType(rule.getConnectionType());
 					newRule.setRuleComposite(rule.getRuleComposite());
 					newRule.setRuleType("Composite");
-				} else if (rule.getRuleType() == "s" && rule.getRuleSimple().getCalculationMode() == "r") {
+				} else if (rule.getRuleType() == "s" && rule.getRuleSimple().getCalculationMode() == "r") 
+				{
 
 					newRule.setRuleType("Simple");
 					RuleSimple simpleRule = createSimpleRuleRank(rule.getRuleSimple());
 					newRule.setRuleSimple(simpleRule);
-				} else if (rule.getRuleType() == "s" && rule.getRuleSimple().getCalculationMode() == "i") {
+				} else if (rule.getRuleType() == "s" && rule.getRuleSimple().getCalculationMode() == "i") 
+				{
 					newRule.setRuleType("Simple");
 					RuleSimple simpleRule = createSimpleRuleIndivdual(rule.getRuleSimple());
 					newRule.setRuleSimple(simpleRule);
@@ -97,7 +109,49 @@ public class RuleAPI {
 
 		return newRule.getId();
 	}
+*/
+	public long createRule(Rule rule) {
 
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		Rule newRule = new Rule();
+		try {
+			tx = session.beginTransaction();
+			newRule.setRuleName(rule.getRuleName());
+			newRule.setDescription(rule.getDescription());
+			newRule.setRuleDetails(rule.getRuleDetails());
+			newRule.setCompensationType(rule.getCompensationType());
+			newRule.setFixedCompValue(rule.getFixedCompValue());
+			newRule.setCompensationFormula(rule.getCompensationFormula());
+			newRule.setCompensationParameter(rule.getCompensationParameter());
+			if (rule.getRuleType() == "c") {
+				
+				newRule.setConnectionType(rule.getConnectionType());
+				newRule.setRuleComposite(rule.getRuleComposite());
+				newRule.setRuleType("Composite");
+			} else {
+				//RuleSimple newRuleSimple = new RuleSimple();
+				newRule.setRuleSimple(rule.getRuleSimple());
+				//newRuleSimple.setCalculationMode("Individual");
+				//newRuleSimple.setRuleParameter(rule.getRuleSimple().getRuleParameter());
+				//newRuleSimple.setAggregateFunctions(rule.getRuleSimple().getAggregateFunctions());
+				//newRuleSimple.setFieldList(rule.getRuleSimple().getFieldList());
+				//newRuleSimple.setQualifyingClause(rule.getRuleSimple().getQualifyingClause());
+				//newRule.setRuleSimple(newRuleSimple);
+				newRule.setRuleType("Simple");
+			}
+			session.save(newRule);
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
+		return newRule.getId();
+	}
 	/**
 	 * Method for Create rule simple individual
 	 * 
