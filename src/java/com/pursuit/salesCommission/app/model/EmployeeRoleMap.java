@@ -1,38 +1,37 @@
 package com.pursuit.salesCommission.app.model;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
-import javax.persistence.*;
-
-import org.hibernate.annotations.IndexColumn;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 @Entity
-@Table(name = "Employee")
-public class Employee {
+@Table(name = "EmployeeRoleMap")
+public class EmployeeRoleMap {
 	@Id
 	@GeneratedValue
-	@Column(name = "emp_id")
+	@Column(name = "er_map_id")
 	private long id;
 
-	@Column(name = "employeeName")
-	private String employeeName;
+	@OneToOne(cascade = CascadeType.ALL)
+	@PrimaryKeyJoinColumn
+	private Employee employee;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@PrimaryKeyJoinColumn
+	private Role role;
 
 	@Column(name = "startDate")
 	private Date startDate;
 
 	@Column(name = "terminationDate")
 	private Date terminationDate;
-
-	@OneToMany(cascade = { CascadeType.ALL })
-	@JoinColumn(name = "EMP_ID")
-	@IndexColumn(name = "detailSrl")
-	private List<Target> target;
-
-	public Employee() {
-	}
 
 	/**
 	 * @return the id
@@ -50,18 +49,33 @@ public class Employee {
 	}
 
 	/**
-	 * @return the employeeName
+	 * @return the employee
 	 */
-	public String getEmployeeName() {
-		return employeeName;
+	public Employee getEmployee() {
+		return employee;
 	}
 
 	/**
-	 * @param employeeName
-	 *            the employeeName to set
+	 * @param employee
+	 *            the employee to set
 	 */
-	public void setEmployeeName(String employeeName) {
-		this.employeeName = employeeName;
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
+	/**
+	 * @return the role
+	 */
+	public Role getRole() {
+		return role;
+	}
+
+	/**
+	 * @param role
+	 *            the role to set
+	 */
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 	/**
@@ -92,21 +106,6 @@ public class Employee {
 	 */
 	public void setTerminationDate(Date terminationDate) {
 		this.terminationDate = terminationDate;
-	}
-
-	/**
-	 * @return the target
-	 */
-	public List<Target> getTarget() {
-		return target;
-	}
-
-	/**
-	 * @param target
-	 *            the target to set
-	 */
-	public void setTarget(List<Target> target) {
-		this.target = target;
 	}
 
 }

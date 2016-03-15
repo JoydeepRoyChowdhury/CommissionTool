@@ -7,16 +7,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "FieldList")
-public class FieldList {
-
+@Table(name = "TargetDefinition")
+public class TargetDefinition {
 	@Id
 	@GeneratedValue
-	@Column(name = "field_list_id")
+	@Column(name = "tgt_def_id")
 	private long id;
 
-	@Column(name = "fieldName")
-	private String fieldName;
+	@Column(name = "targetName")
+	private String targetName;
 
 	@Column(name = "displayName")
 	private String displayName;
@@ -37,18 +36,18 @@ public class FieldList {
 	}
 
 	/**
-	 * @return the fieldName
+	 * @return the targetName
 	 */
-	public String getFieldName() {
-		return fieldName;
+	public String getTargetName() {
+		return targetName;
 	}
 
 	/**
-	 * @param fieldName
-	 *            the fieldName to set
+	 * @param targetName
+	 *            the targetName to set
 	 */
-	public void setFieldName(String fieldName) {
-		this.fieldName = fieldName;
+	public void setTargetName(String targetName) {
+		this.targetName = targetName;
 	}
 
 	/**
@@ -65,5 +64,4 @@ public class FieldList {
 	public void setDisplayName(String displayName) {
 		this.displayName = displayName;
 	}
-
 }

@@ -1,5 +1,10 @@
 package com.pursuit.salesCommission.app;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,18 +25,16 @@ public class EmployeeAPITest {
 
 	@Test
 	public void testCreateEmployee() {
-		Employee e = new Employee();
-		e.setFirstName("Rama");
-		e.setLastName("Bagh");
-		e.setSalary(60000);
-		//Role role = new Role();
-		//role.setRoleName("manager");
-		//role.setDescription("hello");
-		//role.setReportTo("CEO");
-		//e.setRole(role);
-		employeeAPI.createEmployee(e);
-		Employee emp = employeeAPI.getEmployee(e.getId());
-		Assert.assertEquals("Rama", emp.getFirstName());
+        Calendar calobj = Calendar.getInstance();
+        Employee employee1 = new Employee();
+        employee1.setEmployeeName("Sergey");
+        employee1.setStartDate(calobj.getTime());
+        employee1.setTerminationDate(calobj.getTime());
+     
+		employeeAPI.createEmployee(employee1);
+		
+		Employee emp = employeeAPI.getEmployee(employee1.getId());
+		Assert.assertEquals("Sergey", emp.getEmployeeName());
 	}
 
 /*	@Test

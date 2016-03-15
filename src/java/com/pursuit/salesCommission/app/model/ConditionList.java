@@ -8,47 +8,65 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
 
-import com.sun.istack.internal.NotNull;
-
 @Entity
 @Table(name = "ConditionList")
 public class ConditionList {
-	
+
 	@Id
 	@GeneratedValue
 	@Column(name = "condition_id")
 	private long id;
-	
-	@Type(type= "org.hibernate.type.NumericBooleanType")
+
+	@Type(type = "org.hibernate.type.NumericBooleanType")
 	@Column(name = "notFlag", nullable = false)
-	private boolean notFlag; 
+	private boolean notFlag;
 
 	@Column(name = "conditionValue")
 	private String conditionValue;
-	
+
+	/**
+	 * @return the id
+	 */
 	public long getId() {
 		return id;
 	}
 
+	/**
+	 * @param id
+	 *            the id to set
+	 */
 	public void setId(long id) {
 		this.id = id;
 	}
 
-	public boolean getNotFlag() {
+	/**
+	 * @return the notFlag
+	 */
+	public boolean isNotFlag() {
 		return notFlag;
 	}
 
+	/**
+	 * @param notFlag
+	 *            the notFlag to set
+	 */
 	public void setNotFlag(boolean notFlag) {
 		this.notFlag = notFlag;
 	}
 
+	/**
+	 * @return the conditionValue
+	 */
 	public String getConditionValue() {
 		return conditionValue;
 	}
 
+	/**
+	 * @param conditionValue
+	 *            the conditionValue to set
+	 */
 	public void setConditionValue(String conditionValue) {
 		this.conditionValue = conditionValue;
 	}
-
 
 }

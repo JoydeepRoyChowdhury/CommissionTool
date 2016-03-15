@@ -9,13 +9,21 @@
 		<property name="hibernate.show_sql">true</property>
 		<mapping class="com.pursuit.salesCommission.app.model.Employee" />
 		<mapping class="com.pursuit.salesCommission.app.model.Role" />
+		<mapping class="com.pursuit.salesCommission.app.model.EmployeeRoleMap" />
+		<mapping class="com.pursuit.salesCommission.app.model.EmployeeManagerMap" />
 		<mapping class="com.pursuit.salesCommission.app.model.Rule" />
 		<mapping class="com.pursuit.salesCommission.app.model.RuleSimple" />
 		<mapping class="com.pursuit.salesCommission.app.model.RuleComposite" />
 		<mapping class="com.pursuit.salesCommission.app.model.QualifyingClause" />
 		<mapping class="com.pursuit.salesCommission.app.model.FieldList" />
+		<mapping class="com.pursuit.salesCommission.app.model.Frequency" />
+		<mapping class="com.pursuit.salesCommission.app.model.RuleAssignment" />
 		<mapping class="com.pursuit.salesCommission.app.model.ConditionList" />
 		<mapping class="com.pursuit.salesCommission.app.model.AggregateFunctions" />
 		<mapping class="com.pursuit.salesCommission.app.model.RuleParameter" />
+		<mapping class="com.pursuit.salesCommission.app.model.RuleAssignmentDetails" />
+		<mapping class="com.pursuit.salesCommission.app.model.RuleAssignmentParameter" />
+		<mapping class="com.pursuit.salesCommission.app.model.Target" />
+		<mapping class="com.pursuit.salesCommission.app.model.TargetDefinition" />	
 	</session-factory>
 </hibernate-configuration>

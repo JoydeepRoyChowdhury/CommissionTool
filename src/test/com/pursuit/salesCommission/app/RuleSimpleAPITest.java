@@ -65,23 +65,5 @@ public class RuleSimpleAPITest {
 		Assert.assertEquals("Individual",rsimp.getCalculationMode());
 	}
 */
-	@Test
-	public void testCreateQualifyingClause() {
-		QualifyingClause qClause = new QualifyingClause();
-		qClause.setValue("Qualifying Clause");
-		FieldList fldlst1 = new FieldList();
-		fldlst1.setFieldName("fieldlstvalue1");
-		fldlst1.setDisplayName("hello");
-		
-		qClause.setFieldList(fldlst1);
-		
-		ConditionList cndlst1 = new ConditionList();
-		cndlst1.setNotFlag(true);
-		cndlst1.setConditionValue("condition1");
-		qClause.setConditionList(cndlst1);
-		
-		ruleSimpleApi.createQualifyingClause(qClause);
-
-		Assert.assertNotNull(qClause);
-	} 
+	
 }

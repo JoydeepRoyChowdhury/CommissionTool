@@ -9,7 +9,7 @@
 <tiles:insertDefinition name="defaultTemplate">
     <tiles:putAttribute name="body">
 <body>
-<h2>The Role has successfully added..</h2>
+<h2>successfully added..</h2>
 
 <head>
 <style>
@@ -29,17 +29,24 @@ th, td {
   	<th>Id</th>
     <th>RoleName</th>
     <th>Description</th>		
-    <th>ReportTo</th>
+    <th>RuleDetails</th>
+    <th>type</th>
+     <th>parameters</th>
+  
   </tr>
-  <c:forEach items="${listRole}" var="role">
+  <c:forEach items="${listRule}" var="rule">
   <tr>
-    <td>${role.id}</td>
-    <td>${role.RoleName}</td>		
-    <td>${role.Description}</td>
-    <td>${role.ReportTo}</td>
+    <td>${rule.id}</td>
+    <td>${rule.ruleName}</td>		
+    <td>${rule.description}</td>
+    <td>${rule.ruleDetails}</td>
+     <td>${rule.ruleType}</td>
+    
+   
   </tr>
  </c:forEach>
 </table>
+
 
 
  </tiles:putAttribute>

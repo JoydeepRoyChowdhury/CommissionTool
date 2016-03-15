@@ -10,7 +10,7 @@ public class Array {
 		ArrayList<String> RuleList= new ArrayList<String>();
 		for(int i=1;i<=20;i++)
 		{		
-		RuleList.add("Rule"+i);
+		RuleList.add(""+i);
 		}
 		for(int j=0;j<RuleList.size();j++)
 		{

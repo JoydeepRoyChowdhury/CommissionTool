@@ -19,7 +19,7 @@ public class RoleAPItest {
 
 	@Test
 	public void testAddRole() {
-		
+
 		int i = roleAPI.addRole("gmanager", "super", "peo");
 		Assert.assertNotNull(i);
 		Role emp = roleAPI.getRole(i);
@@ -31,7 +31,7 @@ public class RoleAPItest {
 		Role e = new Role();
 		e.setRoleName("tester");
 		e.setDescription("good");
-		e.setReportTo("deo");
+		// e.setReportTo("deo");
 		roleAPI.createRole(e);
 		Role emp = roleAPI.getRole(e.getId());
 		Assert.assertEquals("tester", emp.getRoleName());
@@ -49,7 +49,7 @@ public class RoleAPItest {
 		Role e = new Role();
 		e.setRoleName("cc");
 		e.setDescription("dd");
-		e.setReportTo("ff");
+		// e.setReportTo("ff");
 		roleAPI.createRole(e);
 		Role emp = roleAPI.getRole(e.getId());
 		emp.setRoleName("joydeepda");

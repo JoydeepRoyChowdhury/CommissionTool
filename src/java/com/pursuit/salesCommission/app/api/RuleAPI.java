@@ -1,6 +1,5 @@
 package com.pursuit.salesCommission.app.api;
 
-
 import java.util.Iterator;
 import java.util.List;
 
@@ -12,9 +11,9 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-
+import com.pursuit.salesCommission.app.model.Employee;
 import com.pursuit.salesCommission.app.model.Rule;
-
+import com.pursuit.salesCommission.app.model.RuleSimple;
 
 @Component
 public class RuleAPI {
@@ -28,42 +27,9 @@ public class RuleAPI {
 		sessionFactory = factory;
 	}
 
-	public Rule getRule(long l) {
-		Session session = sessionFactory.openSession();
-		Transaction tx = null;
-		tx = session.beginTransaction();
-		return (Rule) session.get(Rule.class, l);
-	}
-
 	/**
+	 * Method for creating rule in Database
 	 * 
-	 * @param rule
-	 */
-/*	public void createRule1(Rule rule) {
-
-		Session session = sessionFactory.openSession();
-		Transaction tx = null;
-		try {
-			tx = session.beginTransaction();
-			Rule rule2 = new Rule();
-			rule2.setRuleName(rule.getRuleName());
-			rule2.setDescription(rule.getDescription());
-			// rule2.setRuleType(rule.getRuleType());
-			// ArrayList<Employee> emplist1 = rule.getEmployees();
-			// rule2.setEmployees(emplist1);
-			session.save(rule2);
-			tx.commit();
-		} catch (HibernateException e) {
-			if (tx != null)
-				tx.rollback();
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-
-	} */
-	/**
-	 * Method for create rule
 	 * @param rule
 	 */
 	public long createRule(Rule rule) {
@@ -73,23 +39,51 @@ public class RuleAPI {
 		Rule newRule = new Rule();
 		try {
 			tx = session.beginTransaction();
-			newRule.setRuleName(rule.getRuleName());
-			newRule.setDescription(rule.getDescription());
-			newRule.setRuleDetails(rule.getRuleDetails());
-			newRule.setCompensationType(rule.getCompensationType());
-			newRule.setFixedCompValue(rule.getFixedCompValue());
-			newRule.setCompensationFormula(rule.getCompensationFormula());
-			newRule.setCompensationParameter(rule.getCompensationParameter());
-			if(rule.getRuleType() == "c"){
-			//newRule.setFlag("c");
-				newRule.setConnectionType(rule.getConnectionType());
-				newRule.setRuleComposite(rule.getRuleComposite());
-				newRule.setRuleType("Composite");
-			}
-			else {
-			//newRule.setFlag("s");
-				newRule.setRuleSimple(rule.getRuleSimple());
-				newRule.setRuleType("Simple");
+			if (rule.getId() == 0) {
+				newRule.setRuleName(rule.getRuleName());
+				newRule.setDescription(rule.getDescription());
+				newRule.setRuleDetails(rule.getRuleDetails());
+				newRule.setCompensationType(rule.getCompensationType());
+				newRule.setFixedCompValue(rule.getFixedCompValue());
+				newRule.setCompensationFormula(rule.getCompensationFormula());
+				newRule.setCompensationParameter(rule.getCompensationParameter());
+				if (rule.getRuleType() == "c") {
+					newRule.setConnectionType(rule.getConnectionType());
+					newRule.setRuleComposite(rule.getRuleComposite());
+					newRule.setRuleType("Composite");
+				} else if (rule.getRuleType() == "s" && rule.getRuleSimple().getCalculationMode() == "r") {
+
+					newRule.setRuleType("Simple");
+					RuleSimple simpleRule = createSimpleRuleRank(rule.getRuleSimple());
+					newRule.setRuleSimple(simpleRule);
+				} else if (rule.getRuleType() == "s" && rule.getRuleSimple().getCalculationMode() == "i") {
+					newRule.setRuleType("Simple");
+					RuleSimple simpleRule = createSimpleRuleIndivdual(rule.getRuleSimple());
+					newRule.setRuleSimple(simpleRule);
+				}
+			} else {
+				newRule.setId(rule.getId());
+				newRule.setRuleName(rule.getRuleName());
+				newRule.setDescription(rule.getDescription());
+				newRule.setRuleDetails(rule.getRuleDetails());
+				newRule.setCompensationType(rule.getCompensationType());
+				newRule.setFixedCompValue(rule.getFixedCompValue());
+				newRule.setCompensationFormula(rule.getCompensationFormula());
+				newRule.setCompensationParameter(rule.getCompensationParameter());
+				if (rule.getRuleType() == "c") {
+					newRule.setConnectionType(rule.getConnectionType());
+					newRule.setRuleComposite(rule.getRuleComposite());
+					newRule.setRuleType("Composite");
+				} else if (rule.getRuleType() == "s" && rule.getRuleSimple().getCalculationMode() == "r") {
+
+					newRule.setRuleType("Simple");
+					RuleSimple simpleRule = createSimpleRuleRank(rule.getRuleSimple());
+					newRule.setRuleSimple(simpleRule);
+				} else if (rule.getRuleType() == "s" && rule.getRuleSimple().getCalculationMode() == "i") {
+					newRule.setRuleType("Simple");
+					RuleSimple simpleRule = createSimpleRuleIndivdual(rule.getRuleSimple());
+					newRule.setRuleSimple(simpleRule);
+				}
 			}
 			session.save(newRule);
 			tx.commit();
@@ -102,10 +96,49 @@ public class RuleAPI {
 		}
 
 		return newRule.getId();
-	} 
+	}
 
 	/**
-	 * Method for getting list of roles for rule
+	 * Method for Create rule simple individual
+	 * 
+	 * @param simpRule
+	 * @return
+	 */
+	private RuleSimple createSimpleRuleIndivdual(RuleSimple simpRule) {
+		RuleSimple newRuleSimple = new RuleSimple();
+		newRuleSimple.setCalculationMode("Individual");
+		newRuleSimple.setRuleParameter(simpRule.getRuleParameter());
+		newRuleSimple.setAggregateFunctions(simpRule.getAggregateFunctions());
+		newRuleSimple.setFieldList(simpRule.getFieldList());
+		newRuleSimple.setQualifyingClause(simpRule.getQualifyingClause());
+
+		return newRuleSimple;
+	}
+
+	/**
+	 * Method for Create rule simple rank
+	 * 
+	 * @param simpRule
+	 * @return
+	 */
+	private RuleSimple createSimpleRuleRank(RuleSimple simpRule) {
+		RuleSimple newRuleSimple = new RuleSimple();
+		newRuleSimple.setCalculationMode("Rank");
+		newRuleSimple.setAggregateFunctions(simpRule.getAggregateFunctions());
+		newRuleSimple.setFieldList(simpRule.getFieldList());
+		newRuleSimple.setPopulationType(simpRule.getPopulationType());
+		newRuleSimple.setPopulationUpto(simpRule.getPopulationUpto());
+		newRuleSimple.setQualifyingClause(simpRule.getQualifyingClause());
+		newRuleSimple.setRankCount(simpRule.getRankCount());
+		newRuleSimple.setRankingType(simpRule.getRankingType());
+		newRuleSimple.setRuleParameter(simpRule.getRuleParameter());
+
+		return newRuleSimple;
+
+	}
+
+	/**
+	 * Method for getting list of rules
 	 * 
 	 * @return
 	 */
@@ -122,6 +155,41 @@ public class RuleAPI {
 
 		}
 		return rules;
+	}
+
+	/**
+	 * Method for getting one rule details by ID
+	 * 
+	 * @param l
+	 * @return
+	 */
+	public Rule getRule(long ruleID) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		tx = session.beginTransaction();
+		return (Rule) session.get(Rule.class, ruleID);
+	}
+
+	/**
+	 * 
+	 * @param ruleID
+	 */
+	public void deleteRule(long ruleID) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			Rule rule = (Rule) session.get(Rule.class, ruleID);
+			session.delete(rule);
+			logger.debug("DELETE THE RULE DETAILS FROM DATABASE" + rule);
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
 	}
 
 }
