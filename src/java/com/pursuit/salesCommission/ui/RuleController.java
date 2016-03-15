@@ -31,19 +31,20 @@ public class RuleController {
 
 	@RequestMapping(value = "/submitSimpRule", method = RequestMethod.POST)
 	public String addRule(@ModelAttribute("SpringWeb") Rule rule, ModelMap model) {
-		
-		System.out.println("*****************post method**********************");
 			model.addAttribute("id", rule.getId());
-			System.out.println("*****************getId**********************" + rule.getId());
 			model.addAttribute("ruleName", rule.getRuleName());
-			System.out.println("*****************getRuleName*******************" + rule.getRuleName());
 			model.addAttribute("ruleName", rule.getDescription());
-			System.out.println("*****************getdescription*******************" + rule.getDescription());
 			model.addAttribute("ruleDetails", rule.getRuleDetails());
-			System.out.println("*****************getRuleDetails*****************" + rule.getRuleDetails());
 			model.addAttribute("ruleType", rule.getRuleType());
-			System.out.println("*************type value****************" + rule.getRuleType());
-			model.addAttribute("parameters", rule.getRuleSimple().getRuleParameter());
+			//model.addAttribute("parameters", rule.getRuleSimple().getRuleParameter());
+			model.addAttribute("compensationType", rule.getCompensationType());
+			model.addAttribute("fixedCompValue", rule.getFixedCompValue() );
+			model.addAttribute("compensationFormula", rule.getCompensationType());
+			model.addAttribute("compensationParameter", rule.getCompensationParameter());
+			model.addAttribute("calculationMode", rule.getRuleSimple().getCalculationMode());
+			
+			
+			
 			ruleApi.createRule(rule);
 			
 			logger.info("A NEW rule HAS CREATED" + rule);

@@ -65,6 +65,7 @@ td {
 					<h1 align="center">Compensation Rule Details</h1>
 
 					<table border="1">
+				 		
 						<tr>
 							<td><b>Rule Name:</b></td>
 							<td><input type="text" name="ruleName"></td>
@@ -86,7 +87,7 @@ td {
 							<td><b>Parameter</b></td>
 							<td>Parameter Name&nbsp;<INPUT TYPE="text" name="parameterName">&nbsp;Default Value&nbsp;<INPUT TYPE="text" name="defaultValue"></td>
 						</tr>
-				<!--
+				
 						<tr>
 							<td><b>Parameters</b></td>
 							<td>
@@ -102,15 +103,17 @@ td {
 	
 						<tr>
 							<td><b>Calculation mode:&nbsp;</b></td>
-							<td><input type="checkbox" name="individual"
-								value="Individual">&nbsp;individual&nbsp;<input type="checkbox"
+							<td><input type="checkbox" name="calculationMode"
+								value="individual"></td>
+						<!--		
+								&nbsp;individual&nbsp;<input type="checkbox"
 								name="composite" value="Composite" checked>&nbsp;Composite&nbsp;<br/>
 								Within&nbsp;<input type="text" value="" size="4">&nbsp;ranks in&nbsp;<input type="checkbox" value="Number">&nbsp;number&nbsp;<input type="checkbox" value="percentage">&nbsp;percentage
 							<br/><br/>Population&nbsp;<input type="checkbox" value="">&nbsp;Under same reporting manager<br/>
 					<input type="checkbox" value="">&nbsp;Same role<br/>
 					<input type="checkbox" value="">&nbsp;Global Upto &nbsp;<input type="text" size="4">&nbsp;level up</td>
 									
-					
+					-->
 						</tr>
 
 						<tr>
@@ -140,18 +143,21 @@ td {
 								</table>
 
 							</td>
-
 						</tr>
+						
+				
 						<tr>
 							<td><b>Compensation</b></td>
-							<td><input type="checkbox" name="fixed" value="Fixed">&nbsp;Fixed&nbsp;
-								<input type="text" name="fixedValue"><br /> <input
-								type="checkbox" name="variable" value="Variable">&nbsp;Variable&nbsp;<br />
-								&nbsp;Apply formula&nbsp;<input type="text" name="variableValue"><br />
-								<br />&nbsp; parameters&nbsp;<input type="text" name="parameterValue"><br />
+							<td><input type="checkbox" name="compensationType" value="Fixed">&nbsp;Fixed&nbsp;
+								<input type="text" name="fixedCompValue" value="0"><br />						
+								<input type="checkbox" name="compensationType" value="Variable">&nbsp;Variable&nbsp;<br />
+							
+								&nbsp;Apply formula&nbsp;<input type="text" name="compensationFormula"><br />
+								<br />&nbsp; parameters&nbsp;<input type="text" name="compensationParameter"><br />
 							</td>
+						
 						</tr>
-			-->
+	
 					
 					</table>
 			

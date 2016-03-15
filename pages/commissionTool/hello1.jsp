@@ -31,7 +31,12 @@ th, td {
     <th>Description</th>		
     <th>RuleDetails</th>
     <th>type</th>
-     <th>parameters</th>
+    <th>CompensationType</th>
+        <th>FixedCompValue</th>
+     <th>CompensationFormula</th>
+      <th>CompensationtParameter</th>
+      <th>CalculationMode</th>
+   
   
   </tr>
   <c:forEach items="${listRule}" var="rule">
@@ -41,6 +46,12 @@ th, td {
     <td>${rule.description}</td>
     <td>${rule.ruleDetails}</td>
      <td>${rule.ruleType}</td>
+         <td>${rule.compensationType}</td>
+          <td>${rule.fixedCompValue}</td>
+          <td>${rule.compensationFormula}</td>
+          <td>${rule.compensationParameter}</td>
+          
+         
     
    
   </tr>
