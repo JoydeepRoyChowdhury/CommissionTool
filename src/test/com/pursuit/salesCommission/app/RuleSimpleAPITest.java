@@ -54,7 +54,7 @@ public class RuleSimpleAPITest {
 	public void testlistOfAggregateFunctions() {
 
 		List<AggregateFunctions> api = ruleSimpleApi.listOfAggregateFunctions();
-		Assert.assertEquals(2, api.size());
+		Assert.assertEquals(4, api.size());
 	}
 	@Test
 	public void testlistOfConditions() {
@@ -66,7 +66,7 @@ public class RuleSimpleAPITest {
 	public void testlistOfFields() {
 
 		List<FieldList> api = ruleSimpleApi.listOfFields();
-		Assert.assertEquals(2, api.size());
+		Assert.assertEquals(5, api.size());
 	}
 	
 }

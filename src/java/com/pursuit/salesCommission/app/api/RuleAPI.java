@@ -1,5 +1,6 @@
 package com.pursuit.salesCommission.app.api;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.pursuit.salesCommission.app.model.Employee;
+import com.pursuit.salesCommission.app.model.QualifyingClause;
 import com.pursuit.salesCommission.app.model.Rule;
 import com.pursuit.salesCommission.app.model.RuleSimple;
 
@@ -117,6 +119,18 @@ public class RuleAPI {
 		newRuleSimple.setPopulationType(simpRule.getPopulationType());
 		newRuleSimple.setPopulationUpto(simpRule.getPopulationUpto());
 		newRuleSimple.setQualifyingClause(simpRule.getQualifyingClause());
+		List<QualifyingClause> qclause = simpRule.getQualifyingClause();
+		//QualifyingClause qclause1 = new QualifyingClause();
+		//List<QualifyingClause> qclause2 = new ArrayList<>();
+		
+		for (Iterator iterator = qclause.iterator(); iterator.hasNext();) {
+			
+			QualifyingClause qclause1 = (QualifyingClause) iterator.next();
+			
+			newRuleSimple.getQualifyingClause().add(qclause1);
+			}  
+			
+		
 		newRuleSimple.setRankCount(simpRule.getRankCount());
 		newRuleSimple.setRankingType(simpRule.getRankingType());
 		newRuleSimple.setRuleParameter(simpRule.getRuleParameter());

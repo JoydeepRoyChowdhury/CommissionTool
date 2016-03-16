@@ -52,11 +52,11 @@ public class RuleSimpleAPI {
 		Transaction tx = null;
 		tx = session.beginTransaction();
 		List simpRules = session.createQuery("FROM RuleSimple").list();
-		for (Iterator iterator = simpRules.iterator(); iterator.hasNext();) {
-			RuleSimple ruleSimp = (RuleSimple) iterator.next();
-			logger.debug("GET THE RULE DETAILS FROM DATABASE" + ruleSimp.getId() + ruleSimp.getCalculationMode());
+		//for (Iterator iterator = simpRules.iterator(); iterator.hasNext();) {
+		//	RuleSimple ruleSimp = (RuleSimple) iterator.next();
+		//	logger.debug("GET THE RULE DETAILS FROM DATABASE" + ruleSimp.getId() + ruleSimp.getCalculationMode());
 
-		}
+		//}
 		return simpRules;
 	}
 
@@ -71,11 +71,11 @@ public class RuleSimpleAPI {
 		Transaction tx = null;
 		tx = session.beginTransaction();
 		List aggregatetFunction = session.createQuery("FROM AggregateFunctions").list();
-		for (Iterator iterator = aggregatetFunction.iterator(); iterator.hasNext();) {
-			AggregateFunctions agrFn = (AggregateFunctions) iterator.next();
-			logger.debug("GET THE RULE DETAILS FROM DATABASE" + agrFn.getId() + agrFn.getFunctionName());
+		//for (Iterator iterator = aggregatetFunction.iterator(); iterator.hasNext();) {
+		//	AggregateFunctions agrFn = (AggregateFunctions) iterator.next();
+		//	logger.debug("GET THE RULE DETAILS FROM DATABASE" + agrFn.getId() + agrFn.getFunctionName());
 
-		}
+		//}
 		return aggregatetFunction;
 	}
 
@@ -90,11 +90,11 @@ public class RuleSimpleAPI {
 		Transaction tx = null;
 		tx = session.beginTransaction();
 		List conditionList = session.createQuery("FROM ConditionList").list();
-		for (Iterator iterator = conditionList.iterator(); iterator.hasNext();) {
-			ConditionList cdnLst = (ConditionList) iterator.next();
-			logger.debug("GET THE RULE DETAILS FROM DATABASE" + cdnLst.getId() + cdnLst.getConditionValue());
+		//for (Iterator iterator = conditionList.iterator(); iterator.hasNext();) {
+			//ConditionList cdnLst = (ConditionList) iterator.next();
+			//logger.debug("GET THE RULE DETAILS FROM DATABASE" + cdnLst.getId() + cdnLst.getConditionValue());
 
-		}
+		//}
 		return conditionList;
 	}
 
@@ -109,11 +109,11 @@ public class RuleSimpleAPI {
 		Transaction tx = null;
 		tx = session.beginTransaction();
 		List fieldList = session.createQuery("FROM FieldList").list();
-		for (Iterator iterator = fieldList.iterator(); iterator.hasNext();) {
-			FieldList fldLst = (FieldList) iterator.next();
-			logger.debug("GET THE RULE DETAILS FROM DATABASE" + fldLst.getId() + fldLst.getDisplayName());
+		//for (Iterator iterator = fieldList.iterator(); iterator.hasNext();) {
+			//FieldList fldLst = (FieldList) iterator.next();
+			//logger.debug("GET THE RULE DETAILS FROM DATABASE" + fldLst.getId() + fldLst.getDisplayName());
 
-		}
+		//}
 		return fieldList;
 	}
 	

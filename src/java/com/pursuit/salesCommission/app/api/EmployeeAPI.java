@@ -1,5 +1,6 @@
 package com.pursuit.salesCommission.app.api;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -79,7 +80,7 @@ public class EmployeeAPI {
 	}
 
 	/**
-	 * Method for getting list of employees in database
+	 * Method for getting list of employees from database
 	 * 
 	 * @return the complete employee details of all employees in database
 	 */
@@ -97,6 +98,30 @@ public class EmployeeAPI {
 
 		}
 		return employees;
+	}
+	/**
+	 * Method for getting list of employees from database search by employee name 
+	 * 
+	 * @return the complete employee details of all employees in database
+	 */
+	public List<Employee> searchEmployeesByName(String employeeName) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		tx = session.beginTransaction();
+		List employees = session.createQuery("FROM Employee").list();
+		List emp = new ArrayList<>();
+		for (Iterator iterator = employees.iterator(); iterator.hasNext();) {
+			
+			Employee employee = (Employee) iterator.next();
+			if(employeeName.equals(employee.getEmployeeName())){
+				emp.add(employee);
+			}  
+			// logger.debug("GET THE EMPLOYEE DETAILS FROM DATABASE" +
+			// employee.getFirstName()+ employee.getLastName()
+			// +employee.getSalary() );
+
+		}
+		return emp;
 	}
 
 	/**

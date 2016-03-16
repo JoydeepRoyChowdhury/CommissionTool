@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,16 +28,20 @@ public class EmployeeAPITest {
 	public void testCreateEmployee() {
         Calendar calobj = Calendar.getInstance();
         Employee employee1 = new Employee();
-        employee1.setEmployeeName("Sergey");
+        employee1.setEmployeeName("Hervey");
         employee1.setStartDate(calobj.getTime());
         employee1.setTerminationDate(calobj.getTime());
      
 		employeeAPI.createEmployee(employee1);
 		
 		Employee emp = employeeAPI.getEmployee(employee1.getId());
-		Assert.assertEquals("Sergey", emp.getEmployeeName());
+		Assert.assertEquals("Hervey", emp.getEmployeeName());
 	}
-
+	@Test
+	public void testSearchEmployeesByName() {
+		List<Employee> emp= employeeAPI.searchEmployeesByName("Sergey");
+		  Assert.assertEquals(3, emp.size());
+	}
 /*	@Test
 	public void testGetEmployees() {
 		Employee employee = employeeAPI.getEmployee(7);
