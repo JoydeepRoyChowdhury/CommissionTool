@@ -1,46 +1,40 @@
 
 package com.pursuit.salesCommission.app.model;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 
 public class RuleUI {
 	
 	private long id;
-
-	
 	private String ruleName;
-
-	
 	private String description;
-
-	
 	private String ruleType;
-
-
 	private String ruleDetails;
-
-	
 	private RuleSimple ruleSimple;
-
-	
 	private RuleComposite ruleComposite;
-
-	
 	private String connectionType;
-
-	
 	private String compensationType;
 
+
+	
+	private String populationType;
+	private int populationUpto;
+	private int rankCount;
+	private String rankType;
+		
+	
 	
 	private int fixedCompValue;
-
-	
 	private String compensationFormula;
-
-	private String compensationParameter;
-	
+	private String compensationParameter;	
 	private String calculationMode;
+	
+	
+	
+	
 
 	public RuleUI() {
 	}
@@ -239,4 +233,42 @@ public class RuleUI {
 		this.calculationMode = calculationMode;
 	}
 
+	
+
+	public String getPopulationType() {
+		return populationType;
+	}
+
+	public void setPopulationType(String populationType) {
+		this.populationType = populationType;
+	}
+
+	public int getPopulationUpto() {
+		return populationUpto;
+	}
+
+	public void setPopulationUpto(int populationUpto) {
+		this.populationUpto = populationUpto;
+	}
+
+	public int getRankCount() {
+		return rankCount;
+	}
+
+	public void setRankCount(int rankCount) {
+		this.rankCount = rankCount;
+	}
+
+	public String getRankType() {
+		return rankType;
+	}
+
+	public void setRankType(String rankType) {
+		this.rankType = rankType;
+	}
+
+	
+
+
+	
 }

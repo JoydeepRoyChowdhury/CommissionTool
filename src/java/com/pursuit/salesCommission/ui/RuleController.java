@@ -15,19 +15,22 @@ import com.pursuit.salesCommission.app.api.RuleSimpleAPI;
 
 import com.pursuit.salesCommission.app.model.RuleSimple;
 import com.pursuit.salesCommission.app.model.RuleUI;
+import com.pursuit.salesCommission.app.model.AggregateFunctions;
+import com.pursuit.salesCommission.app.model.ParameterUI;
 import com.pursuit.salesCommission.app.model.Rule;
 
 @Controller
 public class RuleController {
 	@Autowired
 	private RuleAPI ruleApi;
+	@Autowired
+	private RuleSimpleAPI obj;
 	
-	private static final Logger logger = Logger.getLogger(RuleController.class);
-
+	
 	@RequestMapping(value = "/simpleRule", method = RequestMethod.GET)
-	public ModelAndView ruleSimp() {
-		logger.debug("RENDERING TO Rule FORM LOAD PAGE");
-		return new ModelAndView("simpRuleDetails", "command", new Rule());
+	public ModelAndView rule1() {
+		System.out.println(".......servlet running.......");
+		return new ModelAndView("simpRuleDetails", "command", new RuleSimple());
 	}
 
 	@RequestMapping(value = "/submitSimpRule", method = RequestMethod.POST)
@@ -37,7 +40,12 @@ public class RuleController {
 			model.addAttribute("ruleName", ruleUI.getDescription());
 			model.addAttribute("ruleDetails", ruleUI.getRuleDetails());
 			model.addAttribute("ruleType", ruleUI.getRuleType());
-			//model.addAttribute("parameters", rule.getRuleSimple().getRuleParameter());
+									
+			model.addAttribute("rankCount", ruleUI.getRankCount());
+			model.addAttribute("rankType", ruleUI.getRankType());
+			model.addAttribute("populationType", ruleUI.getPopulationType());
+			model.addAttribute("populationUpto", ruleUI.getPopulationUpto());
+			
 			model.addAttribute("compensationType", ruleUI.getCompensationType());
 			model.addAttribute("fixedCompValue", ruleUI.getFixedCompValue() );
 			model.addAttribute("compensationFormula", ruleUI.getCompensationFormula());
@@ -53,12 +61,22 @@ public class RuleController {
 			rule.setFixedCompValue(ruleUI.getFixedCompValue());
 			rule.setCompensationFormula( ruleUI.getCompensationFormula());
 			rule.setCompensationParameter(ruleUI.getCompensationParameter());
+			
+			
 			RuleSimple ruleSimple = new RuleSimple();
+			
+			
+			ruleSimple.setRankCount(ruleUI.getRankCount());
+			ruleSimple.setRankingType(ruleUI.getRankType());
+			ruleSimple.setPopulationType(ruleUI.getPopulationType());
+			ruleSimple.setPopulationUpto(ruleUI.getPopulationUpto());
+			
 			ruleSimple.setCalculationMode(ruleUI.getCalculationMode());
 			rule.setRuleSimple(ruleSimple);
-			ruleApi.createRule(rule);
 			
-			logger.info("A NEW rule HAS CREATED" + rule);
+		
+			ruleApi.createRule(rule);
+			//logger.info("A NEW rule HAS CREATED" + rule);
 		return "redirect:/SimpRuleList";
 	}
 

@@ -85,7 +85,7 @@ td {
 						
 						<tr>
 							<td><b>Parameter</b></td>
-							<td>Parameter Name&nbsp;<INPUT TYPE="text" name="parameterName">&nbsp;Default Value&nbsp;<INPUT TYPE="text" name="defaultValue"></td>
+							<td>Parameter Name&nbsp;<input TYPE="text" name="parameterName">&nbsp;Default Value&nbsp;<INPUT TYPE="text" name=" "></td>
 						</tr>
 				
 						<tr>
@@ -108,10 +108,10 @@ td {
 								
 								&nbsp;individual&nbsp;<input type="checkbox"
 								name="calculationMode" value="r">&nbsp;Rank&nbsp;<br/>
-								Within&nbsp;<input type="text" value="" size="4">&nbsp;ranks in&nbsp;<input type="checkbox" value="Number">&nbsp;number&nbsp;<input type="checkbox" value="percentage">&nbsp;percentage
-							<br/><br/>Population&nbsp;<input type="checkbox" value="">&nbsp;Under same reporting manager<br/>
-					<input type="checkbox" value="">&nbsp;Same role<br/>
-					<input type="checkbox" value="">&nbsp;Global Upto &nbsp;<input type="text" size="4">&nbsp;level up</td>
+								Within&nbsp;<input type="text" Name="rankCount" size="4">&nbsp;ranks in&nbsp;<input type="checkbox" Name="rankType" value="Number">&nbsp;number&nbsp;<input type="checkbox" Name="rankType" value="percentage">&nbsp;percentage
+							<br/><br/>Population&nbsp;<input type="checkbox" Name="populationType" value="SameManager">&nbsp;Under same reporting manager<br/>
+					<input type="checkbox" Name="populationType" value="SameRole">&nbsp;Same role<br/>
+					<input type="checkbox" Name="populationType" value="Global">&nbsp;Global Upto &nbsp;<input type="text" Name="populationUpto" size="4">&nbsp;level up</td>
 									
 					
 						</tr>
