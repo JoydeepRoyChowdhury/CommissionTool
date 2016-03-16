@@ -18,12 +18,16 @@
 	var="mainCss2" />
 <spring:url value="/resources/js/jquery.js" var="jqueryJs" />
 <spring:url value="/resources/js/bootstrap.min.js" var="mainJs" />
+<spring:url value="/resources/js/jquery.min.js" var="mainJs1" />
+<spring:url value="/resources/js/dynamic_list_helper2.js" var="mainJs2" />
 
 <link href="${mainCss}" rel="stylesheet" />
 <link href="${mainCss1}" rel="stylesheet" />
 <link href="${mainCss2}" rel="stylesheet" type="text/css" />
 <script src="${jqueryJs}"></script>
 <script src="${mainJs}"></script>
+<script src="${mainJs1}"></script>
+<script src="${mainJs2}"></script>
 <style type="text/css">
 body {
 	margin: 0px;

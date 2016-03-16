@@ -159,7 +159,7 @@ public class RuleAPI {
 	}
 
 	/**
-	 * 
+	 * Method for delete rule
 	 * @param ruleID
 	 */
 	public void deleteRule(long ruleID) {

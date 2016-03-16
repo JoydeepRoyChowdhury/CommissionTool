@@ -84,7 +84,7 @@ public class RuleAPITest extends TestCase {
 	 * {@link com.pursuit.salesCommission.app.api.RuleAPI#createRule(com.pursuit.salesCommission.app.model.Rule)}
 	 * .
 	 */
-	@Test
+/*	@Test
 	public void testCreateRuleSimpleRank() {
 		
 		rule.setRuleType("s");
@@ -128,21 +128,22 @@ public class RuleAPITest extends TestCase {
 		rule.setId(ruleId);
 		Rule r = ruleAPI.getRule(ruleId);
 		Assert.assertEquals("abcd", r.getRuleName());
+		Assert.assertEquals("rank", r.getRuleSimple().getCalculationMode());
 		System.out.println("Running: testDummyRule");
 
-	}
+	} 
 	/**
 	 * Test method for
 	 * {@link com.pursuit.salesCommission.app.api.RuleAPI#createRule(com.pursuit.salesCommission.app.model.Rule)}
 	 * .
 	 */
-	@Test
+/*	@Test
 	public void testCreateRuleComposite() {
 		 rule.setRuleType("c");
 		  RuleComposite ruleComposite = new RuleComposite(); RuleSimple simple1 =
 		  new RuleSimple(); RuleSimple simple2 = new RuleSimple();
-		  simple1.setCalculationMode("Individual");
-		  simple2.setCalculationMode("Rank"); ruleComposite.setRuleSimple(new
+		  simple1.setCalculationMode("individual");
+		  simple2.setCalculationMode("rank"); ruleComposite.setRuleSimple(new
 		  ArrayList<RuleSimple>()); ruleComposite.getRuleSimple().add(simple1);
 		  ruleComposite.getRuleSimple().add(simple2);
 		  rule.setRuleComposite(ruleComposite); 
@@ -198,11 +199,16 @@ public class RuleAPITest extends TestCase {
 		ruleSimple.getAggregateFunctions().add(fn2);
 
 		rule.setRuleSimple(ruleSimple);
-
-		long ruleId = ruleAPI.createRule(rule);
-		rule.setId(ruleId);
-		Rule r = ruleAPI.getRule(ruleId);
-		Assert.assertEquals("abcd", r.getRuleName());
+		long ruleId =0;
+		Rule r = new Rule();
+		for(int i=0; i<5 ; i++){
+			ruleId = ruleAPI.createRule(rule);
+			rule.setId(ruleId);
+			r = ruleAPI.getRule(ruleId);
+		}
+		
+		//Assert.assertEquals("abcd", r.getRuleName());
+		//Assert.assertEquals("individual", r.getRuleSimple().getCalculationMode());
 		System.out.println("Running: testDummyRule");
 
 	}	
@@ -222,7 +228,7 @@ public class RuleAPITest extends TestCase {
 	@After
 	public void tearDown() throws Exception {
 		System.out.println("Running: tearDown");
-		//ruleAPI.deleteRule(rule.getId());
-		//Assert.assertNull(ruleAPI.getRule(rule.getId()));
+		ruleAPI.deleteRule(rule.getId());
+		Assert.assertNull(ruleAPI.getRule(rule.getId()));
 	}
 }
