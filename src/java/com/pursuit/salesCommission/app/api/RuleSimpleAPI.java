@@ -70,7 +70,7 @@ public class RuleSimpleAPI {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		tx = session.beginTransaction();
-		List aggregatetFunction = session.createQuery("FROM AggreagateFunction").list();
+		List aggregatetFunction = session.createQuery("FROM AggregateFunction").list();
 		for (Iterator iterator = aggregatetFunction.iterator(); iterator.hasNext();) {
 			AggregateFunctions agrFn = (AggregateFunctions) iterator.next();
 			logger.debug("GET THE RULE DETAILS FROM DATABASE" + agrFn.getId() + agrFn.getFunctionName());
