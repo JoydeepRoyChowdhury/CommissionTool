@@ -16,7 +16,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "EmployeeMgrMap")
+@Table(name = "EmployeeManagerMap")
 public class EmployeeManagerMap {
 	@Id
 	@GeneratedValue

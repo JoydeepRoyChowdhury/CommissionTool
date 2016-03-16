@@ -17,7 +17,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.IndexColumn;
 
 @Entity
-@Table(name = "TargetDefinition")
+@Table(name = "Target")
 public class Target {
 	@Id
 	@GeneratedValue

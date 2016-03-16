@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "AggregateFunction")
+@Table(name = "AggregateFunctions")
 public class AggregateFunctions {
 	@Id
 	@GeneratedValue

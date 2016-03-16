@@ -23,7 +23,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.pursuit.salesCommission.app.api.RuleAPI;
 import com.pursuit.salesCommission.app.model.AggregateFunctions;
+import com.pursuit.salesCommission.app.model.ConditionList;
 import com.pursuit.salesCommission.app.model.FieldList;
+import com.pursuit.salesCommission.app.model.QualifyingClause;
 import com.pursuit.salesCommission.app.model.Rule;
 import com.pursuit.salesCommission.app.model.RuleComposite;
 import com.pursuit.salesCommission.app.model.RuleParameter;
@@ -164,11 +166,10 @@ public class RuleAPITest extends TestCase {
 	 */
 	@Test
 	public void testCreateRuleSimpleIndv() {
-		
+
 		rule.setRuleType("s");
 		RuleSimple ruleSimple = new RuleSimple();
 		ruleSimple.setCalculationMode("i");
-		
 
 		ruleSimple.setRuleParameter(new ArrayList<RuleParameter>());
 		RuleParameter rl1 = new RuleParameter();
@@ -198,20 +199,32 @@ public class RuleAPITest extends TestCase {
 		ruleSimple.getAggregateFunctions().add(fn1);
 		ruleSimple.getAggregateFunctions().add(fn2);
 
+		ruleSimple.setQualifyingClause(new ArrayList<QualifyingClause>());
+		QualifyingClause qClause = new QualifyingClause();
+		qClause.setValue("Qualifying Clause");
+		FieldList fldlst1 = new FieldList();
+		fldlst1.setFieldName("fieldlstvalue1");
+		fldlst1.setDisplayName("hello");
+		qClause.setFieldList(fldlst1);
+		ConditionList cndlst1 = new ConditionList();
+		cndlst1.setNotFlag(true);
+		cndlst1.setConditionValue("condition1");
+		qClause.setConditionList(cndlst1);
+		ruleSimple.getQualifyingClause().add(qClause);
+
 		rule.setRuleSimple(ruleSimple);
-		long ruleId =0;
+		long ruleId = 0;
 		Rule r = new Rule();
-		for(int i=0; i<5 ; i++){
-			ruleId = ruleAPI.createRule(rule);
-			rule.setId(ruleId);
-			r = ruleAPI.getRule(ruleId);
-		}
-		
-		//Assert.assertEquals("abcd", r.getRuleName());
-		//Assert.assertEquals("individual", r.getRuleSimple().getCalculationMode());
+
+		ruleId = ruleAPI.createRule(rule);
+		rule.setId(ruleId);
+		r = ruleAPI.getRule(ruleId);
+
+		Assert.assertEquals("abcd", r.getRuleName());
+		Assert.assertEquals("individual", r.getRuleSimple().getCalculationMode());
 		System.out.println("Running: testDummyRule");
 
-	}	
+	}
 	/**
 	 * Test method for
 	 * {@link com.pursuit.salesCommission.app.api.RuleAPI#listRules()}.
@@ -228,7 +241,7 @@ public class RuleAPITest extends TestCase {
 	@After
 	public void tearDown() throws Exception {
 		System.out.println("Running: tearDown");
-		ruleAPI.deleteRule(rule.getId());
-		Assert.assertNull(ruleAPI.getRule(rule.getId()));
+		//ruleAPI.deleteRule(rule.getId());
+		//Assert.assertNull(ruleAPI.getRule(rule.getId()));
 	}
 }
