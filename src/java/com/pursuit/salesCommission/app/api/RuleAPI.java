@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 import com.pursuit.salesCommission.app.model.Employee;
 import com.pursuit.salesCommission.app.model.QualifyingClause;
 import com.pursuit.salesCommission.app.model.Rule;
+import com.pursuit.salesCommission.app.model.RuleParameter;
 import com.pursuit.salesCommission.app.model.RuleSimple;
 
 @Component
@@ -98,6 +99,12 @@ public class RuleAPI {
 		RuleSimple newRuleSimple = new RuleSimple();
 		newRuleSimple.setCalculationMode("individual");
 		newRuleSimple.setRuleParameter(simpRule.getRuleParameter());
+		List<RuleParameter> rparam = simpRule.getRuleParameter();
+		for (Iterator iterator = rparam.iterator(); iterator.hasNext();) {
+			RuleParameter rparam1 = (RuleParameter) iterator.next();
+			newRuleSimple.getRuleParameter().add(rparam1);
+			}  
+		
 		newRuleSimple.setAggregateFunctions(simpRule.getAggregateFunctions());
 		newRuleSimple.setFieldList(simpRule.getFieldList());
 		newRuleSimple.setQualifyingClause(simpRule.getQualifyingClause());
@@ -124,17 +131,18 @@ public class RuleAPI {
 		//List<QualifyingClause> qclause2 = new ArrayList<>();
 		
 		for (Iterator iterator = qclause.iterator(); iterator.hasNext();) {
-			
 			QualifyingClause qclause1 = (QualifyingClause) iterator.next();
-			
 			newRuleSimple.getQualifyingClause().add(qclause1);
 			}  
-			
 		
 		newRuleSimple.setRankCount(simpRule.getRankCount());
 		newRuleSimple.setRankingType(simpRule.getRankingType());
 		newRuleSimple.setRuleParameter(simpRule.getRuleParameter());
-
+		List<RuleParameter> rparam = simpRule.getRuleParameter();
+		for (Iterator iterator = rparam.iterator(); iterator.hasNext();) {
+			RuleParameter rparam1 = (RuleParameter) iterator.next();
+			newRuleSimple.getRuleParameter().add(rparam1);
+			}  
 		return newRuleSimple;
 
 	}
