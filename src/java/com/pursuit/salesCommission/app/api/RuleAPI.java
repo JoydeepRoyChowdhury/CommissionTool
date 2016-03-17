@@ -95,7 +95,7 @@ public class RuleAPI {
 	 * @param simpRule
 	 * @return
 	 */
-	private RuleSimple createSimpleRuleIndivdual(RuleSimple simpRule) {
+/*	private RuleSimple createSimpleRuleIndivdual(RuleSimple simpRule) {
 		RuleSimple newRuleSimple = new RuleSimple();
 		newRuleSimple.setCalculationMode("individual");
 		newRuleSimple.setRuleParameter(simpRule.getRuleParameter());
@@ -110,6 +110,16 @@ public class RuleAPI {
 		newRuleSimple.setQualifyingClause(simpRule.getQualifyingClause());
 
 		return newRuleSimple;
+	} */
+	private RuleSimple createSimpleRuleIndivdual(RuleSimple simpRule) {
+		RuleSimple newRuleSimple = new RuleSimple();
+		newRuleSimple.setCalculationMode("individual");
+		newRuleSimple.setRuleParameter(simpRule.getRuleParameter());
+		newRuleSimple.setAggregateFunctions(simpRule.getAggregateFunctions());
+		newRuleSimple.setFieldList(simpRule.getFieldList());
+		newRuleSimple.setQualifyingClause(simpRule.getQualifyingClause());
+
+		return newRuleSimple;
 	}
 
 	/**
@@ -118,7 +128,7 @@ public class RuleAPI {
 	 * @param simpRule
 	 * @return
 	 */
-	private RuleSimple createSimpleRuleRank(RuleSimple simpRule) {
+/*	private RuleSimple createSimpleRuleRank(RuleSimple simpRule) {
 		RuleSimple newRuleSimple = new RuleSimple();
 		newRuleSimple.setCalculationMode("rank");
 		newRuleSimple.setAggregateFunctions(simpRule.getAggregateFunctions());
@@ -145,8 +155,22 @@ public class RuleAPI {
 			}  
 		return newRuleSimple;
 
-	}
+	}*/
+private RuleSimple createSimpleRuleRank(RuleSimple simpRule) {
+		RuleSimple newRuleSimple = new RuleSimple();
+		newRuleSimple.setCalculationMode("rank");
+		newRuleSimple.setAggregateFunctions(simpRule.getAggregateFunctions());
+		newRuleSimple.setFieldList(simpRule.getFieldList());
+		newRuleSimple.setPopulationType(simpRule.getPopulationType());
+		newRuleSimple.setPopulationUpto(simpRule.getPopulationUpto());
+		newRuleSimple.setQualifyingClause(simpRule.getQualifyingClause());
+		newRuleSimple.setRankCount(simpRule.getRankCount());
+		newRuleSimple.setRankingType(simpRule.getRankingType());
+		newRuleSimple.setRuleParameter(simpRule.getRuleParameter());
 
+		return newRuleSimple;
+
+	}
 	/**
 	 * Method for getting list of rules
 	 * 
