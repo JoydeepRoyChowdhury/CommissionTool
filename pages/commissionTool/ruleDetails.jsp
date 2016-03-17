@@ -80,6 +80,8 @@ var count = "1";
 	}
 </script>
 
+<form action="/CommissionTool/submitCompRule" method="post">
+
 		<div align="center">
 			<h1>Compensation Rule Details</h1>
 
@@ -87,21 +89,22 @@ var count = "1";
 			<table>
 				<tr>
 					<td><b>Rule name:</b></td>
-					<td><input type="text" name="RuleName"><br /></td>
+					<td><input type="text" name="ruleName"><br /></td>
 				</tr>
 				<tr>
 					<td><b>Description:</b></td>
-					<td><input type="text" name="Description"></td>
+					<td><input type="text" name="description"></td>
 				</tr>
 				<tr>
 					<td><b>Rule type:</b></td>
-					<td>Composite</td>
+					<td>Composite<input type="hidden" name="ruleType" value="c">
+					
 
 				</tr>
 				<tr>
 					<td><b>Rules connected as: </b></td>
-					<td><input type="checkbox" name="all" value="All">All
-						<input type="checkbox" name="all" value="Any" checked>Any</td>
+					<td><input type="checkbox" name="connectionType" value="All">All
+						<input type="checkbox" name="connectionType" value="Any" checked>Any</td>
 				</tr>
 
 
@@ -112,13 +115,14 @@ var count = "1";
 						<table ID="in_tbl_name">
 							<tr>
 
-								<td><select><c:forEach items="${listRule}"
+								<td><select><c:forEach items="${listCompRule1}"
 											var="rule">
-											<option value="${rule}">
-												<c:out value="${rule}" />
+											<option value="${rule.ruleName}">
+												<c:out value="${rule.ruleName}" />
 											</option>
 										</c:forEach>
-								</select></td>
+								</select>
+								</td>
 								<td><input type="Button" onClick="addRow('in_tbl_name')"
 									VALUE="Add Row"></td>
 							</tr>
@@ -135,11 +139,11 @@ var count = "1";
 
 				<tr>
 					<td><b>Compensation</b></td>
-					<td><input type="checkbox" name="fixed" value="Fixed">Fixed
-						<input type="text" name="fixedValue"><br /> <input
-						type="checkbox" name="variable" value="Variable">Variable<br />
-						Apply formula<input type="text" name="variableValue"><br />
-						<br /> parameters<input type="text" name="parameterValue"><br />
+					<td><input type="checkbox" name="fixed" value="compensationType">Fixed
+						<input type="text" name="fixedCompValue"><br /> <input
+						type="checkbox" name="compensationType" value="Variable">Variable<br />
+						Apply formula<input type="text" name="compensationFormula"><br />
+						<br /> parameters<input type="text" name="compensationParameter"><br />
 					</td>
 
 				</tr>
@@ -150,7 +154,7 @@ var count = "1";
 							value="Cancel" /></a></td>
 				</tr>
 			</table>
-
 		</div>
+		</form>
 	</tiles:putAttribute>
 </tiles:insertDefinition>

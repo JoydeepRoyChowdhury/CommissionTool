@@ -192,13 +192,14 @@ public class RuleAPITest extends TestCase {
 		ruleSimple.getFieldList().add(fld2);
 
 		ruleSimple.setAggregateFunctions(new ArrayList<AggregateFunctions>());
-		AggregateFunctions fn1 = new AggregateFunctions();
 		AggregateFunctions fn2 = new AggregateFunctions();
-		fn1.setFunctionName("Function 3");
-		fn1.setFunctionName("Function 4");
-		ruleSimple.getAggregateFunctions().add(fn1);
+		
+		fn2.setFunctionName("Function 3");
+		
 		ruleSimple.getAggregateFunctions().add(fn2);
-
+		ruleSimple.getAggregateFunctions().add(fn2);
+		ruleSimple.getAggregateFunctions().add(fn2);
+		
 		ruleSimple.setQualifyingClause(new ArrayList<QualifyingClause>());
 		QualifyingClause qClause = new QualifyingClause();
 		qClause.setValue("Qualifying Clause");

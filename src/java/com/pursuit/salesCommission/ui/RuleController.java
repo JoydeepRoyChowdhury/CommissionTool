@@ -28,16 +28,19 @@ public class RuleController {
 	
 	
 	@RequestMapping(value = "/simpleRule", method = RequestMethod.GET)
-	public ModelAndView rule1() {
+	public String simpleRule(ModelMap model) {
+		model.addAttribute("listRule1", obj.listOfAggregateFunctions());
+		model.addAttribute("listRule2", obj.listOfFields());
+		
 		System.out.println(".......servlet running.......");
-		return new ModelAndView("simpRuleDetails", "command", new RuleSimple());
+		return "simpRuleDetails";
 	}
 
 	@RequestMapping(value = "/submitSimpRule", method = RequestMethod.POST)
 	public String addRule(@ModelAttribute("SpringWeb") RuleUI ruleUI, ModelMap model) {
 			model.addAttribute("id", ruleUI.getId());
 			model.addAttribute("ruleName", ruleUI.getRuleName());
-			model.addAttribute("ruleName", ruleUI.getDescription());
+			model.addAttribute("description", ruleUI.getDescription());
 			model.addAttribute("ruleDetails", ruleUI.getRuleDetails());
 			model.addAttribute("ruleType", ruleUI.getRuleType());
 									
@@ -51,7 +54,10 @@ public class RuleController {
 			model.addAttribute("compensationFormula", ruleUI.getCompensationFormula());
 			model.addAttribute("compensationParameter", ruleUI.getCompensationParameter());
 			model.addAttribute("calculationMode", ruleUI.getCalculationMode());
+			
+			
 			Rule rule = new Rule();
+			
 			rule.setId(ruleUI.getId());
 			rule.setRuleName(ruleUI.getRuleName());
 			rule.setDescription(ruleUI.getDescription());
@@ -65,13 +71,12 @@ public class RuleController {
 			
 			RuleSimple ruleSimple = new RuleSimple();
 			
-			
 			ruleSimple.setRankCount(ruleUI.getRankCount());
 			ruleSimple.setRankingType(ruleUI.getRankType());
 			ruleSimple.setPopulationType(ruleUI.getPopulationType());
 			ruleSimple.setPopulationUpto(ruleUI.getPopulationUpto());
-			
 			ruleSimple.setCalculationMode(ruleUI.getCalculationMode());
+			
 			rule.setRuleSimple(ruleSimple);
 			
 		
@@ -83,12 +88,49 @@ public class RuleController {
 
 	@RequestMapping(value = "/SimpRuleList", method = RequestMethod.GET)
 	public String listRules(ModelMap model) {
-		model.addAttribute("rule", new Rule());
+		//model.addAttribute("rule", new Rule());
 		model.addAttribute("listRule", ruleApi.listRules());
 		//logger.info("A NEW List HAS CREATED");
 		System.out.println("*****************ListDone**********************");
 		return "hello1";
 	}
 	
+	
+	@RequestMapping(value = "/compositeRule", method = RequestMethod.GET)
+	public String compRule(ModelMap model) {
+		model.addAttribute("listCompRule1", ruleApi.listRules());
+		System.out.println(".......servlet running.......");
+		return "ruleDetails";
+	}
+	
+
+	@RequestMapping(value = "/submitCompRule", method = RequestMethod.POST)
+	public String addRule2(@ModelAttribute("SpringWeb") RuleUI ruleUI, ModelMap model) {
+			model.addAttribute("id", ruleUI.getId());
+			model.addAttribute("ruleName", ruleUI.getRuleName());
+			model.addAttribute("description", ruleUI.getDescription());
+			model.addAttribute("ruleType", ruleUI.getRuleType());
+			model.addAttribute("connectionType", ruleUI.getConnectionType());
+			model.addAttribute("compensationType", ruleUI.getCompensationType());
+			model.addAttribute("fixedCompValue", ruleUI.getFixedCompValue() );
+			model.addAttribute("compensationFormula", ruleUI.getCompensationFormula());
+			model.addAttribute("compensationParameter", ruleUI.getCompensationParameter());
+									
+			
+	Rule rule = new Rule();
+			
+			rule.setId(ruleUI.getId());
+			rule.setRuleName(ruleUI.getRuleName());
+			rule.setDescription(ruleUI.getDescription());
+			rule.setRuleType(ruleUI.getRuleType());
+			rule.setConnectionType(ruleUI.getConnectionType());
+			rule.setCompensationType(ruleUI.getCompensationType());
+			rule.setFixedCompValue(ruleUI.getFixedCompValue());
+			rule.setCompensationFormula( ruleUI.getCompensationFormula());
+			rule.setCompensationParameter(ruleUI.getCompensationParameter());
+
+			ruleApi.createRule(rule);
+		return "redirect:/SimpRuleList";
+	}
 	
 }

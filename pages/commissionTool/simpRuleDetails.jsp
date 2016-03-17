@@ -80,7 +80,7 @@ td {
 						</tr>
 						<tr>
 							<td><b>Rule Type:</b></td>
-							<td><input type="text" name="ruleType"></td>
+							<td>Simple<input type="hidden" name="ruleType" value="s"></td>
 						</tr>
 						
 						<tr>
@@ -118,14 +118,23 @@ td {
 
 						<tr>
 							<td><b>Based on: </b></td>
-							<td>Aggregate function<br /> <select><option
-										value="#">sum</option>
-									<option value="#">max</option>
-									<option value="#">min</option>
-									<option value="#">count</option>
-							</select> &nbsp;Field&nbsp;<select><option value="#">&nbsp;order total&nbsp;</option>
-									<option value="#">service total</option>
-							</select></td>
+							<td>Aggregate function<br /> 
+							<select><c:forEach items="${listRule1}"
+											var="rule">
+											<option value="${rule.functionName}">
+												<c:out value="${rule.functionName}" />
+											</option>
+										</c:forEach>
+								</select>
+							 &nbsp;Field&nbsp;
+							<select><c:forEach items="${listRule2}"
+											var="rule1">
+											<option value="${rule1.displayName}">
+												<c:out value="${rule1.displayName}" />
+											</option>
+										</c:forEach>
+								</select>
+							</td>
 
 						</tr>
 
