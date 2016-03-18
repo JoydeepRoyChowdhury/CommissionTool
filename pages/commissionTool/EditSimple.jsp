@@ -68,15 +68,15 @@ td {
 				 		
 						<tr>
 							<td><b>Rule Name:</b></td>
-							<td><input type="text" name="ruleName"></td>
+							<td><input type="text" name="ruleName" value="${listRule3.ruleName}"></td>
 						</tr>
 						<tr>
 							<td><b>Description:</b></td>
-							<td><input type="text" name="description"></td>
+							<td><input type="text" name="description" value="${listRule3.description}"></td>
 						</tr>
 						<tr>
 							<td><b>RuleDetails</b></td>
-							<td><input type="text" name="ruleDetails"></td>
+							<td><input type="text" name="ruleDetails" value="${listRule3.ruleDetails}"></td>
 						</tr>
 						<tr>
 							<td><b>Rule Type:</b></td>
@@ -158,11 +158,11 @@ td {
 						<tr>
 							<td><b>Compensation</b></td>
 							<td><input type="checkbox" name="compensationType" value="Fixed">&nbsp;Fixed&nbsp;
-								<input type="text" name="fixedCompValue" value="0"><br />						
+								<input type="text" name="fixedCompValue" value="${listRule3.fixedCompValue}"><br />						
 								<input type="checkbox" name="compensationType" value="Variable">&nbsp;Variable&nbsp;<br />
 							
-								&nbsp;Apply formula&nbsp;<input type="text" name="compensationFormula"><br />
-								<br />&nbsp; parameters&nbsp;<input type="text" name="compensationParameter"><br />
+								&nbsp;Apply formula&nbsp;<input type="text" name="compensationFormula" value="${listRule3.compensationFormula}"><br />
+								<br />&nbsp; parameters&nbsp;<input type="text" name="compensationParameter" value="${listRule3.compensationParameter}"><br />
 							</td>
 						
 						</tr>

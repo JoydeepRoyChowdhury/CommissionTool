@@ -3,20 +3,22 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 
 <tiles:insertDefinition name="defaultTemplate">
-<tiles:putAttribute name="body">
-<div align="center"><h3>Compensation Rules</h3></div>
+	<tiles:putAttribute name="body">
+		<div align="center">
+			<h3>Compensation Rules</h3>
+		</div>
 
-<head>
+		<head>
 
 <title>CompensationRule</title>
 
 <link rel="stylesheet" href="resources/css/kendo.common.min.css" />
-    <link rel="stylesheet" href="resources/css/kendo.default.min.css" />
+<link rel="stylesheet" href="resources/css/kendo.default.min.css" />
 
-    <script src="resources/js/jquery-1.12.1.min.js"></script>
-    <script src="resources/js/kendo.all.min.js"></script>
-    
-    <script>
+<script src="resources/js/jquery-1.12.1.min.js"></script>
+<script src="resources/js/kendo.all.min.js"></script>
+
+<script>
 			
 
   
@@ -59,45 +61,53 @@
      			
    			</script>
 
-</head>
-<div id="example">
+		</head>
+		<div id="example">
 
 			<table id="grid">
-                <colgroup>
-                    <col />
-                    <col />
-                    <col style="width:110px" />
-                    <col style="width:120px" />
-                    <col style="width:130px" />
-                </colgroup>
-			 <thead>
-				<tr>
-					<th data-field="RuleName">Rule Name</th>
-					<th data-field="type">Type</th>
-					<th data-field="Description">Description</th>
-					<th data-field="RuleDetails">Rule Details</th>
-				</tr>
-			</thead>
-				
-					<c:forEach items="${listRule}" var="rule">
-								<tr>
+				<colgroup>
+					<col />
+					<col />
+					<col style="width: 110px" />
+					<col style="width: 120px" />
+					<col style="width: 130px" />
+				</colgroup>
+				<thead>
+					<tr>
+						<th data-field="RuleName">Rule Name</th>
+						<th data-field="type">Type</th>
+						<th data-field="Description">Description</th>
+						<th data-field="RuleDetails">Rule Details</th>
+					</tr>
+				</thead>
 
-									<td><a href="/CommissionTool/submitSimpRule">${rule.ruleName}</a></td>
-									<td>${rule.ruleType}</td>
-									<td>${rule.ruleDescription}</td>
-									<td>${rule.ruleDescription}</td>
-									
-								</tr>
+				<c:forEach items="${listRule}" var="rule">
+					<tr>
+						<td><c:choose>
+							<c:when test="${rule.ruleType=='Simple'}">
+       							<a href="/CommissionTool/editSimple/${rule.id}">${rule.ruleName}</a> 
+							</c:when>
+							<c:otherwise>
+							<a href="/CommissionTool/editComposite/${rule.id}"><b>${rule.ruleName}</b></a> 
+							</c:otherwise>
+						</c:choose></td>
+						
+						<td>${rule.ruleType}</td>
+						<td>${rule.description}</td>
+						<td>${rule.ruleDetails}</td>
 
-							</c:forEach>
+
+					</tr>
+
+				</c:forEach>
+
 
 			</table>
 			<div align="center">
-				<br />
-				<input type="submit" value="Add composite Rule"> <input
-					type="submit" value="Add simple rule">
+				<br /> 			
+				<a href="/CommissionTool/compositeRule"><button>Add Composite Rule</button></a>&nbsp;<a href="/CommissionTool/simpleRule"><button>Add Simple Rule</button></a>
 			</div>
-</div>
+		</div>
 
 	</tiles:putAttribute>
 </tiles:insertDefinition>

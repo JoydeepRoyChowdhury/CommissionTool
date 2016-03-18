@@ -89,11 +89,11 @@ var count = "1";
 			<table>
 				<tr>
 					<td><b>Rule name:</b></td>
-					<td><input type="text" name="ruleName"><br /></td>
+					<td><input type="text" name="ruleName" value="${listRule1.ruleName}"><br /></td>
 				</tr>
 				<tr>
 					<td><b>Description:</b></td>
-					<td><input type="text" name="description"></td>
+					<td><input type="text" name="description" value="${listRule1.description}"></td>
 				</tr>
 				<tr>
 					<td><b>Rule type:</b></td>
@@ -139,11 +139,11 @@ var count = "1";
 
 				<tr>
 					<td><b>Compensation</b></td>
-					<td><input type="checkbox" name="fixed" value="compensationType">Fixed
-						<input type="text" name="fixedCompValue" value="0"><br /> <input
+					<td><input type="checkbox" name="fixed" value="compensationType" value="Fixed">Fixed
+						<input type="text" name="fixedCompValue" value="${listRule1.fixedCompValue}"><br /> <input
 						type="checkbox" name="compensationType" value="Variable">Variable<br />
-						Apply formula<input type="text" name="compensationFormula"><br />
-						<br /> parameters<input type="text" name="compensationParameter"><br />
+						Apply formula<input type="text" name="compensationFormula" value="${listRule1.compensationFormula}" ><br />
+						<br /> parameters<input type="text" name="compensationParameter" value="${listRule1.compensationParameter}"><br />
 					</td>
 
 				</tr>
