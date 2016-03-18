@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.pursuit.salesCommission.app.model.AggregateFunctions;
 import com.pursuit.salesCommission.app.model.Employee;
 import com.pursuit.salesCommission.app.model.QualifyingClause;
 import com.pursuit.salesCommission.app.model.Rule;
@@ -42,8 +43,6 @@ public class RuleAPI {
 		Rule newRule = new Rule();
 		try {
 			tx = session.beginTransaction();
-			//if (rule.getId() == 0) 
-			//{
 				newRule.setRuleName(rule.getRuleName());
 				newRule.setDescription(rule.getDescription());
 				newRule.setRuleDetails(rule.getRuleDetails());
@@ -58,17 +57,10 @@ public class RuleAPI {
 					newRule.setRuleType("Composite");
 				} else if (rule.getRuleType().equals("s") && rule.getRuleSimple().getCalculationMode().equals("r")) 
 				{
-
 					newRule.setRuleType("Simple");
 					RuleSimple simpleRule = createSimpleRuleRank(rule.getRuleSimple());
 					newRule.setRuleSimple(simpleRule);
 				} else if (rule.getRuleType().equals("s") && rule.getRuleSimple().getCalculationMode().equals("i")) 
-				{
-					newRule.setRuleType("Simple");
-					RuleSimple simpleRule = createSimpleRuleIndivdual(rule.getRuleSimple());
-					newRule.setRuleSimple(simpleRule);
-				}
-				else if (rule.getRuleType().equals("s")) 
 				{
 					newRule.setRuleType("Simple");
 					RuleSimple simpleRule = createSimpleRuleIndivdual(rule.getRuleSimple());
@@ -95,23 +87,34 @@ public class RuleAPI {
 	 * @param simpRule
 	 * @return
 	 */
-/*	private RuleSimple createSimpleRuleIndivdual(RuleSimple simpRule) {
+	private RuleSimple createSimpleRuleIndivdual(RuleSimple simpRule) {
 		RuleSimple newRuleSimple = new RuleSimple();
 		newRuleSimple.setCalculationMode("individual");
-		newRuleSimple.setRuleParameter(simpRule.getRuleParameter());
-		List<RuleParameter> rparam = simpRule.getRuleParameter();
-		for (Iterator iterator = rparam.iterator(); iterator.hasNext();) {
-			RuleParameter rparam1 = (RuleParameter) iterator.next();
-			newRuleSimple.getRuleParameter().add(rparam1);
-			}  
 		
-		newRuleSimple.setAggregateFunctions(simpRule.getAggregateFunctions());
+		//newRuleSimple.setRuleParameter(simpRule.getRuleParameter());
+		List<RuleParameter> rparam = simpRule.getRuleParameter();
+		List<RuleParameter> rparam1 = new ArrayList<>();
+		for (Iterator iterator = rparam.iterator(); iterator.hasNext();) {
+			RuleParameter rparam2 = (RuleParameter) iterator.next();
+			rparam1.add(rparam2);
+			}  
+		newRuleSimple.setRuleParameter(rparam1);
+		
+		List<AggregateFunctions> aggtfns = simpRule.getAggregateFunctions();
+		List<AggregateFunctions> aggtfns1 = new ArrayList<>();
+		for (Iterator iterator = aggtfns.iterator(); iterator.hasNext();) {
+			AggregateFunctions aggtfns2 = (AggregateFunctions) iterator.next();
+			aggtfns1.add(aggtfns2);
+			}  
+		newRuleSimple.setAggregateFunctions(aggtfns1);
+		
+		//newRuleSimple.setAggregateFunctions(simpRule.getAggregateFunctions());
 		newRuleSimple.setFieldList(simpRule.getFieldList());
 		newRuleSimple.setQualifyingClause(simpRule.getQualifyingClause());
 
 		return newRuleSimple;
-	} */
-	private RuleSimple createSimpleRuleIndivdual(RuleSimple simpRule) {
+	} 
+/*	private RuleSimple createSimpleRuleIndivdual(RuleSimple simpRule) {
 		RuleSimple newRuleSimple = new RuleSimple();
 		newRuleSimple.setCalculationMode("individual");
 		newRuleSimple.setRuleParameter(simpRule.getRuleParameter());

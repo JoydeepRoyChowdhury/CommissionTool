@@ -16,6 +16,7 @@ import org.junit.runner.RunWith;
 import junit.framework.TestCase;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -171,34 +172,36 @@ public class RuleAPITest extends TestCase {
 		RuleSimple ruleSimple = new RuleSimple();
 		ruleSimple.setCalculationMode("i");
 
-		ruleSimple.setRuleParameter(new ArrayList<RuleParameter>());
+		List<RuleParameter> rpm = new ArrayList<>();
 		RuleParameter rl1 = new RuleParameter();
 		RuleParameter rl2 = new RuleParameter();
-		rl1.setParameterName("Parameter 3");
-		rl1.setParameterValue("value 3");
-		rl2.setParameterName("Parameter 4");
-		rl2.setParameterValue("value 4");
-		ruleSimple.getRuleParameter().add(rl1);
-		ruleSimple.getRuleParameter().add(rl2);
+		rl1.setParameterName("Parameter 7");
+		rl1.setParameterValue("value 7");
+		rl2.setParameterName("Parameter 8");
+		rl2.setParameterValue("value 8");
+		rpm.add(rl1);
+		rpm.add(rl2);
+		ruleSimple.setRuleParameter(rpm);
 
-		ruleSimple.setFieldList(new ArrayList<FieldList>());
+		List<FieldList> fldlst = new ArrayList<FieldList>();
 		FieldList fld1 = new FieldList();
 		FieldList fld2 = new FieldList();
 		fld1.setFieldName("fld 3");
 		fld1.setDisplayName("fii");
-		fld2.setFieldName("fld 3");
+		fld2.setFieldName("fld 6");
 		fld2.setDisplayName("fello");
-		ruleSimple.getFieldList().add(fld1);
-		ruleSimple.getFieldList().add(fld2);
-
-		ruleSimple.setAggregateFunctions(new ArrayList<AggregateFunctions>());
+		fldlst.add(fld1);
+		fldlst.add(fld2);
+		ruleSimple.setFieldList(fldlst);
+		
+		List <AggregateFunctions> aggtfn = new ArrayList<AggregateFunctions>();
+		AggregateFunctions fn1 = new AggregateFunctions();
 		AggregateFunctions fn2 = new AggregateFunctions();
-		
+		fn1.setFunctionName("Funtion 8");
 		fn2.setFunctionName("Function 3");
-		
-		ruleSimple.getAggregateFunctions().add(fn2);
-		ruleSimple.getAggregateFunctions().add(fn2);
-		ruleSimple.getAggregateFunctions().add(fn2);
+		aggtfn.add(fn2);
+		aggtfn.add(fn1);
+		ruleSimple.setAggregateFunctions(aggtfn);
 		
 		ruleSimple.setQualifyingClause(new ArrayList<QualifyingClause>());
 		QualifyingClause qClause = new QualifyingClause();
