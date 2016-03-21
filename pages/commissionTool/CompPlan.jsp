@@ -20,15 +20,19 @@
       changeMonth: true,     
       changeYear: true,
       depth: "year",
-      showOn: 'button',      
-      buttonImage: '../Image/Calendar_Icon_32.png',
+      showOn: 'both',      
+      buttonImage:'../../ui/image/calender.png',
       buttonImageOnly: true
      });
     });
     
-    function openWindow() { 
-    	  window.open("/CommissionTool/selectemp","_blank","height=200,width=400, status=yes,toolbar=no,menubar=no,location=no"); 
-    	} 
+   // function openWindow() { 
+    	//  window.open("/CommissionTool/search","_blank","height=700,width=1400, status=yes,toolbar=no,menubar=no,location=no"); 
+    	//} 
+    
+    function openWindow(){
+    	window.open('/CommissionTool/search' , '' , 'width=1400,height=700,scrollbars=yes');
+    	}
         
         $(document).ready(function(){
             $('input[type=radio][name=test1]').click(function(){
@@ -119,14 +123,11 @@
 									<b>Employee</b>
 								</label>
 							<br> Select Employee :&nbsp;&nbsp;
-							<input type=image src="../../../image/search.png"
+							<input type="image" img src="resources/image/search.png" style="height:30px;width:30px;
 								name="for_radio1[]" class="radio1" disabled="true"
 								onclick="openWindow()"/>&nbsp;&nbsp;&nbsp;&nbsp;
 
-							<!--<input type="button" value="Select Name" onclick="SelectName()" />-->
-
-							
-							Selected Employee <input type="text" name="for_radio1[]"
+							Selected Employee <input type="text" value="" name="text1" id="text1"  name="for_radio1[]"
 								class="radio1" disabled="true" />
 
 							
@@ -136,11 +137,14 @@
 							<td><label for="radio2"><input type="radio"
 									name="test1" value="radio2" />Role </label> <br>Select Role : <select
 									name="for_radio2[]" class="radio2" disabled="true">
-									<option value="volvo">Systems Engineer</option>
-									<option value="saab">Analyst</option>
-									<option value="mercedes" selected="selected">Management
-										support</option>
-							</select></td>
+									<c:forEach items="${listRole}"
+											var="role">
+											<option value="${role.roleName}">
+												<c:out value="${role.roleName}" />
+											</option>
+										</c:forEach>
+								</select></td>
+							
 						</tr>
 					</table>
 				</td>
