@@ -40,16 +40,16 @@ public class RoleAPI {
  * 
  * @param role
  */
-	public void createRole(Role role) {
+	public long createRole(Role role) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		Role newRole = new Role();
 		try {
 			tx = session.beginTransaction();
-			//newRole.setRoleName(role.getRoleName());
-			//newRole.setDescription(role.getDescription());
-			//newRole.setReportsTo(role.getReportsTo());
-			// emp.setManager(employee.getManager());
+			newRole.setRoleName(role.getRoleName());
+			newRole.setDescription(role.getDescription());
+			newRole.setReportsTo(role.getReportsTo());
+			newRole.setTarget(role.getTarget());
 			session.save(role);
 			tx.commit();
 			logger.debug("CREATED AN ROLE INTO DATABASE" + newRole);
@@ -60,7 +60,7 @@ public class RoleAPI {
 		} finally {
 			session.close();
 		}
-
+		return newRole.getId();
 	}
 	/**
 	 * Method for getting list of roles

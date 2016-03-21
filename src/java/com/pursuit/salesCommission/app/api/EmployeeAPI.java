@@ -41,7 +41,7 @@ public class EmployeeAPI {
 	 *            the object that taking all parameters of employee from
 	 *            controller
 	 */
-	public void createEmployee(Employee employee) {
+	public long createEmployee(Employee employee) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		Employee emp = new Employee();
@@ -50,10 +50,10 @@ public class EmployeeAPI {
 			emp.setEmployeeName(employee.getEmployeeName());
 			emp.setStartDate(employee.getStartDate());
 			emp.setTerminationDate(employee.getTerminationDate());
-			// emp.setManager(employee.getManager());
-			session.save(employee);
+			emp.setTarget(employee.getTarget());
+			session.save(emp);
 			tx.commit();
-			logger.debug("CREATED AN EMPLOYEE INTO DATABASE" + employee);
+			logger.debug("CREATED AN EMPLOYEE INTO DATABASE" + emp);
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
@@ -61,7 +61,7 @@ public class EmployeeAPI {
 		} finally {
 			session.close();
 		}
-
+		return emp.getId();
 	}
 
 	/**

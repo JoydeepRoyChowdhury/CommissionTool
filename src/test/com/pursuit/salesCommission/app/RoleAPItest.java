@@ -26,12 +26,12 @@ public class RoleAPItest {
 	public void testCreateRole() {
        
         Role role1 = new Role();
-        role1.setRoleName("Manager");
+        role1.setRoleName("TESTER");
         role1.setDescription("Good");
       //  role1.setReportsTo("CEO");
-        roleAPI.createRole(role1);
-        Role role = roleAPI.getRole(role1.getId());
-		Assert.assertEquals("Manager", role.getRoleName());
+       Long id = roleAPI.createRole(role1);
+        Role role = roleAPI.getRole(id);
+		Assert.assertEquals("TESTER", role.getRoleName());
 	}
 	
 	@Test

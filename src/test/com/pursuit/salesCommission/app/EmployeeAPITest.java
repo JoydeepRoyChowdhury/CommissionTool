@@ -28,18 +28,18 @@ public class EmployeeAPITest {
 	public void testCreateEmployee() {
         Calendar calobj = Calendar.getInstance();
         Employee employee1 = new Employee();
-        employee1.setEmployeeName("Hervey");
+        employee1.setEmployeeName("Cervey");
         employee1.setStartDate(calobj.getTime());
         employee1.setTerminationDate(calobj.getTime());
      
-		employeeAPI.createEmployee(employee1);
-		
-		Employee emp = employeeAPI.getEmployee(employee1.getId());
-		Assert.assertEquals("Hervey", emp.getEmployeeName());
+		Long id = employeeAPI.createEmployee(employee1);
+		employee1.setId(id);
+		Employee emp = employeeAPI.getEmployee(id);
+		Assert.assertEquals("Cervey", emp.getEmployeeName());
 	}
 	@Test
 	public void testSearchEmployeesByName() {
-		List<Employee> emp= employeeAPI.searchEmployeesByName("Sergey");
+		List<Employee> emp= employeeAPI.searchEmployeesByName("Hervey");
 		  Assert.assertEquals(3, emp.size());
 	}
 /*	@Test
