@@ -1,4 +1,4 @@
-package com.pursuit.salesCommission.ui;
+/*package com.pursuit.salesCommission.ui;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -72,4 +72,4 @@ public class RoleController {
 		return "testedit";
 	}
 
-}
+} */

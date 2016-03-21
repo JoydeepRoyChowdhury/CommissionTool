@@ -1,5 +1,8 @@
 package com.pursuit.salesCommission.app;
 
+import java.util.Calendar;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,6 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.pursuit.salesCommission.app.api.RoleAPI;
+import com.pursuit.salesCommission.app.model.Employee;
 import com.pursuit.salesCommission.app.model.Role;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -17,34 +21,31 @@ public class RoleAPItest {
 	@Autowired
 	private RoleAPI roleAPI;
 
-	@Test
-	public void testAddRole() {
-
-		int i = roleAPI.addRole("gmanager", "super", "peo");
-		Assert.assertNotNull(i);
-		Role emp = roleAPI.getRole(i);
-		Assert.assertEquals("gmanager", emp.getRoleName());
-	}
 
 	@Test
 	public void testCreateRole() {
-		Role e = new Role();
-		e.setRoleName("tester");
-		e.setDescription("good");
-		// e.setReportTo("deo");
-		roleAPI.createRole(e);
-		Role emp = roleAPI.getRole(e.getId());
-		Assert.assertEquals("tester", emp.getRoleName());
-
+       
+        Role role1 = new Role();
+        role1.setRoleName("Manager");
+        role1.setDescription("Good");
+      //  role1.setReportsTo("CEO");
+        roleAPI.createRole(role1);
+        Role role = roleAPI.getRole(role1.getId());
+		Assert.assertEquals("Manager", role.getRoleName());
 	}
-
+	
 	@Test
+	public void testListOfRoles() {
+		List<Role> role= roleAPI.listOfRoles();
+		  Assert.assertEquals(2, role.size());
+	}
+	/*		@Test
 	public void testGetRoles() {
 		Role role = roleAPI.getRole(2);
 		Assert.assertEquals("cc", role.getRoleName());
 	}
 
-	@Test
+@Test
 	public void testEditRole() {
 		Role e = new Role();
 		e.setRoleName("cc");
@@ -57,6 +58,6 @@ public class RoleAPItest {
 		Role emp1 = roleAPI.getRole(emp.getId());
 		Assert.assertEquals("joydeepda", emp1.getRoleName());
 
-	}
+	} */
 
 }

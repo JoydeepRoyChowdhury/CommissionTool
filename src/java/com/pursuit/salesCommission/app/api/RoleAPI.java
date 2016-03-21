@@ -1,77 +1,58 @@
 package com.pursuit.salesCommission.app.api;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.pursuit.salesCommission.app.model.Employee;
 import com.pursuit.salesCommission.app.model.Role;
+import com.pursuit.salesCommission.app.model.Rule;
+import com.pursuit.salesCommission.app.model.RuleParameter;
+import com.pursuit.salesCommission.app.model.Target;
 
 @Component
 public class RoleAPI {
 	
 	@Autowired
 	private static SessionFactory sessionFactory;
+	private static final Logger logger = Logger.getLogger(RoleAPI.class);
 	public void setSessionFactory(SessionFactory factory) {
 		sessionFactory = factory;
 	}
 
-
-	/* ...............Add role in Database.................... */
-
-	public int addRole(String rolename, String description, String reportTo) {
-		
-		Session session = sessionFactory.openSession();
-		Transaction tx = null;
-		Integer roleID = null;
-		try {
-			tx = session.beginTransaction();
-			Role obj1 = new Role();
-			obj1.setRoleName(rolename);
-			obj1.setDescription(description);
-			//obj1.setReportTo(reportTo);
-			roleID = (int) session.save(obj1);
-			tx.commit();
-		} catch (HibernateException e) {
-			if (tx != null)
-				tx.rollback();
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-		System.out.println("Hello........" + rolename + " " + description + " " + reportTo);
-		return roleID;
-
-	}
-
 	/* ........getRole...... */
 
-	public Role getRole(Integer RoleID) {
+	public Role getRole(Long RoleID) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		tx = session.beginTransaction();
 		return (Role) session.get(Role.class, RoleID);
 	}
-
-	/* .............create role............. */
-
+/**
+ * 
+ * @param role
+ */
 	public void createRole(Role role) {
-
-		
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
+		Role newRole = new Role();
 		try {
 			tx = session.beginTransaction();
-			Role obj2 = new Role();
-			obj2.setRoleName(role.getRoleName());
-			obj2.setDescription(role.getDescription());
-			//obj2.setReportTo(role.getReportTo());
+			//newRole.setRoleName(role.getRoleName());
+			//newRole.setDescription(role.getDescription());
+			//newRole.setReportsTo(role.getReportsTo());
+			// emp.setManager(employee.getManager());
 			session.save(role);
 			tx.commit();
+			logger.debug("CREATED AN ROLE INTO DATABASE" + newRole);
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
@@ -81,19 +62,21 @@ public class RoleAPI {
 		}
 
 	}
+	/**
+	 * Method for getting list of roles
+	 * 
+	 * @return
+	 */
+	public List<Role> listOfRoles() {
 
-	/* Method to READ all role */
-	public List<Role> listRoles() {
-		
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		tx = session.beginTransaction();
 		List roles = session.createQuery("FROM Role").list();
 		for (Iterator iterator = roles.iterator(); iterator.hasNext();) {
 			Role role = (Role) iterator.next();
-			System.out.print("Role Name: " + role.getRoleName());
-			System.out.print("  Description: " + role.getDescription());
-			//System.out.println("  Report To: " + role.getReportTo());
+			logger.debug("GET THE RULE DETAILS FROM DATABASE" + role.getRoleName() + role.getReportsTo());
+					
 		}
 		return roles;
 	}
