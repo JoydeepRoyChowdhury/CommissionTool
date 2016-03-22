@@ -1,6 +1,6 @@
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
-
 <tiles:insertDefinition name="defaultTemplate">
 	<tiles:putAttribute name="body">
 		<head>
@@ -21,14 +21,27 @@
       changeYear: true,
       depth: "year",
       showOn: 'both',      
-      buttonImage:'../../ui/image/calender.png',
-      buttonImageOnly: true
+      buttonImage:'../../resources/theme1/image/calendar.png',
+      buttonImageOnly: true,
+      disabled: true,
+     });
+   
+   	$('input[type=radio][name=test2]').click(function() {
+       var related_class = $(this).val();
+       $('.' + related_class).prop('disabled', false).datepicker("option", "disabled", false);
+
+       $('input[type=radio][name=test2]').not(':checked').each(function() {
+         var other_class = $(this).val();
+         $('.' + other_class).prop('disabled', true).datepicker("option", "disabled", true);
+       });
      });
     });
+   
+   
     
-   // function openWindow() { 
-    	//  window.open("/CommissionTool/search","_blank","height=700,width=1400, status=yes,toolbar=no,menubar=no,location=no"); 
-    	//} 
+   /*function openWindow() { 
+    	 window.open("/CommissionTool/search","_blank","height=700,width=1400, status=yes,toolbar=no,menubar=no,location=no"); 
+    	} */
     
     function openWindow(){
     	window.open('/CommissionTool/search' , '' , 'width=1400,height=700,scrollbars=yes');
@@ -46,7 +59,9 @@
             });
         });
         
-        $(document).ready(function(){
+        
+        
+       /* $(document).ready(function(){
             $('input[type=radio][name=test2]').click(function(){
                 var related_class=$(this).val();
                 $('.'+related_class).prop('disabled',false);
@@ -56,11 +71,10 @@
                     $('.'+other_class).prop('disabled',true);
                 });
             });
-        });
+        });*/
         
         
-        var count = "1";
-
+   var count = "1";
   function addRow(in_tbl_name)
   {
     var tbody = document.getElementById(in_tbl_name);
@@ -97,7 +111,6 @@
 	row.appendChild(td5);
 
     count = parseInt(count) + 1;
-  
     tbody.appendChild(row);
   }
   
@@ -123,27 +136,22 @@
 									<b>Employee</b>
 								</label>
 							<br> Select Employee :&nbsp;&nbsp;
-							<input type="image" img src="resources/image/search.png" style="height:30px;width:30px;
-								name="for_radio1[]" class="radio1" disabled="true"
-								onclick="openWindow()"/>&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="image" img src="resources/image/search.png" style="height:30px;width:30px; name="for_radio1[]" class="radio1" disabled="true" onclick="openWindow()"/> &nbsp;&nbsp;&nbsp;&nbsp;
 
-							Selected Employee <input type="text" value="" name="text1" id="text1"  name="for_radio1[]"
-								class="radio1" disabled="true" />
-
-							
+							Selected Employee <input type="text" value="" name="text1" id="text1"  name="for_radio1[]" class="radio1" disabled="true" />
 
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Or</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							</td>
-							<td><label for="radio2"><input type="radio"
-									name="test1" value="radio2" />Role </label> <br>Select Role : <select
-									name="for_radio2[]" class="radio2" disabled="true">
-									<c:forEach items="${listRole}"
-											var="role">
-											<option value="${role.roleName}">
-												<c:out value="${role.roleName}" />
-											</option>
-										</c:forEach>
-								</select></td>
+							
+							<td><label for="radio2"><input type="radio" name="test1" value="radio2" />Role </label><br>
+							Select Role : <select name="for_radio2[]" class="radio2" disabled="true">
+												<c:forEach items="${listRole}"
+													var="role">
+													<option value="${role.roleName}">
+														<c:out value="${role.roleName}" />
+													</option>
+												</c:forEach>
+										</select></td>
 							
 						</tr>
 					</table>
@@ -159,13 +167,10 @@
 						<tr>
 							<td>Plan validity :</td>
 							<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-							<td><label for="radio10"> <input type="radio"
-									name="test2" value="radio10" /> Fixed Date
-							</label> &nbsp;&nbsp;&nbsp;&nbsp; From <input id="one" class="datepicker"
-								type="text" readonly="false" name="for_radio10[]" class="radio10"
-								disabled="false"> To <input id="two" class="datepicker"
-								type="text" readonly="true" name="for_radio10[]" class="radio10"
-								disabled="true"></td>
+							<td><label for="radio10"> <input type="radio" name="test2" value="radio10" /> Fixed Date
+							</label> &nbsp;&nbsp;&nbsp;&nbsp;
+													 From <input id="one" class="datepicker radio10" type="text" readonly="false" name="for_radio10[]" disabled="true">&nbsp;&nbsp;&nbsp;&nbsp;
+													   To <input id="two" class="datepicker radio10" type="text" readonly="true" name="for_radio10[]" disabled="true"></td>
 						</tr>
 						<tr>
 							<td></td>
@@ -175,22 +180,21 @@
 						<tr>
 							<td></td>
 							<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-							<td><label for="radio20"> <input type="radio"
-									name="test2" value="radio20" /> Repeats
-							</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; From <input id="three"
-								class="datepicker" type="text" readonly="true"
-								name="for_radio20[]" class="radio20" disabled="true">
+							<td><label for="radio20"> <input type="radio" name="test2" value="radio20" />
+							 Repeats
+							</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+							
+							From <input id="three" class="datepicker radio20" type="text" readonly="true" name="for_radio20[]" class="radio20" disabled="true"> &nbsp;&nbsp;
 
-								Frequency <select name="for_radio20[]" class="radio20"
-								disabled="true">
+								Frequency <select name="for_radio20[]" class="radio20" disabled="true">
 									<option value="volvo">Weekly</option>
 									<option value="saab">Fortnightly</option>
 									<option value="mercedes" selected="selected">Monthly</option>
 									<option value="saab">Quarterly</option>
 									<option value="saab">Annualy</option>
-							</select> Ending On <input id="four" class="datepicker" type="text"
-								readonly="true" name="for_radio20[]" class="radio20"
-								disabled="true"></td>
+							</select> &nbsp;&nbsp;
+							
+							Ending On <input id="four" class="datepicker radio20" type="text" readonly="true" name="for_radio20[]" class="radio20" disabled="true"></td>
 						</tr>
 					</table>
 				</td>
@@ -211,10 +215,10 @@
 					
 					</table>
 					<tr>
-						<td colspan="3" align="right"><select><c:forEach items="${listRule}"
+						<td colspan="3" align="right"><select><c:forEach items="${listRules}"
 											var="rule">
-											<option value="${rule}">
-												<c:out value="${rule}" />
+											<option value="${rule.id}">
+												<c:out value="${rule.id}" />
 											</option>
 										</c:forEach>
 								</select></td>

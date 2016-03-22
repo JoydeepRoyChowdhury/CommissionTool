@@ -73,9 +73,15 @@
 					          input = $(this);
 					          input.attr('placeholder', input.data('place-holder-text'));
 					      });
-					})
-
-     			
+						})
+						
+		function validate()
+        {
+				if(document.getElementById("checking").value=="")
+	               {
+	                 alert("Please enter an Employee Name for Search");
+	               }
+        }
    			</script>
 </head>
 
@@ -98,8 +104,8 @@
 					<table border=0 align="center">
 						<tr>
 							<td><b>Search:&nbsp;&nbsp;</b>
-							<input type="text" name="EmployeeName" style= "background-color:#ccffcc" placeholder="Enter Employee Name">&nbsp;&nbsp;</td> 
-							<td><input type="image" img src="resources/image/search.png" style="height:30px;width:30px; value="" ></td>
+							<input type="text" name="EmployeeName" style= "background-color:#ccffcc" placeholder="Enter Employee Name" id="checking" >&nbsp;&nbsp;</td> 
+							<td><input type="image" img src="resources/image/search.png" style="height:30px;width:30px; value="" onclick="validate();"/></td>
 						</tr>
 					</table><br>
 			</form>
