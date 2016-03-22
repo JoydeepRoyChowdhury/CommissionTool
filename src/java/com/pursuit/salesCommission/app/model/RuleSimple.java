@@ -162,7 +162,7 @@ public class RuleSimple {
 	/**
 	 * @return the ruleParameter
 	 */
-/*	public List<RuleParameter> getRuleParameter() {
+	public List<RuleParameter> getRuleParameter() {
 		return ruleParameter;
 	}
 
@@ -170,14 +170,14 @@ public class RuleSimple {
 	 * @param ruleParameter
 	 *            the ruleParameter to set
 	 */
-/*	public void setRuleParameter(List<RuleParameter> ruleParameter) {
+	public void setRuleParameter(List<RuleParameter> ruleParameter) {
 		this.ruleParameter = ruleParameter;
 	}
 
 	/**
 	 * @return the qualifyingClause
 	 */
-/*	public List<QualifyingClause> getQualifyingClause() {
+	public List<QualifyingClause> getQualifyingClause() {
 		return qualifyingClause;
 	}
 
@@ -185,14 +185,14 @@ public class RuleSimple {
 	 * @param qualifyingClause
 	 *            the qualifyingClause to set
 	 */
-/*	public void setQualifyingClause(List<QualifyingClause> qualifyingClause) {
+	public void setQualifyingClause(List<QualifyingClause> qualifyingClause) {
 		this.qualifyingClause = qualifyingClause;
 	}
 
 	/**
 	 * @return the aggregateFunctions
 	 */
-/*	public List<AggregateFunctions> getAggregateFunctions() {
+	public List<AggregateFunctions> getAggregateFunctions() {
 		return aggregateFunctions;
 	}
 
@@ -200,14 +200,14 @@ public class RuleSimple {
 	 * @param aggregateFunctions
 	 *            the aggregateFunctions to set
 	 */
-/*	public void setAggregateFunctions(List<AggregateFunctions> aggregateFunctions) {
+	public void setAggregateFunctions(List<AggregateFunctions> aggregateFunctions) {
 		this.aggregateFunctions = aggregateFunctions;
 	}
 
 	/**
 	 * @return the fieldList
 	 */
-/*	public List<FieldList> getFieldList() {
+	public List<FieldList> getFieldList() {
 		return fieldList;
 	}
 
@@ -215,8 +215,8 @@ public class RuleSimple {
 	 * @param fieldList
 	 *            the fieldList to set
 	 */
-/*	public void setFieldList(List<FieldList> fieldList) {
+	public void setFieldList(List<FieldList> fieldList) {
 		this.fieldList = fieldList;
 	}
-*/
+
 }

@@ -22,13 +22,13 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.pursuit.salesCommission.app.api.RuleAPI;
-//import com.pursuit.salesCommission.app.model.AggregateFunctions;
-//import com.pursuit.salesCommission.app.model.ConditionList;
-//import com.pursuit.salesCommission.app.model.FieldList;
-//import com.pursuit.salesCommission.app.model.QualifyingClause;
+import com.pursuit.salesCommission.app.model.AggregateFunctions;
+import com.pursuit.salesCommission.app.model.ConditionList;
+import com.pursuit.salesCommission.app.model.FieldList;
+import com.pursuit.salesCommission.app.model.QualifyingClause;
 import com.pursuit.salesCommission.app.model.Rule;
-//import com.pursuit.salesCommission.app.model.RuleComposite;
-//import com.pursuit.salesCommission.app.model.RuleParameter;
+import com.pursuit.salesCommission.app.model.RuleComposite;
+import com.pursuit.salesCommission.app.model.RuleParameter;
 import com.pursuit.salesCommission.app.model.RuleSimple;
 
 /**
@@ -236,7 +236,7 @@ public class RuleAPITest extends TestCase {
 		RuleSimple ruleSimple = new RuleSimple();
 		ruleSimple.setCalculationMode("r");
 		ruleSimple.setPopulationUpto(6);
-		/*List<RuleParameter> rpm = new ArrayList<>();
+		List<RuleParameter> rpm = new ArrayList<>();
 		RuleParameter rl1 = new RuleParameter();
 		RuleParameter rl2 = new RuleParameter();
 		rl1.setParameterName("Parameter 7");
@@ -244,10 +244,10 @@ public class RuleAPITest extends TestCase {
 		rl2.setParameterName("Parameter 8");
 		rl2.setParameterValue("value 8");
 		rpm.add(rl1);
-		rpm.add(rl2); */
-	//	ruleSimple.setRuleParameter(rpm);
+		rpm.add(rl2);
+		ruleSimple.setRuleParameter(rpm);
 
-	/*	List<FieldList> fldlst = new ArrayList<FieldList>();
+		List<FieldList> fldlst = new ArrayList<FieldList>();
 		FieldList fld1 = new FieldList();
 		FieldList fld2 = new FieldList();
 		fld1.setFieldName("fld 3");
@@ -255,17 +255,17 @@ public class RuleAPITest extends TestCase {
 		fld2.setFieldName("fld 6");
 		fld2.setDisplayName("fello");
 		fldlst.add(fld1);
-		fldlst.add(fld2); */
-	//	ruleSimple.setFieldList(fldlst);
+		fldlst.add(fld2);
+		ruleSimple.setFieldList(fldlst);
 		
-	/*	List <AggregateFunctions> aggtfn = new ArrayList<AggregateFunctions>();
+		List <AggregateFunctions> aggtfn = new ArrayList<AggregateFunctions>();
 		AggregateFunctions fn1 = new AggregateFunctions();
 		AggregateFunctions fn2 = new AggregateFunctions();
 		fn1.setFunctionName("Funtion 8");
 		fn2.setFunctionName("Function 3");
 		aggtfn.add(fn2);
-		aggtfn.add(fn1); */
-	//	ruleSimple.setAggregateFunctions(aggtfn);
+		aggtfn.add(fn1); 
+		ruleSimple.setAggregateFunctions(aggtfn);
 		
 	//	ruleSimple.setQualifyingClause(new ArrayList<QualifyingClause>());
 	/*	QualifyingClause qClause = new QualifyingClause();
@@ -287,21 +287,22 @@ public class RuleAPITest extends TestCase {
 
 		long id = ruleAPI.createRule(rule);
 		rule.setId(id);
-		Rule rule1 = ruleAPI.getRule(id);	
+		Rule rule1 = ruleAPI.getRule(id);
+		
 		//Assert.assertEquals("Details of Rule", rule1.getRuleDetails());
-		//Assert.assertEquals("rank", rule1.getRuleSimple().getCalculationMode());
+		//Assert.assertEquals("individual", rule1.getRuleSimple().getCalculationMode());
+		
 		rule1.setRuleDetails("Mascott Rober");
 		RuleSimple rsimp = rule1.getRuleSimple();
 		rsimp.setPopulationUpto(30);
 		rsimp.setPopulationType("best of 5 person");
 		rule1.setRuleSimple(rsimp);
-	//	rsimp.setRule(rule1);
 		 ruleAPI.editRule(rule1);
 		Rule r1 = ruleAPI.getRule(rule1.getId());
 		Assert.assertEquals("abcd", r1.getRuleName());
 		Assert.assertEquals("Mascott Rober", r1.getRuleDetails());
 		Assert.assertEquals("rank", r1.getRuleSimple().getCalculationMode());
-		Assert.assertEquals(30, r1.getRuleSimple().getPopulationUpto());
+		Assert.assertEquals(30, r1.getRuleSimple().getPopulationUpto()); 
 		System.out.println("Running: testDummyRule");
 
 	}

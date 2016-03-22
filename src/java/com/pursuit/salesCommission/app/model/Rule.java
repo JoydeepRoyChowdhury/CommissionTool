@@ -145,7 +145,7 @@ public class Rule {
 	/**
 	 * @return the ruleComposite
 	 */
-/*	public RuleComposite getRuleComposite() {
+	public RuleComposite getRuleComposite() {
 		return ruleComposite;
 	}
 
@@ -153,7 +153,7 @@ public class Rule {
 	 * @param ruleComposite
 	 *            the ruleComposite to set
 	 */
-/*	public void setRuleComposite(RuleComposite ruleComposite) {
+	public void setRuleComposite(RuleComposite ruleComposite) {
 		this.ruleComposite = ruleComposite;
 	}
 

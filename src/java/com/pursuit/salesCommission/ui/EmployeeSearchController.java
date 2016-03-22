@@ -14,7 +14,6 @@ import com.pursuit.salesCommission.app.api.RoleAPI;
 import com.pursuit.salesCommission.app.model.Employee;
 import com.pursuit.salesCommission.app.model.Role;
 import com.pursuit.salesCommission.app.model.Rule;
-import com.pursuit.salesCommission.app.model.SearchEmployee;
 import com.pursuit.salesCommission.app.model.empSerch;
 import javax.servlet.http.HttpServletRequest;
 
