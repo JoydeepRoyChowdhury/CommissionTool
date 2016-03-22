@@ -25,7 +25,7 @@ public class Target {
 	private long id;
 
 	@OneToOne(cascade = { CascadeType.ALL })
-	@PrimaryKeyJoinColumn
+	@JoinColumn(name = "TGT_DEF_ID")
 	private TargetDefinition targetDefinition;
 
 	@Column(name = "startDate")
@@ -35,7 +35,7 @@ public class Target {
 	private Date terminationDate;
 
 	@OneToOne(cascade = { CascadeType.ALL })
-	@PrimaryKeyJoinColumn
+	@JoinColumn(name = "FREQ_ID")
 	private Frequency frequency;
 
 	@Column(name = "value")

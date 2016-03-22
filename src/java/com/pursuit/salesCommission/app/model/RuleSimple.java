@@ -18,10 +18,6 @@ import org.hibernate.annotations.IndexColumn;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 
-//import org.hibernate.annotations.IndexColumn;
-//import org.hibernate.annotations.Cascade;
-//import org.hibernate.annotations.GenericGenerator;
-//import org.hibernate.annotations.Parameter;
 
 @Entity
 @Table(name = "RuleSimple")

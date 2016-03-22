@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -20,11 +21,11 @@ public class RuleAssignment {
 	private long id;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	@PrimaryKeyJoinColumn
+	@JoinColumn(name = "EMP_ID")
 	private Employee employee;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	@PrimaryKeyJoinColumn
+	@JoinColumn(name = "ROLE_ID")
 	private Role role;
 
 	@Column(name = "validityType")
@@ -37,11 +38,11 @@ public class RuleAssignment {
 	private Date terminationDate;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	@PrimaryKeyJoinColumn
+	@JoinColumn(name = "FREQ_ID")
 	private Frequency frequency;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	@PrimaryKeyJoinColumn
+	@JoinColumn(name = "RULE_ASSGN_ID")
 	private RuleAssignmentDetails ruleAssignmentDetails;
 
 	/**

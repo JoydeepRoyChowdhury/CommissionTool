@@ -24,7 +24,7 @@ public class EmployeeManagerMap {
 	private long id;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	@PrimaryKeyJoinColumn
+	@JoinColumn(name = "EMP_ID")
 	private Employee employee;
 
 	@Column(name = "startDate")

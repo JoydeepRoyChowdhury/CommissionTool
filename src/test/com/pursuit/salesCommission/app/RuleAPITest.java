@@ -268,17 +268,19 @@ public class RuleAPITest extends TestCase {
 		ruleSimple.setAggregateFunctions(aggtfn);
 		
 	//	ruleSimple.setQualifyingClause(new ArrayList<QualifyingClause>());
-	/*	QualifyingClause qClause = new QualifyingClause();
-		qClause.setValue("Qualifying Clause");
+	/*	List<QualifyingClause> qClause = new ArrayList<QualifyingClause>();
+		QualifyingClause qc1 = new QualifyingClause();
+		QualifyingClause qc2 = new QualifyingClause();
+		qc1.setValue("Qualifying Clause");
 		FieldList fldlst1 = new FieldList();
 		fldlst1.setFieldName("fieldlstvalue1");
 		fldlst1.setDisplayName("hello");
-		qClause.setFieldList(fldlst1);
+		qc1.setFieldList(fldlst1);
 		ConditionList cndlst1 = new ConditionList();
 		cndlst1.setNotFlag(true);
 		cndlst1.setConditionValue("condition1");
-		qClause.setConditionList(cndlst1); */
-	//	ruleSimple.getQualifyingClause().add(qClause);
+		qc1.setConditionList(cndlst1); */
+
 
 		rule.setRuleSimple(ruleSimple);
 		//ruleSimple.setRule(rule);

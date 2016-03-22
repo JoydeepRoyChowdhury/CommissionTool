@@ -2,15 +2,12 @@ package com.pursuit.salesCommission.app.model;
 
 import javax.persistence.*;
 
-//import org.hibernate.annotations.Cascade;
-//import org.hibernate.annotations.CascadeType;
 @Entity
 @Table(name = "Rule")
 @Access(value=AccessType.FIELD)
 public class Rule {
 	@Id
 	@GeneratedValue
-	 //@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "rule_id")
 	private long id;
 
@@ -27,7 +24,7 @@ public class Rule {
 	private String ruleDetails;
 
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-	 @JoinColumn(name = "RULE_SIMP_ID")
+	@JoinColumn(name = "RULE_SIMP_ID")
 	private RuleSimple ruleSimple;
 
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)

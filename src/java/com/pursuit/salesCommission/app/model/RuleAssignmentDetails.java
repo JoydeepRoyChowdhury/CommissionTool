@@ -24,7 +24,7 @@ public class RuleAssignmentDetails {
 	private long id;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	@PrimaryKeyJoinColumn
+	@JoinColumn(name = "ASSGN_ID")
 	private RuleAssignment ruleAssignment;
 
 	@OneToMany(cascade = { CascadeType.ALL })
