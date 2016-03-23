@@ -89,8 +89,8 @@ public class RuleAPITest extends TestCase {
 	 * {@link com.pursuit.salesCommission.app.api.RuleAPI#createRule(com.pursuit.salesCommission.app.model.Rule)}
 	 * .
 	 */
-/*	@Test
-	public void testEditRuleSimpleRank() {
+	@Test
+	public void testCreateRuleSimpleRank() {
 
 		rule.setRuleType("s");
 		RuleSimple ruleSimple = new RuleSimple();
@@ -261,7 +261,7 @@ public class RuleAPITest extends TestCase {
 		System.out.println("Running: testDummyRule");
 
 	}*/
-	@Test
+/*	@Test
 	public void testEditRuleSimpleRank() {
 
 		rule.setRuleType("s");
