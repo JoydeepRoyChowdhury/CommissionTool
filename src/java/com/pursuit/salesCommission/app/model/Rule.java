@@ -8,7 +8,7 @@ import javax.persistence.*;
 public class Rule {
 	@Id
 	@GeneratedValue
-	@Column(name = "rule_id")
+	@Column(name = "id")
 	private long id;
 
 	@Column(name = "ruleName")

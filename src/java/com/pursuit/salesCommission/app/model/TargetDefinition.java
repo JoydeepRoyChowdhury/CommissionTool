@@ -11,7 +11,7 @@ import javax.persistence.Table;
 public class TargetDefinition {
 	@Id
 	@GeneratedValue
-	@Column(name = "tgt_def_id")
+	@Column(name = "id")
 	private long id;
 
 	@Column(name = "targetName")

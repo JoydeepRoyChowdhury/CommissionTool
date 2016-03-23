@@ -89,7 +89,7 @@ public class RuleAPITest extends TestCase {
 	 * {@link com.pursuit.salesCommission.app.api.RuleAPI#createRule(com.pursuit.salesCommission.app.model.Rule)}
 	 * .
 	 */
-	@Test
+/*	@Test
 	public void testCreateRuleSimpleRank() {
 
 		rule.setRuleType("s");
@@ -261,13 +261,13 @@ public class RuleAPITest extends TestCase {
 		System.out.println("Running: testDummyRule");
 
 	}*/
-/*	@Test
+	@Test
 	public void testEditRuleSimpleRank() {
 
 		rule.setRuleType("s");
 		RuleSimple ruleSimple = new RuleSimple();
-		ruleSimple.setCalculationMode("r");
-		ruleSimple.setPopulationUpto(6);
+		ruleSimple.setCalculationMode("i");
+		//ruleSimple.setPopulationUpto(6);
 		
 		List<RuleParameter> rpm = new ArrayList<>();
 		RuleParameter rl1 = new RuleParameter();
@@ -337,15 +337,98 @@ public class RuleAPITest extends TestCase {
 		
 		rule1.setRuleDetails("Mascott Rober");
 		RuleSimple rsimp = rule1.getRuleSimple();
-		rsimp.setPopulationUpto(30);
+		//rsimp.setPopulationUpto(30);
 		rsimp.setPopulationType("best of 5 person");
 		rule1.setRuleSimple(rsimp);
 		 ruleAPI.editRule(rule1);
 		Rule r1 = ruleAPI.getRule(rule1.getId());
 		Assert.assertEquals("abcd", r1.getRuleName());
 		Assert.assertEquals("Mascott Rober", r1.getRuleDetails());
-		Assert.assertEquals("rank", r1.getRuleSimple().getCalculationMode());
-		Assert.assertEquals(30, r1.getRuleSimple().getPopulationUpto());
+		Assert.assertEquals("individual", r1.getRuleSimple().getCalculationMode());
+		//Assert.assertEquals(30, r1.getRuleSimple().getPopulationUpto());
+		System.out.println("Running: testDummyRule"); 
+	}
+	
+/*	@Test
+	public void testEditRuleSimpleIndividual() {
+
+		rule.setRuleType("s");
+		RuleSimple ruleSimple = new RuleSimple();
+		ruleSimple.setCalculationMode("i");
+		
+		
+		List<RuleParameter> rpm = new ArrayList<>();
+		RuleParameter rl1 = new RuleParameter();
+		RuleParameter rl2 = new RuleParameter();
+		rl1.setParameterName("Parameter 7");
+		rl1.setParameterValue("value 7");
+		rl2.setParameterName("Parameter 8");
+		rl2.setParameterValue("value 8");
+		rpm.add(rl1);
+		rpm.add(rl2);
+		ruleSimple.setRuleParameter(rpm);
+
+		List<FieldList> fldlst = new ArrayList<FieldList>();
+		FieldList fld1 = new FieldList();
+		FieldList fld2 = new FieldList();
+		fld1.setFieldName("fld 3");
+		fld1.setDisplayName("fii");
+		fld2.setFieldName("fld 6");
+		fld2.setDisplayName("fello");
+		fldlst.add(fld1);
+		fldlst.add(fld2);
+		ruleSimple.setFieldList(fldlst);
+		
+		List <AggregateFunctions> aggtfn = new ArrayList<AggregateFunctions>();
+		AggregateFunctions fn1 = new AggregateFunctions();
+		AggregateFunctions fn2 = new AggregateFunctions();
+		fn1.setFunctionName("Funtion 16");
+		fn2.setFunctionName("Function 7");
+		aggtfn.add(fn2);
+		aggtfn.add(fn1); 
+		ruleSimple.setAggregateFunctions(aggtfn);
+		
+		List<QualifyingClause> qClause = new ArrayList<QualifyingClause>();
+		QualifyingClause qc1 = new QualifyingClause();
+		QualifyingClause qc2 = new QualifyingClause();
+		qc1.setValue("Qualifying Clause1");
+		FieldList fldlst1 = new FieldList();
+		fldlst1.setFieldName("fieldlstvalue1");
+		fldlst1.setDisplayName("hello1");
+		qc1.setFieldList(fldlst1);
+		ConditionList cndlst1 = new ConditionList();
+		cndlst1.setNotFlag(true);
+		cndlst1.setConditionValue("condition1");
+		qc1.setConditionList(cndlst1); 
+		qClause.add(qc1);
+		qc2.setValue("Qualifying Clause2");
+		FieldList fldlst2 = new FieldList();
+		fldlst2.setFieldName("fieldlstvalue2");
+		fldlst2.setDisplayName("hello2");
+		qc2.setFieldList(fldlst2);
+		ConditionList cndlst2 = new ConditionList();
+		cndlst2.setNotFlag(false);
+		cndlst2.setConditionValue("condition2");
+		qc2.setConditionList(cndlst2); 
+		qClause.add(qc2);
+		ruleSimple.setQualifyingClause(qClause);
+
+		rule.setRuleSimple(ruleSimple);
+
+		long id = ruleAPI.createRule(rule);
+		rule.setId(id);
+		Rule rule1 = ruleAPI.getRule(id);
+		//Assert.assertEquals("Details of Rule", rule1.getRuleDetails());
+		//Assert.assertEquals("rank", rule1.getRuleSimple().getCalculationMode());
+		
+		rule1.setRuleDetails("Mascott Rober");
+		RuleSimple rsimp = rule1.getRuleSimple();
+		rule1.setRuleSimple(rsimp);
+		 ruleAPI.editRule(rule1);
+		Rule r1 = ruleAPI.getRule(rule1.getId());
+		Assert.assertEquals("abcd", r1.getRuleName());
+		Assert.assertEquals("Mascott Rober", r1.getRuleDetails());
+		Assert.assertEquals("individual", r1.getRuleSimple().getCalculationMode());
 		System.out.println("Running: testDummyRule"); 
 	}
 	/**

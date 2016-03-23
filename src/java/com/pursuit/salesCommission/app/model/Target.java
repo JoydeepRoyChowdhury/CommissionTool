@@ -21,7 +21,7 @@ import org.hibernate.annotations.IndexColumn;
 public class Target {
 	@Id
 	@GeneratedValue
-	@Column(name = "tgt_id")
+	@Column(name = "id")
 	private long id;
 
 	@OneToOne(cascade = { CascadeType.ALL })

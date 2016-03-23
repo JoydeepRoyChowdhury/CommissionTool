@@ -168,7 +168,11 @@ public void editRule(Rule rule) {
 			} else if (rule.getRuleType().equals("Simple") && rule.getRuleSimple().getCalculationMode().equals("rank")) 
 			{
 				newRule.setRuleType("Simple");
-				newRuleSimple.setCalculationMode("rank");
+				
+				RuleSimple simp = editRuleSimpleRank(rule.getRuleSimple());
+				newRule.setRuleSimple(simp);
+				
+				/*newRuleSimple.setCalculationMode("rank");
 				newRuleSimple.setPopulationType(rule.getRuleSimple().getPopulationType());
 				newRuleSimple.setPopulationUpto(rule.getRuleSimple().getPopulationUpto());
 				newRuleSimple.setRankCount(rule.getRuleSimple().getRankCount());
@@ -177,25 +181,26 @@ public void editRule(Rule rule) {
 				newRuleSimple.setFieldList(rule.getRuleSimple().getFieldList());
 				newRuleSimple.setQualifyingClause(rule.getRuleSimple().getQualifyingClause());
 				newRuleSimple.setAggregateFunctions(rule.getRuleSimple().getAggregateFunctions()); 
-				newRule.setRuleSimple(newRuleSimple);
-				//RuleSimple simpleRule = editSimpleRuleRank(rule.getRuleSimple());
-				//newRule.setRuleSimple(simpleRule);
+				newRule.setRuleSimple(newRuleSimple);*/
+				
 			} else if (rule.getRuleType().equals("Simple") && rule.getRuleSimple().getCalculationMode().equals("individual")) 
 			{
 				newRule.setRuleType("Simple");
 				
-				newRuleSimple.setCalculationMode("individual");
+				RuleSimple simp = editRuleSimpleIndividual(rule.getRuleSimple());
+				newRule.setRuleSimple(simp);
+				
+			/*	newRuleSimple.setCalculationMode("individual");
 				newRuleSimple.setRuleParameter(rule.getRuleSimple().getRuleParameter());
 				newRuleSimple.setFieldList(rule.getRuleSimple().getFieldList());
 				newRuleSimple.setQualifyingClause(rule.getRuleSimple().getQualifyingClause());
 				newRuleSimple.setAggregateFunctions(rule.getRuleSimple().getAggregateFunctions());
-				newRule.setRuleSimple(newRuleSimple);
-				//RuleSimple simpleRule = editSimpleRuleIndivdual(rule.getRuleSimple());
-				//newRule.setRuleSimple(simpleRule);
-			}
+				newRule.setRuleSimple(newRuleSimple); */
+				
+			} 
 	
 		session.merge(newRule);
-		session.flush();
+		//session.flush();
 		tx.commit();
 	} catch (HibernateException e) {
 		if (tx != null)
@@ -206,6 +211,63 @@ public void editRule(Rule rule) {
 	}
 	
 } 
+private RuleSimple editRuleSimpleRank(RuleSimple simpRule) {
+	RuleSimple newsimp = new 	RuleSimple();
+	Session session = sessionFactory.openSession();
+	Transaction tx = null;	
+	try {
+		tx = session.beginTransaction();
+		newsimp = (RuleSimple) session.get(RuleSimple.class, simpRule.getId());
+		newsimp.setCalculationMode("rank");
+		newsimp.setPopulationType(simpRule.getPopulationType());
+		newsimp.setPopulationUpto(simpRule.getPopulationUpto());
+		newsimp.setRankCount(simpRule.getRankCount());
+		newsimp.setRankingType(simpRule.getRankingType());
+		newsimp.setRuleParameter(simpRule.getRuleParameter());
+		newsimp.setFieldList(simpRule.getFieldList());
+		newsimp.setQualifyingClause(simpRule.getQualifyingClause());
+		newsimp.setAggregateFunctions(simpRule.getAggregateFunctions()); 
+		
+		session.merge(newsimp);
+		
+		//session.flush();
+		tx.commit();
+	} catch (HibernateException e) {
+		if (tx != null)
+			tx.rollback();
+		e.printStackTrace();
+	} finally {   
+		session.close();
+	}
+		
+ return newsimp;
+}
+private RuleSimple editRuleSimpleIndividual(RuleSimple simpRule) {
+	RuleSimple newsimp = new 	RuleSimple();
+	Session session = sessionFactory.openSession();
+	Transaction tx = null;	
+	try {
+		tx = session.beginTransaction();
+		newsimp = (RuleSimple) session.get(RuleSimple.class, simpRule.getId());
+		newsimp.setCalculationMode("individual");
+		newsimp.setRuleParameter(simpRule.getRuleParameter());
+		newsimp.setFieldList(simpRule.getFieldList());
+		newsimp.setQualifyingClause(simpRule.getQualifyingClause());
+		newsimp.setAggregateFunctions(simpRule.getAggregateFunctions());
+		
+		session.merge(newsimp);
+		
+		tx.commit();
+	} catch (HibernateException e) {
+		if (tx != null)
+			tx.rollback();
+		e.printStackTrace();
+	} finally {   
+		session.close();
+	}
+		
+ return newsimp;
+}
 	/**
 	 * Method for getting list of rules
 	 * 

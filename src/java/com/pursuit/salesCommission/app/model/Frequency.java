@@ -11,7 +11,7 @@ import javax.persistence.Table;
 public class Frequency {
 	@Id
 	@GeneratedValue
-	@Column(name = "freq_id")
+	@Column(name = "id")
 	private long id;
 
 	@Column(name = "frequencyName")

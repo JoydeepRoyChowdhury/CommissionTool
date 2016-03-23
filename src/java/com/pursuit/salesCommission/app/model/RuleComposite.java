@@ -18,7 +18,7 @@ import org.hibernate.annotations.IndexColumn;
 public class RuleComposite {
 	@Id
 	@GeneratedValue
-	@Column(name = "rule_comp_id")
+	@Column(name = "id")
 	private long id;
 
 	@OneToMany(cascade = { CascadeType.ALL })

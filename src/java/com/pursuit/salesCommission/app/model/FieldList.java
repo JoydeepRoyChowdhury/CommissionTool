@@ -12,7 +12,7 @@ public class FieldList {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "field_list_id")
+	@Column(name = "id")
 	private long id;
 
 	@Column(name = "fieldName")

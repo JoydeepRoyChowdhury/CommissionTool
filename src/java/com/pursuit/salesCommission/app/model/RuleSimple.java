@@ -26,7 +26,7 @@ import javax.persistence.AccessType;
 public class RuleSimple {
 	@Id
 	@GeneratedValue
-	@Column(name = "rule_simp_id")
+	@Column(name = "id")
 	private long id;
 
 	@Column(name = "calculationMode")

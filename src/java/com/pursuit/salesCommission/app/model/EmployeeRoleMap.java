@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class EmployeeRoleMap {
 	@Id
 	@GeneratedValue
-	@Column(name = "er_map_id")
+	@Column(name = "id")
 	private long id;
 
 	@OneToOne(cascade = CascadeType.ALL)

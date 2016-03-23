@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class RuleAssignmentParameter {
 	@Id
 	@GeneratedValue
-	@Column(name = "ass_param_id")
+	@Column(name = "id")
 	private long id;
 
 	@Column(name = "parameterName")

@@ -20,7 +20,7 @@ import org.hibernate.annotations.IndexColumn;
 public class RuleAssignmentDetails {
 	@Id
 	@GeneratedValue
-	@Column(name = "assn_dtl_id")
+	@Column(name = "id")
 	private long id;
 
 	@OneToOne(cascade = CascadeType.ALL)

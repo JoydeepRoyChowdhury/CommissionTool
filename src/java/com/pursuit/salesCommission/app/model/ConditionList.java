@@ -14,7 +14,7 @@ public class ConditionList {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "condition_id")
+	@Column(name = "id")
 	private long id;
 
 	@Type(type = "org.hibernate.type.NumericBooleanType")

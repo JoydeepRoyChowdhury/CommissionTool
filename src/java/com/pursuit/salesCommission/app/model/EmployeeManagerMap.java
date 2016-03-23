@@ -20,7 +20,7 @@ import javax.persistence.Table;
 public class EmployeeManagerMap {
 	@Id
 	@GeneratedValue
-	@Column(name = "em_map_id")
+	@Column(name = "id")
 	private long id;
 
 	@OneToOne(cascade = CascadeType.ALL)

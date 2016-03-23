@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class QualifyingClause {
 	@Id
 	@GeneratedValue
-	@Column(name = "clause_id")
+	@Column(name = "id")
 	private long id;
 
 	@Column(name = "value")

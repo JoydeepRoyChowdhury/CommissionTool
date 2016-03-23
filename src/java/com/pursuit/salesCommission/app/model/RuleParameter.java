@@ -12,7 +12,7 @@ public class RuleParameter {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "rule_param_id")
+	@Column(name = "id")
 	private long id;
 
 	@Column(name = "parameterName")

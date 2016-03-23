@@ -14,7 +14,7 @@ import org.hibernate.annotations.IndexColumn;
 public class Employee {
 	@Id
 	@GeneratedValue
-	@Column(name = "emp_id")
+	@Column(name = "id")
 	private long id;
 
 	@Column(name = "employeeName")

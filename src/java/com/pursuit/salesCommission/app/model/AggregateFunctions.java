@@ -11,7 +11,7 @@ import javax.persistence.Table;
 public class AggregateFunctions {
 	@Id
 	@GeneratedValue
-	@Column(name = "aggrt_fn_id")
+	@Column(name = "id")
 	private long id;
 
 	@Column(name = "functionName")

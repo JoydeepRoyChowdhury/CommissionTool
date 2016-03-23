@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class RuleAssignment {
 	@Id
 	@GeneratedValue
-	@Column(name = "rule_ass_id")
+	@Column(name = "id")
 	private long id;
 
 	@OneToOne(cascade = CascadeType.ALL)
