@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 import com.pursuit.salesCommission.app.model.AggregateFunctions;
 import com.pursuit.salesCommission.app.model.ConditionList;
 import com.pursuit.salesCommission.app.model.FieldList;
+import com.pursuit.salesCommission.app.model.RuleParameter;
 import com.pursuit.salesCommission.app.model.RuleSimple;
 
 @Component
@@ -40,11 +41,12 @@ public class RuleSimpleAPI {
 		tx = session.beginTransaction();
 		return (RuleSimple) session.get(RuleSimple.class, ruleSimpleID);
 	}
+	
 
 	/**
 	 * Method for getting list of simple rules
 	 * 
-	 * @return
+	 * @return simpRules
 	 */
 	public List<RuleSimple> listOfSimpleRules() {
 
@@ -63,7 +65,7 @@ public class RuleSimpleAPI {
 	/**
 	 * Method for getting list of aggregate functions
 	 * 
-	 * @return
+	 * @return aggregatetFunction
 	 */
 	public List<AggregateFunctions> listOfAggregateFunctions() {
 
@@ -71,18 +73,35 @@ public class RuleSimpleAPI {
 		Transaction tx = null;
 		tx = session.beginTransaction();
 		List aggregatetFunction = session.createQuery("FROM AggregateFunctions").list();
-		//for (Iterator iterator = aggregatetFunction.iterator(); iterator.hasNext();) {
-		//	AggregateFunctions agrFn = (AggregateFunctions) iterator.next();
-		//	logger.debug("GET THE RULE DETAILS FROM DATABASE" + agrFn.getId() + agrFn.getFunctionName());
+		for (Iterator iterator = aggregatetFunction.iterator(); iterator.hasNext();) {
+			AggregateFunctions agrFn = (AggregateFunctions) iterator.next();
+			logger.debug("GET THE RULE DETAILS FROM DATABASE" + agrFn.getId() + agrFn.getFunctionName());
 
-		//}
+		}
 		return aggregatetFunction;
 	}
+	/**
+	 * Method for getting list of aggregate functions
+	 * 
+	 * @return aggregatetFunction
+	 */
+	public List<AggregateFunctions> listOfAggregateFunctionsByID(long ruleSimpID) {
 
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		tx = session.beginTransaction();
+		List aggregatetFunction = session.createQuery("FROM AggregateFunctions WHERE RULE_SIMP_ID =" + ruleSimpID).list();
+		for (Iterator iterator = aggregatetFunction.iterator(); iterator.hasNext();) {
+			AggregateFunctions agrFn = (AggregateFunctions) iterator.next();
+			logger.debug("GET THE RULE DETAILS FROM DATABASE" + agrFn.getId() + agrFn.getFunctionName());
+
+		}
+		return aggregatetFunction;
+	}
 	/**
 	 * Method for getting list of conditions
 	 * 
-	 * @return
+	 * @return conditionList
 	 */
 	public List<ConditionList> listOfConditions() {
 
@@ -101,7 +120,7 @@ public class RuleSimpleAPI {
 	/**
 	 * Method for getting list of fields
 	 * 
-	 * @return
+	 * @return fieldList
 	 */
 	public List<FieldList> listOfFields() {
 

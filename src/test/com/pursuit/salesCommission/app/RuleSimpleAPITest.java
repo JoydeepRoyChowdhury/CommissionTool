@@ -4,6 +4,7 @@
 package com.pursuit.salesCommission.app;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.junit.Assert;
@@ -44,19 +45,24 @@ public class RuleSimpleAPITest {
 	 * ruleSimpleApi.getRuleSimple(4);
 	 * Assert.assertEquals("Individual",rsimp.getCalculationMode()); }
 	 */
-	@Test
+/*	@Test
 	public void testlistOfSimpleRules() {
 
 		List<RuleSimple> api = ruleSimpleApi.listOfSimpleRules();
 		Assert.assertEquals(1, api.size());
-	}
+	} */
 	@Test
 	public void testlistOfAggregateFunctions() {
 
-		List<AggregateFunctions> api = ruleSimpleApi.listOfAggregateFunctions();
+		List<AggregateFunctions> api = ruleSimpleApi.listOfAggregateFunctionsByID(8);
+		for (Iterator iterator =api.iterator(); iterator.hasNext();) {
+			AggregateFunctions agrFn = (AggregateFunctions) iterator.next();
+			System.out.println("GET THE RULE DETAILS FROM DATABASE     " + agrFn.getId() + agrFn.getFunctionName());
+
+		}
 		Assert.assertEquals(2, api.size());
 	}
-	@Test
+/*	@Test
 	public void testlistOfConditions() {
 
 		List<ConditionList> api = ruleSimpleApi.listOfConditions();
@@ -68,5 +74,5 @@ public class RuleSimpleAPITest {
 		List<FieldList> api = ruleSimpleApi.listOfFields();
 		Assert.assertEquals(3, api.size());
 	}
-	
+	*/
 }

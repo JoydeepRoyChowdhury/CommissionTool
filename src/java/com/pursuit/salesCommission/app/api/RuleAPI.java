@@ -148,8 +148,7 @@ public class RuleAPI {
 public void editRule(Rule rule) {
 
 	Session session = sessionFactory.openSession();
-	Transaction tx = null;
-	
+	Transaction tx = null;	
 	RuleSimple newRuleSimple = new RuleSimple();
 	try {
 		tx = session.beginTransaction();
@@ -174,6 +173,10 @@ public void editRule(Rule rule) {
 				newRuleSimple.setPopulationUpto(rule.getRuleSimple().getPopulationUpto());
 				newRuleSimple.setRankCount(rule.getRuleSimple().getRankCount());
 				newRuleSimple.setRankingType(rule.getRuleSimple().getRankingType());
+				newRuleSimple.setRuleParameter(rule.getRuleSimple().getRuleParameter());
+				newRuleSimple.setFieldList(rule.getRuleSimple().getFieldList());
+				newRuleSimple.setQualifyingClause(rule.getRuleSimple().getQualifyingClause());
+				newRuleSimple.setAggregateFunctions(rule.getRuleSimple().getAggregateFunctions()); 
 				newRule.setRuleSimple(newRuleSimple);
 				//RuleSimple simpleRule = editSimpleRuleRank(rule.getRuleSimple());
 				//newRule.setRuleSimple(simpleRule);
@@ -182,19 +185,23 @@ public void editRule(Rule rule) {
 				newRule.setRuleType("Simple");
 				
 				newRuleSimple.setCalculationMode("individual");
+				newRuleSimple.setRuleParameter(rule.getRuleSimple().getRuleParameter());
+				newRuleSimple.setFieldList(rule.getRuleSimple().getFieldList());
+				newRuleSimple.setQualifyingClause(rule.getRuleSimple().getQualifyingClause());
+				newRuleSimple.setAggregateFunctions(rule.getRuleSimple().getAggregateFunctions());
 				newRule.setRuleSimple(newRuleSimple);
 				//RuleSimple simpleRule = editSimpleRuleIndivdual(rule.getRuleSimple());
 				//newRule.setRuleSimple(simpleRule);
 			}
 	
-		session.update(newRule);
+		session.merge(newRule);
 		session.flush();
 		tx.commit();
 	} catch (HibernateException e) {
 		if (tx != null)
 			tx.rollback();
 		e.printStackTrace();
-	} finally {
+	} finally {   
 		session.close();
 	}
 	
@@ -226,10 +233,22 @@ public void editRule(Rule rule) {
 	 * @return
 	 */
 	public Rule getRule(long ruleID) {
+		Rule newRule = new Rule();
+
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
-		tx = session.beginTransaction();
-		return (Rule) session.get(Rule.class, ruleID);
+		try {
+			tx = session.beginTransaction();
+		newRule = (Rule) session.get(Rule.class, ruleID);
+		tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return newRule;
 	}
 
 	/**

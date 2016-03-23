@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -44,22 +45,22 @@ public class RuleSimple {
 	private int populationUpto;
 	
 	
-	@OneToMany(cascade = { CascadeType.ALL }, orphanRemoval = true)
+	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER, orphanRemoval = true)
 	@JoinColumn(name = "RULE_SIMP_ID")
 	@IndexColumn(name = "detailSrl")
 	private List<RuleParameter> ruleParameter;
 
-	@OneToMany(cascade = { CascadeType.ALL }, orphanRemoval = true)
+	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER, orphanRemoval = true)
 	@JoinColumn(name = "RULE_SIMP_ID")
 	@IndexColumn(name = "detailSrl")
 	private List<QualifyingClause> qualifyingClause;
 
-	@OneToMany(cascade = { CascadeType.ALL }, orphanRemoval = true)
+	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER, orphanRemoval = true)
 	@JoinColumn(name = "RULE_SIMP_ID")
 	@IndexColumn(name = "detailSrl")
 	private List<AggregateFunctions> aggregateFunctions;
 
-	@OneToMany(cascade = { CascadeType.ALL }, orphanRemoval = true)
+	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER, orphanRemoval = true)
 	@JoinColumn(name = "RULE_SIMP_ID")
 	@IndexColumn(name = "detailSrl")
 	private List<FieldList> fieldList;
