@@ -169,38 +169,19 @@ public void editRule(Rule rule) {
 			{
 				newRule.setRuleType("Simple");
 				
-				RuleSimple simp = editRuleSimpleRank(rule.getRuleSimple());
-				newRule.setRuleSimple(simp);
-				
-				/*newRuleSimple.setCalculationMode("rank");
-				newRuleSimple.setPopulationType(rule.getRuleSimple().getPopulationType());
-				newRuleSimple.setPopulationUpto(rule.getRuleSimple().getPopulationUpto());
-				newRuleSimple.setRankCount(rule.getRuleSimple().getRankCount());
-				newRuleSimple.setRankingType(rule.getRuleSimple().getRankingType());
-				newRuleSimple.setRuleParameter(rule.getRuleSimple().getRuleParameter());
-				newRuleSimple.setFieldList(rule.getRuleSimple().getFieldList());
-				newRuleSimple.setQualifyingClause(rule.getRuleSimple().getQualifyingClause());
-				newRuleSimple.setAggregateFunctions(rule.getRuleSimple().getAggregateFunctions()); 
-				newRule.setRuleSimple(newRuleSimple);*/
-				
+				RuleSimple simp = editRuleSimpleRank(session, rule.getRuleSimple());
+				newRule.setRuleSimple(simp);			
+							
 			} else if (rule.getRuleType().equals("Simple") && rule.getRuleSimple().getCalculationMode().equals("individual")) 
 			{
 				newRule.setRuleType("Simple");
 				
-				RuleSimple simp = editRuleSimpleIndividual(rule.getRuleSimple());
+				RuleSimple simp = editRuleSimpleIndividual(session, rule.getRuleSimple());
 				newRule.setRuleSimple(simp);
-				
-			/*	newRuleSimple.setCalculationMode("individual");
-				newRuleSimple.setRuleParameter(rule.getRuleSimple().getRuleParameter());
-				newRuleSimple.setFieldList(rule.getRuleSimple().getFieldList());
-				newRuleSimple.setQualifyingClause(rule.getRuleSimple().getQualifyingClause());
-				newRuleSimple.setAggregateFunctions(rule.getRuleSimple().getAggregateFunctions());
-				newRule.setRuleSimple(newRuleSimple); */
-				
+								
 			} 
 	
 		session.merge(newRule);
-		//session.flush();
 		tx.commit();
 	} catch (HibernateException e) {
 		if (tx != null)
@@ -211,12 +192,8 @@ public void editRule(Rule rule) {
 	}
 	
 } 
-private RuleSimple editRuleSimpleRank(RuleSimple simpRule) {
+private RuleSimple editRuleSimpleRank(Session session, RuleSimple simpRule) {
 	RuleSimple newsimp = new 	RuleSimple();
-	Session session = sessionFactory.openSession();
-	Transaction tx = null;	
-	try {
-		tx = session.beginTransaction();
 		newsimp = (RuleSimple) session.get(RuleSimple.class, simpRule.getId());
 		newsimp.setCalculationMode("rank");
 		newsimp.setPopulationType(simpRule.getPopulationType());
@@ -230,24 +207,12 @@ private RuleSimple editRuleSimpleRank(RuleSimple simpRule) {
 		
 		session.merge(newsimp);
 		
-		//session.flush();
-		tx.commit();
-	} catch (HibernateException e) {
-		if (tx != null)
-			tx.rollback();
-		e.printStackTrace();
-	} finally {   
-		session.close();
-	}
-		
  return newsimp;
 }
-private RuleSimple editRuleSimpleIndividual(RuleSimple simpRule) {
+private RuleSimple editRuleSimpleIndividual(Session session, RuleSimple simpRule) {
+		
 	RuleSimple newsimp = new 	RuleSimple();
-	Session session = sessionFactory.openSession();
-	Transaction tx = null;	
-	try {
-		tx = session.beginTransaction();
+	
 		newsimp = (RuleSimple) session.get(RuleSimple.class, simpRule.getId());
 		newsimp.setCalculationMode("individual");
 		newsimp.setRuleParameter(simpRule.getRuleParameter());
@@ -256,15 +221,6 @@ private RuleSimple editRuleSimpleIndividual(RuleSimple simpRule) {
 		newsimp.setAggregateFunctions(simpRule.getAggregateFunctions());
 		
 		session.merge(newsimp);
-		
-		tx.commit();
-	} catch (HibernateException e) {
-		if (tx != null)
-			tx.rollback();
-		e.printStackTrace();
-	} finally {   
-		session.close();
-	}
 		
  return newsimp;
 }

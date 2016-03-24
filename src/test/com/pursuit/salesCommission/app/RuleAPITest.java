@@ -266,8 +266,8 @@ public class RuleAPITest extends TestCase {
 
 		rule.setRuleType("s");
 		RuleSimple ruleSimple = new RuleSimple();
-		ruleSimple.setCalculationMode("i");
-		//ruleSimple.setPopulationUpto(6);
+		ruleSimple.setCalculationMode("r");
+		ruleSimple.setPopulationUpto(6);
 		
 		List<RuleParameter> rpm = new ArrayList<>();
 		RuleParameter rl1 = new RuleParameter();
@@ -330,22 +330,21 @@ public class RuleAPITest extends TestCase {
 		long id = ruleAPI.createRule(rule);
 		rule.setId(id);
 		Rule rule1 = ruleAPI.getRule(id);
-		//RuleSimple rsimp1 = ruleSimpleAPI.getRuleSimple(rule1.getRuleSimple().getId());
-		System.out.println("################################"+ rule1.getRuleSimple().getId());
+		
 		//Assert.assertEquals("Details of Rule", rule1.getRuleDetails());
 		//Assert.assertEquals("rank", rule1.getRuleSimple().getCalculationMode());
 		
 		rule1.setRuleDetails("Mascott Rober");
 		RuleSimple rsimp = rule1.getRuleSimple();
-		//rsimp.setPopulationUpto(30);
+		rsimp.setPopulationUpto(30);
 		rsimp.setPopulationType("best of 5 person");
 		rule1.setRuleSimple(rsimp);
 		 ruleAPI.editRule(rule1);
 		Rule r1 = ruleAPI.getRule(rule1.getId());
 		Assert.assertEquals("abcd", r1.getRuleName());
 		Assert.assertEquals("Mascott Rober", r1.getRuleDetails());
-		Assert.assertEquals("individual", r1.getRuleSimple().getCalculationMode());
-		//Assert.assertEquals(30, r1.getRuleSimple().getPopulationUpto());
+		Assert.assertEquals("rank", r1.getRuleSimple().getCalculationMode());
+		Assert.assertEquals(30, r1.getRuleSimple().getPopulationUpto());
 		System.out.println("Running: testDummyRule"); 
 	}
 	
