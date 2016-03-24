@@ -1,6 +1,12 @@
 
 package com.pursuit.salesCommission.ui;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +23,10 @@ import com.pursuit.salesCommission.app.model.RuleSimple;
 import com.pursuit.salesCommission.app.model.RuleUI;
 import com.pursuit.salesCommission.app.model.AggregateFunctions;
 import com.pursuit.salesCommission.app.model.ParameterUI;
+import com.pursuit.salesCommission.app.model.Person;
+import com.pursuit.salesCommission.app.model.PersonListContainer;
 import com.pursuit.salesCommission.app.model.Rule;
+import com.pursuit.salesCommission.app.model.RuleParameter;
 
 @Controller
 public class RuleController {
@@ -28,21 +37,46 @@ public class RuleController {
 	
 	
 	@RequestMapping(value = "/simpleRule", method = RequestMethod.GET)
-	public String simpleRule(ModelMap model) {
+	public String simpleRule(ModelMap model, HttpSession session,  HttpServletRequest request, String message ) {
+	   
+		  if( session.getAttribute("personListContainer") == null )
+	            session.setAttribute("personListContainer", getDummyPersonListContainer());
+	        model.addAttribute("personListContainer", (PersonListContainer)session.getAttribute("personListContainer"));
+	        if( message != null )
+	            model.addAttribute("message", message);
+	        model.addAttribute("cp", request.getContextPath());
+		
+		
+		
 		model.addAttribute("listRule1", ruleSimpleApi.listOfAggregateFunctions());
 		model.addAttribute("listRule2",ruleSimpleApi.listOfFields());
 		
 		System.out.println(".......servlet running.......");
 		return "simpRuleDetails";
 	}
+	
+	  private PersonListContainer getDummyPersonListContainer() {
+	        List<RuleParameter> personList = new ArrayList<RuleParameter>();
+	        for( int i=0; i<1; i++ ) {
+	           personList.add(new RuleParameter() );
+	        }
+	        return new PersonListContainer(personList);
+	    }
 
 	@RequestMapping(value = "/submitSimpRule", method = RequestMethod.POST)
-	public String addRule(@ModelAttribute("SpringWeb") RuleUI ruleUI, ModelMap model) {
+	public String addRule(@ModelAttribute("SpringWeb") RuleUI ruleUI, PersonListContainer personListContainer,HttpSession session, ModelMap model) {
+	
+	       for( RuleParameter p : personListContainer.getPersonList() ) {
+	            System.out.println("ParameterName: " + p.getParameterName());
+	            System.out.println("ParameterValue: " + p.getParameterValue());
+	        }
+	        session.setAttribute("personListContainer",personListContainer);
 		
 			model.addAttribute("id", ruleUI.getId());
 			model.addAttribute("ruleName", ruleUI.getRuleName());
+			System.out.println("***************************" +ruleUI.getRuleName());
 			model.addAttribute("description", ruleUI.getDescription());
-			System.out.println("*********" +ruleUI.getDescription());
+			System.out.println("***************************" +ruleUI.getDescription());
 			model.addAttribute("ruleDetails", ruleUI.getRuleDetails());
 			model.addAttribute("ruleType", ruleUI.getRuleType());
 									
@@ -56,7 +90,7 @@ public class RuleController {
 			model.addAttribute("compensationFormula", ruleUI.getCompensationFormula());
 			model.addAttribute("compensationParameter", ruleUI.getCompensationParameter());
 			model.addAttribute("calculationMode", ruleUI.getCalculationMode());
-	
+			System.out.println("***************************" +ruleUI.getCalculationMode());
 		
 			
 			Rule rule = new Rule();
@@ -74,35 +108,44 @@ public class RuleController {
 			
 			RuleSimple ruleSimple = new RuleSimple();
 			
+			ruleSimple.setRuleParameter(personListContainer.getPersonList());
 			ruleSimple.setRankCount(ruleUI.getRankCount());
 			ruleSimple.setRankingType(ruleUI.getRankType());
 			ruleSimple.setPopulationType(ruleUI.getPopulationType());
 			ruleSimple.setPopulationUpto(ruleUI.getPopulationUpto());
 			ruleSimple.setCalculationMode(ruleUI.getCalculationMode());
-			
 			rule.setRuleSimple(ruleSimple);
 			
 		
 			ruleApi.createRule(rule);
 			//logger.info("A NEW rule HAS CREATED" + rule);
-		return "redirect:/SimpRuleList";
+		return "redirect:/RuleList";
 	}
+	
 	
 	@RequestMapping(value = "/SimpRuleList", method = RequestMethod.GET)
 	public String listSimpRules(ModelMap model) {
 		model.addAttribute("listRule", ruleApi.listRules());
 		model.addAttribute("listSimpRule", ruleSimpleApi.listOfSimpleRules());
 		//logger.info("A NEW List HAS CREATED");
+		
 		System.out.println("*****************ListDone**********************");
 		return "compRule";
 	}
 	
+
 	@RequestMapping(value = "/editSimple/{id}", method = RequestMethod.GET)
-	public String EditSimpRule(@PathVariable("id") int id, ModelMap model){
+	public String EditSimpRule(@PathVariable("id") int id, ModelMap model, HttpSession session,  HttpServletRequest request, String message){
 		model.addAttribute("listRule3", ruleApi.getRule(id));
-		//model.addAttribute("listRule2", ruleApi.listRules());
-		//model.addAttribute("listSimpRule", ruleSimpleApi.listOfSimpleRules());
-		//logger.info("A NEW List HAS CREATED");
+		model.addAttribute("listRule1", ruleSimpleApi.listOfAggregateFunctions());
+		model.addAttribute("listRule2",ruleSimpleApi.listOfFields());
+		
+		 if( session.getAttribute("personListContainer") == null )
+	            session.setAttribute("personListContainer", getDummyPersonListContainer());
+	        model.addAttribute("personListContainer", (PersonListContainer)session.getAttribute("personListContainer"));
+	        if( message != null )
+	            model.addAttribute("message", message);
+	        model.addAttribute("cp", request.getContextPath());
 		System.out.println("*****************ListDone**********************");
 		return "EditSimple";
 	}
@@ -160,11 +203,11 @@ public class RuleController {
 			rule.setCompensationParameter(ruleUI.getCompensationParameter());
 
 			ruleApi.createRule(rule);
-		return "redirect:/CompRuleList";
+		return "redirect:/RuleList";
 	}
 	
 	
-	@RequestMapping(value = "/CompRuleList", method = RequestMethod.GET)
+	@RequestMapping(value = "/RuleList", method = RequestMethod.GET)
 	public String listRules(ModelMap model) {
 		model.addAttribute("listRule", ruleApi.listRules());
 		model.addAttribute("listSimpRule", ruleSimpleApi.listOfSimpleRules());

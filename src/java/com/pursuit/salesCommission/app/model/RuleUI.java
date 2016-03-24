@@ -1,12 +1,34 @@
 
 package com.pursuit.salesCommission.app.model;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.*;
 
 
 public class RuleUI {
+	
+	  private List<ParameterUI> parameterList = new LinkedList<ParameterUI>();
+	  
+	   
+	    public RuleUI(List<ParameterUI> parameterList) {
+	        this.setParameterList(parameterList);
+	    }
+	 
+		public RuleUI() {
+		}
+
+		public List<ParameterUI> getParameterList() {
+			return parameterList;
+		}
+
+		public void setParameterList(List<ParameterUI> parameterList) {
+			this.parameterList = parameterList;
+		}
+	
+	
+	
 	
 	private long id;
 	private String ruleName;
@@ -37,8 +59,7 @@ public class RuleUI {
 	
 	
 
-	public RuleUI() {
-	}
+
 
 	/**
 	 * @return the id

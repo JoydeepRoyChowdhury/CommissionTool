@@ -20,6 +20,49 @@ td {
 </style>
 
 		<script>
+		
+        function rowAdded(rowElement) {
+            //clear the imput fields for the row
+            $(rowElement).find("input").val('');
+            //may want to reset <select> options etc
+
+            //in fact you may want to submit the form
+            saveNeeded();
+        }
+        function rowRemoved(rowElement) {
+            saveNeeded();
+        }
+
+        function saveNeeded() {
+            $('#submit').css('color','red');
+            $('#submit').css('font-weight','bold');
+            if( $('#submit').val().indexOf('!') != 0 ) {
+                $('#submit').val( '!' + $('#submit').val() );
+            }
+        }
+
+        function beforeSubmit() {
+            alert('submitting....');
+            return true;
+        }
+
+        $(document).ready( function() {
+            var config = {
+                rowClass : 'ruleParameter',
+                addRowId : 'addPerson',
+                removeRowClass : 'removePerson',
+                formId : 'personListForm',
+                rowContainerId : 'personListContainer',
+                indexedPropertyName : 'personList',
+                indexedPropertyMemberNames : 'parameterName,parameterValue',
+                rowAddedListener : rowAdded,
+                rowRemovedListener : rowRemoved,
+                beforeSubmit : beforeSubmit
+            };
+            new DynamicListHelper(config);
+        });
+		
+		
 			var count = "1";
 			function addRow2(Quali_input) {
 				var tbody = document.getElementById(Quali_input);
@@ -59,7 +102,7 @@ td {
 		</script>
 
 
-<form action="/CommissionTool/submitSimpRule" method="post">
+		 <form:form action="/CommissionTool/submitSimpRule" modelAttribute="personListContainer" method="post" id="personListForm">
 			<div style="height: 580px; overflow: auto;">
 				
 					<h1 align="center">Compensation Rule Details</h1>
@@ -82,22 +125,35 @@ td {
 							<td><b>Rule Type:</b></td>
 							<td>Simple<input type="hidden" name="ruleType" value="s"></td>
 						</tr>
-						
-						<tr>
-							<td><b>Parameter</b></td>
-							<td>Parameter Name&nbsp;<input TYPE="text" name="parameterName">&nbsp;Default Value&nbsp;<INPUT TYPE="text" name=" "></td>
-						</tr>
-				
+							
 						<tr>
 							<td><b>Parameters</b></td>
 							<td>
-								<table ID="Par_input">
-									<tr>
-										<td><input type="Button" onClick="addRow1('Par_input')"
-											VALUE="Add Row"></td>
-									</tr>
-									
-								</table>
+								<table>
+                <tbody id="personListContainer">
+                    <c:forEach items="${personListContainer.personList}" var="RuleParameter" varStatus="i" begin="0" >
+                        <tr class="ruleParameter">    
+                            <td>Parameter Name&nbsp;<form:input path="personList[${i.index}].parameterName" id="parameterName${i.index}" /></td>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;Parameter Value&nbsp;<form:input path="personList[${i.index}].parameterValue" id="parameterValue${i.index}" /></td>
+                            
+                            <td><a href="#" class="removePerson">&nbsp;Remove</a></td>
+                        </tr>
+                    </c:forEach>
+                   
+                    <c:if test="${personListContainer.personList.size() == 0}">
+                        <tr class="person defaultRow">    
+                            <td>Parameter Name&nbsp;<input type="text" name="personList[].parameterName" value="" /></td>
+                            <td>&nbsp;&nbsp;Parameter Value&nbsp;<input type="text" name="personList[].parameterValue" value="" /></td>
+ 
+                            <td><a href="#" class="removePerson">Remove</a></td>
+                        </tr>
+                    </c:if>
+                    
+                </tbody>
+          </table>
+		
+            <a href="#" id="addPerson">Add Parameters</a>&nbsp;&nbsp;
+             <a href="?f=">Reset List</a>
 							</td>
 						</tr>
 	
@@ -177,7 +233,7 @@ td {
 				
 				</div>
 		
-		</form>
+		</form:form>
 
 
 	</tiles:putAttribute>
