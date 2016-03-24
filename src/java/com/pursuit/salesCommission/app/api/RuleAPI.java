@@ -1,6 +1,6 @@
 package com.pursuit.salesCommission.app.api;
 
-import java.util.ArrayList;
+
 import java.util.Iterator;
 import java.util.List;
 
@@ -12,11 +12,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.pursuit.salesCommission.app.model.AggregateFunctions;
-//import com.pursuit.salesCommission.app.model.Employee;
-import com.pursuit.salesCommission.app.model.QualifyingClause;
 import com.pursuit.salesCommission.app.model.Rule;
-import com.pursuit.salesCommission.app.model.RuleParameter;
 import com.pursuit.salesCommission.app.model.RuleSimple;
 
 @Component
@@ -43,30 +39,27 @@ public class RuleAPI {
 		Rule newRule = new Rule();
 		try {
 			tx = session.beginTransaction();
-				newRule.setRuleName(rule.getRuleName());
-				newRule.setDescription(rule.getDescription());
-				newRule.setRuleDetails(rule.getRuleDetails());
-				newRule.setCompensationType(rule.getCompensationType());
-				newRule.setFixedCompValue(rule.getFixedCompValue());
-				newRule.setCompensationFormula(rule.getCompensationFormula());
-				newRule.setCompensationParameter(rule.getCompensationParameter());
-				if (rule.getRuleType().equals("c")) 
-				{
-					newRule.setConnectionType(rule.getConnectionType());
-					newRule.setRuleComposite(rule.getRuleComposite());
-					newRule.setRuleType("Composite");
-				} else if (rule.getRuleType().equals("s") && rule.getRuleSimple().getCalculationMode().equals("r")) 
-				{
-					newRule.setRuleType("Simple");
-					RuleSimple simpleRule = createSimpleRuleRank(rule.getRuleSimple());
-					newRule.setRuleSimple(simpleRule);
-				} else if (rule.getRuleType().equals("s") && rule.getRuleSimple().getCalculationMode().equals("i")) 
-				{
-					newRule.setRuleType("Simple");
-					RuleSimple simpleRule = createSimpleRuleIndivdual(rule.getRuleSimple());
-					newRule.setRuleSimple(simpleRule);
-				}
-		
+			newRule.setRuleName(rule.getRuleName());
+			newRule.setDescription(rule.getDescription());
+			newRule.setRuleDetails(rule.getRuleDetails());
+			newRule.setCompensationType(rule.getCompensationType());
+			newRule.setFixedCompValue(rule.getFixedCompValue());
+			newRule.setCompensationFormula(rule.getCompensationFormula());
+			newRule.setCompensationParameter(rule.getCompensationParameter());
+			if (rule.getRuleType().equals("c")) {
+				newRule.setConnectionType(rule.getConnectionType());
+				newRule.setRuleComposite(rule.getRuleComposite());
+				newRule.setRuleType("Composite");
+			} else if (rule.getRuleType().equals("s") && rule.getRuleSimple().getCalculationMode().equals("r")) {
+				newRule.setRuleType("Simple");
+				RuleSimple simpleRule = createSimpleRuleRank(rule.getRuleSimple());
+				newRule.setRuleSimple(simpleRule);
+			} else if (rule.getRuleType().equals("s") && rule.getRuleSimple().getCalculationMode().equals("i")) {
+				newRule.setRuleType("Simple");
+				RuleSimple simpleRule = createSimpleRuleIndivdual(rule.getRuleSimple());
+				newRule.setRuleSimple(simpleRule);
+			}
+
 			session.save(newRule);
 			session.flush();
 			tx.commit();
@@ -79,54 +72,36 @@ public class RuleAPI {
 		}
 
 		return newRule.getId();
-		//return newRule;
-	} 
-	
+		
+	}
 
 	/**
-	 * Method for Create rule simple individual
+	 * Private Method for Create rule simple individual
 	 * 
 	 * @param simpRule
-	 * @return
+	 * @return newRuleSimple
 	 */
 	private RuleSimple createSimpleRuleIndivdual(RuleSimple simpRule) {
-		
+
 		RuleSimple newRuleSimple = new RuleSimple();
 		newRuleSimple.setCalculationMode("individual");
 		newRuleSimple.setRuleParameter(simpRule.getRuleParameter());
 		newRuleSimple.setFieldList(simpRule.getFieldList());
 		newRuleSimple.setQualifyingClause(simpRule.getQualifyingClause());
 		newRuleSimple.setAggregateFunctions(simpRule.getAggregateFunctions());
-		
-		
-		/*List<RuleParameter> rparam = simpRule.getRuleParameter();
-		List<RuleParameter> rparam1 = new ArrayList<>();
-		for (Iterator iterator = rparam.iterator(); iterator.hasNext();) {
-			RuleParameter rparam2 = (RuleParameter) iterator.next();
-			rparam1.add(rparam2);
-			}  
-		newRuleSimple.setRuleParameter(rparam1);
-		
-		List<AggregateFunctions> aggtfns = simpRule.getAggregateFunctions();
-		List<AggregateFunctions> aggtfns1 = new ArrayList<>();
-		for (Iterator iterator = aggtfns.iterator(); iterator.hasNext();) {
-			AggregateFunctions aggtfns2 = (AggregateFunctions) iterator.next();
-			aggtfns1.add(aggtfns2);
-			}  
-		newRuleSimple.setAggregateFunctions(aggtfns1); */
-		
-		
+
 		return newRuleSimple;
-	} 
+	}
 
 	/**
-	 * Method for Create rule simple rank
+	 * Private Method for Create rule simple rank
 	 * 
 	 * @param simpRule
-	 * @return
+	 * @return newRuleSimple
 	 */
 
 	private RuleSimple createSimpleRuleRank(RuleSimple simpRule) {
+		
 		RuleSimple newRuleSimple = new RuleSimple();
 		newRuleSimple.setCalculationMode("rank");
 		newRuleSimple.setAggregateFunctions(simpRule.getAggregateFunctions());
@@ -137,22 +112,23 @@ public class RuleAPI {
 		newRuleSimple.setRankCount(simpRule.getRankCount());
 		newRuleSimple.setRankingType(simpRule.getRankingType());
 		newRuleSimple.setRuleParameter(simpRule.getRuleParameter());
+		
 		return newRuleSimple;
 
 	}
-	
-/**
- * Method for editing rule
- * @param rule
- */
-public void editRule(Rule rule) {
 
-	Session session = sessionFactory.openSession();
-	Transaction tx = null;	
-	RuleSimple newRuleSimple = new RuleSimple();
-	try {
-		tx = session.beginTransaction();
-		Rule newRule = (Rule) session.get(Rule.class, rule.getId());
+	/**
+	 * Method for editing rule
+	 * 
+	 * @param rule
+	 */
+	public void editRule(Rule rule) {
+
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			Rule newRule = (Rule) session.get(Rule.class, rule.getId());
 			newRule.setRuleName(rule.getRuleName());
 			newRule.setDescription(rule.getDescription());
 			newRule.setRuleDetails(rule.getRuleDetails());
@@ -160,40 +136,45 @@ public void editRule(Rule rule) {
 			newRule.setFixedCompValue(rule.getFixedCompValue());
 			newRule.setCompensationFormula(rule.getCompensationFormula());
 			newRule.setCompensationParameter(rule.getCompensationParameter());
-			if (rule.getRuleType().equals("Composite")) 
-			{
+			if (rule.getRuleType().equals("Composite")) {
 				newRule.setConnectionType(rule.getConnectionType());
 				newRule.setRuleComposite(rule.getRuleComposite());
 				newRule.setRuleType("Composite");
-			} else if (rule.getRuleType().equals("Simple") && rule.getRuleSimple().getCalculationMode().equals("rank")) 
-			{
+			} else if (rule.getRuleType().equals("Simple")
+					&& rule.getRuleSimple().getCalculationMode().equals("rank")) {
 				newRule.setRuleType("Simple");
-				
+
 				RuleSimple simp = editRuleSimpleRank(session, rule.getRuleSimple());
-				newRule.setRuleSimple(simp);			
-							
-			} else if (rule.getRuleType().equals("Simple") && rule.getRuleSimple().getCalculationMode().equals("individual")) 
-			{
+				newRule.setRuleSimple(simp);
+
+			} else if (rule.getRuleType().equals("Simple")
+					&& rule.getRuleSimple().getCalculationMode().equals("individual")) {
 				newRule.setRuleType("Simple");
-				
+
 				RuleSimple simp = editRuleSimpleIndividual(session, rule.getRuleSimple());
 				newRule.setRuleSimple(simp);
-								
-			} 
-	
-		session.merge(newRule);
-		tx.commit();
-	} catch (HibernateException e) {
-		if (tx != null)
-			tx.rollback();
-		e.printStackTrace();
-	} finally {   
-		session.close();
+
+			}
+
+			session.merge(newRule);
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
 	}
-	
-} 
-private RuleSimple editRuleSimpleRank(Session session, RuleSimple simpRule) {
-	RuleSimple newsimp = new 	RuleSimple();
+/**
+ * Private method for edit simple rule with rank
+ * @param session
+ * @param simpRule
+ * @return newsimp
+ */
+	private RuleSimple editRuleSimpleRank(Session session, RuleSimple simpRule) {
+		RuleSimple newsimp = new RuleSimple();
 		newsimp = (RuleSimple) session.get(RuleSimple.class, simpRule.getId());
 		newsimp.setCalculationMode("rank");
 		newsimp.setPopulationType(simpRule.getPopulationType());
@@ -203,27 +184,34 @@ private RuleSimple editRuleSimpleRank(Session session, RuleSimple simpRule) {
 		newsimp.setRuleParameter(simpRule.getRuleParameter());
 		newsimp.setFieldList(simpRule.getFieldList());
 		newsimp.setQualifyingClause(simpRule.getQualifyingClause());
-		newsimp.setAggregateFunctions(simpRule.getAggregateFunctions()); 
-		
+		newsimp.setAggregateFunctions(simpRule.getAggregateFunctions());
+
 		session.merge(newsimp);
-		
- return newsimp;
-}
-private RuleSimple editRuleSimpleIndividual(Session session, RuleSimple simpRule) {
-		
-	RuleSimple newsimp = new 	RuleSimple();
-	
+
+		return newsimp;
+	}
+/**
+ * Private method for edit simple rule with individual
+ * @param session
+ * @param simpRule
+ * @return newsimp
+ */
+	private RuleSimple editRuleSimpleIndividual(Session session, RuleSimple simpRule) {
+
+		RuleSimple newsimp = new RuleSimple();
+
 		newsimp = (RuleSimple) session.get(RuleSimple.class, simpRule.getId());
 		newsimp.setCalculationMode("individual");
 		newsimp.setRuleParameter(simpRule.getRuleParameter());
 		newsimp.setFieldList(simpRule.getFieldList());
 		newsimp.setQualifyingClause(simpRule.getQualifyingClause());
 		newsimp.setAggregateFunctions(simpRule.getAggregateFunctions());
-		
+
 		session.merge(newsimp);
-		
- return newsimp;
-}
+
+		return newsimp;
+	}
+
 	/**
 	 * Method for getting list of rules
 	 * 
@@ -257,8 +245,8 @@ private RuleSimple editRuleSimpleIndividual(Session session, RuleSimple simpRule
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-		newRule = (Rule) session.get(Rule.class, ruleID);
-		tx.commit();
+			newRule = (Rule) session.get(Rule.class, ruleID);
+			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
@@ -271,6 +259,7 @@ private RuleSimple editRuleSimpleIndividual(Session session, RuleSimple simpRule
 
 	/**
 	 * Method for delete rule
+	 * 
 	 * @param ruleID
 	 */
 	public void deleteRule(long ruleID) {

@@ -3,7 +3,7 @@
  */
 package com.pursuit.salesCommission.app;
 
-import java.util.ArrayList;
+
 import java.util.Iterator;
 import java.util.List;
 
@@ -18,8 +18,6 @@ import com.pursuit.salesCommission.app.api.RuleSimpleAPI;
 import com.pursuit.salesCommission.app.model.AggregateFunctions;
 import com.pursuit.salesCommission.app.model.ConditionList;
 import com.pursuit.salesCommission.app.model.FieldList;
-import com.pursuit.salesCommission.app.model.QualifyingClause;
-import com.pursuit.salesCommission.app.model.Rule;
 import com.pursuit.salesCommission.app.model.RuleSimple;
 
 /**
@@ -41,38 +39,43 @@ public class RuleSimpleAPITest {
 	 */
 
 	/*
-	 * @Test public void testGetSimpleRule() { RuleSimple rsimp =
-	 * ruleSimpleApi.getRuleSimple(4);
+	 * @Test public void testGetSimpleRule() {
+	 * 
+	 * RuleSimple rsimp = ruleSimpleApi.getRuleSimple(4);
 	 * Assert.assertEquals("Individual",rsimp.getCalculationMode()); }
 	 */
-/*	@Test
+
+	@Test
 	public void testlistOfSimpleRules() {
 
 		List<RuleSimple> api = ruleSimpleApi.listOfSimpleRules();
 		Assert.assertEquals(1, api.size());
-	} */
+	}
+
 	@Test
 	public void testlistOfAggregateFunctions() {
 
-		List<AggregateFunctions> api = ruleSimpleApi.listOfAggregateFunctionsByID(8);
-		for (Iterator iterator =api.iterator(); iterator.hasNext();) {
+		List<AggregateFunctions> api = ruleSimpleApi.listOfAggregateFunctions();
+		for (Iterator iterator = api.iterator(); iterator.hasNext();) {
 			AggregateFunctions agrFn = (AggregateFunctions) iterator.next();
 			System.out.println("GET THE RULE DETAILS FROM DATABASE     " + agrFn.getId() + agrFn.getFunctionName());
 
 		}
 		Assert.assertEquals(2, api.size());
 	}
-/*	@Test
+
+	@Test
 	public void testlistOfConditions() {
 
 		List<ConditionList> api = ruleSimpleApi.listOfConditions();
 		Assert.assertEquals(1, api.size());
 	}
+
 	@Test
 	public void testlistOfFields() {
 
 		List<FieldList> api = ruleSimpleApi.listOfFields();
 		Assert.assertEquals(3, api.size());
 	}
-	*/
+
 }

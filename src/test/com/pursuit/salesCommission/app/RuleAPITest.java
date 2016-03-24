@@ -2,7 +2,6 @@
  * 
  */
 package com.pursuit.salesCommission.app;
-import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -10,7 +9,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.Assert;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import junit.framework.TestCase;
 
@@ -74,8 +72,7 @@ public class RuleAPITest extends TestCase {
 		
 	}
 
-	
-	 
+		 
 	/**
 	 * Test method for
 	 * {@link com.pursuit.salesCommission.app.api.RuleAPI#getRule(long)}.
@@ -163,7 +160,7 @@ public class RuleAPITest extends TestCase {
 		Assert.assertEquals("rank", rule1.getRuleSimple().getCalculationMode());
 		System.out.println("Running: testDummyRule");
 
-	}
+	} */
 	/**
 	 * Test method for
 	 * {@link com.pursuit.salesCommission.app.api.RuleAPI#createRule(com.pursuit.salesCommission.app.model.Rule)}
@@ -190,7 +187,7 @@ public class RuleAPITest extends TestCase {
 			System.out.println("Running: testDummyRule");
 		System.out.println("Running: testDummyRule");
 
-	}
+	} */
 
 	/**
 	 * Test method for
@@ -261,6 +258,10 @@ public class RuleAPITest extends TestCase {
 		System.out.println("Running: testDummyRule");
 
 	}*/
+	/**
+	 * Test method for edit rule simple rank 
+	 * {@link com.pursuit.salesCommission.app.api.RuleAPI#editRule()}.
+	 */
 	@Test
 	public void testEditRuleSimpleRank() {
 
@@ -339,6 +340,15 @@ public class RuleAPITest extends TestCase {
 		rsimp.setPopulationUpto(30);
 		rsimp.setPopulationType("best of 5 person");
 		rule1.setRuleSimple(rsimp);
+
+		List<AggregateFunctions> aggtfns = rsimp.getAggregateFunctions();
+		AggregateFunctions fn3 = new AggregateFunctions();
+		AggregateFunctions fn4 = new AggregateFunctions();
+		fn3.setFunctionName("Funtion 18");
+		fn4.setFunctionName("Function 9");
+		aggtfns.add(fn3);
+		aggtfns.add(fn4); 
+		rsimp.setAggregateFunctions(aggtfns); 
 		 ruleAPI.editRule(rule1);
 		Rule r1 = ruleAPI.getRule(rule1.getId());
 		Assert.assertEquals("abcd", r1.getRuleName());
@@ -348,6 +358,10 @@ public class RuleAPITest extends TestCase {
 		System.out.println("Running: testDummyRule"); 
 	}
 	
+	/**
+	 * Test method for edit rule simple individual
+	 * {@link com.pursuit.salesCommission.app.api.RuleAPI#editRule()}.
+	 */
 /*	@Test
 	public void testEditRuleSimpleIndividual() {
 
@@ -429,13 +443,15 @@ public class RuleAPITest extends TestCase {
 		Assert.assertEquals("Mascott Rober", r1.getRuleDetails());
 		Assert.assertEquals("individual", r1.getRuleSimple().getCalculationMode());
 		System.out.println("Running: testDummyRule"); 
-	}
+	} */
+	
 	/**
 	 * Test method for
 	 * {@link com.pursuit.salesCommission.app.api.RuleAPI#listRules()}.
 	 */
 	/*
-	 * @Test public void testListRules() { fail("Not yet implemented"); }
+	 * @Test public void testListRules() { 
+	 * fail("Not yet implemented"); }
 	 * 
 	 */
 	

@@ -67,16 +67,16 @@ public class EmployeeAPI {
 	/**
 	 * Method for getting employee by employeeId from database
 	 * 
-	 * @param l
+	 * @param employeeID
 	 *            the Id of the employee for whom the details searching for
 	 * @return the complete employee details of whom the Id has entered
 	 */
-	public Employee getEmployee(long l) {
+	public Employee getEmployee(long employeeID) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		tx = session.beginTransaction();
 		logger.debug("GET THE EMPLOYEE DETAILS FROM DATABASE");
-		return (Employee) session.get(Employee.class, l);
+		return (Employee) session.get(Employee.class, employeeID);
 	}
 
 	/**
