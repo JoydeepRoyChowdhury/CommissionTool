@@ -22,82 +22,89 @@
 					</tr>
 				</table>
 			</td></tr>
-			<tr><td>&nbsp;</td></tr>
-			
-			<tr><td>
-				<table>
-					<tr>
-						<td>Plan validity :
-						</td>
-						<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-						<td><input type="radio">Fixed Date</input> &nbsp;&nbsp;&nbsp;&nbsp;
-							From <input type="text"></input>
-							<script>
-								printChooseCal();
-							</script>
-							To <input type="text"></input>
-							<script>
-								printChooseCal();
-							</script>
-						</td>
-					</tr>
-					<tr>
-						<td>
-						</td>
-						<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-						<td>Or
-						</td>
-					</tr>
-					<tr>
-						<td>
-						</td>
-						<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-						<td><input type="radio" checked="checked">Repeats</input> &nbsp;&nbsp;&nbsp;&nbsp;
-							From <input type="text"></input>
-							<script>
-								printChooseCal();
-							</script>
-							Frequency
-								<select>
-									<option value="volvo">Weekly</option>
-									<option value="saab">Fortnightly</option>
-									<option value="mercedes" selected="selected">Monthly</option>
-									<option value="saab">Quarterly</option>
-									<option value="saab">Annualy</option>
-								</select>
-							Ending On <input type="text"></input>
-							<script>
-								printChooseCal();
-							</script>					</td>
-					</tr>
+			<tr><td>&nbsp;</td></tr>			
 				</table>
-			</td></tr>
-			<tr><td>
-				Selected Rule <br>
+			
+				<h3>Selected Rule </h3> 
 				<table border="1">
 					<thead>
 						<tr>
 							<td>Rule Id</td>
-							<td>Rule Name</td>
-							<td>Rule Description</td>
+							<td>Rule Details</td>
+							<td>Fixed</td>
+							<td>Repeats</td>
+							<td>From</td>
+							<td>To</td>
 							<td>Details</td>
 							<td>&nbsp;</td>
 						</tr>
 					</thead>
 					<tr>
-						<td valign="top"><a href="../../pages/compRule/CompRuleDetailsComposite.html">P001</a></td>
-						<td valign="top">High Performance</td>
-						<td valign="top">Compensation rule for high performers</td>
-						<td>When any of "Top Ranks", "Sales Performance", "Order booking" is achieved, pay 10% of "Sales performance"
-						<br>
-							<div>@@PLANPARAMETER@@</div>
-						</td>
-						<td><a href="#">Delete</a></td>
+					<td valign="top"><a
+						href="../../pages/compRule/CompRuleDetailsComposite.html">P001</a></td>
+					<td valign="top">
+					<table border="1">
+							<tr>
+								<td valign="top">Name</td>
+								<td valign="top">High Performance
+								</td>
+							</tr>
+							<tr>
+							<td valign="top">Description</td>
+							<td valign="top">Compensation rule for high performers
+							</td>
+							</tr>
+						</table></td>
+						<td valign="center"><input type="radio"></td>
+						<td valign="center"><input type="radio"><select>
+									<option value="volvo">Weekly</option>
+									<option value="saab">Fortnightly</option>
+									<option value="mercedes" selected="selected">Monthly</option>
+									<option value="saab">Quarterly</option>
+									<option value="saab">Annually</option>
+								</select></td>
+								<td><input type="text"></input>
+							<script>
+								printChooseCal();
+							</script></td><td><input type="text"></input>
+							<script>
+								printChooseCal();
+							</script></td>
+					<td>When any of "Top Ranks", "Sales Performance", "Order
+						booking" is achieved, pay 10% of "Sales performance" <br>
+						<div>@@PLANPARAMETER@@</div>
+					</td>
+					<td><a href="#">Delete</a></td>
 					</tr>
 					<tr>
 						<td valign="top"><a href="../../pages/compRule/CompRuleDetailsSimpleRank.html">P002</a></td>
-						<td valign="top">Max Order booking</td>
-						<td valign="top">Compensation rule for maximum order booking</td>
+						<td valign="top"><table border="1">
+							<tr>
+								<td valign="top">Name</td>
+								<td valign="top">Max Order booking
+								</td>
+							</tr>
+							<tr>
+							<td valign="top">Description</td>
+							<td valign="top">Compensation rule for maximum order booking
+							</td>
+							</tr>
+						</table></td>
+						<td valign="center"><input type="radio"></td>
+						<td valign="center"><input type="radio"><select>
+									<option value="volvo">Weekly</option>
+									<option value="saab">Fortnightly</option>
+									<option value="mercedes">Monthly</option>
+									<option value="saab">Quarterly</option>
+									<option value="saab" selected="selected">Annually</option>
+								</select></td>
+								<td><input type="text"></input>
+							<script>
+								printChooseCal();
+							</script></td><td><input type="text"></input>
+							<script>
+								printChooseCal();
+							</script></td>
 						<td>When within 10% of all the employees based on max(order total)
 						<br>
 							<div>@@PLANPARAMETER@@</div>

@@ -69,60 +69,39 @@
 			</td>
 			</tr>
 			<tr>
-			<td valign="top">Split Percentage :</td>
+			<td valign="top"></td>
 			<td>
 				<table>
-					<tr><td>Field</td><td>Multiplier</td></tr>
+					<tr><td>Beneficiary</td><td>Split Percentage</td></tr>
 					<tr><td>
 								<select>
-									<option value="volvo">Quantity</option>
-									<option value="saab" selected="selected">Order Total</option>
-									<option value="mercedes">Service Total</option>
+									<option value="volvo">Admin</option>
+									<option value="saab" selected="selected">Sales Representative</option>
+									<option value="saab1">Supporting Engineer</option>
+									<option value="mercedes">Manager</option>
+									<option value="mercedes1">Second Level Manager</option>
 								</select>
 						</td><td>
-								<input type="text" size="5" value=".1"></input>
+								<input type="text" size="5" value="70%"></input>
 							<a href="#">Delete</a></td></tr>
 					<tr><td>
 								<select>
-									<option value="volvo" selected="selected">Quantity</option>
-									<option value="saab">Order Total</option>
-									<option value="mercedes">Service Total</option>
+									<option value="volvo">Admin</option>
+									<option value="saab">Sales Representative</option>
+									<option value="saab1" selected="selected">Supporting Engineer</option>
+									<option value="mercedes">Manager</option>
+									<option value="mercedes1">Second Level Manager</option>
 								</select>
 						</td><td>
-								<input type="text" size="5" value=".01"></input>
+								<input type="text" size="5" value="30%"></input>
 							<a href="#">Delete</a></td></tr>
 					<tr><td></td><td><a href="#">Add</a></td></tr>
 				</table>
 				
 			</td>
 			</tr>
-			<tr>
-			<td valign="top">Beneficiary roles :</td>
-			<td>
-				<table>
-					<tr>
-						<td valign="top"><input type="radio" checked="checked">Hierarchy</input></td>
-						<td valign="top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-						<td>Starting <input type="text" size="10"></input> level up<br>
-							Ending &nbsp;<input type="text" size="10"></input> level up
-						</td>
-					</tr>
-					<tr><td colspan="3">&nbsp;</td></tr>
-					<tr>
-						<td valign="top"><input type="radio">Contributor</input></td>
-						<td valign="top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-						<td align="left">
-								<select>
-									<option value="volvo">Systems Engineer</option>
-									<option value="saab">Analyst</option>
-									<option value="mercedes" selected="selected">Management support</option>
-								</select>
-						</td>
-					</tr>
 				</table>
-			</td>
-			</tr>
-		</table>
+			
 		<br><br>
 		<input type="button" value="Update"></input>
 	<script>
