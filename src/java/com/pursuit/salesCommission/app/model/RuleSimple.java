@@ -50,21 +50,17 @@ public class RuleSimple {
 	@IndexColumn(name = "detailSrl")
 	private List<RuleParameter> ruleParameter;
 
+	@OneToOne(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER, orphanRemoval = true)
+	@JoinColumn(name = "AGGT_FUNC_ID")
+	private AggregateFunctions aggregateFunctions;
+
+	@Column(name = "field")
+	private String field;
+	
 	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER, orphanRemoval = true)
 	@JoinColumn(name = "RULE_SIMP_ID")
 	@IndexColumn(name = "detailSrl")
 	private List<QualifyingClause> qualifyingClause;
-
-	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER, orphanRemoval = true)
-	@JoinColumn(name = "RULE_SIMP_ID")
-	@IndexColumn(name = "detailSrl")
-	private List<AggregateFunctions> aggregateFunctions;
-
-	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER, orphanRemoval = true)
-	@JoinColumn(name = "RULE_SIMP_ID")
-	@IndexColumn(name = "detailSrl")
-	private List<FieldList> fieldList;
-
 	/**
 	 * @return the id
 	 */
@@ -170,6 +166,34 @@ public class RuleSimple {
 	public void setRuleParameter(List<RuleParameter> ruleParameter) {
 		this.ruleParameter = ruleParameter;
 	}
+	
+	/**
+	 * @return the aggregateFunctions
+	 */
+	public AggregateFunctions getAggregateFunctions() {
+		return aggregateFunctions;
+	}
+
+	/**
+	 * @param aggregateFunctions the aggregateFunctions to set
+	 */
+	public void setAggregateFunctions(AggregateFunctions aggregateFunctions) {
+		this.aggregateFunctions = aggregateFunctions;
+	}
+
+	/**
+	 * @return the field
+	 */
+	public String getField() {
+		return field;
+	}
+
+	/**
+	 * @param field the field to set
+	 */
+	public void setField(String field) {
+		this.field = field;
+	}
 
 	/**
 	 * @return the qualifyingClause
@@ -186,34 +210,5 @@ public class RuleSimple {
 		this.qualifyingClause = qualifyingClause;
 	}
 
-	/**
-	 * @return the aggregateFunctions
-	 */
-	public List<AggregateFunctions> getAggregateFunctions() {
-		return aggregateFunctions;
-	}
-
-	/**
-	 * @param aggregateFunctions
-	 *            the aggregateFunctions to set
-	 */
-	public void setAggregateFunctions(List<AggregateFunctions> aggregateFunctions) {
-		this.aggregateFunctions = aggregateFunctions;
-	}
-
-	/**
-	 * @return the fieldList
-	 */
-	public List<FieldList> getFieldList() {
-		return fieldList;
-	}
-
-	/**
-	 * @param fieldList
-	 *            the fieldList to set
-	 */
-	public void setFieldList(List<FieldList> fieldList) {
-		this.fieldList = fieldList;
-	}
-
+	
 }

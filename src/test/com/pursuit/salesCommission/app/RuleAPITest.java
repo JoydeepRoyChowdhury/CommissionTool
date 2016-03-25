@@ -281,7 +281,7 @@ public class RuleAPITest extends TestCase {
 		rpm.add(rl2);
 		ruleSimple.setRuleParameter(rpm);
 
-		List<FieldList> fldlst = new ArrayList<FieldList>();
+		/*List<FieldList> fldlst = new ArrayList<FieldList>();
 		FieldList fld1 = new FieldList();
 		FieldList fld2 = new FieldList();
 		fld1.setFieldName("fld 3");
@@ -289,17 +289,17 @@ public class RuleAPITest extends TestCase {
 		fld2.setFieldName("fld 6");
 		fld2.setDisplayName("fello");
 		fldlst.add(fld1);
-		fldlst.add(fld2);
-		ruleSimple.setFieldList(fldlst);
+		fldlst.add(fld2); */
+		ruleSimple.setField("fld 3");
 		
-		List <AggregateFunctions> aggtfn = new ArrayList<AggregateFunctions>();
+		//List <AggregateFunctions> aggtfn = new ArrayList<AggregateFunctions>();
 		AggregateFunctions fn1 = new AggregateFunctions();
-		AggregateFunctions fn2 = new AggregateFunctions();
+		//AggregateFunctions fn2 = new AggregateFunctions();
 		fn1.setFunctionName("Funtion 16");
-		fn2.setFunctionName("Function 7");
-		aggtfn.add(fn2);
-		aggtfn.add(fn1); 
-		ruleSimple.setAggregateFunctions(aggtfn);
+		//fn2.setFunctionName("Function 7");
+		//aggtfn.add(fn2);
+		//aggtfn.add(fn1); 
+		ruleSimple.setAggregateFunctions(fn1);
 		
 		List<QualifyingClause> qClause = new ArrayList<QualifyingClause>();
 		QualifyingClause qc1 = new QualifyingClause();
@@ -339,16 +339,18 @@ public class RuleAPITest extends TestCase {
 		RuleSimple rsimp = rule1.getRuleSimple();
 		rsimp.setPopulationUpto(30);
 		rsimp.setPopulationType("best of 5 person");
-		rule1.setRuleSimple(rsimp);
+		rsimp.setField("field 5");
+		//rule1.setRuleSimple(rsimp);
 
-		List<AggregateFunctions> aggtfns = rsimp.getAggregateFunctions();
-		AggregateFunctions fn3 = new AggregateFunctions();
-		AggregateFunctions fn4 = new AggregateFunctions();
+		//List<AggregateFunctions> aggtfns = rsimp.getAggregateFunctions();
+		AggregateFunctions fn3 = rsimp.getAggregateFunctions();
+		//AggregateFunctions fn4 = new AggregateFunctions();
 		fn3.setFunctionName("Funtion 18");
-		fn4.setFunctionName("Function 9");
-		aggtfns.add(fn3);
-		aggtfns.add(fn4); 
-		rsimp.setAggregateFunctions(aggtfns); 
+		//fn4.setFunctionName("Function 9");
+		//aggtfns.add(fn3);
+		//aggtfns.add(fn4); 
+		rsimp.setAggregateFunctions(fn3); 
+		rule1.setRuleSimple(rsimp);
 		 ruleAPI.editRule(rule1);
 		Rule r1 = ruleAPI.getRule(rule1.getId());
 		Assert.assertEquals("abcd", r1.getRuleName());
