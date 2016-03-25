@@ -1,5 +1,5 @@
 package com.pursuit.salesCommission.ui;
-
+/*
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -18,15 +18,9 @@ import com.pursuit.salesCommission.app.model.PersonListContainer;
 public class PersonController {
  
     @RequestMapping("/persons")
-    public String index1(
-            ModelMap map, 
-            HttpSession session, 
-            HttpServletRequest request, 
-            @RequestParam(value="f", required=false) String flush,
-            @RequestParam(value="message", required=false) String message ) {
+    public String index1( ModelMap map, HttpSession session,  HttpServletRequest request, String message ) {
  
-        if( flush != null )
-            session.setAttribute("personListContainer", getDummyPersonListContainer());
+      
         if( session.getAttribute("personListContainer") == null )
             session.setAttribute("personListContainer", getDummyPersonListContainer());
         map.addAttribute("personListContainer", (PersonListContainer)session.getAttribute("personListContainer"));
@@ -34,7 +28,7 @@ public class PersonController {
             map.addAttribute("message", message);
         map.addAttribute("cp", request.getContextPath());
  
-        return "personList";
+        return "simpRuleDetails";
     }
  
     @RequestMapping(value="/editpersonlistcontainer", method= RequestMethod.POST)
@@ -44,14 +38,15 @@ public class PersonController {
             System.out.println("Age: " + p.getAge());
         }
         session.setAttribute("personListContainer",personListContainer);
-        return "redirect:/?message=Form Submitted Ok. Number of rows is: ["+personListContainer.getPersonList().size()+"]";
+        return "compRule";
     }
  
     private PersonListContainer getDummyPersonListContainer() {
         List<Person> personList = new ArrayList<Person>();
-        for( int i=0; i<5; i++ ) {
+        for( int i=0; i<1; i++ ) {
             personList.add( new Person("Person Name [" + i + "]", String.valueOf(i)) );
         }
         return new PersonListContainer(personList);
     }
 }
+*/
