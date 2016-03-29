@@ -30,6 +30,9 @@ public class Employee {
 	@JoinColumn(name = "EMP_ID")
 	@IndexColumn(name = "detailSrl")
 	private List<Target> target;
+	
+	@Column(name = "salary")
+	private int salary;
 
 	public Employee() {
 	}
@@ -108,5 +111,29 @@ public class Employee {
 	public void setTarget(List<Target> target) {
 		this.target = target;
 	}
+	 /**
+	 * @return the salary
+	 */
+	public int getSalary() {
+		return salary;
+	}
 
+	/**
+	 * @param salary the salary to set
+	 */
+	public void setSalary(int salary) {
+		this.salary = salary;
+	}
+
+	public Employee(long ID, String empName, int salary) {
+         this.id = ID;
+         this.employeeName = empName;
+         this.salary = salary;
+    }
+
+    @Override
+    public String toString() {
+         return "<" + id + ", " + employeeName + ", "  
+                                  + salary + ">";
+    }
 }

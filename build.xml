@@ -1,7 +1,7 @@
 <project name="CommissionTool" basedir="." default="install">
 
 	<property file="build.properties"/>
-	
+
 	<!-- project-specific variables -->
 	<property name="jsp.dir.name" value="CommissionTool" />
 	<property name="package.name" value="${jsp.dir.name}.war" />
@@ -28,7 +28,7 @@
 	<property name="temp.mockup" value="tempMockup" />
 
 	<property name="package.file" value="${dest.dir}/${package.name}" />
-	
+
 	<property name="docs.dir" value="doc" />
 
 
@@ -53,7 +53,7 @@
 		<delete dir="${temp.dir.meta-inf}" />
 		<delete dir="${temp.dir.web-inf}" />
 		<delete dir="${temp.mockup}" />
-	    <delete dir="${docs.dir}" />
+		<delete dir="${docs.dir}" />
 	</target>
 
 	<target name="prepare" depends="clean">
@@ -77,18 +77,18 @@
 		<mkdir dir="${temp.mockup}/mockup/dist" />
 		<!--  PACK Mockups for menu -->
 		<loadfile property="menu" srcFile="${temp.mockup}/mockup/html/components/menu.html" />
-	    <replace file="${temp.mockup}/mockup/html/App.template" token="@@MENU@@" value="${menu}" />
+		<replace file="${temp.mockup}/mockup/html/App.template" token="@@MENU@@" value="${menu}" />
 		<foreach target="includeTemplate" param="fileLoaction">
 			<fileset dir="${temp.mockup}/mockup/html/pages" casesensitive="yes">
 				<include name="**/*.html" />
 			</fileset>
 		</foreach>
-		
+
 		<loadfile property="setTarget" srcFile="${temp.mockup}/mockup/html/components/setTarget.html" />
 		<replace file="${temp.mockup}/mockup/html/pages/employee/EmployeeDetailsComponent.html" token="@@TARGETCONTENT@@" value="${setTarget}" />
-	    <replace file="${temp.mockup}/mockup/html/pages/orgStructure/EditStructure.html" token="@@TARGETCONTENT@@" value="${setTarget}" />
-	    <loadfile property="setParameter" srcFile="${temp.mockup}/mockup/html/components/planParameters.html" />
-	    <replace file="${temp.mockup}/mockup/html/pages/compPlan/CompPlan.html" token="@@PLANPARAMETER@@" value="${setParameter}" />
+		<replace file="${temp.mockup}/mockup/html/pages/orgStructure/EditStructure.html" token="@@TARGETCONTENT@@" value="${setTarget}" />
+		<loadfile property="setParameter" srcFile="${temp.mockup}/mockup/html/components/planParameters.html" />
+		<replace file="${temp.mockup}/mockup/html/pages/compPlan/CompPlan.html" token="@@PLANPARAMETER@@" value="${setParameter}" />
 		<!--<antcall target="includeTemplate">
 			<param name="fileLoaction" value="${temp.mockup}/mockup/html/pages/compReport/CompReport.html"/>
 				</antcall> -->
@@ -114,17 +114,17 @@
 			<classpath refid="build.class.path" />
 		</javac> -->
 	</target>
-    <!-- Creates Javadoc -->
-	  <target name="docs" depends="compile">
-	  	<echo>=== JAVADOC ===</echo>
-	    <javadoc packagenames="src" sourcepath="${src.dir}" destdir="${docs.dir}">
-	      <!-- Define which files / directory should get included, we include all -->
-	       <fileset dir="${src.dir}">
-	                <include name="**/*.java" />
-	           </fileset>
-	    </javadoc>
-	  </target>
-	
+	<!-- Creates Javadoc -->
+	<target name="docs" depends="compile">
+		<echo>=== JAVADOC ===</echo>
+		<javadoc packagenames="src" sourcepath="${src.dir}" destdir="${docs.dir}">
+			<!-- Define which files / directory should get included, we include all -->
+			<fileset dir="${src.dir}">
+				<include name="**/*.java" />
+			</fileset>
+		</javadoc>
+	</target>
+
 	<!-- PACKAGE -->
 	<target name="package" depends="compile">
 		<echo>=== PACKAGE ===</echo>
@@ -184,6 +184,16 @@
 	<target name="install" depends="package, packMockup, docs">
 		<echo>=== INSTALL ===</echo>
 		<copy file="${package.file}" tofile="${webapp.dir}/${package.name}" overwrite="true" />
+	</target>
+
+	<!-- Calling Java Main -->
+	<target name="callJava" depends="compile">
+		<java classname="com.pursuit.salesCommission.app.api.ReadXMLFile"  fork="true"
+	           failonerror="true">
+			<arg value="-h"/>
+			<classpath refid="build.class.path" />
+			<classpath path="${temp.dir.classes}" />
+		</java>
 	</target>
 
 </project>

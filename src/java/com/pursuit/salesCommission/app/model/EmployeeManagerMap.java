@@ -30,8 +30,8 @@ public class EmployeeManagerMap {
 	@Column(name = "startDate")
 	private Date startDate;
 
-	@Column(name = "terminationDate")
-	private Date terminationDate;
+	@Column(name = "endDate")
+	private Date endDate;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "manager_id")
@@ -90,16 +90,16 @@ public class EmployeeManagerMap {
 	/**
 	 * @return the terminationDate
 	 */
-	public Date getTerminationDate() {
-		return terminationDate;
+	public Date getEndDate() {
+		return endDate;
 	}
 
 	/**
 	 * @param terminationDate
 	 *            the terminationDate to set
 	 */
-	public void setTerminationDate(Date terminationDate) {
-		this.terminationDate = terminationDate;
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 
 	/**
