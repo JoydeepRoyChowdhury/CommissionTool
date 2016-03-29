@@ -2,6 +2,7 @@
 package com.pursuit.salesCommission.ui;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,9 +23,17 @@ import com.pursuit.salesCommission.app.api.RuleSimpleAPI;
 import com.pursuit.salesCommission.app.model.RuleSimple;
 import com.pursuit.salesCommission.app.model.RuleUI;
 import com.pursuit.salesCommission.app.model.AggregateFunctions;
+import com.pursuit.salesCommission.app.model.ConditionList;
+import com.pursuit.salesCommission.app.model.Employee;
+import com.pursuit.salesCommission.app.model.FieldList;
 import com.pursuit.salesCommission.app.model.ParameterUI;
 import com.pursuit.salesCommission.app.model.Person;
+import com.pursuit.salesCommission.app.model.Person1;
 import com.pursuit.salesCommission.app.model.PersonListContainer;
+import com.pursuit.salesCommission.app.model.PersonListContainer1;
+import com.pursuit.salesCommission.app.model.PersonListContainer2;
+import com.pursuit.salesCommission.app.model.QualifyingClause;
+import com.pursuit.salesCommission.app.model.QualifyingClauseUI;
 import com.pursuit.salesCommission.app.model.Rule;
 import com.pursuit.salesCommission.app.model.RuleParameter;
 
@@ -35,7 +44,7 @@ public class RuleController {
 	@Autowired
 	private RuleSimpleAPI ruleSimpleApi;
 	
-	
+
 	@RequestMapping(value = "/simpleRule", method = RequestMethod.GET)
 	public String simpleRule(ModelMap model, HttpSession session,  HttpServletRequest request, String message ) {
 	   
@@ -46,6 +55,13 @@ public class RuleController {
 	            model.addAttribute("message", message);
 	        model.addAttribute("cp", request.getContextPath());
 		
+
+	        if( session.getAttribute("personListContainer1") == null )
+	            session.setAttribute("personListContainer1", getDummyPersonListContainer1());
+	        model.addAttribute("personListContainer1", (PersonListContainer1)session.getAttribute("personListContainer1"));
+	        if( message != null )
+	            model.addAttribute("message", message);
+	        model.addAttribute("cp", request.getContextPath());
 		
 		
 		model.addAttribute("listRule1", ruleSimpleApi.listOfAggregateFunctions());
@@ -62,16 +78,37 @@ public class RuleController {
 	        }
 	        return new PersonListContainer(personList);
 	    }
+	  
+	  private PersonListContainer1 getDummyPersonListContainer1() {
+	        List<QualifyingClauseUI> personList = new ArrayList<QualifyingClauseUI>();
+	        for( int i=0; i<1; i++ ) {
+	            personList.add( new QualifyingClauseUI() );
+	        }
+	        return new PersonListContainer1();
+	    }
 
 	@RequestMapping(value = "/submitSimpRule", method = RequestMethod.POST)
-	public String addRule(@ModelAttribute("SpringWeb") RuleUI ruleUI, PersonListContainer personListContainer,HttpSession session, ModelMap model) {
+	public String addRule(@ModelAttribute("SpringWeb") RuleUI ruleUI, PersonListContainer personListContainer,PersonListContainer1 personListContainer1, HttpSession session, ModelMap model) {
 	
 	       for( RuleParameter p : personListContainer.getPersonList() ) {
 	            System.out.println("ParameterName: " + p.getParameterName());
 	            System.out.println("ParameterValue: " + p.getParameterValue());
 	        }
 	        session.setAttribute("personListContainer",personListContainer);
-		
+	       
+	        for( QualifyingClauseUI p : personListContainer1.getPersonList() ) {
+	            System.out.println("QualifyingClauseValue: " + p.getValue());
+	            System.out.println("ConditionValue: " + p.getConditionValue());
+	            System.out.println("FieldName: " + p.getFieldName());
+	            //System.out.println("field: " + p.getParameter());
+	        }
+	        session.setAttribute("personListContainer",personListContainer1);
+		 
+	        
+	        //model.addAttribute("conditionValue",ruleUI.getConditionValue());
+	      //  System.out.println("***************************" +ruleUI.getConditionValue());
+	       // model.addAttribute("fieldName",ruleUI.getFieldName());
+	       // System.out.println("***************************" +ruleUI.getFieldName());
 			model.addAttribute("id", ruleUI.getId());
 			model.addAttribute("ruleName", ruleUI.getRuleName());
 			System.out.println("***************************" +ruleUI.getRuleName());
@@ -104,16 +141,32 @@ public class RuleController {
 			rule.setFixedCompValue(ruleUI.getFixedCompValue());
 			rule.setCompensationFormula( ruleUI.getCompensationFormula());
 			rule.setCompensationParameter(ruleUI.getCompensationParameter());
-			
+			QualifyingClause obj1 = new QualifyingClause();
 			
 			RuleSimple ruleSimple = new RuleSimple();
+		List<QualifyingClauseUI> ptr =  personListContainer1.getPersonList();
+		List<QualifyingClause> ptr1 =  new ArrayList<>();
+			for (Iterator iterator = ptr.iterator(); iterator.hasNext();) {
+				QualifyingClauseUI qcui = (QualifyingClauseUI) iterator.next();	
+				ConditionList obj2 = new ConditionList();
+				FieldList obj3 = new FieldList();
+				obj2.setConditionValue(qcui.getConditionValue());
+			obj1.setConditionList(obj2);
+			obj3.setFieldName(qcui.getFieldName());
+			obj1.setFieldList(obj3);
+			obj1.setValue(qcui.getValue());
+			//System.out.println(ptr.size());
+			ptr1.add(obj1);
+			}
 			
+			ruleSimple.setQualifyingClause(ptr1);
 			ruleSimple.setRuleParameter(personListContainer.getPersonList());
 			ruleSimple.setRankCount(ruleUI.getRankCount());
 			ruleSimple.setRankingType(ruleUI.getRankType());
 			ruleSimple.setPopulationType(ruleUI.getPopulationType());
 			ruleSimple.setPopulationUpto(ruleUI.getPopulationUpto());
 			ruleSimple.setCalculationMode(ruleUI.getCalculationMode());
+			//ruleSimple.setQualifyingClause(personListContainer1.getPersonList());
 			rule.setRuleSimple(ruleSimple);
 			
 		
@@ -146,22 +199,41 @@ public class RuleController {
 	        if( message != null )
 	            model.addAttribute("message", message);
 	        model.addAttribute("cp", request.getContextPath());
-		System.out.println("*****************ListDone**********************");
+		
+	      
+	        System.out.println("*****************ListDone**********************");
 		return "EditSimple";
 	}
 	
-	
+
 	
 	
 	@RequestMapping(value = "/compositeRule", method = RequestMethod.GET)
-	public String compRule(ModelMap model) {
-		model.addAttribute("listCompRule1", ruleApi.listRules());
+	public String compRule(ModelMap map, HttpSession session,  HttpServletRequest request, String message) {
+		map.addAttribute("listCompRule1", ruleApi.listRules());
+		
+		if( session.getAttribute("personListContainer2") == null )
+            session.setAttribute("personListContainer2", getDummyPersonListContainer2());
+        map.addAttribute("personListContainer2", (PersonListContainer2)session.getAttribute("personListContainer2"));
+        if( message != null )
+            map.addAttribute("message", message);
+        map.addAttribute("cp", request.getContextPath());
+ 
+		
+		
+		
 		System.out.println(".......servlet running.......");
 		return "ruleDetails";
 	}
 	
 	
-	
+	private PersonListContainer2 getDummyPersonListContainer2() {
+        List<Person1> personList = new ArrayList<Person1>();
+        for( int i=0; i<1; i++ ) {
+            personList.add( new Person1() );
+        }
+        return new PersonListContainer2();
+    }
 	
 	
 	@RequestMapping(value = "/submitCompRule", method = RequestMethod.POST)

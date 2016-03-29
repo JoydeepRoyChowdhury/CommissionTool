@@ -1,9 +1,11 @@
 package com.pursuit.salesCommission.app.model;
 
 public class Person {
-	 
+	private String condition;
+	private String parameter;
     private String name;
     private String age;
+    
  
     /**
 	 * @return the name
@@ -33,11 +35,31 @@ public class Person {
 		this.age = age;
 	}
 
+	public String getCondition() {
+		return condition;
+	}
+
+	public void setCondition(String condition) {
+		this.condition = condition;
+	}
+
+	public String getParameter() {
+		return parameter;
+	}
+
+	public void setParameter(String parameter) {
+		this.parameter = parameter;
+	}
+
 	public Person() {
     }
- 
-    public Person(String name, String age) {
+
+
+    public Person(String name, String age, String condition, String parameter) {
         this.name = name;
         this.age = age;
+        this.condition=condition;
+        this.parameter=parameter;
+        
     }
 }

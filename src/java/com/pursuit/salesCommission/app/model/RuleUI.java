@@ -9,23 +9,24 @@ import javax.persistence.*;
 
 public class RuleUI {
 	
-	  private List<ParameterUI> parameterList = new LinkedList<ParameterUI>();
-	  
-	   
-	    public RuleUI(List<ParameterUI> parameterList) {
-	        this.setParameterList(parameterList);
-	    }
-	 
-		public RuleUI() {
-		}
+	private String conditionValue;
+	private String fieldName;
+	public String getConditionValue() {
+		return conditionValue;
+	}
 
-		public List<ParameterUI> getParameterList() {
-			return parameterList;
-		}
+	public void setConditionValue(String conditionValue) {
+		this.conditionValue = conditionValue;
+	}
 
-		public void setParameterList(List<ParameterUI> parameterList) {
-			this.parameterList = parameterList;
-		}
+	public String getFieldName() {
+		return fieldName;
+	}
+
+	public void setFieldName(String fieldName) {
+		this.fieldName = fieldName;
+	}
+
 	
 	
 	

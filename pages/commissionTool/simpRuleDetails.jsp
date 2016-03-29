@@ -18,47 +18,92 @@ td {
 }
 
 </style>
+
+
  <script type="text/javascript">
-            function rowAdded(rowElement) {
-                //clear the imput fields for the row
-                $(rowElement).find("input").val('');
-                //may want to reset <select> options etc
  
-                //in fact you may want to submit the form
-                saveNeeded();
-            }
-            function rowRemoved(rowElement) {
-                saveNeeded();
-            }
+ function rowAdded(rowElement) {
+     //clear the imput fields for the row
+     $(rowElement).find("input").val('');
+     //may want to reset <select> options etc
+
+     //in fact you may want to submit the form
+     saveNeeded();
+ }
+ function rowRemoved1(rowElement) {
+     saveNeeded();
+ }
+
+ function saveNeeded() {
+     $('#submit').css('color','red');
+     $('#submit').css('font-weight','bold');
+     if( $('#submit').val().indexOf('!') != 0 ) {
+         $('#submit').val( '!' + $('#submit').val() );
+     }
+ }
+
+ function beforeSubmit1() {
+     alert('submitting....');
+     return true;
+ }
+
+ $(document).ready( function() {
+     var config = {
+         rowClass : 'person',
+         addRowId : 'addPerson1',
+         removeRowClass : 'removePerson1',
+         formId : 'personListForm',
+         rowContainerId : 'personListContainer1',
+         indexedPropertyName : 'personList',
+         indexedPropertyMemberNames : 'value,conditionValue,fieldName',
+         rowAddedListener : rowAdded,
+         rowRemovedListener : rowRemoved1,
+         beforeSubmit : beforeSubmit1
+     };
+     new DynamicListHelper(config);
+ });
+
  
-            function saveNeeded() {
-                $('#submit').css('color','red');
-                $('#submit').css('font-weight','bold');
-                if( $('#submit').val().indexOf('!') != 0 ) {
-                    $('#submit').val( '!' + $('#submit').val() );
-                }
-            }
- 
-            function beforeSubmit() {
-                alert('submitting....');
-                return true;
-            }
- 
-            $(document).ready( function() {
-                var config = {
-                    rowClass : 'ruleParameter',
-                    addRowId : 'addPerson',
-                    removeRowClass : 'removePerson',
-                    formId : 'personListForm',
-                    rowContainerId : 'personListContainer',
-                    indexedPropertyName : 'personList',
-                    indexedPropertyMemberNames : 'parameterName,parameterValue',
-                    rowAddedListener : rowAdded,
-                    rowRemovedListener : rowRemoved,
-                    beforeSubmit : beforeSubmit
-                };
-                new DynamicListHelper(config);
-            });
+ function rowAdded(rowElement) {
+     //clear the imput fields for the row
+     $(rowElement).find("input").val('');
+     //may want to reset <select> options etc
+
+     //in fact you may want to submit the form
+     saveNeeded();
+ }
+ function rowRemoved(rowElement) {
+     saveNeeded();
+ }
+
+ function saveNeeded() {
+     $('#submit').css('color','red');
+     $('#submit').css('font-weight','bold');
+     if( $('#submit').val().indexOf('!') != 0 ) {
+         $('#submit').val( '!' + $('#submit').val() );
+     }
+ }
+
+ function beforeSubmit() {
+     alert('submitting....');
+     return true;
+ }
+
+ $(document).ready( function() {
+     var config = {
+         rowClass : 'ruleParameter',
+         addRowId : 'addPerson',
+         removeRowClass : 'removePerson',
+         formId : 'personListForm',
+         rowContainerId : 'personListContainer',
+         indexedPropertyName : 'personList',
+         indexedPropertyMemberNames : 'parameterName,parameterValue',
+         rowAddedListener : rowAdded,
+         rowRemovedListener : rowRemoved,
+         beforeSubmit : beforeSubmit
+     };
+     new DynamicListHelper(config);
+ });
 
 			var count = "1";
 			function addRow2(Quali_input) {
@@ -128,6 +173,7 @@ td {
 						<tr>						
 							<td><b>Parameters</b></td>			
                <td>
+               
                 <table>
                 <tbody id="personListContainer">
                     <c:forEach items="${personListContainer.personList}" var="RuleParameter" varStatus="i" begin="0" >
@@ -153,6 +199,7 @@ td {
 		
             <a href="#" id="addPerson">Add Parameters</a>&nbsp;&nbsp;
              <a href="?f=">Reset List</a>
+           
              </TD>         
                </tr> 
                
@@ -210,11 +257,53 @@ td {
 
 							</td>
 						</tr>
-						
+				 		
+						<tr>
+						<td><b>Qualifying Clause</b></td>
+						 <td>
+				
+						 <table>
+                <tbody id="personListContainer1">
+                    <c:forEach items="${personListContainer1.personList}" var="Person" varStatus="i" begin="0" >
+                        <tr class="person">    
+                            <td><form:select path="personList[${i.index}].value" id="value${i.index}"><option value="Customer Name">Customer Name</option>
+                            <option value="order Total">order Total</option>
+                            <option value="Discount%">Discount%</option></form:select></td>
+                           <!-- 
+                            <td><form:input  path="personList[${i.index}].age" id="age${i.index}"/></td>
+                           -->
+                            <td><form:select path="personList[${i.index}].conditionValue" id="conditionValue${i.index}"><option value="Equal">Equal</option><option value="Greater than">Greater than</option><option value="Less than">Less than</option></form:select></td>
+                           
+                             <td><form:input path="personList[${i.index}].fieldName" id="fieldName${i.index}" /></td>
+                            <td><a href="#" class="removePerson1">Remove Person</a></td>
+                        </tr>
+                    </c:forEach>
+                   
+                    <c:if test="${personListContainer1.personList.size() == 0}">
+                        <tr class="person defaultRow">    
+                            <td>Field Name&nbsp;<select name="personList[].fieldName"><option value="Customer Name">Customer Name</option>
+                            <option value="order Total">order Total</option>
+                            <option value="Discount%">Discount%</option></select></td>
+                            <!-- 
+                            <td>&nbsp;Not&nbsp;<input type="checkbox" name="personList[].age" value="not" ></td>
+ 							-->
+ 							<td>Condition&nbsp;<select name="personList[].conditionValue"><option value="Equal">Equal</option><option value="Greater than">Greater than</option><option value="Less than">Less than</option></select></td>
+                            <td>&nbsp;Value&nbsp;<input type="text" name="personList[].value"></td>
+                            <td><a href="#" class="removePerson1">Remove Person</a></td>
+                        
+                        </tr>
+                    </c:if>
+                </tbody>
+            </table>
+						 <a href="#" id="addPerson1">Add Parameters</a>&nbsp;&nbsp;
+             <a href="?f=">Reset List</a>
+						</td>
+						</tr>
 				
 						<tr>
 							<td><b>Compensation</b></td>
-							<td><input type="checkbox" name="compensationType" value="Fixed">&nbsp;Fixed&nbsp;
+							<td>
+							<input type="checkbox" name="compensationType" value="Fixed">&nbsp;Fixed&nbsp;
 								<input type="text" name="fixedCompValue" value="0"><br />						
 								<input type="checkbox" name="compensationType" value="Variable">&nbsp;Variable&nbsp;<br />
 							
@@ -235,7 +324,6 @@ td {
 			
 
 		</div>
-
-        </form:form>
+		</form:form>
 	</tiles:putAttribute>
 </tiles:insertDefinition>
