@@ -89,9 +89,6 @@
 		<replace file="${temp.mockup}/mockup/html/pages/orgStructure/EditStructure.html" token="@@TARGETCONTENT@@" value="${setTarget}" />
 		<loadfile property="setParameter" srcFile="${temp.mockup}/mockup/html/components/planParameters.html" />
 		<replace file="${temp.mockup}/mockup/html/pages/compPlan/CompPlan.html" token="@@PLANPARAMETER@@" value="${setParameter}" />
-		<!--<antcall target="includeTemplate">
-			<param name="fileLoaction" value="${temp.mockup}/mockup/html/pages/compReport/CompReport.html"/>
-				</antcall> -->
 	</target>
 
 	<target name="includeTemplate">
@@ -104,7 +101,7 @@
 	<target name="compile" depends="prepare">
 		<echo>=== COMPILE ===</echo>
 		<echo>Compiling ${src.dir} files ...</echo>
-		<javac debug="on" srcdir="${src.dir}" destdir="${temp.dir.classes}" includes="**/*">
+		<javac debug="on" srcdir="${src.dir}" destdir="${temp.dir.classes}" includeantruntime="**/*">
 			<classpath refid="build.class.path" />
 		</javac>
 
@@ -187,8 +184,8 @@
 	</target>
 
 	<!-- Calling Java Main -->
-	<target name="callJava" depends="compile">
-		<java classname="com.pursuit.salesCommission.app.api.ReadXMLFile"  fork="true"
+	<target name="callJava" depends="compile, package">
+		<java classname="com.pursuit.salesCommission.app.XMLReader.ReadXMLFile"  fork="true"
 	           failonerror="true">
 			<arg value="-h"/>
 			<classpath refid="build.class.path" />

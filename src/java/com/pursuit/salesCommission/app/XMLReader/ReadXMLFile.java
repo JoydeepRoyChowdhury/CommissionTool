@@ -1,4 +1,4 @@
-package com.pursuit.salesCommission.app.api;
+package com.pursuit.salesCommission.app.XMLReader;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
@@ -14,32 +14,37 @@ import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
+import com.pursuit.salesCommission.app.api.EmployeeAPI;
 import com.pursuit.salesCommission.app.model.Employee;
 @Component
-	public class ReadXMLFile {
-		@Autowired
-		private EmployeeAPI employeeApi;
+	public class ReadXMLFile {	
 	  public static void main(String argv[]) {
-		/*  ApplicationContext context = 
+		  ApplicationContext context = 
 		            new ClassPathXmlApplicationContext("/applicationContext.xml");
-		  ReadXMLFile p = context.getBean(ReadXMLFile.class); */
-		  ReadXMLFile p = new ReadXMLFile();
-		  p.hello();
-	  
+		  EmployeeAPI empAPI = (EmployeeAPI) context.getBean("employeeApi");
+		  
+		  ReadXMLFile rdx = new ReadXMLFile();
+		  List <Employee> empList = rdx.parseXML();
+		  for (Iterator iterator = empList.iterator(); iterator.hasNext();) {
+				
+				Employee employee = (Employee) iterator.next();
+				empAPI.createEmployee(employee);
+		  }
 	  }
-	  public static void hello() {
-			
+	  public List<Employee> parseXML() {
+		  List<Employee> employees = new ArrayList<Employee>();
 		    try {
 
-			File fXmlFile = new File("src/java/employee1.xml");
+			File fXmlFile = new File("WebContent/WEB-INF/resources/XMLFile/employee.xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(fXmlFile);
 			doc.getDocumentElement().normalize();
 
-			 List<Employee> employees = new ArrayList<Employee>();
+			
 	         NodeList nodeList = doc.getElementsByTagName("Employee");
 	         for (int i = 0; i < nodeList.getLength(); i++) {
 	              Node node = nodeList.item(i);
@@ -47,35 +52,27 @@ import com.pursuit.salesCommission.app.model.Employee;
 	              if (node.getNodeType() == Node.ELEMENT_NODE) {
 	                   Element elem = (Element) node;
 	 
-	                   long ID = Integer.parseInt(node.getAttributes().getNamedItem("ID").getNodeValue());
+	                 //  long ID = Integer.parseInt(node.getAttributes().getNamedItem("ID").getNodeValue());
 	                  
-	                   String firstname = elem.getElementsByTagName("Employeename")
-	                                       .item(0).getChildNodes().item(0).getNodeValue();
-
+	                //   String firstname = elem.getElementsByTagName("Employeename")
+	                                   //    .item(0).getChildNodes().item(0).getNodeValue();
+	                   String firstname = node.getAttributes().getNamedItem("Employeename").getNodeValue();
 	                   Integer salary = Integer.parseInt(elem.getElementsByTagName("Salary")
 	                                       .item(0).getChildNodes().item(0).getNodeValue());
-	                     Employee emp = new Employee(ID, firstname, salary);
-	                     EmployeeAPIXML rx = new EmployeeAPIXML();
-	                     Employee e = rx.createEmployee(ID, firstname);
+	                     Employee emp = new Employee(firstname, salary);
 	                   employees.add(emp);
-	                /*   Employee e1 = new Employee();
-	                   e1.setEmployeeName(firstname);
-	                   e1.setSalary(salary);
-	                   ReadXMLFile r = new ReadXMLFile();
-	                   r.createEmp(emp); */
 	                   
 	              }
 	         }
 
 	         // Print all employees.
-	         for (Employee empl : employees)
+	         for (Employee empl : employees) 
 	              System.out.println(empl.toString());
 	   
 		    } catch (Exception e) {
 			e.printStackTrace();
 		    }
+		    return employees;
 		  }
-	  public void createEmp(Employee emp){
-		  employeeApi.createEmployee(emp);
-	  }
+
 	}

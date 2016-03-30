@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<Employees>
+     <Employee Employeename="Harry">
+         
+          <Salary>2500</Salary>
+     </Employee>
+     <Employee Employeename="Tom">
+          
+          <Salary>1500</Salary>
+     </Employee>
+     <Employee Employeename="Potter">
+         
+          <Salary>2000</Salary>
+     </Employee>
+     <Employee Employeename="Jerry">
+          
+          <Salary>2250</Salary>
+     </Employee>
+</Employees>
