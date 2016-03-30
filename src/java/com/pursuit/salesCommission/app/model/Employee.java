@@ -1,9 +1,7 @@
 package com.pursuit.salesCommission.app.model;
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.*;
 
@@ -125,15 +123,15 @@ public class Employee {
 		this.salary = salary;
 	}
 
-	public Employee(long ID, String empName, int salary) {
-         this.id = ID;
+	public Employee( String empName, int salary) {
+        // this.id = ID;
          this.employeeName = empName;
          this.salary = salary;
     }
 
     @Override
     public String toString() {
-         return "<" + id + ", " + employeeName + ", "  
+         return "<" + employeeName + ", "  
                                   + salary + ">";
     }
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<Conditions>
+	<Condition conditionValue="greater than">
+		<notFlag>true</notFlag>
+	</Condition>
+	<Condition conditionValue="less than">
+		<notFlag>true</notFlag>
+	</Condition>
+	<Condition conditionValue="equal">
+		<notFlag>true</notFlag>
+	</Condition>
+	<Condition conditionValue="not equal">
+		<notFlag>true</notFlag>
+	</Condition>
+	<Condition conditionValue="greater than">
+		<notFlag>null</notFlag>
+	</Condition>
+	<Condition conditionValue="less than">
+		<notFlag>null</notFlag>
+	</Condition>
+	<Condition conditionValue="equal">
+		<notFlag>false</notFlag>
+	</Condition>
+	<Condition conditionValue="not equal">
+		<notFlag>false</notFlag>
+	</Condition>
+</Conditions>

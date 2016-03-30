@@ -1,8 +1,10 @@
 package com.pursuit.salesCommission.app.api;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import com.pursuit.salesCommission.app.model.AggregateFunctions;
 import com.pursuit.salesCommission.app.model.ConditionList;
+import com.pursuit.salesCommission.app.model.Employee;
 import com.pursuit.salesCommission.app.model.FieldList;
 import com.pursuit.salesCommission.app.model.RuleParameter;
 import com.pursuit.salesCommission.app.model.RuleSimple;
@@ -99,6 +102,31 @@ public class RuleSimpleAPI {
 		return aggregatetFunction;
 	}
 	/**
+	 * Method for create Condition List
+	 * @param conditionList
+	 * @return
+	 */
+	public long createCondition(ConditionList conditionList) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		ConditionList cndList = new ConditionList();
+		try {
+			tx = session.beginTransaction();
+			cndList.setConditionValue(conditionList.getConditionValue());
+			cndList.setNotFlag(conditionList.isNotFlag());    
+			session.save(cndList);
+			tx.commit();
+			logger.debug("CREATED AN CONDITION INTO DATABASE" + cndList);
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return cndList.getId();
+	}
+	/**
 	 * Method for getting list of conditions
 	 * 
 	 * @return conditionList
@@ -109,14 +137,33 @@ public class RuleSimpleAPI {
 		Transaction tx = null;
 		tx = session.beginTransaction();
 		List conditionList = session.createQuery("FROM ConditionList").list();
-		//for (Iterator iterator = conditionList.iterator(); iterator.hasNext();) {
-			//ConditionList cdnLst = (ConditionList) iterator.next();
-			//logger.debug("GET THE RULE DETAILS FROM DATABASE" + cdnLst.getId() + cdnLst.getConditionValue());
+		/*for (Iterator iterator = conditionList.iterator(); iterator.hasNext();) {
+			ConditionList cdnLst = (ConditionList) iterator.next();
+			logger.debug("GET THE RULE DETAILS FROM DATABASE" + cdnLst.getId() + cdnLst.getConditionValue());
 
-		//}
+		}*/
 		return conditionList;
 	}
-
+	public ConditionList searchCondition(String conditionVal, Boolean flag) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		tx = session.beginTransaction();
+		List conditions = session.createQuery("FROM ConditionList").list();
+		ConditionList cnd = new ConditionList();
+		for (Iterator iterator = conditions.iterator(); iterator.hasNext();) {
+			
+			ConditionList condition = (ConditionList) iterator.next();
+			if(conditionVal.equals(condition.getConditionValue()) && flag.equals(condition.isNotFlag())){
+				cnd.setId(condition.getId());
+				cnd.setConditionValue(condition.getConditionValue());
+				cnd.setNotFlag(condition.isNotFlag());
+			}  
+			// logger.debug("GET THE EMPLOYEE DETAILS FROM DATABASE" +
+			// employee.getFirstName()+ employee.getLastName()
+			// +employee.getSalary() );
+		}
+		return cnd;
+	}
 	/**
 	 * Method for getting list of fields
 	 * 
@@ -128,11 +175,11 @@ public class RuleSimpleAPI {
 		Transaction tx = null;
 		tx = session.beginTransaction();
 		List fieldList = session.createQuery("FROM FieldList").list();
-		//for (Iterator iterator = fieldList.iterator(); iterator.hasNext();) {
-			//FieldList fldLst = (FieldList) iterator.next();
-			//logger.debug("GET THE RULE DETAILS FROM DATABASE" + fldLst.getId() + fldLst.getDisplayName());
+		/*for (Iterator iterator = fieldList.iterator(); iterator.hasNext();) {
+			FieldList fldLst = (FieldList) iterator.next();
+			logger.debug("GET THE RULE DETAILS FROM DATABASE" + fldLst.getId() + fldLst.getDisplayName());
 
-		//}
+		} */
 		return fieldList;
 	}
 	

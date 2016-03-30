@@ -281,24 +281,10 @@ public class RuleAPITest extends TestCase {
 		rpm.add(rl2);
 		ruleSimple.setRuleParameter(rpm);
 
-		/*List<FieldList> fldlst = new ArrayList<FieldList>();
-		FieldList fld1 = new FieldList();
-		FieldList fld2 = new FieldList();
-		fld1.setFieldName("fld 3");
-		fld1.setDisplayName("fii");
-		fld2.setFieldName("fld 6");
-		fld2.setDisplayName("fello");
-		fldlst.add(fld1);
-		fldlst.add(fld2); */
 		ruleSimple.setField("fld 3");
 		
-		//List <AggregateFunctions> aggtfn = new ArrayList<AggregateFunctions>();
 		AggregateFunctions fn1 = new AggregateFunctions();
-		//AggregateFunctions fn2 = new AggregateFunctions();
 		fn1.setFunctionName("Funtion 16");
-		//fn2.setFunctionName("Function 7");
-		//aggtfn.add(fn2);
-		//aggtfn.add(fn1); 
 		ruleSimple.setAggregateFunctions(fn1);
 		
 		List<QualifyingClause> qClause = new ArrayList<QualifyingClause>();
@@ -309,12 +295,12 @@ public class RuleAPITest extends TestCase {
 		fldlst1.setFieldName("fieldlstvalue1");
 		fldlst1.setDisplayName("hello1");
 		qc1.setFieldList(fldlst1);
-		ConditionList cndlst1 = new ConditionList();
-		cndlst1.setNotFlag(true);
-		cndlst1.setConditionValue("condition1");
-		qc1.setConditionList(cndlst1); 
+		String cndVal = "less than";
+		Boolean flag = false;
+		ConditionList cnd = ruleSimpleAPI.searchCondition(cndVal, flag);
+		qc1.setConditionList(cnd); 
 		qClause.add(qc1);
-		qc2.setValue("Qualifying Clause2");
+	/*	qc2.setValue("Qualifying Clause2");
 		FieldList fldlst2 = new FieldList();
 		fldlst2.setFieldName("fieldlstvalue2");
 		fldlst2.setDisplayName("hello2");
@@ -323,7 +309,7 @@ public class RuleAPITest extends TestCase {
 		cndlst2.setNotFlag(false);
 		cndlst2.setConditionValue("condition2");
 		qc2.setConditionList(cndlst2); 
-		qClause.add(qc2);
+		qClause.add(qc2); */
 		ruleSimple.setQualifyingClause(qClause);
 
 		rule.setRuleSimple(ruleSimple);
