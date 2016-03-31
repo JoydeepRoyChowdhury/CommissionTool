@@ -16,7 +16,7 @@
         <div style="border:1px solid #eaeaea;padding:20px;width:400px">
             ${message}
         </div>
-        <form:form action="/CommissionTool/editpersonlistcontainer" modelAttribute="personListContainer" method="post" id="personListForm">
+        <form:form action="/CommissionTool/editpersonlistcontainer"  method="post" id="personListForm1">
             <table>
                 <thead>
                     <tr>
@@ -25,45 +25,47 @@
                         <th></th>
                     </tr>
                 </thead>
-                <tbody id="personListContainer">
-                    <c:forEach items="${personListContainer.personList}" var="Person" varStatus="i" begin="0" >
+                <tbody id="personListContainer2">
+                    <c:forEach items="${personListContainer1.personList}" var="Person" varStatus="i" begin="0" >
                         <tr class="person">    
-                            <td><form:input path="personList[${i.index}].name" id="name${i.index}" /></td>
-                            <td><form:input path="personList[${i.index}].age" id="age${i.index}" /></td>
-                            <%--
-                            <td><input type="text" name="personList[].name" value="${Person.name}" /></td>
-                            <td><input type="text" name="personList[].age" value="${Person.age}" /></td>
-                            --%>
-                            <td><a href="#" class="removePerson">Remove Person</a></td>
+                            <td><form:select path="personList[${i.index}].value" id="value${i.index}"><c:forEach items="${listCompRule1}"
+											var="rule"><option value="${rule.ruleName}">
+												<c:out value="${rule.ruleName}" />
+											</option>
+										</c:forEach></form:select></td>
+                           <!--  
+                            <td><form:input path="personList[${i.index}].age" id="age${i.index}"/></td>
+                           -->
+                            <td><form:select path="personList[${i.index}].conditionValue" id="conditionValue${i.index}"><option value="Equal">Equal</option><option value="Greater than">Greater than</option><option value="Less than">Less than</option></form:select></td>
+                             <td><form:input path="personList[${i.index}].fieldList" id="fieldName${i.index}" /></td>
+                            <td><a href="#" class="removePerson1">Remove Person</a></td>
                         </tr>
                     </c:forEach>
-                    <%-- 
-                        IMPORTANT 
-                        There must always be one row.
-                        This is to allow the JavaScript to clone the row.
-                        If there is no row at all, it cannot possibly add a new row.
- 
-                        If this 'default row' is undesirable 
-                            remove it by adding the class 'defaultRow' to the row
-                        I.e. in this case, class="person" represents the row.
-                        Add the class 'defaultRow' to have the row removed.
-                        This may seem weird but it's necessary because 
-                        a row (at least one) must exist in order for the JS to be able clone it.
-                        <tr class="person"> : The row will be present
-                        <tr class="person defaultRow"> : The row will not be present
-                    --%>
-                    <c:if test="${personListContainer.personList.size() == 0}">
+                   
+                    <c:if test="${personListContainer1.personList.size() == 0}">
                         <tr class="person defaultRow">    
-                            <td><input type="text" name="personList[].name" value="" /></td>
-                            <td><input type="text" name="personList[].age" value="" /></td>
- 
-                            <td><a href="#" class="removePerson">Remove Person</a></td>
+                            <td><select name="personList[].value"><c:forEach items="${listCompRule1}"
+											var="rule">
+											<option value="${rule.ruleName}">
+												<c:out value="${rule.ruleName}" />
+											</option>
+										</c:forEach>
+								</select></td>
+                           <!--  
+                            <td>&nbsp;Not&nbsp;<input type="text" name="personList[].age" value="not" ></td>
+ 							-->
+ 							<td>Condition&nbsp;<select name="personList[].conditionValue"><option value="Equal">Equal</option><option value="Greater than">Greater than</option><option value="Less than">Less than</option></select></td>
+                            <td>&nbsp;Parameter Name&nbsp;<input type="text" name="personList[].fieldName"></td>
+                            <td><a href="#" class="removePerson1">Remove Person</a></td>
+                        
                         </tr>
                     </c:if>
+                
+                    
                 </tbody>
             </table>
             <input type="submit" value="Save" id="submit" />&nbsp;&nbsp;
-            <a href="#" id="addPerson">Add Person</a>&nbsp;&nbsp;
+            <a href="#" id="addPerson1">Add Person</a>&nbsp;&nbsp;
             <a href="?f=">Reset List</a>
         </form:form>
  
@@ -78,7 +80,6 @@
             }
             function rowRemoved(rowElement) {
                 saveNeeded();
-                alert( "Removed Row HTML:\n" + $(rowElement).html() );
             }
  
             function saveNeeded() {
@@ -97,12 +98,12 @@
             $(document).ready( function() {
                 var config = {
                     rowClass : 'person',
-                    addRowId : 'addPerson',
-                    removeRowClass : 'removePerson',
-                    formId : 'personListForm',
-                    rowContainerId : 'personListContainer',
+                    addRowId : 'addPerson1',
+                    removeRowClass : 'removePerson1',
+                    formId : 'personListForm1',
+                    rowContainerId : 'personListContainer2',
                     indexedPropertyName : 'personList',
-                    indexedPropertyMemberNames : 'name,age',
+                    indexedPropertyMemberNames : 'value,conditionValue,fieldName',
                     rowAddedListener : rowAdded,
                     rowRemovedListener : rowRemoved,
                     beforeSubmit : beforeSubmit

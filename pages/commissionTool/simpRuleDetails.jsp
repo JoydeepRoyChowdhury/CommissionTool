@@ -10,17 +10,14 @@
 
 
 		<style>
-
 td {
 	padding-top: .5em;
 	padding-bottom: .5em;
-	
 }
-
 </style>
 
 
- <script type="text/javascript">
+		<script type="text/javascript">
  
  function rowAdded(rowElement) {
      //clear the imput fields for the row
@@ -142,188 +139,224 @@ td {
 				current.parentElement.removeChild(current);
 			}
 		</script>
-		 <form:form action="/CommissionTool/submitSimpRule" modelAttribute="personListContainer" method="post" id="personListForm">
-<!--
+		<form:form action="/CommissionTool/submitSimpRule"
+			modelAttribute="personListContainer"
+			 method="post" id="personListForm">
+			<!--
 <form action="/CommissionTool/submitSimpRule"  method="post">
-	-->		
-	 <div style="height: 580px; overflow: auto;">
-					<h1 align="center">Compensation Rule Details</h1>
+	-->
+			<div style="height: 580px; overflow: auto;">
+				<h1 align="center">Compensation Rule Details</h1>
 
-					<table border="1">
-				 		
-						<tr>
-							<td><b>Rule Name:</b></td>
-							<td><input type="text" name="ruleName"></td>
-						</tr>
-						<tr>
-							<td><b>Description:</b></td>
-							<td><input type="text" name="description"></td>
-						</tr>
-						<tr>
-							<td><b>RuleDetails</b></td>
-							<td><input type="text" name="ruleDetails"></td>
-						</tr>
-						<tr>
-							<td><b>Rule Type:</b></td>
-							<td>Simple<input type="hidden" name="ruleType" value="s"></td>
-						</tr>
-						
-						
-			
-						<tr>						
-							<td><b>Parameters</b></td>			
-               <td>
-               
-                <table>
-                <tbody id="personListContainer">
-                    <c:forEach items="${personListContainer.personList}" var="RuleParameter" varStatus="i" begin="0" >
-                        <tr class="ruleParameter">    
-                            <td>Parameter Name&nbsp;<form:input path="personList[${i.index}].parameterName" id="parameterName${i.index}" /></td>
-                            <td>&nbsp;&nbsp;&nbsp;&nbsp;Parameter Value&nbsp;<form:input path="personList[${i.index}].parameterValue" id="parameterValue${i.index}" /></td>
-                            
-                            <td><a href="#" class="removePerson">&nbsp;Remove</a></td>
-                        </tr>
-                    </c:forEach>
-                   
-                    <c:if test="${personListContainer.personList.size() == 0}">
-                        <tr class="person defaultRow">    
-                            <td>Parameter Name&nbsp;<input type="text" name="personList[].parameterName" value="" /></td>
-                            <td>&nbsp;&nbsp;Parameter Value&nbsp;<input type="text" name="personList[].parameterValue" value="" /></td>
- 
-                            <td><a href="#" class="removePerson">Remove</a></td>
-                        </tr>
-                    </c:if>
-                    
-                </tbody>
-          </table>
-		
-            <a href="#" id="addPerson">Add Parameters</a>&nbsp;&nbsp;
-             <a href="?f=">Reset List</a>
-           
-             </TD>         
-               </tr> 
-               
-				
-	  				
-						<tr>
-							<td><b>Calculation mode:&nbsp;</b></td>
-							<td><input type="checkbox" name="calculationMode"
-								value="i">
-								
-								&nbsp;individual&nbsp;<input type="checkbox"
-								name="calculationMode" value="r">&nbsp;Rank&nbsp;<br/>
-								Within&nbsp;<input type="text" Name="rankCount" value="0" size="4">&nbsp;ranks in&nbsp;<input type="checkbox" Name="rankType" value="Number">&nbsp;number&nbsp;<input type="checkbox" Name="rankType" value="percentage">&nbsp;percentage
-							<br/><br/>Population&nbsp;<input type="checkbox" Name="populationType" value="SameManager">&nbsp;Under same reporting manager<br/>
-					<input type="checkbox" Name="populationType" value="SameRole">&nbsp;Same role<br/>
-					<input type="checkbox" Name="populationType" value="Global">&nbsp;Global Upto &nbsp;<input type="text" Name="populationUpto" size="4">&nbsp;level up</td>
-									
-					
-						</tr>
+				<table border="1">
 
-						<tr>
-							<td><b>Based on: </b></td>
-							<td>Aggregate function<br /> 
-							<select><c:forEach items="${listRule1}"
-											var="rule">
-											<option value="${rule.functionName}">
-												<c:out value="${rule.functionName}" />
-											</option>
-										</c:forEach>
-								</select>
-							 &nbsp;Field&nbsp;
-							<select><c:forEach items="${listRule2}"
-											var="rule1">
-											<option value="${rule1.displayName}">
-												<c:out value="${rule1.displayName}" />
-											</option>
-										</c:forEach>
-								</select>
-							</td>
+					<tr>
+						<td><b>Rule Name:</b></td>
+						<td><input type="text" name="ruleName"></td>
+					</tr>
+					<tr>
+						<td><b>Description:</b></td>
+						<td><input type="text" name="description"></td>
+					</tr>
+					<tr>
+						<td><b>RuleDetails</b></td>
+						<td><input type="text" name="ruleDetails"></td>
+					</tr>
+					<tr>
+						<td><b>Rule Type:</b></td>
+						<td>Simple<input type="hidden" name="ruleType" value="s"></td>
+					</tr>
 
-						</tr>
 
-						<tr>
-							<td><b>Qualifying Clause</b></td>
-							<td>
-								<table ID="Quali_input">
-									<tr>
-										<td><input type="Button" onClick="addRow2('Quali_input')"
-											VALUE="Add Row"></td>
-									</tr>
-									<tr>
-										<td>&nbsp;&nbsp;&nbsp;Field&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Condition &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Value</td>
-									</tr>
-								</table>
 
-							</td>
-						</tr>
-				 		
-						<tr>
-						<td><b>Qualifying Clause</b></td>
-						 <td>
-				
-						 <table>
-                <tbody id="personListContainer1">
-                    <c:forEach items="${personListContainer1.personList}" var="Person" varStatus="i" begin="0" >
-                        <tr class="person">    
-                            <td><form:select path="personList[${i.index}].value" id="value${i.index}"><option value="Customer Name">Customer Name</option>
-                            <option value="order Total">order Total</option>
-                            <option value="Discount%">Discount%</option></form:select></td>
-                           <!-- 
-                            <td><form:input  path="personList[${i.index}].age" id="age${i.index}"/></td>
-                           -->
-                            <td><form:select path="personList[${i.index}].conditionValue" id="conditionValue${i.index}"><option value="Equal">Equal</option><option value="Greater than">Greater than</option><option value="Less than">Less than</option></form:select></td>
-                           
-                             <td><form:input path="personList[${i.index}].fieldName" id="fieldName${i.index}" /></td>
-                            <td><a href="#" class="removePerson1">Remove Person</a></td>
-                        </tr>
-                    </c:forEach>
-                   
-                    <c:if test="${personListContainer1.personList.size() == 0}">
-                        <tr class="person defaultRow">    
-                            <td>Field Name&nbsp;<select name="personList[].fieldName"><option value="Customer Name">Customer Name</option>
-                            <option value="order Total">order Total</option>
-                            <option value="Discount%">Discount%</option></select></td>
-                            <!-- 
-                            <td>&nbsp;Not&nbsp;<input type="checkbox" name="personList[].age" value="not" ></td>
- 							-->
- 							<td>Condition&nbsp;<select name="personList[].conditionValue"><option value="Equal">Equal</option><option value="Greater than">Greater than</option><option value="Less than">Less than</option></select></td>
-                            <td>&nbsp;Value&nbsp;<input type="text" name="personList[].value"></td>
-                            <td><a href="#" class="removePerson1">Remove Person</a></td>
-                        
-                        </tr>
-                    </c:if>
-                </tbody>
-            </table>
-						 <a href="#" id="addPerson1">Add Parameters</a>&nbsp;&nbsp;
-             <a href="?f=">Reset List</a>
+					<tr>
+						<td><b>Parameters</b></td>
+						<td>
+
+							<table>
+								<tbody id="personListContainer">
+									<c:forEach items="${personListContainer.personList}"
+										var="RuleParameter" varStatus="i" begin="0">
+										<tr class="ruleParameter">
+											<td>Parameter Name&nbsp;<form:input
+													path="personList[${i.index}].parameterName"
+													id="parameterName${i.index}" /></td>
+											<td>&nbsp;&nbsp;&nbsp;&nbsp;Parameter Value&nbsp;<form:input
+													path="personList[${i.index}].parameterValue"
+													id="parameterValue${i.index}" /></td>
+
+											<td><a href="#" class="removePerson">&nbsp;Remove</a></td>
+										</tr>
+									</c:forEach>
+
+									<c:if test="${personListContainer.personList.size() == 0}">
+										<tr class="person defaultRow">
+											<td>Parameter Name&nbsp;<input type="text"
+												name="personList[].parameterName" value="" /></td>
+											<td>&nbsp;&nbsp;Parameter Value&nbsp;<input type="text"
+												name="personList[].parameterValue" value="" /></td>
+
+											<td><a href="#" class="removePerson">Remove</a></td>
+										</tr>
+									</c:if>
+
+								</tbody>
+							</table> <a href="#" id="addPerson">Add Parameters</a>&nbsp;&nbsp; <a
+							href="?f=">Reset List</a>
+
+						</TD>
+					</tr>
+					<tr>
+						<td><b>Calculation mode:&nbsp;</b></td>
+						<td><input type="checkbox" name="calculationMode" value="i">
+
+							&nbsp;individual&nbsp;<input type="checkbox"
+							name="calculationMode" value="r">&nbsp;Rank&nbsp;<br />
+							Within&nbsp;<input type="text" Name="rankCount" value="0"
+							size="4">&nbsp;ranks in&nbsp;<input type="checkbox"
+							Name="rankType" value="Number">&nbsp;number&nbsp;<input
+							type="checkbox" Name="rankType" value="percentage">&nbsp;percentage
+							<br />
+						<br />Population&nbsp;<input type="checkbox" Name="populationType"
+							value="SameManager">&nbsp;Under same reporting manager<br />
+							<input type="checkbox" Name="populationType" value="SameRole">&nbsp;Same
+							role<br /> <input type="checkbox" Name="populationType"
+							value="Global">&nbsp;Global Upto &nbsp;<input type="text"
+							Name="populationUpto" size="4">&nbsp;level up</td>
+
+
+					</tr>
+
+					<tr>
+						<td><b>Based on: </b></td>
+						<td>Aggregate function<br /> <select
+							name="aggregateFunction"><c:forEach
+									items="${listRule1}" var="rule">
+									<option value="${rule.functionName}">
+										<c:out value="${rule.functionName}" />
+									</option>
+								</c:forEach>
+						</select> &nbsp;Field&nbsp; <select><c:forEach
+									items="${listRule2}" var="rule1">
+									<option value="${rule1.fieldName}">
+										<c:out value="${rule1.fieldName}" />
+									</option>
+								</c:forEach>
+						</select>
 						</td>
-						</tr>
-				
-						<tr>
-							<td><b>Compensation</b></td>
-							<td>
-							<input type="checkbox" name="compensationType" value="Fixed">&nbsp;Fixed&nbsp;
-								<input type="text" name="fixedCompValue" value="0"><br />						
-								<input type="checkbox" name="compensationType" value="Variable">&nbsp;Variable&nbsp;<br />
-							
-								&nbsp;Apply formula&nbsp;<input type="text" name="compensationFormula"><br />
-								<br />&nbsp; parameters&nbsp;<input type="text" name="compensationParameter"><br />
-							</td>
-						
-						</tr>
-	
-					
-					</table>
-			
-						<div align="center">	<input type="submit" value="Submit"> <a
-								href="/CommissionTool/ruledetails"> <input type="button"
-									value="Cancel" /></a></div>
-						
-				
-			
 
-		</div>
+					</tr>
+<!--  
+					<tr>
+						<td><b>Qualifying Clause</b></td>
+						<td>
+							<table ID="Quali_input">
+								<tr>
+									<td><input type="Button" onClick="addRow2('Quali_input')"
+										VALUE="Add Row"></td>
+								</tr>
+								<tr>
+									<td>&nbsp;&nbsp;&nbsp;Field&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										Condition
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Value</td>
+								</tr>
+							</table>
+
+						</td>
+					</tr>
+							-->
+					<tr>
+						<td><b>Qualifying Clause</b></td>
+						<td>
+
+							<table>
+								<tbody id="personListContainer1">
+									<c:forEach items="${personListContainer1.personList}"
+										var="Person" varStatus="i" begin="0">
+										<tr class="person">
+											<td>&nbsp;FieldName&nbsp;<form:select
+													path="personList[${i.index}].fieldName"
+													id="fieldName${i.index}">
+													<c:forEach items="${listRule2}" var="rule">
+														<option value="${rule.fieldName}">
+															<c:out value="${rule.fieldName}" />
+														</option>
+													</c:forEach>
+												</form:select>
+											<td>&nbsp;Condition&nbsp;<form:select
+													path="personList[${i.index}].conditionValue"
+													id="conditionValue${i.index}">
+													<c:forEach items="${listRule3}"
+											var="rule">
+											<option value="${rule.conditionValue}">
+												<c:out value="${rule.conditionValue}" />
+											</option>
+										</c:forEach></form:select></td>
+
+											<td>&nbsp;Value&nbsp;<form:input
+													path="personList[${i.index}].value" id="value${i.index}" /></td>
+
+											<td><a href="#" class="removePerson1">Remove Person</a></td>
+										</tr>
+									</c:forEach>
+
+									<c:if test="${personListContainer1.personList.size() == 0}">
+										<tr class="person defaultRow">
+											<td>&nbsp;Field Name&nbsp;<select
+												name="personList[].fieldName">
+													<c:forEach items="${listRule2}" var="rule">
+														<option value="${rule.fieldName}">
+															<c:out value="${rule.fieldName}" />
+														</option>
+													</c:forEach>
+											</select></td>
+											<td>&nbsp;Condition&nbsp;<select
+												name="personList[].conditionValue"><c:forEach items="${listRule3}"
+											var="rule">
+											<option value="${rule.conditionValue}">
+												<c:out value="${rule.conditionValue}" />
+											</option>
+										</c:forEach></select>
+
+											<td>&nbsp;Value&nbsp;<input type="text"
+												name="personList[].value"></td>
+											<td><a href="#" class="removePerson1">Remove Person</a></td>
+
+										</tr>
+									</c:if>
+								</tbody>
+							</table> <a href="#" id="addPerson1">Add Parameters</a>&nbsp;&nbsp; <a
+							href="?f=">Reset List</a>
+						</td>
+					</tr>
+
+					<tr>
+						<td><b>Compensation</b></td>
+						<td><input type="checkbox" name="compensationType"
+							value="Fixed">&nbsp;Fixed&nbsp; <input type="text"
+							name="fixedCompValue" value="0"><br /> <input
+							type="checkbox" name="compensationType" value="Variable">&nbsp;Variable&nbsp;<br />
+
+							&nbsp;Apply formula&nbsp;<input type="text"
+							name="compensationFormula"><br /> <br />&nbsp;
+							parameters&nbsp;<input type="text" name="compensationParameter"><br />
+						</td>
+
+					</tr>
+
+
+				</table>
+
+				<div align="center">
+					<input type="submit" value="Submit"> <a
+						href="/CommissionTool/ruledetails"> <input type="button"
+						value="Cancel" /></a>
+				</div>
+
+
+
+
+			</div>
 		</form:form>
 	</tiles:putAttribute>
 </tiles:insertDefinition>

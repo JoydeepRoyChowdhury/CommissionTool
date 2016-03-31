@@ -5,8 +5,8 @@ import java.util.List;
  
 public class PersonListContainer {
  
-    //Important. Set this to a default List in order to avoid null pointer exceptions when the list is empty
     private List<RuleParameter> personList = new LinkedList<RuleParameter>();
+    
  
     public PersonListContainer() {
     }

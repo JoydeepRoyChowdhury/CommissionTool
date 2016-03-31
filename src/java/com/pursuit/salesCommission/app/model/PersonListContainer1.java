@@ -21,10 +21,6 @@ public class PersonListContainer1 {
 	    public void setPersonList(List<QualifyingClauseUI> personList) {
 	        this.personList = personList;
 	    }
-		
-	
-	
-	
 	
 	
 }

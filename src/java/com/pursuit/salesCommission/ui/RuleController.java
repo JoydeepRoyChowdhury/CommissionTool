@@ -51,22 +51,15 @@ public class RuleController {
 		  if( session.getAttribute("personListContainer") == null )
 	            session.setAttribute("personListContainer", getDummyPersonListContainer());
 	        model.addAttribute("personListContainer", (PersonListContainer)session.getAttribute("personListContainer"));
-	        if( message != null )
-	            model.addAttribute("message", message);
-	        model.addAttribute("cp", request.getContextPath());
+	        
 		
-
-	        if( session.getAttribute("personListContainer1") == null )
 	            session.setAttribute("personListContainer1", getDummyPersonListContainer1());
 	        model.addAttribute("personListContainer1", (PersonListContainer1)session.getAttribute("personListContainer1"));
-	        if( message != null )
-	            model.addAttribute("message", message);
-	        model.addAttribute("cp", request.getContextPath());
-		
+	        
 		
 		model.addAttribute("listRule1", ruleSimpleApi.listOfAggregateFunctions());
 		model.addAttribute("listRule2",ruleSimpleApi.listOfFields());
-		
+		model.addAttribute("listRule3",ruleSimpleApi.listOfConditions());
 		System.out.println(".......servlet running.......");
 		return "simpRuleDetails";
 	}
@@ -102,7 +95,7 @@ public class RuleController {
 	            System.out.println("FieldName: " + p.getFieldName());
 	            //System.out.println("field: " + p.getParameter());
 	        }
-	        session.setAttribute("personListContainer",personListContainer1);
+	        session.setAttribute("personListContainer1",personListContainer1);
 		 
 	        
 	        //model.addAttribute("conditionValue",ruleUI.getConditionValue());
@@ -128,6 +121,9 @@ public class RuleController {
 			model.addAttribute("compensationParameter", ruleUI.getCompensationParameter());
 			model.addAttribute("calculationMode", ruleUI.getCalculationMode());
 			System.out.println("***************************" +ruleUI.getCalculationMode());
+			model.addAttribute("aggregateFunctions", ruleUI.getAggregateFunctions());
+			System.out.println("***************************" +ruleUI.getAggregateFunctions());
+
 		
 			
 			Rule rule = new Rule();
@@ -142,14 +138,13 @@ public class RuleController {
 			rule.setCompensationFormula( ruleUI.getCompensationFormula());
 			rule.setCompensationParameter(ruleUI.getCompensationParameter());
 			QualifyingClause obj1 = new QualifyingClause();
-			
+			ConditionList obj2 = new ConditionList();
+			FieldList obj3 = new FieldList();
 			RuleSimple ruleSimple = new RuleSimple();
 		List<QualifyingClauseUI> ptr =  personListContainer1.getPersonList();
 		List<QualifyingClause> ptr1 =  new ArrayList<>();
 			for (Iterator iterator = ptr.iterator(); iterator.hasNext();) {
-				QualifyingClauseUI qcui = (QualifyingClauseUI) iterator.next();	
-				ConditionList obj2 = new ConditionList();
-				FieldList obj3 = new FieldList();
+				QualifyingClauseUI qcui = (QualifyingClauseUI) iterator.next();		
 				obj2.setConditionValue(qcui.getConditionValue());
 			obj1.setConditionList(obj2);
 			obj3.setFieldName(qcui.getFieldName());
@@ -167,6 +162,7 @@ public class RuleController {
 			ruleSimple.setPopulationUpto(ruleUI.getPopulationUpto());
 			ruleSimple.setCalculationMode(ruleUI.getCalculationMode());
 			//ruleSimple.setQualifyingClause(personListContainer1.getPersonList());
+			//ruleSimple.setAggregateFunctions(ruleUI.getAggregateFunctions());
 			rule.setRuleSimple(ruleSimple);
 			
 		
@@ -175,7 +171,7 @@ public class RuleController {
 		return "redirect:/RuleList";
 	}
 	
-	
+	/*
 	@RequestMapping(value = "/SimpRuleList", method = RequestMethod.GET)
 	public String listSimpRules(ModelMap model) {
 		model.addAttribute("listRule", ruleApi.listRules());
@@ -185,7 +181,7 @@ public class RuleController {
 		System.out.println("*****************ListDone**********************");
 		return "compRule";
 	}
-	
+	*/
 
 	@RequestMapping(value = "/editSimple/{id}", method = RequestMethod.GET)
 	public String EditSimpRule(@PathVariable("id") int id, ModelMap model, HttpSession session,  HttpServletRequest request, String message){

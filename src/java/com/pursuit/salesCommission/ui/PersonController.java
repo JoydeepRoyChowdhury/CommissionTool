@@ -34,33 +34,30 @@ public class PersonController {
  
     	map.addAttribute("listCompRule1", ruleApi.listRules());
       
-        if( session.getAttribute("personListContainer2") == null )
-            session.setAttribute("personListContainer2", getDummyPersonListContainer());
-        map.addAttribute("personListContainer2", (PersonListContainer2)session.getAttribute("personListContainer2"));
-        if( message != null )
-            map.addAttribute("message", message);
-        map.addAttribute("cp", request.getContextPath());
- 
+        if( session.getAttribute("personListContainer1") == null )
+            session.setAttribute("personListContainer1", getDummyPersonListContainer());
+        map.addAttribute("personListContainer1", (PersonListContainer1)session.getAttribute("personListContainer1"));
+        
         return "personList";
     }
  
     @RequestMapping(value="/editpersonlistcontainer", method= RequestMethod.POST)
     public String editpersonListContainer(@ModelAttribute PersonListContainer1 personListContainer1, HttpSession session) {
         for( QualifyingClauseUI p : personListContainer1.getPersonList() ) {
-            System.out.println("Name: " + p.getValue());
-            System.out.println("Age: " + p.getConditionValue());
-            System.out.println("condition: " + p.getFieldName());
+            System.out.println("Value: " + p.getValue());
+            System.out.println("ConditionValue: " + p.getConditionValue());
+            System.out.println("FieldName: " + p.getFieldName());
             //System.out.println("field: " + p.getParameter());
         }
         session.setAttribute("personListContainer",personListContainer1);
         return "compRule";
     }
  
-    private PersonListContainer2 getDummyPersonListContainer() {
-        List<Person1> personList = new ArrayList<Person1>();
+    private PersonListContainer1 getDummyPersonListContainer() {
+        List<QualifyingClauseUI> personList = new ArrayList<QualifyingClauseUI>();
         for( int i=0; i<1; i++ ) {
-            personList.add( new Person1() );
+            personList.add( new QualifyingClauseUI() );
         }
-        return new PersonListContainer2();
+        return new PersonListContainer1();
     }
 }
