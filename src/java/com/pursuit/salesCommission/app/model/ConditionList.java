@@ -19,7 +19,7 @@ public class ConditionList {
 
 	@Type(type = "org.hibernate.type.NumericBooleanType")
 	@Column(name = "notFlag", nullable = false)
-	private Boolean notFlag;
+	private boolean notFlag;
 
 	@Column(name = "conditionValue")
 	private String conditionValue;

@@ -24,8 +24,8 @@ public class Product {
 	private String description;	
 
 	@OneToOne(cascade = { CascadeType.ALL })
-	@JoinColumn(name = "PROD_TYP_ID")
-	private ProductType productType;
+	@JoinColumn(name = "PROD_STYP_ID")
+	private ProductSubType productSubType;
 	
 	public Product() {
 	}
@@ -75,15 +75,15 @@ public class Product {
 	/**
 	 * @return the productType
 	 */
-	public ProductType getProductType() {
-		return productType;
+	public ProductSubType getProductSubType() {
+		return productSubType;
 	}
 
 	/**
 	 * @param productType the productType to set
 	 */
-	public void setProductType(ProductType productType) {
-		this.productType = productType;
+	public void setProductSubType(ProductSubType productSubType) {
+		this.productSubType = productSubType;
 	}
 
 }
