@@ -48,8 +48,8 @@ public class EmployeeAPI {
 		try {
 			tx = session.beginTransaction();
 			emp.setEmployeeName(employee.getEmployeeName());
-			//emp.setStartDate(employee.getStartDate());
-			//emp.setTerminationDate(employee.getTerminationDate());
+			emp.setStartDate(employee.getStartDate());
+			emp.setTerminationDate(employee.getTerminationDate());
 			//emp.setTarget(employee.getTarget());
 			emp.setSalary(employee.getSalary());
 			session.save(emp);

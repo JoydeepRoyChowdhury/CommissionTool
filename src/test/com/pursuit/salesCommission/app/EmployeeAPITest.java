@@ -31,18 +31,18 @@ public class EmployeeAPITest {
         employee1.setEmployeeName("Cervey");
         employee1.setStartDate(calobj.getTime());
         employee1.setTerminationDate(calobj.getTime());
-     
+        employee1.setSalary(30000);
 		Long id = employeeAPI.createEmployee(employee1);
 		employee1.setId(id);
 		Employee emp = employeeAPI.getEmployee(id);
 		Assert.assertEquals("Cervey", emp.getEmployeeName());
 	}
-	@Test
+	/*	@Test
 	public void testSearchEmployeesByName() {
 		List<Employee> emp= employeeAPI.searchEmployeesByName("Hervey");
 		  Assert.assertEquals(3, emp.size());
 	}
-/*	@Test
+	@Test
 	public void testGetEmployees() {
 		Employee employee = employeeAPI.getEmployee(7);
 		Assert.assertEquals("ss", employee.getFirstName());

@@ -137,14 +137,15 @@ public class RuleController {
 			rule.setFixedCompValue(ruleUI.getFixedCompValue());
 			rule.setCompensationFormula( ruleUI.getCompensationFormula());
 			rule.setCompensationParameter(ruleUI.getCompensationParameter());
-			QualifyingClause obj1 = new QualifyingClause();
-			ConditionList obj2 = new ConditionList();
-			FieldList obj3 = new FieldList();
+			
 			RuleSimple ruleSimple = new RuleSimple();
 		List<QualifyingClauseUI> ptr =  personListContainer1.getPersonList();
 		List<QualifyingClause> ptr1 =  new ArrayList<>();
 			for (Iterator iterator = ptr.iterator(); iterator.hasNext();) {
-				QualifyingClauseUI qcui = (QualifyingClauseUI) iterator.next();		
+				QualifyingClauseUI qcui = (QualifyingClauseUI) iterator.next();	
+				QualifyingClause obj1 = new QualifyingClause();
+				ConditionList obj2 = new ConditionList();
+				FieldList obj3 = new FieldList();
 				obj2.setConditionValue(qcui.getConditionValue());
 			obj1.setConditionList(obj2);
 			obj3.setFieldName(qcui.getFieldName());

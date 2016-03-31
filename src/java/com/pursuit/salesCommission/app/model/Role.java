@@ -21,7 +21,7 @@ public class Role {
 	private String Description;
 
 	@ManyToOne(cascade = { CascadeType.ALL })
-	@JoinColumn(name = "reportsTo")
+	@JoinColumn(name = "reportsTo", nullable = true)
 	private Role reportsTo;
 
 	@OneToMany(cascade = { CascadeType.ALL })
@@ -29,10 +29,7 @@ public class Role {
 	@IndexColumn(name = "detailSrl")
 	private List<Target> target;
 
-	/*
-	 * @OneToMany(mappedBy = "reportsTo") private Set<Role> subordinates = new
-	 * HashSet<Role>();
-	 */
+	
 	public Role() {
 	}
 

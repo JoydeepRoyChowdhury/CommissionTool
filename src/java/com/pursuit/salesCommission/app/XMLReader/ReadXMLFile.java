@@ -57,6 +57,8 @@ import com.pursuit.salesCommission.app.model.Employee;
 	                //   String firstname = elem.getElementsByTagName("Employeename")
 	                                   //    .item(0).getChildNodes().item(0).getNodeValue();
 	                   String firstname = node.getAttributes().getNamedItem("Employeename").getNodeValue();
+	                 //  Date startDate = (elem.getElementsByTagName("StartDate")
+                           //    .item(0).getChildNodes().item(0).getNodeValue());
 	                   Integer salary = Integer.parseInt(elem.getElementsByTagName("Salary")
 	                                       .item(0).getChildNodes().item(0).getNodeValue());
 	                     Employee emp = new Employee(firstname, salary);

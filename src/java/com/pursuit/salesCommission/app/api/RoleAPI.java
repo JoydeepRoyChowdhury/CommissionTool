@@ -50,7 +50,7 @@ public class RoleAPI {
 			newRole.setDescription(role.getDescription());
 			newRole.setReportsTo(role.getReportsTo());
 			newRole.setTarget(role.getTarget());
-			session.save(role);
+			session.save(newRole);
 			tx.commit();
 			logger.debug("CREATED AN ROLE INTO DATABASE" + newRole);
 		} catch (HibernateException e) {
@@ -79,6 +79,27 @@ public class RoleAPI {
 					
 		}
 		return roles;
+	}
+	
+	public Role searchRoleByName(String roleName) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		tx = session.beginTransaction();
+		List roles = session.createQuery("FROM Role").list();
+		Role roleResult = new Role();
+		for (Iterator iterator = roles.iterator(); iterator.hasNext();) {
+			
+			Role role = (Role) iterator.next();
+			if(roleName.equals(role.getRoleName())){
+				roleResult.setId(role.getId());
+				roleResult.setRoleName(role.getRoleName());
+				roleResult.setDescription(role.getDescription());
+				roleResult.setReportsTo(role.getReportsTo());
+				
+			}  
+
+		}
+		return roleResult;
 	}
 
 	/* ............. delete role........ */

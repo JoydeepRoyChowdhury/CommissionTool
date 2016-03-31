@@ -8,10 +8,7 @@
 	</Condition>
 	<Condition conditionValue="equal">
 		<notFlag>true</notFlag>
-	</Condition>
-	<Condition conditionValue="not equal">
-		<notFlag>true</notFlag>
-	</Condition>
+	</Condition>	
 	<Condition conditionValue="greater than">
 		<notFlag>null</notFlag>
 	</Condition>
@@ -22,6 +19,18 @@
 		<notFlag>false</notFlag>
 	</Condition>
 	<Condition conditionValue="not equal">
+		<notFlag>false</notFlag>
+	</Condition>
+	<Condition conditionValue="starts with">
+		<notFlag>false</notFlag>
+	</Condition>
+	<Condition conditionValue="ends with">
+		<notFlag>false</notFlag>
+	</Condition>
+	<Condition conditionValue="same month">
+		<notFlag>false</notFlag>
+	</Condition>
+	<Condition conditionValue="same week day">
 		<notFlag>false</notFlag>
 	</Condition>
 </Conditions>

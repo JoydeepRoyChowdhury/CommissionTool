@@ -26,25 +26,25 @@ public class RoleAPItest {
 	public void testCreateRole() {
        
         Role role1 = new Role();
-        role1.setRoleName("TESTER");
-        role1.setDescription("Good");
+        role1.setRoleName("VP2");
+        role1.setDescription("Bad");
       //  role1.setReportsTo("CEO");
        Long id = roleAPI.createRole(role1);
         Role role = roleAPI.getRole(id);
-		Assert.assertEquals("TESTER", role.getRoleName());
+		Assert.assertEquals("VP2", role.getRoleName());
 	}
 	
-	@Test
+	/*	@Test
 	public void testListOfRoles() {
 		List<Role> role= roleAPI.listOfRoles();
 		  Assert.assertEquals(2, role.size());
-	}
-	/*		@Test
+	} */
+			@Test
 	public void testGetRoles() {
-		Role role = roleAPI.getRole(2);
-		Assert.assertEquals("cc", role.getRoleName());
+		Role role = roleAPI.searchRoleByName("VP");
+		Assert.assertEquals("Bad", role.getDescription());
 	}
-
+/*
 @Test
 	public void testEditRole() {
 		Role e = new Role();
