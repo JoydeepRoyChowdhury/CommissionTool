@@ -126,6 +126,29 @@ public class RuleSimpleAPI {
 		return aggregatetFunction;
 	}
 	/**
+	 * Method for search aggregate function by name
+	 * @param fieldVal
+	 * @return
+	 */
+	public AggregateFunctions searchAggregateFunction(String aggtFunName) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		tx = session.beginTransaction();
+		List fields = session.createQuery("FROM AggregateFunctions").list();
+		AggregateFunctions fn1 = new AggregateFunctions();
+		for (Iterator iterator = fields.iterator(); iterator.hasNext();) {
+			
+			AggregateFunctions fn = (AggregateFunctions) iterator.next();
+			if(aggtFunName.equals(fn.getFunctionName())){
+				fn1.setId(fn.getId());	
+				fn1.setFunctionName(fn.getFunctionName());
+				
+			}  
+			
+		}
+		return fn1;
+	}
+	/**
 	 * Method for create Condition List
 	 * @param conditionList
 	 * @return
@@ -169,6 +192,11 @@ public class RuleSimpleAPI {
 		}*/
 		return conditionList;
 	}
+	/**
+	 * 
+	 * @param conditionVal
+	 * @return
+	 */
 	public ConditionList searchCondition(String conditionVal) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
@@ -214,6 +242,31 @@ public class RuleSimpleAPI {
 		}
 		return fldlst.getId();
 	}
+	/**
+	 * Method for search field by field name
+	 * @param fieldVal
+	 * @return
+	 */
+	public FieldList searchFieldList(String fieldVal) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		tx = session.beginTransaction();
+		List fields = session.createQuery("FROM FieldList").list();
+		FieldList fld1 = new FieldList();
+		for (Iterator iterator = fields.iterator(); iterator.hasNext();) {
+			
+			FieldList fld = (FieldList) iterator.next();
+			if(fieldVal.equals(fld.getDisplayName())){
+				fld1.setId(fld.getId());
+				fld1.setDisplayName(fld.getDisplayName());
+				fld1.setFieldName(fld.getFieldName());
+				
+			}  
+			
+		}
+		return fld1;
+	}
+	
 	/**
 	 * Method for getting list of fields
 	 * 

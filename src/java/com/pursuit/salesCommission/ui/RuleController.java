@@ -149,10 +149,9 @@ public class RuleController {
 			for (Iterator iterator = ptr.iterator(); iterator.hasNext();) {
 				QualifyingClauseUI qcui = (QualifyingClauseUI) iterator.next();	
 				QualifyingClause obj1 = new QualifyingClause();
-				ConditionList obj2 = new ConditionList();
 				FieldList obj3 = new FieldList();
-				obj2.setConditionValue(qcui.getConditionValue());
-			obj1.setConditionList(obj2);
+				ConditionList cnd = ruleSimpleApi.searchCondition(qcui.getConditionValue());
+			obj1.setConditionList(cnd);
 			obj3.setFieldName(qcui.getFieldName());
 			obj1.setFieldList(obj3);
 			obj1.setValue(qcui.getValue());

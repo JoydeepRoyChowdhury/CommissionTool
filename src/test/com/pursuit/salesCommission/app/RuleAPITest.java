@@ -282,18 +282,16 @@ public class RuleAPITest extends TestCase {
 		rule.setRuleParameter(rpm);
 
 		ruleSimple.setField("fld 3");
-		
-		AggregateFunctions fn1 = new AggregateFunctions();
-		fn1.setFunctionName("Funtion 16");
+		String fnVal = "sum";
+		AggregateFunctions fn1 = ruleSimpleAPI.searchAggregateFunction(fnVal);
 		ruleSimple.setAggregateFunctions(fn1);
 		
 		List<QualifyingClause> qClause = new ArrayList<QualifyingClause>();
 		QualifyingClause qc1 = new QualifyingClause();
 		QualifyingClause qc2 = new QualifyingClause();
 		qc1.setValue("Qualifying Clause1");
-		FieldList fldlst1 = new FieldList();
-		fldlst1.setFieldName("fieldlstvalue1");
-		fldlst1.setDisplayName("hello1");
+		String fldVal = "Order Total";
+		FieldList fldlst1 = ruleSimpleAPI.searchFieldList(fldVal);
 		qc1.setFieldList(fldlst1);
 		qc1.setNotFlag(true);
 		String cndVal1 = "less than";
@@ -301,9 +299,8 @@ public class RuleAPITest extends TestCase {
 		qc1.setConditionList(cnd1); 
 		qClause.add(qc1);
 		qc2.setValue("Qualifying Clause2");
-		FieldList fldlst2 = new FieldList();
-		fldlst2.setFieldName("fieldlstvalue1");
-		fldlst2.setDisplayName("hello1");
+		String fldVal2 = "Discount Percentage";
+		FieldList fldlst2 = ruleSimpleAPI.searchFieldList(fldVal2);
 		qc2.setFieldList(fldlst2);
 		qc2.setNotFlag(false);
 		String cndVal2 = "equal";
@@ -328,14 +325,8 @@ public class RuleAPITest extends TestCase {
 		rsimp.setField("field 5");
 		//rule1.setRuleSimple(rsimp);
 
-		//List<AggregateFunctions> aggtfns = rsimp.getAggregateFunctions();
-		AggregateFunctions fn3 = rsimp.getAggregateFunctions();
-		//AggregateFunctions fn4 = new AggregateFunctions();
-		fn3.setFunctionName("Funtion 18");
-		//fn4.setFunctionName("Function 9");
-		//aggtfns.add(fn3);
-		//aggtfns.add(fn4); 
-		rsimp.setAggregateFunctions(fn3); 
+		
+		
 		rule1.setRuleSimple(rsimp);
 		 ruleAPI.editRule(rule1);
 		Rule r1 = ruleAPI.getRule(rule1.getId());
