@@ -1,5 +1,8 @@
 package com.pursuit.salesCommission.ui;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.pursuit.salesCommission.app.api.EmployeeAPI;
-import com.pursuit.salesCommission.app.model.Employee;
 
 @Controller
 public class EmployeeController {
@@ -21,13 +23,17 @@ public class EmployeeController {
 	
 	private static final Logger logger = Logger.getLogger(EmployeeController.class);
 	
-	@RequestMapping(value = "/employee", method = RequestMethod.GET)
-	public ModelAndView employee() {
-		
-		logger.debug("RENDERING TO EPLOYEE FORM LOAD PAGE");
-		return new ModelAndView("addEmployee", "command", new Employee());
-	}
 
+	@RequestMapping(value = "/empList", method = RequestMethod.GET)
+	public String simpleRule(ModelMap model, HttpSession session,  HttpServletRequest request) {
+	   
+		model.addAttribute("listEmployee", employeeApi.listEmployees());
+		System.out.println(".......servlet running.......");
+		return "employeeList";
+	}
+}
+
+	/*
 	@RequestMapping(value = "/submitEmployee", method = RequestMethod.POST)
 	public String addEmployee1(@ModelAttribute("SpringWeb") Employee employee, ModelMap model) {
 		
@@ -80,3 +86,4 @@ public class EmployeeController {
 		return "editEmployee";
 	}
 }
+	*/

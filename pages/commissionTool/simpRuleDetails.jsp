@@ -310,7 +310,7 @@ td {
 											<td>&nbsp;Value&nbsp;<form:input
 													path="personList[${i.index}].value" id="value${i.index}" /></td>
 
-											<td><a href="#" class="removePerson1">Remove Person</a></td>
+											<td><a href="#" class="removePerson1">Remove</a></td>
 										</tr>
 									</c:forEach>
 
@@ -338,12 +338,12 @@ td {
 
 											<td>&nbsp;Value&nbsp;<input type="text"
 												name="personList[].value"></td>
-											<td><a href="#" class="removePerson1">Remove Person</a></td>
+											<td><a href="#" class="removePerson1">Remove</a></td>
 
 										</tr>
 									</c:if>
 								</tbody>
-							</table> <a href="#" id="addPerson1">Add Parameters</a>&nbsp;&nbsp; <a
+							</table> <a href="#" id="addPerson1">Add</a>&nbsp;&nbsp; <a
 							href="?f=">Reset List</a>
 						</td>
 					</tr>
