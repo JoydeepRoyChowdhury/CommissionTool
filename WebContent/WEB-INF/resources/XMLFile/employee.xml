@@ -1,19 +1,22 @@
 <?xml version="1.0"?>
 <Employees>
      <Employee Employeename="Harry">
-         <StartDate>31-03-2016 15:11:35</StartDate>
+         <StartDate>31/03/2016</StartDate>
           <Salary>2500</Salary>
      </Employee>
      <Employee Employeename="Tom">
-          <StartDate>31-03-2016 15:11:35</StartDate>
+          <StartDate>18/09/2015</StartDate>
           <Salary>1500</Salary>       
+          <manager_name>Harry</manager_name>
      </Employee>
      <Employee Employeename="Potter">
-         <StartDate>31-03-2016 15:11:35</StartDate>
+         <StartDate>14/04/2015</StartDate>
           <Salary>2000</Salary>
+          <manager_name>Tom</manager_name>
      </Employee>
      <Employee Employeename="Jerry">
-          <StartDate>31-03-2016 15:11:35</StartDate>
+          <StartDate>31/08/2015</StartDate>
           <Salary>2250</Salary>
+          <manager_name>Potter</manager_name>
      </Employee>
 </Employees>

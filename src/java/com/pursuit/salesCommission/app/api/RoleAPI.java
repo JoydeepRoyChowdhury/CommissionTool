@@ -12,11 +12,8 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.pursuit.salesCommission.app.model.Employee;
 import com.pursuit.salesCommission.app.model.Role;
-import com.pursuit.salesCommission.app.model.Rule;
-import com.pursuit.salesCommission.app.model.RuleParameter;
-import com.pursuit.salesCommission.app.model.Target;
+
 
 @Component
 public class RoleAPI {
@@ -84,20 +81,32 @@ public class RoleAPI {
 	public Role searchRoleByName(String roleName) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
-		tx = session.beginTransaction();
-		List roles = session.createQuery("FROM Role").list();
 		Role roleResult = new Role();
-		for (Iterator iterator = roles.iterator(); iterator.hasNext();) {
+		try {
+		tx = session.beginTransaction();
+		
+	/*	Criteria cr = session.createCriteria(Role.class);
+		cr.add(Restrictions.like("reportsTo", roleName));
+		List<Role> results = (List<Role>) cr.list();
+		 roleResult = (Role) results.get(0); */
+		List roles = session.createQuery("FROM Role").list();
+	 	for (Iterator iterator = roles.iterator(); iterator.hasNext();) {
 			
 			Role role = (Role) iterator.next();
 			if(roleName.equals(role.getRoleName())){
 				roleResult.setId(role.getId());
 				roleResult.setRoleName(role.getRoleName());
 				roleResult.setDescription(role.getDescription());
-				roleResult.setReportsTo(role.getReportsTo());
-				
-			}  
-
+				roleResult.setReportsTo(role.getReportsTo());			
+			} 
+			} 
+		
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
 		}
 		return roleResult;
 	}

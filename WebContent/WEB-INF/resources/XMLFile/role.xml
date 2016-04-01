@@ -2,13 +2,12 @@
 <Roles>
      <Role Rolename="CEO">
          <Description>Good</Description>
-          <ReportsTo>null</ReportsTo>
      </Role>
      <Role Rolename="VP Finance">
          <Description>Good</Description>
           <ReportsTo>CEO</ReportsTo>
      </Role>
-     <Role Rolename=" VP Operations">
+     <Role Rolename="VP Operations">
          <Description>Good</Description>
           <ReportsTo>CEO</ReportsTo>
      </Role>
@@ -28,7 +27,7 @@
          <Description>Good</Description>
           <ReportsTo>VP Engineering</ReportsTo>
      </Role>
-     <Role Rolename=" Director Project Management">
+     <Role Rolename="Director Project Management">
          <Description>Good</Description>
           <ReportsTo>VP Engineering</ReportsTo>
      </Role>

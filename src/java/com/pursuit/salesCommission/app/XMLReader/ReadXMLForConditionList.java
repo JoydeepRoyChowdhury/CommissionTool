@@ -53,12 +53,12 @@ import com.pursuit.salesCommission.app.model.ConditionList;
 	                   Element elem = (Element) node;
 	 
 	                   String conditionValue = node.getAttributes().getNamedItem("conditionValue").getNodeValue();
-	                   Boolean flag = Boolean.parseBoolean(elem.getElementsByTagName("notFlag")
-                                   .item(0).getChildNodes().item(0).getNodeValue());
+	                  // Boolean flag = Boolean.parseBoolean(elem.getElementsByTagName("notFlag")
+                              //     .item(0).getChildNodes().item(0).getNodeValue());
 	              
 	                   ConditionList cnd = new ConditionList();
 	                   cnd.setConditionValue(conditionValue);
-	                   cnd.setNotFlag(flag);
+	               //    cnd.setNotFlag(flag);
 	                     conditions.add(cnd);
 	                   
 	              }

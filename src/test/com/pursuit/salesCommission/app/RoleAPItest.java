@@ -11,7 +11,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.pursuit.salesCommission.app.api.RoleAPI;
-import com.pursuit.salesCommission.app.model.Employee;
 import com.pursuit.salesCommission.app.model.Role;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -26,12 +25,12 @@ public class RoleAPItest {
 	public void testCreateRole() {
        
         Role role1 = new Role();
-        role1.setRoleName("VP2");
+        role1.setRoleName("CEO");
         role1.setDescription("Bad");
       //  role1.setReportsTo("CEO");
        Long id = roleAPI.createRole(role1);
         Role role = roleAPI.getRole(id);
-		Assert.assertEquals("VP2", role.getRoleName());
+		Assert.assertEquals("CEO", role.getRoleName());
 	}
 	
 	/*	@Test
@@ -41,7 +40,7 @@ public class RoleAPItest {
 	} */
 			@Test
 	public void testGetRoles() {
-		Role role = roleAPI.searchRoleByName("VP");
+		Role role = roleAPI.searchRoleByName("VP2");
 		Assert.assertEquals("Bad", role.getDescription());
 	}
 /*
