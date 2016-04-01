@@ -283,12 +283,13 @@ td {
 									<c:forEach items="${personListContainer1.personList}"
 										var="Person" varStatus="i" begin="0">
 										<tr class="person">
+											
 											<td>&nbsp;FieldName&nbsp;<form:select
 													path="personList[${i.index}].fieldName"
 													id="fieldName${i.index}">
 													<c:forEach items="${listRule2}" var="rule">
-														<option value="${rule.fieldName}">
-															<c:out value="${rule.fieldName}" />
+														<option value="${rule.displayName}">
+															<c:out value="${rule.displayName}" />
 														</option>
 													</c:forEach>
 												</form:select>
@@ -318,8 +319,8 @@ td {
 											<td>&nbsp;Field Name&nbsp;<select
 												name="personList[].fieldName">
 													<c:forEach items="${listRule2}" var="rule">
-														<option value="${rule.fieldName}">
-															<c:out value="${rule.fieldName}" />
+														<option value="${rule.displayName}">
+															<c:out value="${rule.displayName}" />
 														</option>
 													</c:forEach>
 											</select></td>

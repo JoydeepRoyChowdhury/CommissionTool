@@ -149,17 +149,16 @@ public class RuleController {
 			for (Iterator iterator = ptr.iterator(); iterator.hasNext();) {
 				QualifyingClauseUI qcui = (QualifyingClauseUI) iterator.next();	
 				QualifyingClause obj1 = new QualifyingClause();
-				FieldList obj3 = new FieldList();
+				FieldList fldList = ruleSimpleApi.searchFieldList(qcui.getFieldName());
 				ConditionList cnd = ruleSimpleApi.searchCondition(qcui.getConditionValue());
 			obj1.setConditionList(cnd);
-			obj3.setFieldName(qcui.getFieldName());
-			obj1.setFieldList(obj3);
+			obj1.setFieldList(fldList);
 			obj1.setValue(qcui.getValue());
 			obj1.setNotFlag(qcui.getCondition());
 			//System.out.println(ptr.size());
 			ptr1.add(obj1);
 			}
-			AggregateFunctions agFun = new AggregateFunctions();
+			AggregateFunctions agFun = ruleSimpleApi.searchAggregateFunction(ruleUI.getAggregateFunctions());
 			
 			ruleSimple.setQualifyingClause(ptr1);
 			ruleSimple.setRankCount(ruleUI.getRankCount());
