@@ -18,6 +18,18 @@ td {
 
 
 		<script type="text/javascript">
+		
+		$('#vehicleChkBox').change(function(){
+		     if($(this).attr('checked')){
+		          $(this).val('TRUE');
+		     }else{
+		          $(this).val('FALSE');
+		     }
+		});
+		
+		
+		
+		
  
  function rowAdded(rowElement) {
      //clear the imput fields for the row
@@ -52,7 +64,7 @@ td {
          formId : 'personListForm',
          rowContainerId : 'personListContainer1',
          indexedPropertyName : 'personList',
-         indexedPropertyMemberNames : 'value,conditionValue,fieldName',
+         indexedPropertyMemberNames : 'fieldName,condition,conditionValue,value',
          rowAddedListener : rowAdded,
          rowRemovedListener : rowRemoved1,
          beforeSubmit : beforeSubmit1
@@ -208,21 +220,21 @@ td {
 					</tr>
 					<tr>
 						<td><b>Calculation mode:&nbsp;</b></td>
-						<td><input type="checkbox" name="calculationMode" value="i">
+						<td><input type="radio" name="calculationMode" value="i">
 
-							&nbsp;individual&nbsp;<input type="checkbox"
+							&nbsp;individual&nbsp;<input type="radio"
 							name="calculationMode" value="r">&nbsp;Rank&nbsp;<br />
 							Within&nbsp;<input type="text" Name="rankCount" value="0"
-							size="4">&nbsp;ranks in&nbsp;<input type="checkbox"
+							size="4">&nbsp;ranks in&nbsp;<input type="radio"
 							Name="rankType" value="Number">&nbsp;number&nbsp;<input
-							type="checkbox" Name="rankType" value="percentage">&nbsp;percentage
+							type="radio" Name="rankType" value="percentage">&nbsp;percentage
 							<br />
-						<br />Population&nbsp;<input type="checkbox" Name="populationType"
+						<br />Population&nbsp;<input type="radio" Name="populationType"
 							value="SameManager">&nbsp;Under same reporting manager<br />
-							<input type="checkbox" Name="populationType" value="SameRole">&nbsp;Same
-							role<br /> <input type="checkbox" Name="populationType"
+							<input type="radio" Name="populationType" value="SameRole">&nbsp;Same
+							role<br /> <input type="radio" Name="populationType"
 							value="Global">&nbsp;Global Upto &nbsp;<input type="text"
-							Name="populationUpto" size="4">&nbsp;level up</td>
+							Name="populationUpto" size="4" value="0">&nbsp;level up</td>
 
 
 					</tr>
@@ -230,18 +242,15 @@ td {
 					<tr>
 						<td><b>Based on: </b></td>
 						<td>Aggregate function<br /> <select
-							name="aggregateFunction"><c:forEach
+							name="aggregateFunctions"><c:forEach
 									items="${listRule1}" var="rule">
 									<option value="${rule.functionName}">
 										<c:out value="${rule.functionName}" />
 									</option>
 								</c:forEach>
-						</select> &nbsp;Field&nbsp; <select><c:forEach
-									items="${listRule2}" var="rule1">
-									<option value="${rule1.fieldName}">
-										<c:out value="${rule1.fieldName}" />
-									</option>
-								</c:forEach>
+						</select> 
+						&nbsp;Field&nbsp; <select name="field"><option VALUE="lineItemTotal">Line Item Total
+						<option value="quantity">Quantity
 						</select>
 						</td>
 
@@ -283,6 +292,10 @@ td {
 														</option>
 													</c:forEach>
 												</form:select>
+											
+												<td>&nbsp;Not&nbsp;<form:input
+													path="personList[${i.index}].condition" id="condition${i.index}" /></td>
+										
 											<td>&nbsp;Condition&nbsp;<form:select
 													path="personList[${i.index}].conditionValue"
 													id="conditionValue${i.index}">
@@ -310,6 +323,10 @@ td {
 														</option>
 													</c:forEach>
 											</select></td>
+											
+											<td>&nbsp;Not&nbsp;<input type="text"
+												name="personList[].condition" value="TRUE" size="2"></td>
+											
 											<td>&nbsp;Condition&nbsp;<select
 												name="personList[].conditionValue"><c:forEach items="${listRule3}"
 											var="rule">
@@ -332,10 +349,10 @@ td {
 
 					<tr>
 						<td><b>Compensation</b></td>
-						<td><input type="checkbox" name="compensationType"
+						<td><input type="radio" name="compensationType"
 							value="Fixed">&nbsp;Fixed&nbsp; <input type="text"
 							name="fixedCompValue" value="0"><br /> <input
-							type="checkbox" name="compensationType" value="Variable">&nbsp;Variable&nbsp;<br />
+							type="radio" name="compensationType" value="Variable">&nbsp;Variable&nbsp;<br />
 
 							&nbsp;Apply formula&nbsp;<input type="text"
 							name="compensationFormula"><br /> <br />&nbsp;

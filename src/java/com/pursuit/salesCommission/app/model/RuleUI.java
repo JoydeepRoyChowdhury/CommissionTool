@@ -54,7 +54,8 @@ public class RuleUI {
 	private String compensationFormula;
 	private String compensationParameter;	
 	private String calculationMode;
-	private AggregateFunctions aggregateFunctions;
+	private String aggregateFunctions;
+	private String Field;
 	
 	
 	
@@ -290,12 +291,20 @@ public class RuleUI {
 		this.rankType = rankType;
 	}
 
-	public AggregateFunctions getAggregateFunctions() {
+	public String getAggregateFunctions() {
 		return aggregateFunctions;
 	}
 
-	public void setAggregateFunctions(AggregateFunctions aggregateFunctions) {
+	public void setAggregateFunctions(String aggregateFunctions) {
 		this.aggregateFunctions = aggregateFunctions;
+	}
+
+	public String getField() {
+		return Field;
+	}
+
+	public void setField(String field) {
+		Field = field;
 	}
 
 	

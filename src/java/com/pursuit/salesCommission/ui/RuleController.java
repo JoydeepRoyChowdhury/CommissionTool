@@ -91,9 +91,10 @@ public class RuleController {
 	       
 	        for( QualifyingClauseUI p : personListContainer1.getPersonList() ) {
 	            System.out.println("QualifyingClauseValue: " + p.getValue());
+	            System.out.println("condition: " + p.getCondition());
 	            System.out.println("ConditionValue: " + p.getConditionValue());
 	            System.out.println("FieldName: " + p.getFieldName());
-	            //System.out.println("field: " + p.getParameter());
+	            
 	        }
 	        session.setAttribute("personListContainer1",personListContainer1);
 		 
@@ -123,6 +124,9 @@ public class RuleController {
 			System.out.println("***************************" +ruleUI.getCalculationMode());
 			model.addAttribute("aggregateFunctions", ruleUI.getAggregateFunctions());
 			System.out.println("***************************" +ruleUI.getAggregateFunctions());
+			model.addAttribute("field",ruleUI.getField());
+			System.out.println("***************************" +ruleUI.getField());
+
 
 		
 			
@@ -137,6 +141,7 @@ public class RuleController {
 			rule.setFixedCompValue(ruleUI.getFixedCompValue());
 			rule.setCompensationFormula( ruleUI.getCompensationFormula());
 			rule.setCompensationParameter(ruleUI.getCompensationParameter());
+			rule.setRuleParameter(personListContainer.getPersonList());
 			
 			RuleSimple ruleSimple = new RuleSimple();
 		List<QualifyingClauseUI> ptr =  personListContainer1.getPersonList();
@@ -151,20 +156,26 @@ public class RuleController {
 			obj3.setFieldName(qcui.getFieldName());
 			obj1.setFieldList(obj3);
 			obj1.setValue(qcui.getValue());
+			obj1.setNotFlag(qcui.getCondition());
 			//System.out.println(ptr.size());
 			ptr1.add(obj1);
 			}
+			AggregateFunctions agFun = new AggregateFunctions();
 			
 			ruleSimple.setQualifyingClause(ptr1);
-			ruleSimple.setRuleParameter(personListContainer.getPersonList());
 			ruleSimple.setRankCount(ruleUI.getRankCount());
 			ruleSimple.setRankingType(ruleUI.getRankType());
 			ruleSimple.setPopulationType(ruleUI.getPopulationType());
 			ruleSimple.setPopulationUpto(ruleUI.getPopulationUpto());
 			ruleSimple.setCalculationMode(ruleUI.getCalculationMode());
-			//ruleSimple.setQualifyingClause(personListContainer1.getPersonList());
-			//ruleSimple.setAggregateFunctions(ruleUI.getAggregateFunctions());
+			agFun.setFunctionName(ruleUI.getAggregateFunctions());
+			ruleSimple.setAggregateFunctions(agFun);
+			ruleSimple.setField(ruleUI.getField());
+			
+			
+			
 			rule.setRuleSimple(ruleSimple);
+			
 			
 		
 			ruleApi.createRule(rule);
