@@ -279,7 +279,7 @@ public class RuleAPITest extends TestCase {
 		rl2.setParameterValue("value 8");
 		rpm.add(rl1);
 		rpm.add(rl2);
-		ruleSimple.setRuleParameter(rpm);
+		rule.setRuleParameter(rpm);
 
 		ruleSimple.setField("fld 3");
 		
@@ -295,21 +295,21 @@ public class RuleAPITest extends TestCase {
 		fldlst1.setFieldName("fieldlstvalue1");
 		fldlst1.setDisplayName("hello1");
 		qc1.setFieldList(fldlst1);
-		String cndVal = "less than";
-		Boolean flag = false;
-		ConditionList cnd = ruleSimpleAPI.searchCondition(cndVal, flag);
-		qc1.setConditionList(cnd); 
+		qc1.setNotFlag(true);
+		String cndVal1 = "less than";
+		ConditionList cnd1 = ruleSimpleAPI.searchCondition(cndVal1);
+		qc1.setConditionList(cnd1); 
 		qClause.add(qc1);
-	/*	qc2.setValue("Qualifying Clause2");
+		qc2.setValue("Qualifying Clause2");
 		FieldList fldlst2 = new FieldList();
-		fldlst2.setFieldName("fieldlstvalue2");
-		fldlst2.setDisplayName("hello2");
+		fldlst2.setFieldName("fieldlstvalue1");
+		fldlst2.setDisplayName("hello1");
 		qc2.setFieldList(fldlst2);
-		ConditionList cndlst2 = new ConditionList();
-		cndlst2.setNotFlag(false);
-		cndlst2.setConditionValue("condition2");
-		qc2.setConditionList(cndlst2); 
-		qClause.add(qc2); */
+		qc2.setNotFlag(false);
+		String cndVal2 = "equal";
+		ConditionList cnd2 = ruleSimpleAPI.searchCondition(cndVal2);
+		qc2.setConditionList(cnd2); 
+		qClause.add(qc2);
 		ruleSimple.setQualifyingClause(qClause);
 
 		rule.setRuleSimple(ruleSimple);

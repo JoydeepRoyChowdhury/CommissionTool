@@ -46,6 +46,7 @@ public class RuleAPI {
 			newRule.setFixedCompValue(rule.getFixedCompValue());
 			newRule.setCompensationFormula(rule.getCompensationFormula());
 			newRule.setCompensationParameter(rule.getCompensationParameter());
+			newRule.setRuleParameter(rule.getRuleParameter());
 			if (rule.getRuleType().equals("c")) {
 				newRule.setConnectionType(rule.getConnectionType());
 				newRule.setRuleComposite(rule.getRuleComposite());
@@ -85,7 +86,6 @@ public class RuleAPI {
 
 		RuleSimple newRuleSimple = new RuleSimple();
 		newRuleSimple.setCalculationMode("individual");
-		newRuleSimple.setRuleParameter(simpRule.getRuleParameter());
 		newRuleSimple.setField(simpRule.getField());
 		newRuleSimple.setQualifyingClause(simpRule.getQualifyingClause());
 		newRuleSimple.setAggregateFunctions(simpRule.getAggregateFunctions());
@@ -111,7 +111,7 @@ public class RuleAPI {
 		newRuleSimple.setQualifyingClause(simpRule.getQualifyingClause());
 		newRuleSimple.setRankCount(simpRule.getRankCount());
 		newRuleSimple.setRankingType(simpRule.getRankingType());
-		newRuleSimple.setRuleParameter(simpRule.getRuleParameter());
+	
 		
 		return newRuleSimple;
 
@@ -136,6 +136,7 @@ public class RuleAPI {
 			newRule.setFixedCompValue(rule.getFixedCompValue());
 			newRule.setCompensationFormula(rule.getCompensationFormula());
 			newRule.setCompensationParameter(rule.getCompensationParameter());
+			newRule.setRuleParameter(rule.getRuleParameter());
 			if (rule.getRuleType().equals("Composite")) {
 				newRule.setConnectionType(rule.getConnectionType());
 				newRule.setRuleComposite(rule.getRuleComposite());
@@ -181,7 +182,6 @@ public class RuleAPI {
 		newsimp.setPopulationUpto(simpRule.getPopulationUpto());
 		newsimp.setRankCount(simpRule.getRankCount());
 		newsimp.setRankingType(simpRule.getRankingType());
-		newsimp.setRuleParameter(simpRule.getRuleParameter());
 		newsimp.setField(simpRule.getField());
 		newsimp.setQualifyingClause(simpRule.getQualifyingClause());
 		newsimp.setAggregateFunctions(simpRule.getAggregateFunctions());
@@ -202,7 +202,6 @@ public class RuleAPI {
 
 		newsimp = (RuleSimple) session.get(RuleSimple.class, simpRule.getId());
 		newsimp.setCalculationMode("individual");
-		newsimp.setRuleParameter(simpRule.getRuleParameter());
 		newsimp.setField(simpRule.getField());
 		newsimp.setQualifyingClause(simpRule.getQualifyingClause());
 		newsimp.setAggregateFunctions(simpRule.getAggregateFunctions());

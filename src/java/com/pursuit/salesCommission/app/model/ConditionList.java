@@ -6,7 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "ConditionList")
@@ -16,10 +15,6 @@ public class ConditionList {
 	@GeneratedValue
 	@Column(name = "id")
 	private long id;
-
-	@Type(type = "org.hibernate.type.NumericBooleanType")
-	@Column(name = "notFlag", nullable = false)
-	private boolean notFlag;
 
 	@Column(name = "conditionValue")
 	private String conditionValue;
@@ -40,21 +35,6 @@ public class ConditionList {
 	}
 
 	/**
-	 * @return the notFlag
-	 */
-	public boolean isNotFlag() {
-		return notFlag;
-	}
-
-	/**
-	 * @param notFlag
-	 *            the notFlag to set
-	 */
-	public void setNotFlag(boolean notFlag) {
-		this.notFlag = notFlag;
-	}
-
-	/**
 	 * @return the conditionValue
 	 */
 	public String getConditionValue() {
@@ -71,8 +51,7 @@ public class ConditionList {
 	
 	@Override
     public String toString() {
-         return "<" + conditionValue + ", "  
-                                  + notFlag + ">";
+         return "<" + conditionValue + ">";
     }
 
 }

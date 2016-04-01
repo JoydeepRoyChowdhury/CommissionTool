@@ -1,6 +1,10 @@
 package com.pursuit.salesCommission.app.model;
 
+import java.util.List;
+
 import javax.persistence.*;
+
+import org.hibernate.annotations.IndexColumn;
 
 @Entity
 @Table(name = "Rule")
@@ -30,6 +34,11 @@ public class Rule {
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "RULE_COMP_ID")
 	private RuleComposite ruleComposite;
+	
+	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER, orphanRemoval = true)
+	@JoinColumn(name = "RULE_ID")
+	@IndexColumn(name = "detailSrl")
+	private List<RuleParameter> ruleParameter;
 
 	@Column(name = "connectionType")
 	private String connectionType;
@@ -154,6 +163,20 @@ public class Rule {
 		this.ruleComposite = ruleComposite;
 	}
 
+	/**
+	 * @return the ruleParameter
+	 */
+	public List<RuleParameter> getRuleParameter() {
+		return ruleParameter;
+	}
+
+	/**
+	 * @param ruleParameter
+	 *            the ruleParameter to set
+	 */
+	public void setRuleParameter(List<RuleParameter> ruleParameter) {
+		this.ruleParameter = ruleParameter;
+	}
 	/**
 	 * @return the connectionType
 	 */

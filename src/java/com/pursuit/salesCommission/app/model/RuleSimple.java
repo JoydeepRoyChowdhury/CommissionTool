@@ -43,12 +43,6 @@ public class RuleSimple {
 
 	@Column(name = "populationUpto")
 	private int populationUpto;
-	
-	
-	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER, orphanRemoval = true)
-	@JoinColumn(name = "RULE_SIMP_ID")
-	@IndexColumn(name = "detailSrl")
-	private List<RuleParameter> ruleParameter;
 
 	@OneToOne(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER, orphanRemoval = true)
 	@JoinColumn(name = "AGGT_FUNC_ID")
@@ -151,21 +145,6 @@ public class RuleSimple {
 		this.populationUpto = populationUpto;
 	}
 
-	
-	/**
-	 * @return the ruleParameter
-	 */
-	public List<RuleParameter> getRuleParameter() {
-		return ruleParameter;
-	}
-
-	/**
-	 * @param ruleParameter
-	 *            the ruleParameter to set
-	 */
-	public void setRuleParameter(List<RuleParameter> ruleParameter) {
-		this.ruleParameter = ruleParameter;
-	}
 	
 	/**
 	 * @return the aggregateFunctions

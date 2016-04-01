@@ -113,7 +113,6 @@ public class RuleSimpleAPI {
 		try {
 			tx = session.beginTransaction();
 			cndList.setConditionValue(conditionList.getConditionValue());
-			cndList.setNotFlag(conditionList.isNotFlag());    
 			session.save(cndList);
 			tx.commit();
 			logger.debug("CREATED AN CONDITION INTO DATABASE" + cndList);
@@ -144,7 +143,7 @@ public class RuleSimpleAPI {
 		}*/
 		return conditionList;
 	}
-	public ConditionList searchCondition(String conditionVal, Boolean flag) {
+	public ConditionList searchCondition(String conditionVal) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		tx = session.beginTransaction();
@@ -153,10 +152,10 @@ public class RuleSimpleAPI {
 		for (Iterator iterator = conditions.iterator(); iterator.hasNext();) {
 			
 			ConditionList condition = (ConditionList) iterator.next();
-			if(conditionVal.equals(condition.getConditionValue()) && flag.equals(condition.isNotFlag())){
+			if(conditionVal.equals(condition.getConditionValue())){
 				cnd.setId(condition.getId());
 				cnd.setConditionValue(condition.getConditionValue());
-				cnd.setNotFlag(condition.isNotFlag());
+				
 			}  
 			// logger.debug("GET THE EMPLOYEE DETAILS FROM DATABASE" +
 			// employee.getFirstName()+ employee.getLastName()

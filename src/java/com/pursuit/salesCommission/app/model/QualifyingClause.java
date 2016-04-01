@@ -7,8 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "QualifyingClause")
@@ -28,6 +29,14 @@ public class QualifyingClause {
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "CND_LST_ID")
 	private ConditionList conditionList;
+	
+	@Type(type = "org.hibernate.type.NumericBooleanType")
+	@Column(name = "notFlag", nullable = false)
+	private boolean notFlag;
+	
+	@Type(type = "org.hibernate.type.NumericBooleanType")
+	@Column(name = "ignoreCase", nullable = false)
+	private boolean ignoreCase;
 
 	/**
 	 * @return the id
@@ -87,6 +96,35 @@ public class QualifyingClause {
 	 */
 	public void setConditionList(ConditionList conditionList) {
 		this.conditionList = conditionList;
+	}
+	
+	/**
+	 * @return the notFlag
+	 */
+	public boolean isNotFlag() {
+		return notFlag;
+	}
+
+	/**
+	 * @param notFlag
+	 *            the notFlag to set
+	 */
+	public void setNotFlag(boolean notFlag) {
+		this.notFlag = notFlag;
+	}
+
+	/**
+	 * @return the ignoreCase
+	 */
+	public boolean isIgnoreCase() {
+		return ignoreCase;
+	}
+
+	/**
+	 * @param ignoreCase the ignoreCase to set
+	 */
+	public void setIgnoreCase(boolean ignoreCase) {
+		this.ignoreCase = ignoreCase;
 	}
 
 }
