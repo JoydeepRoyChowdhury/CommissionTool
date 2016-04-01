@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Rules>
+     <Rule RuleName="Rule for getting commission on max sale of computer">
+         <Description>This rule is for sales person who will get commission on monthly basis for sale of computer</Description>
+         <CompensationType>Fixed</CompensationType>
+         <Compensationvalue>5000</Compensationvalue>
+         <CalculationMode>i</CalculationMode>
+         <Field>Line Item Total</Field>
+     </Rule>
+</Rules>
