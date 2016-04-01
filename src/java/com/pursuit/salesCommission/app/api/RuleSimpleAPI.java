@@ -64,6 +64,30 @@ public class RuleSimpleAPI {
 		//}
 		return simpRules;
 	}
+	/**
+	 * Method for create Aggregate Function
+	 * @param conditionList
+	 * @return
+	 */
+	public long createAggregateFunctions(AggregateFunctions aggregateFunction) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		AggregateFunctions aggtFn = new AggregateFunctions();
+		try {
+			tx = session.beginTransaction();
+			aggtFn.setFunctionName(aggregateFunction.getFunctionName());
+			session.save(aggtFn);
+			tx.commit();
+			logger.debug("CREATED AN AGGREGATE FUNCTION INTO DATABASE" + aggtFn);
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return aggtFn.getId();
+	}
 
 	/**
 	 * Method for getting list of aggregate functions
@@ -125,6 +149,8 @@ public class RuleSimpleAPI {
 		}
 		return cndList.getId();
 	}
+	
+	
 	/**
 	 * Method for getting list of conditions
 	 * 
@@ -162,6 +188,31 @@ public class RuleSimpleAPI {
 			// +employee.getSalary() );
 		}
 		return cnd;
+	}
+	/**
+	 * Method for create Field List
+	 * @param conditionList
+	 * @return
+	 */
+	public long createFieldList(FieldList fieldList) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		FieldList fldlst = new FieldList();
+		try {
+			tx = session.beginTransaction();
+			fldlst.setFieldName(fieldList.getFieldName());
+			fldlst.setDisplayName(fieldList.getDisplayName());
+			session.save(fldlst);
+			tx.commit();
+			logger.debug("CREATED AN FIELD LIST INTO DATABASE" + fldlst);
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return fldlst.getId();
 	}
 	/**
 	 * Method for getting list of fields
