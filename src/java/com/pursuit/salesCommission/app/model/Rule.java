@@ -251,5 +251,12 @@ public class Rule {
 	public void setCompensationParameter(String compensationParameter) {
 		this.compensationParameter = compensationParameter;
 	}
+	
+	 @Override
+	    public String toString() {
+	         return "<" + ruleName + ", "  
+	                                  + description + ", "  
+	    	                                  + ruleType + ">";
+	    }
 
 }
