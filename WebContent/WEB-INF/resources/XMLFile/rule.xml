@@ -5,7 +5,7 @@
 			monthly basis for sale of computer</Description>
 		<CompensationType>Fixed</CompensationType>
 		<CompensationValue>5000</CompensationValue>
-		<RuleParameters>
+	 	<RuleParameters>
 			<RuleParameter ParameterName="Param 1">
 				<ParameterValue>600</ParameterValue>
 			</RuleParameter>
@@ -15,13 +15,13 @@
 			<RuleParameter ParameterName="Param 3">
 				<ParameterValue>1750</ParameterValue>
 			</RuleParameter>
-		</RuleParameters>
+		</RuleParameters>  
 		<RuleSimple>
 			<RuleType>s</RuleType>
 			<CalculationMode>i</CalculationMode>
 			<Field>Line Item Total</Field>
 			<AggregateFun>min</AggregateFun>
-			<QualifyingClauses>
+		<!--	<QualifyingClauses>
 				<QualifyingClause value="qualifying clause value 1">
 					<FieldList>Order Total</FieldList>
 					<notFlag>true</notFlag>
@@ -34,7 +34,44 @@
 					<ConditionList>equal</ConditionList>
 					<ignoreCase>true</ignoreCase>
 				</QualifyingClause>
-			</QualifyingClauses>
+			</QualifyingClauses> -->
+		</RuleSimple>
+	</Rule>
+	<Rule RuleName="Rule for getting commission on max sale of simcard">
+		<Description>This rule is for sales person who will get commission on
+			monthly basis for sale of sim card</Description>
+		<CompensationType>Fixed</CompensationType>
+		<CompensationValue>8000</CompensationValue>
+	 	<RuleParameters>
+			<RuleParameter ParameterName="Param 9">
+				<ParameterValue>6549</ParameterValue>
+			</RuleParameter>
+			<RuleParameter ParameterName="Param 7">
+				<ParameterValue>1234</ParameterValue>
+			</RuleParameter>
+			<RuleParameter ParameterName="Param 12">
+				<ParameterValue>7869</ParameterValue>
+			</RuleParameter>
+		</RuleParameters> 
+		<RuleSimple>
+			<RuleType>s</RuleType>
+			<CalculationMode>i</CalculationMode>
+			<Field>Quantity</Field>
+			<AggregateFun>max</AggregateFun>
+		<!-- 	<QualifyingClauses>
+				<QualifyingClause value="qualifying clause value 5">
+					<FieldList>Customer Name</FieldList>
+					<notFlag>true</notFlag>
+					<ConditionList>less than</ConditionList>
+					<ignoreCase>false</ignoreCase>
+				</QualifyingClause>
+				<QualifyingClause value="qualifying clause value 8">
+					<FieldList>Office Location</FieldList>
+					<notFlag>false</notFlag>
+					<ConditionList>equal</ConditionList>
+					<ignoreCase>false</ignoreCase>
+				</QualifyingClause>
+			</QualifyingClauses> -->
 		</RuleSimple>
 	</Rule>
 </Rules>

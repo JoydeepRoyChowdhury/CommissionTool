@@ -211,9 +211,7 @@ public class RuleSimpleAPI {
 				cnd.setConditionValue(condition.getConditionValue());
 				
 			}  
-			// logger.debug("GET THE EMPLOYEE DETAILS FROM DATABASE" +
-			// employee.getFirstName()+ employee.getLastName()
-			// +employee.getSalary() );
+			
 		}
 		return cnd;
 	}

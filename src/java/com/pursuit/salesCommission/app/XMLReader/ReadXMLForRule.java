@@ -51,7 +51,7 @@ public class ReadXMLForRule {
 
 			List<QualifyingClause> qClauselist = sRule.getQualifyingClause();
 			List<QualifyingClause> qClslst = new ArrayList<>();
-			for (Iterator iterator1 = qClauselist.iterator(); iterator1.hasNext();) {
+		/*	for (Iterator iterator1 = qClauselist.iterator(); iterator1.hasNext();) {
 				QualifyingClause qCls = (QualifyingClause) iterator1.next();
 				QualifyingClause nQCluase = new QualifyingClause();
 				FieldList fldList = ruleSimpleAPI.searchFieldList(qCls.getFieldList().getDisplayName());
@@ -62,19 +62,17 @@ public class ReadXMLForRule {
 				nQCluase.setNotFlag(qCls.isNotFlag());
 				nQCluase.setIgnoreCase(qCls.isIgnoreCase());
 				qClslst.add(nQCluase);
-			}
-			sRule.setQualifyingClause(qClslst);
+			} */
+			sRule.setQualifyingClause(qClslst); 
 			rule.setRuleSimple(sRule);
 
-			ruleAPI.createRule(rule);
+		//	ruleAPI.createRule(rule);
 		}
 	}
 
 	public List<Rule> parseXML() {
 
-		List<Rule> rules = new ArrayList<Rule>();
-		List<RuleParameter> rulesParameter = new ArrayList<RuleParameter>();
-		List<QualifyingClause> qualifyingClauses = new ArrayList<QualifyingClause>();
+		List<Rule> rules = new ArrayList<Rule>();	
 		try {
 
 			File fXmlFile = new File("WebContent/WEB-INF/resources/XMLFile/rule.xml");
@@ -103,8 +101,9 @@ public class ReadXMLForRule {
 
 					Integer CompensationValue = Integer.parseInt(elem.getElementsByTagName("CompensationValue").item(0)
 							.getChildNodes().item(0).getNodeValue());
-
-					NodeList nodeList1 = doc.getElementsByTagName("RuleParameter");
+					
+					List<RuleParameter> rulesParameter = new ArrayList<RuleParameter>();
+					NodeList nodeList1 = elem.getElementsByTagName("RuleParameter");
 					for (int j = 0; j < nodeList1.getLength(); j++) {
 						Node node1 = nodeList1.item(j);
 
@@ -136,6 +135,7 @@ public class ReadXMLForRule {
 					String functionName = (elem.getElementsByTagName("AggregateFun").item(0).getChildNodes().item(0)
 							.getNodeValue());
 
+			/*		List<QualifyingClause> qualifyingClauses = new ArrayList<QualifyingClause>();
 					NodeList nodeList2 = doc.getElementsByTagName("QualifyingClause");
 					for (int j = 0; j < nodeList2.getLength(); j++) {
 						Node node2 = nodeList2.item(j);
@@ -180,7 +180,7 @@ public class ReadXMLForRule {
 							qualifyingClauses.add(qClause);
 
 						}
-					}
+					} */
 
 					Rule r = new Rule();
 
@@ -197,7 +197,7 @@ public class ReadXMLForRule {
 					rs.setAggregateFunctions(aggregateFunction);
 					rs.setCalculationMode(calculationMode);
 					rs.setField(field);
-					rs.setQualifyingClause(qualifyingClauses);
+				//	rs.setQualifyingClause(qualifyingClauses);
 
 					r.setRuleSimple(rs);
 

@@ -24,7 +24,7 @@ public class RuleComposite {
 	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "RULE_COMP_ID")
 	@IndexColumn(name = "detailSrl")
-	private List<RuleSimple> ruleSimple;
+	private List<Rule> rule;
 
 	/**
 	 * @return the id
@@ -44,16 +44,16 @@ public class RuleComposite {
 	/**
 	 * @return the ruleSimple
 	 */
-	public List<RuleSimple> getRuleSimple() {
-		return ruleSimple;
+	public List<Rule> getRule() {
+		return rule;
 	}
 
 	/**
 	 * @param ruleSimple
 	 *            the ruleSimple to set
 	 */
-	public void setRuleSimple(List<RuleSimple> ruleSimple) {
-		this.ruleSimple = ruleSimple;
+	public void setRule(List<Rule> rule) {
+		this.rule = rule;
 	}
 
 }

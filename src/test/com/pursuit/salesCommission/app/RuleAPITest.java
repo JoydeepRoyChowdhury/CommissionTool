@@ -69,6 +69,16 @@ public class RuleAPITest extends TestCase {
 		rule.setCompensationParameter("Compensation Parameter");
 		rule.setCompensationType("fixed");
 		rule.setFixedCompValue(10);
+		List<RuleParameter> rpm = new ArrayList<>();
+		RuleParameter rl1 = new RuleParameter();
+		RuleParameter rl2 = new RuleParameter();
+		rl1.setParameterName("Parameter 7");
+		rl1.setParameterValue("value 7");
+		rl2.setParameterName("Parameter 8");
+		rl2.setParameterValue("value 8");
+		rpm.add(rl1);
+		rpm.add(rl2);
+		rule.setRuleParameter(rpm);
 		
 	}
 
@@ -166,18 +176,17 @@ public class RuleAPITest extends TestCase {
 	 * {@link com.pursuit.salesCommission.app.api.RuleAPI#createRule(com.pursuit.salesCommission.app.model.Rule)}
 	 * .
 	 */
-/*	@Test
+	@Test
 	public void testCreateRuleComposite() {
 		 rule.setRuleType("c");
 		  RuleComposite ruleComposite = new RuleComposite(); 
-		  RuleSimple simple1 =
-		  new RuleSimple(); 
-		  RuleSimple simple2 = new RuleSimple();
-		  simple1.setCalculationMode("individual");
-		  simple2.setCalculationMode("rank"); 
-		  ruleComposite.setRuleSimple(new ArrayList<RuleSimple>()); 
-		  ruleComposite.getRuleSimple().add(simple1);
-		  ruleComposite.getRuleSimple().add(simple2);
+		  Rule simple1 = ruleAPI.getRule(1); 
+		  Rule simple2 =  ruleAPI.getRule(2);
+		//  simple1.setCalculationMode("individual");
+		//  simple2.setCalculationMode("rank"); 
+		//  ruleComposite.setRuleSimple(new ArrayList<RuleSimple>()); 
+		//  ruleComposite.getRuleSimple().add(simple1);
+		//  ruleComposite.getRuleSimple().add(simple2);
 		  rule.setRuleComposite(ruleComposite); 
 		  long ruleId = ruleAPI.createRule(rule);
 		  rule.setId(ruleId);
@@ -187,7 +196,7 @@ public class RuleAPITest extends TestCase {
 			System.out.println("Running: testDummyRule");
 		System.out.println("Running: testDummyRule");
 
-	} */
+	} 
 
 	/**
 	 * Test method for
@@ -262,7 +271,7 @@ public class RuleAPITest extends TestCase {
 	 * Test method for edit rule simple rank 
 	 * {@link com.pursuit.salesCommission.app.api.RuleAPI#editRule()}.
 	 */
-	@Test
+	/*@Test
 	public void testEditRuleSimpleRank() {
 
 		rule.setRuleType("s");
@@ -270,7 +279,7 @@ public class RuleAPITest extends TestCase {
 		ruleSimple.setCalculationMode("r");
 		ruleSimple.setPopulationUpto(6);
 		
-		List<RuleParameter> rpm = new ArrayList<>();
+	/*	List<RuleParameter> rpm = new ArrayList<>();
 		RuleParameter rl1 = new RuleParameter();
 		RuleParameter rl2 = new RuleParameter();
 		rl1.setParameterName("Parameter 7");
@@ -279,9 +288,9 @@ public class RuleAPITest extends TestCase {
 		rl2.setParameterValue("value 8");
 		rpm.add(rl1);
 		rpm.add(rl2);
-		rule.setRuleParameter(rpm);
+		rule.setRuleParameter(rpm); */
 
-		ruleSimple.setField("fld 3");
+	/*	ruleSimple.setField("fld 3");
 		String fnVal = "sum";
 		AggregateFunctions fn1 = ruleSimpleAPI.searchAggregateFunction(fnVal);
 		ruleSimple.setAggregateFunctions(fn1);
@@ -336,7 +345,7 @@ public class RuleAPITest extends TestCase {
 		Assert.assertEquals(30, r1.getRuleSimple().getPopulationUpto());
 		System.out.println("Running: testDummyRule"); 
 	}
-	
+	*/
 	/**
 	 * Test method for edit rule simple individual
 	 * {@link com.pursuit.salesCommission.app.api.RuleAPI#editRule()}.
