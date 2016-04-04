@@ -14,19 +14,22 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.pursuit.salesCommission.app.api.EmployeeAPI;
+import com.pursuit.salesCommission.app.api.RuleAPI;
 
 @Controller
 public class EmployeeController {
 
 	@Autowired
 		private EmployeeAPI employeeApi;
+	@Autowired
+	private RuleAPI ruleApi;
 	
 	private static final Logger logger = Logger.getLogger(EmployeeController.class);
 	
 
 	@RequestMapping(value = "/empList", method = RequestMethod.GET)
 	public String simpleRule(ModelMap model, HttpSession session,  HttpServletRequest request) {
-	   
+		//model.addAttribute("listRule", ruleApi.listRules());
 		model.addAttribute("listEmployee", employeeApi.listEmployees());
 		System.out.println(".......servlet running.......");
 		return "employeeList";

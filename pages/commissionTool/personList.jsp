@@ -16,7 +16,14 @@
         <div style="border:1px solid #eaeaea;padding:20px;width:400px">
             ${message}
         </div>
-        <form:form action="/CommissionTool/editpersonlistcontainer"  method="post" id="personListForm1">
+        <form:form action="/CommissionTool/editpersonlistcontainer" modelAttribute="personListContainer1" method="post" id="personListForm1">
+           <input type="text" id="txtPassportNumber" disabled="disabled">
+           
+           <div id="chkPassport">
+    <input type="checkbox" id="chkPassport" onclick="EnableDisableTextBox(this)">
+    Do you have Passport?
+</div>
+           
             <table>
                 <thead>
                     <tr>
@@ -25,51 +32,100 @@
                         <th></th>
                     </tr>
                 </thead>
-                <tbody id="personListContainer2">
-                    <c:forEach items="${personListContainer1.personList}" var="Person" varStatus="i" begin="0" >
-                        <tr class="person">    
-                            <td><form:select path="personList[${i.index}].value" id="value${i.index}"><c:forEach items="${listCompRule1}"
-											var="rule"><option value="${rule.ruleName}">
-												<c:out value="${rule.ruleName}" />
+                
+  <tbody id="personListContainer1">
+									<c:forEach items="${personListContainer1.personList}"
+										var="Person" varStatus="i" begin="0">
+										<tr class="person">
+											
+											<td>&nbsp;FieldName&nbsp;<form:select
+													path="personList[${i.index}].fieldName"
+													id="fieldName${i.index}">
+													<c:forEach items="${listRule2}" var="rule">
+														<option value="${rule.displayName}">
+															<c:out value="${rule.displayName}" />
+														</option>
+													</c:forEach>
+												</form:select></td>
+												
+										<td id="chkPassport">   
+										
+										<input type="checkbox" id="chkPassport" onclick="EnableDisableTextBox(this)">
+										 <input type="text" id="txtPassportNumber" disabled="disabled">
+										</td>
+									
+												<td>&nbsp;Not&nbsp;<form:checkbox
+													path="personList[${i.index}].condition" id="condition${i.index}" /></td>
+										
+											<td>&nbsp;Condition&nbsp;<form:select
+													path="personList[${i.index}].conditionValue"
+													id="conditionValue${i.index}">
+													<c:forEach items="${listRule3}"
+											var="rule">
+											<option value="${rule.conditionValue}">
+												<c:out value="${rule.conditionValue}" />
 											</option>
 										</c:forEach></form:select></td>
-                           <!--  
-                            <td><form:input path="personList[${i.index}].age" id="age${i.index}"/></td>
-                           -->
-                            <td><form:select path="personList[${i.index}].conditionValue" id="conditionValue${i.index}"><option value="Equal">Equal</option><option value="Greater than">Greater than</option><option value="Less than">Less than</option></form:select></td>
-                             <td><form:input path="personList[${i.index}].fieldList" id="fieldName${i.index}" /></td>
-                            <td><a href="#" class="removePerson1">Remove Person</a></td>
-                        </tr>
-                    </c:forEach>
-                   
-                    <c:if test="${personListContainer1.personList.size() == 0}">
-                        <tr class="person defaultRow">    
-                            <td><select name="personList[].value"><c:forEach items="${listCompRule1}"
+
+											<td>&nbsp;Value&nbsp;<form:input
+													path="personList[${i.index}].value" id="value${i.index}" /></td>
+
+											<td><a href="#" class="removePerson1">Remove</a></td>
+										</tr>
+									</c:forEach>
+
+									<c:if test="${personListContainer1.personList.size() == 0}">
+										<tr class="person defaultRow">
+											<td>&nbsp;Field Name&nbsp;<select
+												name="personList[].fieldName">
+													<c:forEach items="${listRule2}" var="rule">
+														<option value="${rule.displayName}">
+															<c:out value="${rule.displayName}" />
+														</option>
+													</c:forEach>
+											</select></td>
+											<td id="chkPassport">
+											<input type="checkbox" id="chkPassport" onclick="EnableDisableTextBox(this)">
+									
+									
+											 <input type="text" id="txtPassportNumber" disabled="disabled"></td>
+											<td>&nbsp;Not&nbsp;<input type="checkbox"
+												name="personList[].condition" value="12"></td>
+											
+											<td>&nbsp;Condition&nbsp;<select
+												name="personList[].conditionValue"><c:forEach items="${listRule3}"
 											var="rule">
-											<option value="${rule.ruleName}">
-												<c:out value="${rule.ruleName}" />
+											<option value="${rule.conditionValue}">
+												<c:out value="${rule.conditionValue}" />
 											</option>
-										</c:forEach>
-								</select></td>
-                           <!--  
-                            <td>&nbsp;Not&nbsp;<input type="text" name="personList[].age" value="not" ></td>
- 							-->
- 							<td>Condition&nbsp;<select name="personList[].conditionValue"><option value="Equal">Equal</option><option value="Greater than">Greater than</option><option value="Less than">Less than</option></select></td>
-                            <td>&nbsp;Parameter Name&nbsp;<input type="text" name="personList[].fieldName"></td>
-                            <td><a href="#" class="removePerson1">Remove Person</a></td>
-                        
-                        </tr>
-                    </c:if>
-                
-                    
-                </tbody>
+										</c:forEach></select>
+
+											<td>&nbsp;Value&nbsp;<input type="text"
+												name="personList[].value"></td>
+											<td><a href="#" class="removePerson1">Remove</a></td>
+
+										</tr>
+									</c:if>
+								</tbody>
             </table>
             <input type="submit" value="Save" id="submit" />&nbsp;&nbsp;
             <a href="#" id="addPerson1">Add Person</a>&nbsp;&nbsp;
             <a href="?f=">Reset List</a>
+            	<label for="chkPassport">	
+   										 <input type="checkbox" id="chkPassport" onclick="EnableDisableTextBox(this)">
+    									Do you have Passport?
+											</label>
         </form:form>
  
         <script type="text/javascript">
+        
+        function EnableDisableTextBox(chkPassport) {
+            var txtPassportNumber = document.getElementById("txtPassportNumber");
+            txtPassportNumber.disabled = chkPassport.checked ? false : true;
+            if (!txtPassportNumber.disabled) {
+                txtPassportNumber.focus();
+            }
+        }
             function rowAdded(rowElement) {
                 //clear the imput fields for the row
                 $(rowElement).find("input").val('');
@@ -101,15 +157,17 @@
                     addRowId : 'addPerson1',
                     removeRowClass : 'removePerson1',
                     formId : 'personListForm1',
-                    rowContainerId : 'personListContainer2',
+                    rowContainerId : 'personListContainer1',
                     indexedPropertyName : 'personList',
-                    indexedPropertyMemberNames : 'value,conditionValue,fieldName',
+                    indexedPropertyMemberNames : 'fieldName,condition,conditionValue,value',
                     rowAddedListener : rowAdded,
                     rowRemovedListener : rowRemoved,
                     beforeSubmit : beforeSubmit
                 };
                 new DynamicListHelper(config);
             });
+            
+           
         </script>
  
     </tiles:putAttribute>

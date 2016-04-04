@@ -5,12 +5,12 @@
 <tiles:insertDefinition name="defaultTemplate">
 	<tiles:putAttribute name="body">
 		<div align="center">
-			<h3>Employee List</h3>
+			<h3>Compensation Rules</h3>
 		</div>
 
 		<head>
 
-<title>EmployeeList</title>
+<title>CompensationRule</title>
 
 <link rel="stylesheet" href="resources/css/kendo.common.min.css" />
 <link rel="stylesheet" href="resources/css/kendo.default.min.css" />
@@ -74,17 +74,18 @@
 				</colgroup>
 				<thead>
 					<tr>
-						<th data-field="Employee Id">Employee Id</th>
-						<th data-field="Name">Name</th>
+						<th data-field="EmployeeId">Employee Id</th>
+						<th data-field="EmployeeName">Employee Name</th>
+						<th data-field="salary">Salary</th>
 						<th data-field="StartDate">Start Date</th>
-						<th data-field="Role">Role</th>
-						<th data-field="ManagerId">ManagerId</th>
-						<th data-field="ManagerName">ManagerName</th>
+						<th data-field="TerminationDate">terminationDate</th>
+						
 					</tr>
 				</thead>
 
 				<c:forEach items="${listEmployee}" var="rule">
 					<tr>
+						
 						
 						<td>${rule.id}</td>
 						<td>${rule.employeeName}</td>
@@ -98,10 +99,6 @@
 
 
 			</table>
-			<div align="center">
-				<br /> 			
-				<a href="/CommissionTool/compositeRule"><button>Add Composite Rule</button></a>&nbsp;<a href="/CommissionTool/simpleRule"><button>Add Simple Rule</button></a>
-			</div>
 		</div>
 
 	</tiles:putAttribute>

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.pursuit.salesCommission.app.api.RuleAPI;
+import com.pursuit.salesCommission.app.api.RuleSimpleAPI;
 import com.pursuit.salesCommission.app.model.Person;
 import com.pursuit.salesCommission.app.model.Person1;
 import com.pursuit.salesCommission.app.model.PersonListContainer1;
@@ -28,6 +29,8 @@ public class PersonController {
  
 	@Autowired
 	private RuleAPI ruleApi;
+	@Autowired
+	private RuleSimpleAPI ruleSimpleApi;
 	
     @RequestMapping("/persons")
     public String index1( ModelMap map, HttpSession session,  HttpServletRequest request, String message ) {
@@ -38,6 +41,9 @@ public class PersonController {
             session.setAttribute("personListContainer1", getDummyPersonListContainer());
         map.addAttribute("personListContainer1", (PersonListContainer1)session.getAttribute("personListContainer1"));
         
+        map.addAttribute("listRule2", ruleSimpleApi.listOfFields());
+		map.addAttribute("listRule3", ruleSimpleApi.listOfConditions());
+        
         return "personList";
     }
  
@@ -47,10 +53,10 @@ public class PersonController {
             System.out.println("Value: " + p.getValue());
             System.out.println("ConditionValue: " + p.getConditionValue());
             System.out.println("FieldName: " + p.getFieldName());
-            //System.out.println("field: " + p.getParameter());
+            System.out.println("condition: " + p.getCondition());
         }
-        session.setAttribute("personListContainer",personListContainer1);
-        return "compRule";
+        session.setAttribute("personListContainer1",personListContainer1);
+        return "hello";
     }
  
     private PersonListContainer1 getDummyPersonListContainer() {

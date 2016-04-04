@@ -143,7 +143,7 @@ public class RuleController {
 			obj1.setConditionList(cnd);
 			obj1.setFieldList(fldList);
 			obj1.setValue(qcui.getValue());
-			obj1.setNotFlag(qcui.getCondition());
+			//obj1.setNotFlag(qcui.getCondition());
 			// System.out.println(ptr.size());
 			ptr1.add(obj1);
 		}
