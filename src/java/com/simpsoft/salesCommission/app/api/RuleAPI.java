@@ -1,6 +1,7 @@
 package com.simpsoft.salesCommission.app.api;
 
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Component;
 import com.simpsoft.salesCommission.app.model.AggregateFunctions;
 import com.simpsoft.salesCommission.app.model.Rule;
 import com.simpsoft.salesCommission.app.model.RuleSimple;
+import com.simpsoft.salesCommission.app.model.RuleType;
 
 @Component
 public class RuleAPI {
@@ -217,7 +219,7 @@ public class RuleAPI {
 	 * 
 	 * @return
 	 */
-	public List<Rule> listRules() {
+	public List<Rule> listOfRules() {
 
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
@@ -230,6 +232,38 @@ public class RuleAPI {
 
 		}
 		return rules;
+	}
+	
+	/**
+	 * Method for getting list of simple rules
+	 * 
+	 * @return simpRules
+	 */
+	public List<Rule> listOfRules(RuleType simple) {
+
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		List<Rule> rule1 = new ArrayList<Rule>();
+		try {
+		tx = session.beginTransaction();
+		List simpRules = session.createQuery("FROM Rule").list();
+		for (Iterator iterator = simpRules.iterator(); iterator.hasNext();) {
+			
+			Rule rule = (Rule) iterator.next();
+			if(simple.toString().equals(rule.getRuleType())){
+				rule1.add(rule);
+			}  		
+		}
+		tx.commit();
+	} catch (HibernateException e) {
+		if (tx != null)
+			tx.rollback();
+		e.printStackTrace();
+	} finally {
+		session.close();
+	}
+		
+		return rule1;
 	}
 
 	/**

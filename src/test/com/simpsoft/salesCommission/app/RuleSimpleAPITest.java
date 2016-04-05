@@ -14,12 +14,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.simpsoft.salesCommission.app.api.RuleAPI;
 import com.simpsoft.salesCommission.app.api.RuleSimpleAPI;
 import com.simpsoft.salesCommission.app.model.AggregateFunctions;
 import com.simpsoft.salesCommission.app.model.ConditionList;
 import com.simpsoft.salesCommission.app.model.FieldList;
 import com.simpsoft.salesCommission.app.model.Rule;
 import com.simpsoft.salesCommission.app.model.RuleSimple;
+import com.simpsoft.salesCommission.app.model.RuleType;
 
 /**
  * @author User
@@ -32,6 +34,8 @@ public class RuleSimpleAPITest {
 
 	@Autowired
 	private RuleSimpleAPI ruleSimpleApi;
+	@Autowired
+	private RuleAPI ruleApi;
 
 	/**
 	 * Test method for
@@ -49,7 +53,7 @@ public class RuleSimpleAPITest {
 	@Test
 	public void testlistOfSimpleRules() {
 
-		List<Rule> api = ruleSimpleApi.listOfSimpleRules("Simple");
+		List<Rule> api = ruleApi.listOfRules();
 		Assert.assertEquals(6, api.size());
 	}
 
