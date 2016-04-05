@@ -50,7 +50,9 @@ public class EmployeeAPI {
 			emp.setEmployeeName(employee.getEmployeeName());
 			emp.setStartDate(employee.getStartDate());
 			emp.setTerminationDate(employee.getTerminationDate());
-			//emp.setTarget(employee.getTarget());
+			emp.setEmployeeManagerMap(employee.getEmployeeManagerMap());
+			emp.setEmployeeRoleMap(employee.getEmployeeRoleMap());
+			emp.setTarget(employee.getTarget());
 			emp.setSalary(employee.getSalary());
 			session.save(emp);
 			tx.commit();

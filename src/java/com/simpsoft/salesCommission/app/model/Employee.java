@@ -106,6 +106,34 @@ public class Employee {
 	}
 
 	/**
+	 * @return the employeeManagerMap
+	 */
+	public List<EmployeeManagerMap> getEmployeeManagerMap() {
+		return employeeManagerMap;
+	}
+
+	/**
+	 * @param employeeManagerMap the employeeManagerMap to set
+	 */
+	public void setEmployeeManagerMap(List<EmployeeManagerMap> employeeManagerMap) {
+		this.employeeManagerMap = employeeManagerMap;
+	}
+
+	/**
+	 * @return the employeeRoleMap
+	 */
+	public List<EmployeeRoleMap> getEmployeeRoleMap() {
+		return employeeRoleMap;
+	}
+
+	/**
+	 * @param employeeRoleMap the employeeRoleMap to set
+	 */
+	public void setEmployeeRoleMap(List<EmployeeRoleMap> employeeRoleMap) {
+		this.employeeRoleMap = employeeRoleMap;
+	}
+
+	/**
 	 * @return the target
 	 */
 	public List<Target> getTarget() {

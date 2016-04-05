@@ -28,7 +28,7 @@
 	<property name="temp.mockup" value="tempMockup" />
 
 	<property name="package.file" value="${dest.dir}/${package.name}" />
-
+	<!-- put java doc in this folder during build -->
 	<property name="docs.dir" value="doc" />
 
 
@@ -191,6 +191,36 @@
 			<classpath refid="build.class.path" />
 			<classpath path="${temp.dir.classes}" />
 		</java>
+		<java classname="com.simpsoft.salesCommission.app.XMLReader.ReadXMLForAggregateFunction"  fork="true"
+			           failonerror="true">
+					<arg value="-h"/>
+					<classpath refid="build.class.path" />
+					<classpath path="${temp.dir.classes}" />
+				</java>
+		<java classname="com.simpsoft.salesCommission.app.XMLReader.ReadXMLForConditionList"  fork="true"
+					           failonerror="true">
+							<arg value="-h"/>
+							<classpath refid="build.class.path" />
+							<classpath path="${temp.dir.classes}" />
+						</java>
+		<java classname="com.simpsoft.salesCommission.app.XMLReader.ReadXMLForFieldList"  fork="true"
+					           failonerror="true">
+							<arg value="-h"/>
+							<classpath refid="build.class.path" />
+							<classpath path="${temp.dir.classes}" />
+						</java>
+		<java classname="com.simpsoft.salesCommission.app.XMLReader.Rule"  fork="true"
+							           failonerror="true">
+									<arg value="-h"/>
+									<classpath refid="build.class.path" />
+									<classpath path="${temp.dir.classes}" />
+								</java>
+		<java classname="com.simpsoft.salesCommission.app.XMLReader.Role"  fork="true"
+							           failonerror="true">
+									<arg value="-h"/>
+									<classpath refid="build.class.path" />
+									<classpath path="${temp.dir.classes}" />
+								</java>
 	</target>
 
 </project>
