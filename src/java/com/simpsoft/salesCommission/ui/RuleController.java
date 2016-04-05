@@ -21,6 +21,7 @@ import com.simpsoft.salesCommission.app.api.RuleAPI;
 import com.simpsoft.salesCommission.app.api.RuleSimpleAPI;
 
 import com.simpsoft.salesCommission.app.model.RuleSimple;
+import com.simpsoft.salesCommission.app.model.RuleType;
 import com.simpsoft.salesCommission.app.UImodel.RuleUI;
 import com.simpsoft.salesCommission.app.model.AggregateFunctions;
 import com.simpsoft.salesCommission.app.model.ConditionList;
@@ -35,6 +36,7 @@ import com.simpsoft.salesCommission.app.UImodel.PersonListContainer2;
 import com.simpsoft.salesCommission.app.model.QualifyingClause;
 import com.simpsoft.salesCommission.app.UImodel.QualifyingClauseUI;
 import com.simpsoft.salesCommission.app.model.Rule;
+import com.simpsoft.salesCommission.app.model.RuleComposite;
 import com.simpsoft.salesCommission.app.model.RuleParameter;
 
 @Controller
@@ -162,7 +164,7 @@ public class RuleController {
 
 		ruleApi.createRule(rule);
 		// logger.info("A NEW rule HAS CREATED" + rule);
-		return "redirect:/RuleList";
+		return "redirect:/ruleList";
 	}
 
 	/*
@@ -196,7 +198,7 @@ public class RuleController {
 
 	@RequestMapping(value = "/compositeRule", method = RequestMethod.GET)
 	public String compRule(ModelMap map, HttpSession session, HttpServletRequest request, String message) {
-		map.addAttribute("listCompRule1", ruleApi.listRules());
+		map.addAttribute("listSimpRule", ruleApi.listOfRules(RuleType.Simple));
 
 		if (session.getAttribute("personListContainer3") == null)
 			session.setAttribute("personListContainer3", getDummyPersonListContainer3());
@@ -226,9 +228,12 @@ public class RuleController {
 	}
 
 	@RequestMapping(value = "/submitCompRule", method = RequestMethod.POST)
-	public String addRule2(@ModelAttribute("SpringWeb") RuleUI ruleUI, PersonListContainer personListContainer,
+	public String addRule2(@ModelAttribute("SpringWeb") RuleUI ruleUI, PersonListContainer personListContainer, PersonListContainer2 personListContainer2,
 			HttpSession session, ModelMap model) {
-
+		for (Person1 p : personListContainer2.getPersonList()) {
+			System.out.println("listOfSimpRule: " + p.getSimpRule());
+		}
+		session.setAttribute("personListContainer2", personListContainer2);
 		for (RuleParameter p : personListContainer.getPersonList()) {
 			System.out.println("ParameterName: " + p.getParameterName());
 			System.out.println("ParameterValue: " + p.getParameterValue());
@@ -246,7 +251,21 @@ public class RuleController {
 		model.addAttribute("compensationParameter", ruleUI.getCompensationParameter());
 
 		Rule rule = new Rule();
-
+		RuleSimple ruleSimple = new RuleSimple();
+	/*	List<Person1> ptr = personListContainer2.getPersonList();
+		for (Iterator iterator = ptr.iterator(); iterator.hasNext();) {
+			Person1 person1 = (Person1) iterator.next();
+			RuleComposite ruleComp = new RuleComposite();
+			Rule  rulSimple = ruleApi.searchRuleByName(person1.getSimpRule());
+			
+			//obj1.setConditionList(cnd);
+			//obj1.setFieldList(fldList);
+			//obj1.setValue(qcui.getValue());
+			//obj1.setNotFlag(qcui.getCondition());
+			// System.out.println(ptr.size());
+			ptr1.add(obj1);
+		}
+*/
 		rule.setId(ruleUI.getId());
 		rule.setRuleName(ruleUI.getRuleName());
 		rule.setDescription(ruleUI.getDescription());
@@ -259,13 +278,13 @@ public class RuleController {
 		rule.setRuleParameter(personListContainer.getPersonList());
 
 		ruleApi.createRule(rule);
-		return "redirect:/RuleList";
+		return "redirect:/ruleList";
 	}
 
-	@RequestMapping(value = "/RuleList", method = RequestMethod.GET)
+	@RequestMapping(value = "/ruleList", method = RequestMethod.GET)
 	public String listRules(ModelMap model) {
-		model.addAttribute("listRule", ruleApi.listRules());
-		model.addAttribute("listSimpRule", ruleSimpleApi.listOfSimpleRules());
+		model.addAttribute("listRule", ruleApi.listOfRules());
+		//model.addAttribute("listSimpRule", ruleSimpleApi.listOfSimpleRules());
 		// logger.info("A NEW List HAS CREATED");
 		System.out.println("*****************ListDone**********************");
 		return "compRule";
@@ -274,8 +293,8 @@ public class RuleController {
 	@RequestMapping(value = "/editComposite/{id}", method = RequestMethod.GET)
 	public String EditCompRule(@PathVariable("id") int id, ModelMap model) {
 		model.addAttribute("listRule1", ruleApi.getRule(id));
-		model.addAttribute("listRule2", ruleApi.listRules());
-		model.addAttribute("listSimpRule", ruleSimpleApi.listOfSimpleRules());
+		model.addAttribute("listRule2", ruleApi.listOfRules());
+		//model.addAttribute("listSimpRule", ruleSimpleApi.listOfSimpleRules());
 		// logger.info("A NEW List HAS CREATED");
 		System.out.println("*****************ListDone**********************");
 		return "EditComposite";
