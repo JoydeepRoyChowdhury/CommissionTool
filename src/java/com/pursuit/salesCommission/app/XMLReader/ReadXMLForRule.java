@@ -51,7 +51,7 @@ public class ReadXMLForRule {
 
 			List<QualifyingClause> qClauselist = sRule.getQualifyingClause();
 			List<QualifyingClause> qClslst = new ArrayList<>();
-		/*	for (Iterator iterator1 = qClauselist.iterator(); iterator1.hasNext();) {
+			for (Iterator iterator1 = qClauselist.iterator(); iterator1.hasNext();) {
 				QualifyingClause qCls = (QualifyingClause) iterator1.next();
 				QualifyingClause nQCluase = new QualifyingClause();
 				FieldList fldList = ruleSimpleAPI.searchFieldList(qCls.getFieldList().getDisplayName());
@@ -62,11 +62,11 @@ public class ReadXMLForRule {
 				nQCluase.setNotFlag(qCls.isNotFlag());
 				nQCluase.setIgnoreCase(qCls.isIgnoreCase());
 				qClslst.add(nQCluase);
-			} */
+			} 
 			sRule.setQualifyingClause(qClslst); 
 			rule.setRuleSimple(sRule);
 
-		//	ruleAPI.createRule(rule);
+			ruleAPI.createRule(rule);
 		}
 	}
 
@@ -135,10 +135,10 @@ public class ReadXMLForRule {
 					String functionName = (elem.getElementsByTagName("AggregateFun").item(0).getChildNodes().item(0)
 							.getNodeValue());
 
-			/*		List<QualifyingClause> qualifyingClauses = new ArrayList<QualifyingClause>();
-					NodeList nodeList2 = doc.getElementsByTagName("QualifyingClause");
-					for (int j = 0; j < nodeList2.getLength(); j++) {
-						Node node2 = nodeList2.item(j);
+					List<QualifyingClause> qualifyingClauses = new ArrayList<QualifyingClause>();
+					NodeList nodeList2 = elem.getElementsByTagName("QualifyingClause");
+					for (int k = 0; k < nodeList2.getLength(); k++) {
+						Node node2 = nodeList2.item(k);
 
 						if (node2.getNodeType() == Node.ELEMENT_NODE) {
 							Element elem2 = (Element) node2;
@@ -156,7 +156,7 @@ public class ReadXMLForRule {
 
 							String conditionListValue = elem2.getElementsByTagName("ConditionList").item(0)
 									.getChildNodes().item(0).getNodeValue();
-							System.out.println("value :" + conditionListValue);
+							System.out.println("value :" + conditionListValue); 
 
 							Boolean ignoreCase = Boolean.parseBoolean(elem2.getElementsByTagName("ignoreCase").item(0)
 									.getChildNodes().item(0).getNodeValue());
@@ -172,7 +172,7 @@ public class ReadXMLForRule {
 
 							ConditionList cndlst = new ConditionList();
 							cndlst.setConditionValue(conditionListValue);
-							qClause.setConditionList(cndlst);
+							qClause.setConditionList(cndlst); 
 
 							qClause.setNotFlag(notFlag);
 							qClause.setIgnoreCase(ignoreCase);
@@ -180,7 +180,7 @@ public class ReadXMLForRule {
 							qualifyingClauses.add(qClause);
 
 						}
-					} */
+					} 
 
 					Rule r = new Rule();
 
@@ -197,7 +197,7 @@ public class ReadXMLForRule {
 					rs.setAggregateFunctions(aggregateFunction);
 					rs.setCalculationMode(calculationMode);
 					rs.setField(field);
-				//	rs.setQualifyingClause(qualifyingClauses);
+					rs.setQualifyingClause(qualifyingClauses);
 
 					r.setRuleSimple(rs);
 

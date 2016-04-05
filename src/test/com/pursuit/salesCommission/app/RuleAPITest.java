@@ -182,11 +182,15 @@ public class RuleAPITest extends TestCase {
 		  RuleComposite ruleComposite = new RuleComposite(); 
 		  Rule simple1 = ruleAPI.getRule(1); 
 		  Rule simple2 =  ruleAPI.getRule(2);
+		  System.out.println("*************************************          " + simple1.getRuleName());
+		  System.out.println("#####################################          " + simple2.getRuleName());
 		//  simple1.setCalculationMode("individual");
 		//  simple2.setCalculationMode("rank"); 
 		//  ruleComposite.setRuleSimple(new ArrayList<RuleSimple>()); 
-		//  ruleComposite.getRuleSimple().add(simple1);
-		//  ruleComposite.getRuleSimple().add(simple2);
+		  List<Rule> rl = new ArrayList<Rule>();
+		  rl.add(simple1);
+		  rl.add(simple2);
+		  ruleComposite.setRule(rl);
 		  rule.setRuleComposite(ruleComposite); 
 		  long ruleId = ruleAPI.createRule(rule);
 		  rule.setId(ruleId);

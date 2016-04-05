@@ -26,7 +26,7 @@ public class QualifyingClause {
 	@JoinColumn(name = "FLD_LST_ID")
 	private FieldList fieldList;
 
-	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToOne(cascade = CascadeType.MERGE, orphanRemoval = true)
 	@JoinColumn(name = "CND_LST_ID")
 	private ConditionList conditionList;
 	

@@ -21,7 +21,7 @@
 			<CalculationMode>i</CalculationMode>
 			<Field>Line Item Total</Field>
 			<AggregateFun>min</AggregateFun>
-		<!--	<QualifyingClauses>
+			<QualifyingClauses>
 				<QualifyingClause value="qualifying clause value 1">
 					<FieldList>Order Total</FieldList>
 					<notFlag>true</notFlag>
@@ -34,7 +34,7 @@
 					<ConditionList>equal</ConditionList>
 					<ignoreCase>true</ignoreCase>
 				</QualifyingClause>
-			</QualifyingClauses> -->
+			</QualifyingClauses> 
 		</RuleSimple>
 	</Rule>
 	<Rule RuleName="Rule for getting commission on max sale of simcard">
@@ -58,7 +58,7 @@
 			<CalculationMode>i</CalculationMode>
 			<Field>Quantity</Field>
 			<AggregateFun>max</AggregateFun>
-		<!-- 	<QualifyingClauses>
+		 	<QualifyingClauses>
 				<QualifyingClause value="qualifying clause value 5">
 					<FieldList>Customer Name</FieldList>
 					<notFlag>true</notFlag>
@@ -71,7 +71,7 @@
 					<ConditionList>equal</ConditionList>
 					<ignoreCase>false</ignoreCase>
 				</QualifyingClause>
-			</QualifyingClauses> -->
+			</QualifyingClauses> 
 		</RuleSimple>
 	</Rule>
 </Rules>

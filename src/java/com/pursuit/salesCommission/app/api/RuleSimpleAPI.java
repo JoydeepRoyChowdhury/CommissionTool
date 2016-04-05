@@ -44,7 +44,6 @@ public class RuleSimpleAPI {
 		tx = session.beginTransaction();
 		return (RuleSimple) session.get(RuleSimple.class, ruleSimpleID);
 	}
-	
 
 	/**
 	 * Method for getting list of simple rules
@@ -57,15 +56,18 @@ public class RuleSimpleAPI {
 		Transaction tx = null;
 		tx = session.beginTransaction();
 		List simpRules = session.createQuery("FROM RuleSimple").list();
-		//for (Iterator iterator = simpRules.iterator(); iterator.hasNext();) {
-		//	RuleSimple ruleSimp = (RuleSimple) iterator.next();
-		//	logger.debug("GET THE RULE DETAILS FROM DATABASE" + ruleSimp.getId() + ruleSimp.getCalculationMode());
+		// for (Iterator iterator = simpRules.iterator(); iterator.hasNext();) {
+		// RuleSimple ruleSimp = (RuleSimple) iterator.next();
+		// logger.debug("GET THE RULE DETAILS FROM DATABASE" + ruleSimp.getId()
+		// + ruleSimp.getCalculationMode());
 
-		//}
+		// }
 		return simpRules;
 	}
+
 	/**
 	 * Method for create Aggregate Function
+	 * 
 	 * @param conditionList
 	 * @return
 	 */
@@ -107,6 +109,7 @@ public class RuleSimpleAPI {
 		}
 		return aggregatetFunction;
 	}
+
 	/**
 	 * Method for getting list of aggregate functions
 	 * 
@@ -117,7 +120,8 @@ public class RuleSimpleAPI {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		tx = session.beginTransaction();
-		List aggregatetFunction = session.createQuery("FROM AggregateFunctions WHERE RULE_SIMP_ID =" + ruleSimpID).list();
+		List aggregatetFunction = session.createQuery("FROM AggregateFunctions WHERE RULE_SIMP_ID =" + ruleSimpID)
+				.list();
 		for (Iterator iterator = aggregatetFunction.iterator(); iterator.hasNext();) {
 			AggregateFunctions agrFn = (AggregateFunctions) iterator.next();
 			logger.debug("GET THE RULE DETAILS FROM DATABASE" + agrFn.getId() + agrFn.getFunctionName());
@@ -125,31 +129,45 @@ public class RuleSimpleAPI {
 		}
 		return aggregatetFunction;
 	}
+
 	/**
 	 * Method for search aggregate function by name
+	 * 
 	 * @param fieldVal
 	 * @return
 	 */
 	public AggregateFunctions searchAggregateFunction(String aggtFunName) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
+		AggregateFunctions fn1 = new AggregateFunctions();
+		try {
 		tx = session.beginTransaction();
 		List fields = session.createQuery("FROM AggregateFunctions").list();
-		AggregateFunctions fn1 = new AggregateFunctions();
 		for (Iterator iterator = fields.iterator(); iterator.hasNext();) {
-			
+
 			AggregateFunctions fn = (AggregateFunctions) iterator.next();
-			if(aggtFunName.equals(fn.getFunctionName())){
-				fn1.setId(fn.getId());	
+			if (aggtFunName.equals(fn.getFunctionName())) {
+				fn1.setId(fn.getId());
 				fn1.setFunctionName(fn.getFunctionName());
-				
-			}  
-			
+
+			}
+
+		}
+		tx.commit();
+
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
 		}
 		return fn1;
 	}
+
 	/**
 	 * Method for create Condition List
+	 * 
 	 * @param conditionList
 	 * @return
 	 */
@@ -172,8 +190,7 @@ public class RuleSimpleAPI {
 		}
 		return cndList.getId();
 	}
-	
-	
+
 	/**
 	 * Method for getting list of conditions
 	 * 
@@ -185,13 +202,17 @@ public class RuleSimpleAPI {
 		Transaction tx = null;
 		tx = session.beginTransaction();
 		List conditionList = session.createQuery("FROM ConditionList").list();
-		/*for (Iterator iterator = conditionList.iterator(); iterator.hasNext();) {
-			ConditionList cdnLst = (ConditionList) iterator.next();
-			logger.debug("GET THE RULE DETAILS FROM DATABASE" + cdnLst.getId() + cdnLst.getConditionValue());
-
-		}*/
+		/*
+		 * for (Iterator iterator = conditionList.iterator();
+		 * iterator.hasNext();) { ConditionList cdnLst = (ConditionList)
+		 * iterator.next(); logger.debug("GET THE RULE DETAILS FROM DATABASE" +
+		 * cdnLst.getId() + cdnLst.getConditionValue());
+		 * 
+		 * }
+		 */
 		return conditionList;
 	}
+
 	/**
 	 * 
 	 * @param conditionVal
@@ -200,23 +221,35 @@ public class RuleSimpleAPI {
 	public ConditionList searchCondition(String conditionVal) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
-		tx = session.beginTransaction();
-		List conditions = session.createQuery("FROM ConditionList").list();
 		ConditionList cnd = new ConditionList();
-		for (Iterator iterator = conditions.iterator(); iterator.hasNext();) {
-			
-			ConditionList condition = (ConditionList) iterator.next();
-			if(conditionVal.equals(condition.getConditionValue())){
-				cnd.setId(condition.getId());
-				cnd.setConditionValue(condition.getConditionValue());
-				
-			}  
-			
+		try {
+			tx = session.beginTransaction();
+			List conditions = session.createQuery("FROM ConditionList").list();
+			for (Iterator iterator = conditions.iterator(); iterator.hasNext();) {
+
+				ConditionList condition = (ConditionList) iterator.next();
+				if (conditionVal.equals(condition.getConditionValue())) {
+					cnd.setId(condition.getId());
+					cnd.setConditionValue(condition.getConditionValue());
+
+				}
+
+			}
+			tx.commit();
+
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
 		}
 		return cnd;
 	}
+
 	/**
 	 * Method for create Field List
+	 * 
 	 * @param conditionList
 	 * @return
 	 */
@@ -240,31 +273,43 @@ public class RuleSimpleAPI {
 		}
 		return fldlst.getId();
 	}
+
 	/**
 	 * Method for search field by field name
+	 * 
 	 * @param fieldVal
 	 * @return
 	 */
 	public FieldList searchFieldList(String fieldVal) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
+		FieldList fld1 = new FieldList();
+		try {
 		tx = session.beginTransaction();
 		List fields = session.createQuery("FROM FieldList").list();
-		FieldList fld1 = new FieldList();
 		for (Iterator iterator = fields.iterator(); iterator.hasNext();) {
-			
+
 			FieldList fld = (FieldList) iterator.next();
-			if(fieldVal.equals(fld.getDisplayName())){
+			if (fieldVal.equals(fld.getDisplayName())) {
 				fld1.setId(fld.getId());
 				fld1.setDisplayName(fld.getDisplayName());
 				fld1.setFieldName(fld.getFieldName());
-				
-			}  
-			
+
+			}
+
+		}
+		tx.commit();
+
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
 		}
 		return fld1;
 	}
-	
+
 	/**
 	 * Method for getting list of fields
 	 * 
@@ -276,12 +321,15 @@ public class RuleSimpleAPI {
 		Transaction tx = null;
 		tx = session.beginTransaction();
 		List fieldList = session.createQuery("FROM FieldList").list();
-		/*for (Iterator iterator = fieldList.iterator(); iterator.hasNext();) {
-			FieldList fldLst = (FieldList) iterator.next();
-			logger.debug("GET THE RULE DETAILS FROM DATABASE" + fldLst.getId() + fldLst.getDisplayName());
-
-		} */
+		/*
+		 * for (Iterator iterator = fieldList.iterator(); iterator.hasNext();) {
+		 * FieldList fldLst = (FieldList) iterator.next(); logger.debug(
+		 * "GET THE RULE DETAILS FROM DATABASE" + fldLst.getId() +
+		 * fldLst.getDisplayName());
+		 * 
+		 * }
+		 */
 		return fieldList;
 	}
-	
+
 }
