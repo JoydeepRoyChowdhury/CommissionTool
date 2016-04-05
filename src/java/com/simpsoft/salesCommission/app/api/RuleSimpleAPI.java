@@ -18,6 +18,7 @@ import com.simpsoft.salesCommission.app.model.AggregateFunctions;
 import com.simpsoft.salesCommission.app.model.ConditionList;
 import com.simpsoft.salesCommission.app.model.Employee;
 import com.simpsoft.salesCommission.app.model.FieldList;
+import com.simpsoft.salesCommission.app.model.Rule;
 import com.simpsoft.salesCommission.app.model.RuleParameter;
 import com.simpsoft.salesCommission.app.model.RuleSimple;
 
@@ -50,19 +51,31 @@ public class RuleSimpleAPI {
 	 * 
 	 * @return simpRules
 	 */
-	public List<RuleSimple> listOfSimpleRules() {
+	public List<Rule> listOfSimpleRules(String ruleType) {
 
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
+		List<Rule> rule1 = new ArrayList<Rule>();
+		try {
 		tx = session.beginTransaction();
-		List simpRules = session.createQuery("FROM RuleSimple").list();
-		// for (Iterator iterator = simpRules.iterator(); iterator.hasNext();) {
-		// RuleSimple ruleSimp = (RuleSimple) iterator.next();
-		// logger.debug("GET THE RULE DETAILS FROM DATABASE" + ruleSimp.getId()
-		// + ruleSimp.getCalculationMode());
-
-		// }
-		return simpRules;
+		List simpRules = session.createQuery("FROM Rule").list();
+		for (Iterator iterator = simpRules.iterator(); iterator.hasNext();) {
+			
+			Rule rule = (Rule) iterator.next();
+			if(ruleType.equals(rule.getRuleType())){
+				rule1.add(rule);
+			}  		
+		}
+		tx.commit();
+	} catch (HibernateException e) {
+		if (tx != null)
+			tx.rollback();
+		e.printStackTrace();
+	} finally {
+		session.close();
+	}
+		
+		return rule1;
 	}
 
 	/**

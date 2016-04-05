@@ -18,6 +18,7 @@ import com.simpsoft.salesCommission.app.api.RuleSimpleAPI;
 import com.simpsoft.salesCommission.app.model.AggregateFunctions;
 import com.simpsoft.salesCommission.app.model.ConditionList;
 import com.simpsoft.salesCommission.app.model.FieldList;
+import com.simpsoft.salesCommission.app.model.Rule;
 import com.simpsoft.salesCommission.app.model.RuleSimple;
 
 /**
@@ -48,8 +49,8 @@ public class RuleSimpleAPITest {
 	@Test
 	public void testlistOfSimpleRules() {
 
-		List<RuleSimple> api = ruleSimpleApi.listOfSimpleRules();
-		Assert.assertEquals(1, api.size());
+		List<Rule> api = ruleSimpleApi.listOfSimpleRules("Simple");
+		Assert.assertEquals(6, api.size());
 	}
 
 	@Test
@@ -61,21 +62,21 @@ public class RuleSimpleAPITest {
 			System.out.println("GET THE RULE DETAILS FROM DATABASE     " + agrFn.getId() + agrFn.getFunctionName());
 
 		}
-		Assert.assertEquals(2, api.size());
+		Assert.assertEquals(4, api.size());
 	}
 
 	@Test
 	public void testlistOfConditions() {
 
 		List<ConditionList> api = ruleSimpleApi.listOfConditions();
-		Assert.assertEquals(1, api.size());
+		Assert.assertEquals(7, api.size());
 	}
 
 	@Test
 	public void testlistOfFields() {
 
 		List<FieldList> api = ruleSimpleApi.listOfFields();
-		Assert.assertEquals(3, api.size());
+		Assert.assertEquals(5, api.size());
 	}
 
 }
