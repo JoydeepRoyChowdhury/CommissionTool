@@ -2,23 +2,25 @@ package com.simpsoft.salesCommission.app.UImodel;
 
 public class Person1 {
 	
-	private String value;
+	private String simpRule;
 
-	public String getValue() {
-		return value;
-	}
-
-	public void setValue(String value) {
-		this.value = value;
-	}
-    
-public Person1(){
 	
-}
-
-	public Person1(String value){
+	public Person1(){
 		
-		this.value = value;
+	}
+
+
+	public Person1(String simpRule){
+		
+		this.simpRule = simpRule;
+	}
+
+	public String getSimpRule() {
+		return simpRule;
+	}
+
+	public void setSimpRule(String simpRule) {
+		this.simpRule = simpRule;
 	}
 	
 	
