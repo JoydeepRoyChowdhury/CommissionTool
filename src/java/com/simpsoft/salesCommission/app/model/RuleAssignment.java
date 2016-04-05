@@ -28,19 +28,6 @@ public class RuleAssignment {
 	@JoinColumn(name = "ROLE_ID")
 	private Role role;
 
-	@Column(name = "validityType")
-	private String validityType;
-
-	@Column(name = "startDate")
-	private Date startDate;
-
-	@Column(name = "terminationDate")
-	private Date terminationDate;
-
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "FREQ_ID")
-	private Frequency frequency;
-
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "RULE_ASSGN_ID")
 	private RuleAssignmentDetails ruleAssignmentDetails;
@@ -88,66 +75,6 @@ public class RuleAssignment {
 	 */
 	public void setRole(Role role) {
 		this.role = role;
-	}
-
-	/**
-	 * @return the validityType
-	 */
-	public String getValidityType() {
-		return validityType;
-	}
-
-	/**
-	 * @param validityType
-	 *            the validityType to set
-	 */
-	public void setValidityType(String validityType) {
-		this.validityType = validityType;
-	}
-
-	/**
-	 * @return the startDate
-	 */
-	public Date getStartDate() {
-		return startDate;
-	}
-
-	/**
-	 * @param startDate
-	 *            the startDate to set
-	 */
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-
-	/**
-	 * @return the terminationDate
-	 */
-	public Date getTerminationDate() {
-		return terminationDate;
-	}
-
-	/**
-	 * @param terminationDate
-	 *            the terminationDate to set
-	 */
-	public void setTerminationDate(Date terminationDate) {
-		this.terminationDate = terminationDate;
-	}
-
-	/**
-	 * @return the frequency
-	 */
-	public Frequency getFrequency() {
-		return frequency;
-	}
-
-	/**
-	 * @param frequency
-	 *            the frequency to set
-	 */
-	public void setFrequency(Frequency frequency) {
-		this.frequency = frequency;
 	}
 
 	/**

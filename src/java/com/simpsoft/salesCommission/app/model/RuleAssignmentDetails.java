@@ -1,5 +1,6 @@
 package com.simpsoft.salesCommission.app.model;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -26,6 +27,19 @@ public class RuleAssignmentDetails {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "ASSGN_ID")
 	private RuleAssignment ruleAssignment;
+	
+	@Column(name = "validityType")
+	private String validityType;
+
+	@Column(name = "startDate")
+	private Date startDate;
+
+	@Column(name = "terminationDate")
+	private Date terminationDate;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "FREQ_ID")
+	private Frequency frequency;
 
 	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "ASSN_DTL_ID")
@@ -65,6 +79,65 @@ public class RuleAssignmentDetails {
 	 */
 	public void setRuleAssignment(RuleAssignment ruleAssignment) {
 		this.ruleAssignment = ruleAssignment;
+	}
+	/**
+	 * @return the validityType
+	 */
+	public String getValidityType() {
+		return validityType;
+	}
+
+	/**
+	 * @param validityType
+	 *            the validityType to set
+	 */
+	public void setValidityType(String validityType) {
+		this.validityType = validityType;
+	}
+
+	/**
+	 * @return the startDate
+	 */
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	/**
+	 * @param startDate
+	 *            the startDate to set
+	 */
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	/**
+	 * @return the terminationDate
+	 */
+	public Date getTerminationDate() {
+		return terminationDate;
+	}
+
+	/**
+	 * @param terminationDate
+	 *            the terminationDate to set
+	 */
+	public void setTerminationDate(Date terminationDate) {
+		this.terminationDate = terminationDate;
+	}
+
+	/**
+	 * @return the frequency
+	 */
+	public Frequency getFrequency() {
+		return frequency;
+	}
+
+	/**
+	 * @param frequency
+	 *            the frequency to set
+	 */
+	public void setFrequency(Frequency frequency) {
+		this.frequency = frequency;
 	}
 
 	/**

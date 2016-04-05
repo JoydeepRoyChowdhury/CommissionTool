@@ -53,8 +53,8 @@ public class RuleSimpleAPITest {
 	@Test
 	public void testlistOfSimpleRules() {
 
-		List<Rule> api = ruleApi.listOfRules();
-		Assert.assertEquals(6, api.size());
+		List<Rule> api = ruleApi.listOfRules(RuleType.Simple);
+		Assert.assertEquals(5, api.size());
 	}
 
 	@Test
