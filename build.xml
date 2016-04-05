@@ -185,7 +185,7 @@
 
 	<!-- Calling Java Main -->
 	<target name="callJava" depends="compile, package">
-		<java classname="com.pursuit.salesCommission.app.XMLReader.ReadXMLFile"  fork="true"
+		<java classname="com.simpsoft.salesCommission.app.XMLReader.ReadXMLFile"  fork="true"
 	           failonerror="true">
 			<arg value="-h"/>
 			<classpath refid="build.class.path" />

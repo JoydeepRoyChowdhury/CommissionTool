@@ -23,9 +23,9 @@
 
 	<!--  	<property name="annotatedClasses">
 			<list>
-				<value>com.pursuit.salesCommission.app.model.Employee</value>
-				<value>com.pursuit.salesCommission.app.model.Role</value>
-				<value>com.pursuit.salesCommission.app.model.Rule</value>
+				<value>com.simpsoft.salesCommission.app.model.Employee</value>
+				<value>com.simpsoft.salesCommission.app.model.Role</value>
+				<value>com.simpsoft.salesCommission.app.model.Rule</value>
 				
 			</list>
 		</property> -->
@@ -35,16 +35,16 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 
-	<bean id="employeeApi" class="com.pursuit.salesCommission.app.api.EmployeeAPI">
+	<bean id="employeeApi" class="com.simpsoft.salesCommission.app.api.EmployeeAPI">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-	<bean id="roleApi" class="com.pursuit.salesCommission.app.api.RoleAPI">
+	<bean id="roleApi" class="com.simpsoft.salesCommission.app.api.RoleAPI">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-	<bean id="ruleApi" class="com.pursuit.salesCommission.app.api.RuleAPI">
+	<bean id="ruleApi" class="com.simpsoft.salesCommission.app.api.RuleAPI">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-    <bean id="ruleSimpleApi" class="com.pursuit.salesCommission.app.api.RuleSimpleAPI">
+    <bean id="ruleSimpleApi" class="com.simpsoft.salesCommission.app.api.RuleSimpleAPI">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 
