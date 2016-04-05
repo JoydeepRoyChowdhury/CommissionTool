@@ -5,7 +5,7 @@ public class QualifyingClauseUI {
 	private String value;
 	private String conditionValue;
 	private String fieldName;
-	private String condition;
+	private boolean condition;
 
 	public String getValue() {
 		return value;
@@ -34,7 +34,7 @@ public class QualifyingClauseUI {
 		
 	}
 	
-public QualifyingClauseUI(String value, String conditionValue, String fieldName, String condition){
+public QualifyingClauseUI(String value, String conditionValue, String fieldName, boolean condition){
 	
 	this.value = value;
 	this.fieldName = fieldName;
@@ -43,11 +43,11 @@ public QualifyingClauseUI(String value, String conditionValue, String fieldName,
 		
 	}
 
-public String getCondition() {
+public boolean getCondition() {
 	return condition;
 }
 
-public void setCondition(String condition) {
+public void setCondition(boolean condition) {
 	this.condition = condition;
 }
 

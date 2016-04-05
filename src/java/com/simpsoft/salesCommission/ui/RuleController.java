@@ -251,21 +251,18 @@ public class RuleController {
 		model.addAttribute("compensationParameter", ruleUI.getCompensationParameter());
 
 		Rule rule = new Rule();
-		RuleSimple ruleSimple = new RuleSimple();
-	/*	List<Person1> ptr = personListContainer2.getPersonList();
+		//RuleSimple ruleSimple = new RuleSimple();
+		List<Person1> ptr = personListContainer2.getPersonList();
+		List<Rule> ruleObj = new ArrayList<Rule>();
 		for (Iterator iterator = ptr.iterator(); iterator.hasNext();) {
 			Person1 person1 = (Person1) iterator.next();
 			RuleComposite ruleComp = new RuleComposite();
 			Rule  rulSimple = ruleApi.searchRuleByName(person1.getSimpRule());
-			
-			//obj1.setConditionList(cnd);
-			//obj1.setFieldList(fldList);
-			//obj1.setValue(qcui.getValue());
-			//obj1.setNotFlag(qcui.getCondition());
-			// System.out.println(ptr.size());
-			ptr1.add(obj1);
+			ruleObj.add(rulSimple);
+			ruleComp.setCompJoinRule(ruleObj);
+			rule.setRuleComposite(ruleComp);
 		}
-*/
+
 		rule.setId(ruleUI.getId());
 		rule.setRuleName(ruleUI.getRuleName());
 		rule.setDescription(ruleUI.getDescription());

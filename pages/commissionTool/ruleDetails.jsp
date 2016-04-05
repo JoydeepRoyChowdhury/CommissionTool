@@ -22,49 +22,6 @@ td {
 
 		<script type="text/javascript">
 
-				 function rowAdded(rowElement) {
-				     //clear the imput fields for the row
-				     $(rowElement).find("input").val('');
-				     //may want to reset <select> options etc
-
-				     //in fact you may want to submit the form
-				     saveNeeded();
-				 }
-				 function rowRemoved(rowElement) {
-				     saveNeeded();
-				 }
-
-				 function saveNeeded() {
-				     $('#submit').css('color','red');
-				     $('#submit').css('font-weight','bold');
-				     if( $('#submit').val().indexOf('!') != 0 ) {
-				         $('#submit').val( '!' + $('#submit').val() );
-				     }
-				 }
-
-				 function beforeSubmit() {
-				     alert('submitting....');
-				     return true;
-				 }
-
-				 $(document).ready( function() {
-				     var config = {
-				         rowClass : 'ruleParameter',
-				         addRowId : 'addPerson',
-				         removeRowClass : 'removePerson',
-				         formId : 'personListForm1',
-				         rowContainerId : 'personListContainer3',
-				         indexedPropertyName : 'personList',
-				         indexedPropertyMemberNames : 'parameterName,parameterValue',
-				         rowAddedListener : rowAdded,
-				         rowRemovedListener : rowRemoved,
-				         beforeSubmit : beforeSubmit
-				     };
-				     new DynamicListHelper(config);
-				 });
-
-     
-		
 
 				   function rowAdded(rowElement) {
 				            //clear the imput fields for the row
@@ -99,7 +56,7 @@ td {
 				                formId : 'personListForm1',
 				                rowContainerId : 'personListContainer2',
 				                indexedPropertyName : 'personList',
-				                indexedPropertyMemberNames : 'value,conditionValue,fieldName',
+				                indexedPropertyMemberNames : 'simpRule',
 				                rowAddedListener : rowAdded,
 				                rowRemovedListener : rowRemoved,
 				                beforeSubmit : beforeSubmit
@@ -107,6 +64,49 @@ td {
 				            new DynamicListHelper(config);
 				        });
 
+						 function rowAdded(rowElement) {
+						     //clear the imput fields for the row
+						     $(rowElement).find("input").val('');
+						     //may want to reset <select> options etc
+
+						     //in fact you may want to submit the form
+						     saveNeeded();
+						 }
+						 function rowRemoved(rowElement) {
+						     saveNeeded();
+						 }
+
+						 function saveNeeded() {
+						     $('#submit').css('color','red');
+						     $('#submit').css('font-weight','bold');
+						     if( $('#submit').val().indexOf('!') != 0 ) {
+						         $('#submit').val( '!' + $('#submit').val() );
+						     }
+						 }
+
+						 function beforeSubmit() {
+						     alert('submitting....');
+						     return true;
+						 }
+
+						 $(document).ready( function() {
+						     var config = {
+						         rowClass : 'ruleParameter',
+						         addRowId : 'addPerson',
+						         removeRowClass : 'removePerson',
+						         formId : 'personListForm1',
+						         rowContainerId : 'personListContainer3',
+						         indexedPropertyName : 'personList',
+						         indexedPropertyMemberNames : 'parameterName,parameterValue',
+						         rowAddedListener : rowAdded,
+						         rowRemovedListener : rowRemoved,
+						         beforeSubmit : beforeSubmit
+						     };
+						     new DynamicListHelper(config);
+						 });
+
+		     
+				
  
 var count = "1";
 
@@ -218,6 +218,50 @@ var count = "1";
 					</td>
 				</tr>
 				-->
+				
+				<tr>
+					<td><b>List of Rules</b></td>
+					<td>
+						<table>
+							<tbody id="personListContainer2">
+								<c:forEach items="${personListContainer2.personList}"
+									var="Person" varStatus="i" begin="0">
+									<tr class="person">
+										<td><form:select path="personList[${i.index}].simpRule"
+												id="simpRule${i.index}">
+												<c:forEach items="${listSimpRule}" var="rule">
+													<option value="${rule.ruleName}">
+														<c:out value="${rule.ruleName}" />
+													</option>
+												</c:forEach>
+											</form:select></td>
+
+										<td><a href="#" class="removePerson1">&nbsp;Remove</a></td>
+									</tr>
+								</c:forEach>
+
+								<c:if test="${personListContainer2.personList.size() == 0}">
+									<tr class="person defaultRow">
+										<td><select name="personList[].simpRule"><c:forEach
+													items="${listSimpRule}" var="rule">
+													<option value="${rule.ruleName}">
+														<c:out value="${rule.ruleName}" />
+													</option>
+												</c:forEach>
+										</select></td>
+
+										<td><a href="#" class="removePerson1">&nbsp;Remove</a></td>
+
+									</tr>
+								</c:if>
+
+
+							</tbody>
+						</table> <a href="#" id="addPerson1">Add&nbsp;</a>&nbsp;&nbsp; <a
+						href="?f=">&nbsp;Reset List</a>
+					</td>
+				</tr>
+				
 				<tr>
 					<td><b>Rule Parameter</b></td>
 					<td>
@@ -256,49 +300,7 @@ var count = "1";
 					</td>
 
 				</tr>
-
-				<tr>
-					<td><b>List of Rules</b></td>
-					<td>
-						<table>
-							<tbody id="personListContainer2">
-								<c:forEach items="${personListContainer2.personList}"
-									var="Person" varStatus="i" begin="0">
-									<tr class="person">
-										<td><form:select path="personList[${i.index}].value"
-												id="value${i.index}">
-												<c:forEach items="${listCompRule1}" var="rule">
-													<option value="${rule.ruleName}">
-														<c:out value="${rule.ruleName}" />
-													</option>
-												</c:forEach>
-											</form:select></td>
-
-										<td><a href="#" class="removePerson1">&nbsp;Remove</a></td>
-									</tr>
-								</c:forEach>
-
-								<c:if test="${personListContainer2.personList.size() == 0}">
-									<tr class="person defaultRow">
-										<td><select name="personList[].value"><c:forEach
-													items="${listCompRule1}" var="rule">
-													<option value="${rule.ruleName}">
-														<c:out value="${rule.ruleName}" />
-													</option>
-												</c:forEach>
-										</select></td>
-
-										<td><a href="#" class="removePerson1">&nbsp;Remove</a></td>
-
-									</tr>
-								</c:if>
-
-
-							</tbody>
-						</table> <a href="#" id="addPerson1">Add&nbsp;</a>&nbsp;&nbsp; <a
-						href="?f=">&nbsp;Reset List</a>
-					</td>
-				</tr>
+				
 
 				<tr>
 					<td><b>Compensation</b></td>
