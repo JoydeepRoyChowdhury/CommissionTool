@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -21,11 +23,18 @@ public class RuleComposite {
 	@Column(name = "id")
 	private long id;
 
-	@OneToMany(cascade = { CascadeType.ALL })
-	@JoinColumn(name = "RULE_COMP_ID")
+/*	@ManyToMany(cascade = { CascadeType.MERGE})
+	@JoinColumn(name = "RULE_COMPJOIN_ID")
 	@IndexColumn(name = "detailSrl")
-	private List<Rule> rule;
-
+	private List<Rule> rule; */
+	
+	@ManyToMany(cascade = {CascadeType.MERGE})
+    @JoinTable(name="RULE_COMPRULE", 
+                joinColumns={@JoinColumn(name="RULE_COMP_ID")}, 
+                inverseJoinColumns={@JoinColumn(name="RULE_ID")})
+	@IndexColumn(name = "detailSrl")
+    private List<Rule> compJoinRule;
+	
 	/**
 	 * @return the id
 	 */
@@ -42,9 +51,23 @@ public class RuleComposite {
 	}
 
 	/**
+	 * @return the compJoinRule
+	 */
+	public List<Rule> getCompJoinRule() {
+		return compJoinRule;
+	}
+
+	/**
+	 * @param compJoinRule the compJoinRule to set
+	 */
+	public void setCompJoinRule(List<Rule> compJoinRule) {
+		this.compJoinRule = compJoinRule;
+	}
+
+	/**
 	 * @return the ruleSimple
 	 */
-	public List<Rule> getRule() {
+/*	public List<Rule> getRule() {
 		return rule;
 	}
 
@@ -52,8 +75,8 @@ public class RuleComposite {
 	 * @param ruleSimple
 	 *            the ruleSimple to set
 	 */
-	public void setRule(List<Rule> rule) {
+/*	public void setRule(List<Rule> rule) {
 		this.rule = rule;
-	}
+	} */
 
 }

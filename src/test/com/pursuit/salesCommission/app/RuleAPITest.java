@@ -178,19 +178,17 @@ public class RuleAPITest extends TestCase {
 	 */
 	@Test
 	public void testCreateRuleComposite() {
-		 rule.setRuleType("c");
-		  RuleComposite ruleComposite = new RuleComposite(); 
-		  Rule simple1 = ruleAPI.getRule(1); 
-		  Rule simple2 =  ruleAPI.getRule(2);
+		  rule.setRuleType("c");
+		  RuleComposite ruleComposite = new RuleComposite();
+		  rule.setConnectionType("all");
+		  Rule simple1 = ruleAPI.searchRuleByName("Rule for getting commission on max sale of computer"); 
+		  Rule simple2 =  ruleAPI.searchRuleByName("Rule for getting commission on max sale of simcard");
 		  System.out.println("*************************************          " + simple1.getRuleName());
 		  System.out.println("#####################################          " + simple2.getRuleName());
-		//  simple1.setCalculationMode("individual");
-		//  simple2.setCalculationMode("rank"); 
-		//  ruleComposite.setRuleSimple(new ArrayList<RuleSimple>()); 
 		  List<Rule> rl = new ArrayList<Rule>();
 		  rl.add(simple1);
 		  rl.add(simple2);
-		  ruleComposite.setRule(rl);
+		  ruleComposite.setCompJoinRule(rl);
 		  rule.setRuleComposite(ruleComposite); 
 		  long ruleId = ruleAPI.createRule(rule);
 		  rule.setId(ruleId);

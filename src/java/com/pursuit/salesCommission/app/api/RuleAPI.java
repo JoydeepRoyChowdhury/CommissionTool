@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.pursuit.salesCommission.app.model.AggregateFunctions;
 import com.pursuit.salesCommission.app.model.Rule;
 import com.pursuit.salesCommission.app.model.RuleSimple;
 
@@ -254,6 +255,40 @@ public class RuleAPI {
 			session.close();
 		}
 		return newRule;
+	}
+	
+	/**
+	 * Method for search rule by rule name
+	 * 
+	 * @param fieldVal
+	 * @return
+	 */
+	public Rule searchRuleByName(String ruleName) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		Rule rule1 = new Rule();
+		try {
+		tx = session.beginTransaction();
+		List fields = session.createQuery("FROM Rule").list();
+		for (Iterator iterator = fields.iterator(); iterator.hasNext();) {
+
+			Rule rule = (Rule) iterator.next();
+			if (ruleName.equals(rule.getRuleName())) {
+				rule1 = rule;
+
+			}
+
+		}
+		tx.commit();
+
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return rule1;
 	}
 
 	/**

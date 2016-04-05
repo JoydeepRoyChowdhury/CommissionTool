@@ -54,7 +54,11 @@ public class Rule {
 
 	@Column(name = "compensationParameter")
 	private String compensationParameter;
-
+	
+/*	@ManyToMany(cascade = { CascadeType.MERGE})
+	@JoinColumn(name = "RULE_COMPJOIN_ID")
+	private List<RuleComposite> compRule; */
+	
 	public Rule() {
 	}
 
@@ -252,7 +256,21 @@ public class Rule {
 		this.compensationParameter = compensationParameter;
 	}
 	
-	 @Override
+	 /**
+	 * @return the compRule
+	 */
+/*	public List<RuleComposite> getCompRule() {
+		return compRule;
+	}
+
+	/**
+	 * @param compRule the compRule to set
+	 */
+/*	public void setCompRule(List<RuleComposite> compRule) {
+		this.compRule = compRule;
+	} */
+
+	@Override
 	    public String toString() {
 	         return "<" + ruleName + ", "  
 	                                  + description + ", "  
