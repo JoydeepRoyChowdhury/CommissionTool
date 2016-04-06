@@ -24,7 +24,7 @@ public class EmployeeAPITest {
 	@Autowired
 	private EmployeeAPI employeeAPI;
 
-	@Test
+/*	@Test
 	public void testCreateEmployee() {
         Calendar calobj = Calendar.getInstance();
         Employee employee1 = new Employee();
@@ -36,6 +36,12 @@ public class EmployeeAPITest {
 		employee1.setId(id);
 		Employee emp = employeeAPI.getEmployee(id);
 		Assert.assertEquals("Cervey", emp.getEmployeeName());
+	} */
+	
+	@Test
+	public void testSearchEmployee() {
+		Employee emp= employeeAPI.searchEmployee("Harry");
+		  Assert.assertEquals(2500, emp.getSalary());
 	}
 	/*	@Test
 	public void testSearchEmployeesByName() {

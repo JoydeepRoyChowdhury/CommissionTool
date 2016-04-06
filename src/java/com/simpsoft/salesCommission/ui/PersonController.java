@@ -35,7 +35,7 @@ public class PersonController {
     @RequestMapping("/persons")
     public String index1( ModelMap map, HttpSession session,  HttpServletRequest request, String message ) {
  
-    	map.addAttribute("listCompRule1", ruleApi.listRules());
+    //	map.addAttribute("listCompRule1", ruleApi.listRules());
       
         if( session.getAttribute("personListContainer1") == null )
             session.setAttribute("personListContainer1", getDummyPersonListContainer());

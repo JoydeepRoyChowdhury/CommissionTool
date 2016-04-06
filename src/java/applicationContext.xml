@@ -47,5 +47,7 @@
     <bean id="ruleSimpleApi" class="com.simpsoft.salesCommission.app.api.RuleSimpleAPI">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-
+	<bean id="ruleAssignmentApi" class="com.simpsoft.salesCommission.app.api.RuleAssignmentAPI">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 </beans>

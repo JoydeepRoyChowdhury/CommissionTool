@@ -16,12 +16,12 @@ import com.simpsoft.salesCommission.app.model.Role;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/applicationContext.xml")
 
-public class RoleAPItest {
+public class RoleAPITest {
 	@Autowired
 	private RoleAPI roleAPI;
 
 
-	@Test
+	/*	@Test
 	public void testCreateRole() {
        
         Role role1 = new Role();
@@ -31,18 +31,24 @@ public class RoleAPItest {
        Long id = roleAPI.createRole(role1);
         Role role = roleAPI.getRole(id);
 		Assert.assertEquals("CEO", role.getRoleName());
-	}
+	} */
 	
 	/*	@Test
 	public void testListOfRoles() {
 		List<Role> role= roleAPI.listOfRoles();
 		  Assert.assertEquals(2, role.size());
-	} */
+	} 
 			@Test
 	public void testGetRoles() {
 		Role role = roleAPI.searchRoleByName("VP2");
 		Assert.assertEquals("Bad", role.getDescription());
-	}
+	}*/
+			
+			@Test
+			public void testSearchRoleByName() {
+				Role role = roleAPI.searchRoleByName("VP Finance");
+				Assert.assertEquals("Good", role.getDescription());
+			}
 /*
 @Test
 	public void testEditRole() {

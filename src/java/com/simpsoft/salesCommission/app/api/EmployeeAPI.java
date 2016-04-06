@@ -12,6 +12,7 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.simpsoft.salesCommission.app.model.AggregateFunctions;
 import com.simpsoft.salesCommission.app.model.Employee;
 import com.simpsoft.salesCommission.app.model.Role;
 
@@ -112,21 +113,52 @@ public class EmployeeAPI {
 		Transaction tx = null;
 		tx = session.beginTransaction();
 		List employees = session.createQuery("FROM Employee").list();
-		List emp = new ArrayList<>();
+		List empList = new ArrayList<>();
 		for (Iterator iterator = employees.iterator(); iterator.hasNext();) {
 			
 			Employee employee = (Employee) iterator.next();
 			if(employeeName.equals(employee.getEmployeeName())){
-				emp.add(employee);
+				empList.add(employee);
 			}  
 			// logger.debug("GET THE EMPLOYEE DETAILS FROM DATABASE" +
 			// employee.getFirstName()+ employee.getLastName()
 			// +employee.getSalary() );
 
 		}
-		return emp;
+		return empList;
 	}
+	/**
+	 * Method for search one employee by name
+	 * @param empName
+	 * @return
+	 */
+	public Employee searchEmployee(String empName) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		Employee employee = new Employee();
+		try {
+		tx = session.beginTransaction();
+		List fields = session.createQuery("FROM Employee").list();
+		for (Iterator iterator = fields.iterator(); iterator.hasNext();) {
 
+			Employee emp = (Employee) iterator.next();
+			if (empName.equals(emp.getEmployeeName())) {
+				employee = emp;
+
+			}
+
+		}
+		tx.commit();
+
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return employee;
+	}
 	/**
 	 * Method for delete an employee from database
 	 * 

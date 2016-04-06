@@ -24,9 +24,9 @@ public class RuleAssignmentDetails {
 	@Column(name = "id")
 	private long id;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	/*	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "ASSGN_ID")
-	private RuleAssignment ruleAssignment;
+	private RuleAssignment ruleAssignment; */
 	
 	@Column(name = "validityType")
 	private String validityType;
@@ -41,10 +41,14 @@ public class RuleAssignmentDetails {
 	@JoinColumn(name = "FREQ_ID")
 	private Frequency frequency;
 
-	@OneToMany(cascade = { CascadeType.ALL })
+	/*@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "ASSN_DTL_ID")
 	@IndexColumn(name = "detailSrl")
-	private List<Rule> rule;
+	private List<Rule> rule;*/
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "RULE_ID")
+	private Rule rule;
 
 	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "ASSN_DTL_ID")
@@ -69,7 +73,7 @@ public class RuleAssignmentDetails {
 	/**
 	 * @return the ruleAssignment
 	 */
-	public RuleAssignment getRuleAssignment() {
+/*	public RuleAssignment getRuleAssignment() {
 		return ruleAssignment;
 	}
 
@@ -77,7 +81,7 @@ public class RuleAssignmentDetails {
 	 * @param ruleAssignment
 	 *            the ruleAssignment to set
 	 */
-	public void setRuleAssignment(RuleAssignment ruleAssignment) {
+/*	public void setRuleAssignment(RuleAssignment ruleAssignment) {
 		this.ruleAssignment = ruleAssignment;
 	}
 	/**
@@ -140,18 +144,18 @@ public class RuleAssignmentDetails {
 		this.frequency = frequency;
 	}
 
+
 	/**
 	 * @return the rule
 	 */
-	public List<Rule> getRule() {
+	public Rule getRule() {
 		return rule;
 	}
 
 	/**
-	 * @param rule
-	 *            the rule to set
+	 * @param rule the rule to set
 	 */
-	public void setRule(List<Rule> rule) {
+	public void setRule(Rule rule) {
 		this.rule = rule;
 	}
 

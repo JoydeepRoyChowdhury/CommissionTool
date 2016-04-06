@@ -209,13 +209,13 @@
 							<classpath refid="build.class.path" />
 							<classpath path="${temp.dir.classes}" />
 						</java>
-		<java classname="com.simpsoft.salesCommission.app.XMLReader.Rule"  fork="true"
+		<java classname="com.simpsoft.salesCommission.app.XMLReader.ReadXMLForRule"  fork="true"
 							           failonerror="true">
 									<arg value="-h"/>
 									<classpath refid="build.class.path" />
 									<classpath path="${temp.dir.classes}" />
 								</java>
-		<java classname="com.simpsoft.salesCommission.app.XMLReader.Role"  fork="true"
+		<java classname="com.simpsoft.salesCommission.app.XMLReader.ReadXMLForRole"  fork="true"
 							           failonerror="true">
 									<arg value="-h"/>
 									<classpath refid="build.class.path" />

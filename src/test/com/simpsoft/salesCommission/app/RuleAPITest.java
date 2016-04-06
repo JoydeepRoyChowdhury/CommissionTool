@@ -88,9 +88,14 @@ public class RuleAPITest extends TestCase {
 	 * {@link com.simpsoft.salesCommission.app.api.RuleAPI#getRule(long)}.
 	 */
 
-	/*
-	 * @Test public void testGetRule() { fail("Not yet implemented"); }
-	 */
+	
+	  @Test
+	  public void testGetRule() { 
+		 Rule rule1 = ruleAPI.getRule(3);
+		 Assert.assertEquals("abcd", rule1.getRuleName());
+			
+		  }
+	
 	/**
 	 * Test method for
 	 * {@link com.simpsoft.salesCommission.app.api.RuleAPI#createRule(com.simpsoft.salesCommission.app.model.Rule)}

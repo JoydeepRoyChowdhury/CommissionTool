@@ -1,6 +1,7 @@
 package com.simpsoft.salesCommission.app.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -8,9 +9,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.IndexColumn;
 
 @Entity
 @Table(name = "RuleAssignment")
@@ -28,10 +32,15 @@ public class RuleAssignment {
 	@JoinColumn(name = "ROLE_ID")
 	private Role role;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	/*	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "RULE_ASSGN_ID")
-	private RuleAssignmentDetails ruleAssignmentDetails;
+	private RuleAssignmentDetails ruleAssignmentDetails; */
 
+	@OneToMany(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "RUL_ASSN_ID")
+	@IndexColumn(name = "detailSrl")
+	private List<RuleAssignmentDetails> ruleAssignmentDetails;
+	
 	/**
 	 * @return the id
 	 */
@@ -80,15 +89,16 @@ public class RuleAssignment {
 	/**
 	 * @return the ruleAssignmentDetails
 	 */
-	public RuleAssignmentDetails getRuleAssignmentDetails() {
+	public List<RuleAssignmentDetails> getRuleAssignmentDetails() {
 		return ruleAssignmentDetails;
 	}
 
 	/**
-	 * @param ruleAssignmentDetails
-	 *            the ruleAssignmentDetails to set
+	 * @param ruleAssignmentDetails the ruleAssignmentDetails to set
 	 */
-	public void setRuleAssignmentDetails(RuleAssignmentDetails ruleAssignmentDetails) {
+	public void setRuleAssignmentDetails(List<RuleAssignmentDetails> ruleAssignmentDetails) {
 		this.ruleAssignmentDetails = ruleAssignmentDetails;
 	}
+
+	
 }
