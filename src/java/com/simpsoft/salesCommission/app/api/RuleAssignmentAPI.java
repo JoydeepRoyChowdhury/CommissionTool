@@ -1,5 +1,6 @@
 package com.simpsoft.salesCommission.app.api;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -12,7 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.simpsoft.salesCommission.app.model.Frequency;
+import com.simpsoft.salesCommission.app.model.Rule;
 import com.simpsoft.salesCommission.app.model.RuleAssignment;
+import com.simpsoft.salesCommission.app.model.RuleAssignmentParameter;
+import com.simpsoft.salesCommission.app.model.RuleParameter;
 
 
 @Component
@@ -136,6 +140,23 @@ public class RuleAssignmentAPI {
 			session.close();
 		}
 		return freq;
+	}
+	
+	public List<RuleAssignmentParameter> setRuleAssignmentParameters(Rule rule) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		List<RuleAssignmentParameter> assParamList = new ArrayList<RuleAssignmentParameter>();
+		List <RuleParameter> rparamlist = rule.getRuleParameter();
+		for (Iterator iterator = rparamlist.iterator(); iterator.hasNext();) {
+			RuleParameter rparam = (RuleParameter) iterator.next();
+			String paramName = rparam.getParameterName();
+			String paramValue = rparam.getParameterValue();
+			RuleAssignmentParameter assParam = new RuleAssignmentParameter();
+			assParam.setParameterName(paramName);
+			assParam.setOverwriteValue(paramValue);
+			assParamList.add(assParam);
+		}
+		return assParamList;
 	}
 
 }

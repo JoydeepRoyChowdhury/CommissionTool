@@ -221,6 +221,12 @@
 									<classpath refid="build.class.path" />
 									<classpath path="${temp.dir.classes}" />
 								</java>
+		<java classname="com.simpsoft.salesCommission.app.XMLReader.ReadXMLForFrequency"  fork="true"
+									           failonerror="true">
+											<arg value="-h"/>
+											<classpath refid="build.class.path" />
+											<classpath path="${temp.dir.classes}" />
+										</java>
 	</target>
 
 </project>

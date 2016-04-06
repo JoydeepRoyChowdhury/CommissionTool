@@ -3,6 +3,7 @@ package com.simpsoft.salesCommission.app;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.junit.After;
@@ -27,6 +28,7 @@ import com.simpsoft.salesCommission.app.model.Role;
 import com.simpsoft.salesCommission.app.model.Rule;
 import com.simpsoft.salesCommission.app.model.RuleAssignment;
 import com.simpsoft.salesCommission.app.model.RuleAssignmentDetails;
+import com.simpsoft.salesCommission.app.model.RuleAssignmentParameter;
 import com.simpsoft.salesCommission.app.model.RuleComposite;
 import com.simpsoft.salesCommission.app.model.RuleParameter;
 
@@ -67,9 +69,7 @@ public class RuleAssignmentAPITest {
 		
 		
 	}
-
-		 
-	
+		 	
 	/**
 	 * Test method for
 	 * {@link com.simpsoft.salesCommission.app.api.RuleAPI#createRule(com.simpsoft.salesCommission.app.model.RuleAssignment)}
@@ -82,6 +82,25 @@ public class RuleAssignmentAPITest {
 	String empName = "Potter";
 	Employee employee =	employeeApi.searchEmployee(empName);
 	ruleAss.setEmployee(employee);
+	List<RuleAssignmentDetails> rlAssDtlList = new ArrayList<RuleAssignmentDetails>();
+	RuleAssignmentDetails rlAssDtl1 = new RuleAssignmentDetails();
+	rlAssDtl1.setValidityType("Fixed");
+	Rule rule1 = ruleAPI.getRule(2);
+	rlAssDtl1.setRule(rule1);
+	List<RuleAssignmentParameter> assParamList = ruleAssignmentApi.setRuleAssignmentParameters(rule1);
+	rlAssDtl1.setRuleAssignmentParameter(assParamList);
+	rlAssDtlList.add(rlAssDtl1);
+	RuleAssignmentDetails rlAssDtl2 = new RuleAssignmentDetails();
+	rlAssDtl2.setValidityType("Repeats");
+	String frequencyName2 = "weekly"; 
+	Frequency frequency2 = ruleAssignmentApi.searchFrequency(frequencyName2);
+	rlAssDtl2.setFrequency(frequency2);
+	Rule rule2 = ruleAPI.getRule(3);
+	rlAssDtl2.setRule(rule2);
+	List<RuleAssignmentParameter> assParamList2 = ruleAssignmentApi.setRuleAssignmentParameters(rule2);
+	rlAssDtl2.setRuleAssignmentParameter(assParamList2);
+	rlAssDtlList.add(rlAssDtl2);
+	ruleAss.setRuleAssignmentDetails(rlAssDtlList);
 		long ruleId = ruleAssignmentApi.createRuleAssignment(ruleAss);
 		ruleAss.setId(ruleId);
 	RuleAssignment newRuleAss = ruleAssignmentApi.getRuleAssignment(ruleId);
@@ -97,7 +116,7 @@ public class RuleAssignmentAPITest {
 	 * {@link com.simpsoft.salesCommission.app.api.RuleAPI#createRule(com.simpsoft.salesCommission.app.model.RuleAssignment)}
 	 * .
 	 */
-	@Test
+	/*@Test
 	public void testCreateRuleAssignmentToRole() {
 	
 	RuleAssignment ruleAss = new RuleAssignment();
@@ -106,7 +125,7 @@ public class RuleAssignmentAPITest {
 	ruleAss.setRole(role);
 	List<RuleAssignmentDetails> rlAssDtlList = new ArrayList<RuleAssignmentDetails>();
 	RuleAssignmentDetails rlAssDtl = new RuleAssignmentDetails();
-	rlAssDtl.setValidityType("Fixed");
+	rlAssDtl.setValidityType("Repeats");
 	String frequencyName = "monthly"; 
 	Frequency frequency = ruleAssignmentApi.searchFrequency(frequencyName);
 	rlAssDtl.setFrequency(frequency);
