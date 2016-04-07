@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -24,11 +25,11 @@ public class RuleAssignment {
 	@Column(name = "id")
 	private long id;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "EMP_ID")
 	private Employee employee;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "ROLE_ID")
 	private Role role;
 
@@ -36,7 +37,7 @@ public class RuleAssignment {
 	@JoinColumn(name = "RULE_ASSGN_ID")
 	private RuleAssignmentDetails ruleAssignmentDetails; */
 
-	@OneToMany(cascade = { CascadeType.ALL })
+	@OneToMany(cascade = { CascadeType.ALL },fetch = FetchType.EAGER, orphanRemoval = true)
 	@JoinColumn(name = "RUL_ASSN_ID")
 	@IndexColumn(name = "detailSrl")
 	private List<RuleAssignmentDetails> ruleAssignmentDetails;

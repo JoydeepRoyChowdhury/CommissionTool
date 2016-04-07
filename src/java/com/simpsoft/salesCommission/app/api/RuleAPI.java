@@ -239,7 +239,7 @@ public class RuleAPI {
 	 * 
 	 * @return simpRules
 	 */
-	public List<Rule> listOfRules(RuleType simple) {
+	public List<Rule> listOfRules(RuleType typeOfRule) {
 
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
@@ -250,7 +250,7 @@ public class RuleAPI {
 		for (Iterator iterator = simpRules.iterator(); iterator.hasNext();) {
 			
 			Rule rule = (Rule) iterator.next();
-			if(simple.toString().equals(rule.getRuleType())){
+			if(typeOfRule.toString().equals(rule.getRuleType())){
 				rule1.add(rule);
 			}  		
 		}

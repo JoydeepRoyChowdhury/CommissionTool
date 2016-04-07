@@ -5,19 +5,23 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Criteria;
+//import org.hibernate.criterion.Criterion;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.simpsoft.salesCommission.app.model.Employee;
 import com.simpsoft.salesCommission.app.model.Frequency;
+import com.simpsoft.salesCommission.app.model.Role;
 import com.simpsoft.salesCommission.app.model.Rule;
 import com.simpsoft.salesCommission.app.model.RuleAssignment;
 import com.simpsoft.salesCommission.app.model.RuleAssignmentParameter;
 import com.simpsoft.salesCommission.app.model.RuleParameter;
-
 
 @Component
 public class RuleAssignmentAPI {
@@ -32,7 +36,7 @@ public class RuleAssignmentAPI {
 	}
 
 	/**
-	 * Create assignment of rule
+	 * Method for Create assignment of rule to role or employee
 	 * 
 	 * @param ruleAss
 	 * @return
@@ -141,12 +145,18 @@ public class RuleAssignmentAPI {
 		}
 		return freq;
 	}
-	
+
+	/**
+	 * Method to set base parameters of chosen rule to assignment rule details
+	 * table parameters
+	 * 
+	 * @param rule
+	 * @return
+	 */
 	public List<RuleAssignmentParameter> setRuleAssignmentParameters(Rule rule) {
-		Session session = sessionFactory.openSession();
-		Transaction tx = null;
+
 		List<RuleAssignmentParameter> assParamList = new ArrayList<RuleAssignmentParameter>();
-		List <RuleParameter> rparamlist = rule.getRuleParameter();
+		List<RuleParameter> rparamlist = rule.getRuleParameter();
 		for (Iterator iterator = rparamlist.iterator(); iterator.hasNext();) {
 			RuleParameter rparam = (RuleParameter) iterator.next();
 			String paramName = rparam.getParameterName();
@@ -159,4 +169,98 @@ public class RuleAssignmentAPI {
 		return assParamList;
 	}
 
+	private RuleAssignment searchAssignedRuleForRole(String queryName) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		RuleAssignment ruleAssignment = new RuleAssignment();
+		try {
+			tx = session.beginTransaction();
+			Criteria crit = session.createCriteria(RuleAssignment.class);
+			crit.add(Restrictions.isNotNull("role"));
+			List assignmentList = crit.list();
+			for (Iterator iterator = assignmentList.iterator(); iterator.hasNext();) {
+
+				RuleAssignment assignment = (RuleAssignment) iterator.next();
+				if (queryName.equals(assignment.getRole().getRoleName())) {
+					ruleAssignment = assignment;
+					break;
+				}
+			}
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return ruleAssignment;
+	}
+
+	private RuleAssignment searchAssignedRuleForEmployee(String queryName) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		RuleAssignment ruleAssignment = new RuleAssignment();
+		try {
+			tx = session.beginTransaction();
+			Criteria crit = session.createCriteria(RuleAssignment.class);
+			crit.add(Restrictions.isNotNull("employee"));
+			List assignmentList = crit.list();
+			for (Iterator iterator = assignmentList.iterator(); iterator.hasNext();) {
+
+				RuleAssignment assignment = (RuleAssignment) iterator.next();
+				if (queryName.equals(assignment.getEmployee().getEmployeeName())) {
+					ruleAssignment = assignment;
+					break;
+				}
+			}
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return ruleAssignment;
+	}
+
+	public RuleAssignment searchAssignedRule(String queryName) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		Role role = new Role();
+		RuleAssignment ruleAssignment = new RuleAssignment();
+		try {
+			tx = session.beginTransaction();
+			List roleList = session.createQuery("FROM Role").list();
+			for (Iterator iterator = roleList.iterator(); iterator.hasNext();) {
+
+				Role role1 = (Role) iterator.next();
+				if (queryName.equals(role1.getRoleName())) {
+					role = role1;
+					ruleAssignment = searchAssignedRuleForRole(queryName);
+					break;
+				}
+			}
+			if (role != null) {
+				List empList = session.createQuery("FROM Employee").list();
+				for (Iterator iterator = empList.iterator(); iterator.hasNext();) {
+
+					Employee emp1 = (Employee) iterator.next();
+					if (queryName.equals(emp1.getEmployeeName())) {
+						ruleAssignment = searchAssignedRuleForEmployee(queryName);
+						break;
+					}
+				}
+			}
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return ruleAssignment;
+	}
 }

@@ -32,23 +32,22 @@ import com.simpsoft.salesCommission.app.model.RuleAssignmentParameter;
 import com.simpsoft.salesCommission.app.model.RuleComposite;
 import com.simpsoft.salesCommission.app.model.RuleParameter;
 
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/applicationContext.xml")
 public class RuleAssignmentAPITest {
-	
+
 	@Autowired
 	private RuleAssignmentAPI ruleAssignmentApi;
-	
+
 	@Autowired
 	private RoleAPI roleAPI;
-	
+
 	@Autowired
 	private EmployeeAPI employeeApi;
 
 	@Autowired
 	private RuleAPI ruleAPI;
-	
+
 	@BeforeClass
 	public static void oneTimeSetUp() {
 		// one-time initialization code
@@ -65,50 +64,50 @@ public class RuleAssignmentAPITest {
 	public void setUp() throws Exception {
 
 		System.out.println("Setting it up!");
-		//ruleAss = new RuleAssignment();
-		
-		
+		// ruleAss = new RuleAssignment();
+
 	}
-		 	
+
 	/**
 	 * Test method for
 	 * {@link com.simpsoft.salesCommission.app.api.RuleAPI#createRule(com.simpsoft.salesCommission.app.model.RuleAssignment)}
 	 * .
 	 */
-	@Test
+/*	@Test
 	public void testCreateRuleAssignmentToEmployee() {
-	
-	RuleAssignment ruleAss = new RuleAssignment();
-	String empName = "Potter";
-	Employee employee =	employeeApi.searchEmployee(empName);
-	ruleAss.setEmployee(employee);
-	List<RuleAssignmentDetails> rlAssDtlList = new ArrayList<RuleAssignmentDetails>();
-	RuleAssignmentDetails rlAssDtl1 = new RuleAssignmentDetails();
-	rlAssDtl1.setValidityType("Fixed");
-	Rule rule1 = ruleAPI.getRule(2);
-	rlAssDtl1.setRule(rule1);
-	List<RuleAssignmentParameter> assParamList = ruleAssignmentApi.setRuleAssignmentParameters(rule1);
-	rlAssDtl1.setRuleAssignmentParameter(assParamList);
-	rlAssDtlList.add(rlAssDtl1);
-	RuleAssignmentDetails rlAssDtl2 = new RuleAssignmentDetails();
-	rlAssDtl2.setValidityType("Repeats");
-	String frequencyName2 = "weekly"; 
-	Frequency frequency2 = ruleAssignmentApi.searchFrequency(frequencyName2);
-	rlAssDtl2.setFrequency(frequency2);
-	Rule rule2 = ruleAPI.getRule(3);
-	rlAssDtl2.setRule(rule2);
-	List<RuleAssignmentParameter> assParamList2 = ruleAssignmentApi.setRuleAssignmentParameters(rule2);
-	rlAssDtl2.setRuleAssignmentParameter(assParamList2);
-	rlAssDtlList.add(rlAssDtl2);
-	ruleAss.setRuleAssignmentDetails(rlAssDtlList);
+
+		RuleAssignment ruleAss = new RuleAssignment();
+		String empName = "Tom";
+		Employee employee = employeeApi.searchEmployee(empName);
+		ruleAss.setEmployee(employee);
+		List<RuleAssignmentDetails> rlAssDtlList = new ArrayList<RuleAssignmentDetails>();
+		RuleAssignmentDetails rlAssDtl1 = new RuleAssignmentDetails();
+		rlAssDtl1.setValidityType("Fixed");
+		Rule rule1 = ruleAPI.getRule(2);
+		rlAssDtl1.setRule(rule1);
+		List<RuleAssignmentParameter> assParamList = ruleAssignmentApi.setRuleAssignmentParameters(rule1);
+		rlAssDtl1.setRuleAssignmentParameter(assParamList);
+		rlAssDtlList.add(rlAssDtl1);
+		RuleAssignmentDetails rlAssDtl2 = new RuleAssignmentDetails();
+		rlAssDtl2.setValidityType("Repeats");
+		String frequencyName2 = "weekly";
+		Frequency frequency2 = ruleAssignmentApi.searchFrequency(frequencyName2);
+		rlAssDtl2.setFrequency(frequency2);
+		Rule rule2 = ruleAPI.getRule(3);
+		rlAssDtl2.setRule(rule2);
+		List<RuleAssignmentParameter> assParamList2 = ruleAssignmentApi.setRuleAssignmentParameters(rule2);
+		rlAssDtl2.setRuleAssignmentParameter(assParamList2);
+		rlAssDtlList.add(rlAssDtl2);
+		ruleAss.setRuleAssignmentDetails(rlAssDtlList);
+
 		long ruleId = ruleAssignmentApi.createRuleAssignment(ruleAss);
 		ruleAss.setId(ruleId);
-	RuleAssignment newRuleAss = ruleAssignmentApi.getRuleAssignment(ruleId);
-	Assert.assertEquals("Potter", ruleAss.getEmployee().getEmployeeName());
-	Assert.assertEquals("Potter", newRuleAss.getEmployee().getEmployeeName());
-	Assert.assertEquals(2000, newRuleAss.getEmployee().getSalary());
-	System.out.println("Running: testDummyRuleAssignment");
-	
+		RuleAssignment newRuleAss = ruleAssignmentApi.getRuleAssignment(ruleId);
+
+		Assert.assertEquals("Tom", newRuleAss.getEmployee().getEmployeeName());
+		Assert.assertEquals(1500, newRuleAss.getEmployee().getSalary());
+		System.out.println("Running: testDummyRuleAssignment");
+
 	} 
 
 	/**
@@ -116,41 +115,73 @@ public class RuleAssignmentAPITest {
 	 * {@link com.simpsoft.salesCommission.app.api.RuleAPI#createRule(com.simpsoft.salesCommission.app.model.RuleAssignment)}
 	 * .
 	 */
-	/*@Test
+/*	@Test
 	public void testCreateRuleAssignmentToRole() {
+
+		RuleAssignment ruleAss = new RuleAssignment();
+		String roleName = "VP Sales";
+		Role role = roleAPI.searchRoleByName(roleName);
+		ruleAss.setRole(role);
+		List<RuleAssignmentDetails> rlAssDtlList = new ArrayList<RuleAssignmentDetails>();
+		RuleAssignmentDetails rlAssDtl = new RuleAssignmentDetails();
+		rlAssDtl.setValidityType("Repeats");
+		String frequencyName = "monthly";
+		Frequency frequency = ruleAssignmentApi.searchFrequency(frequencyName);
+		rlAssDtl.setFrequency(frequency);
+		Rule rule = ruleAPI.getRule(2);
+		rlAssDtl.setRule(rule);
+		List<RuleAssignmentParameter> assParamList = ruleAssignmentApi.setRuleAssignmentParameters(rule);
+		rlAssDtl.setRuleAssignmentParameter(assParamList);
+		rlAssDtlList.add(rlAssDtl);
+		RuleAssignmentDetails rlAssDtl2 = new RuleAssignmentDetails();
+		rlAssDtl2.setValidityType("Repeats");
+		String frequencyName2 = "annually";
+		Frequency frequency2 = ruleAssignmentApi.searchFrequency(frequencyName2);
+		rlAssDtl2.setFrequency(frequency2);
+		Rule rule2 = ruleAPI.getRule(4);
+		rlAssDtl2.setRule(rule2);
+		List<RuleAssignmentParameter> assParamList2 = ruleAssignmentApi.setRuleAssignmentParameters(rule2);
+		rlAssDtl2.setRuleAssignmentParameter(assParamList2);
+		rlAssDtlList.add(rlAssDtl2);
+		ruleAss.setRuleAssignmentDetails(rlAssDtlList);
+
+		long ruleId = ruleAssignmentApi.createRuleAssignment(ruleAss);
+		ruleAss.setId(ruleId);
+		RuleAssignment newRuleAss = ruleAssignmentApi.getRuleAssignment(ruleId);
+
+		Assert.assertEquals("VP Sales", newRuleAss.getRole().getRoleName());
+		Assert.assertEquals("Good", newRuleAss.getRole().getDescription());
+		System.out.println("Running: testDummyRuleAssignment");
+
+	} */
 	
-	RuleAssignment ruleAss = new RuleAssignment();
-	String roleName = "VP Sales";  
-	Role role =	roleAPI.searchRoleByName(roleName);
-	ruleAss.setRole(role);
-	List<RuleAssignmentDetails> rlAssDtlList = new ArrayList<RuleAssignmentDetails>();
-	RuleAssignmentDetails rlAssDtl = new RuleAssignmentDetails();
-	rlAssDtl.setValidityType("Repeats");
-	String frequencyName = "monthly"; 
-	Frequency frequency = ruleAssignmentApi.searchFrequency(frequencyName);
-	rlAssDtl.setFrequency(frequency);
-	Rule rule = ruleAPI.getRule(2);
-	rlAssDtl.setRule(rule);
-	rlAssDtlList.add(rlAssDtl);
-	ruleAss.setRuleAssignmentDetails(rlAssDtlList);
-	long ruleId = ruleAssignmentApi.createRuleAssignment(ruleAss);
-	ruleAss.setId(ruleId);
-	RuleAssignment newRuleAss = ruleAssignmentApi.getRuleAssignment(ruleId);
-	Assert.assertEquals("VP Sales", ruleAss.getRole().getRoleName());
-	Assert.assertEquals("Good", newRuleAss.getRole().getDescription());
-	System.out.println("Running: testDummyRuleAssignment");
-	
+	@Test
+	public void testSearchAssignedRuleToEmployee() {
+		
+		String queryName = "Tom";
+		RuleAssignment assignment = ruleAssignmentApi.searchAssignedRule(queryName);
+		Assert.assertEquals("Tom", assignment.getEmployee().getEmployeeName());
+		//Assert.assertEquals("Good", assignment.getRole().getDescription());
+		
 	} 
 	
-	
+	@Test
+	public void testSearchAssignedRuleToRole() {
+		
+		String queryName = "VP Sales";
+		RuleAssignment assignment = ruleAssignmentApi.searchAssignedRule(queryName);	
+		Assert.assertEquals("VP Sales", assignment.getRole().getRoleName());
+		//Assert.assertEquals("Good", assignment.getRole().getDescription());
+		
+	}
 	/**
 	 * @throws java.lang.Exception
 	 */
-	
+
 	@After
 	public void tearDown() throws Exception {
 		System.out.println("Running: tearDown");
-		//ruleAPI.deleteRule(rule.getId());
-		//Assert.assertNull(ruleAPI.getRule(rule.getId()));
+		// ruleAPI.deleteRule(rule.getId());
+		// Assert.assertNull(ruleAPI.getRule(rule.getId()));
 	}
 }
