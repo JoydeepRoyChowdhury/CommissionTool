@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
-//import org.hibernate.criterion.Criterion;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -20,6 +19,7 @@ import com.simpsoft.salesCommission.app.model.Frequency;
 import com.simpsoft.salesCommission.app.model.Role;
 import com.simpsoft.salesCommission.app.model.Rule;
 import com.simpsoft.salesCommission.app.model.RuleAssignment;
+import com.simpsoft.salesCommission.app.model.RuleAssignmentDetails;
 import com.simpsoft.salesCommission.app.model.RuleAssignmentParameter;
 import com.simpsoft.salesCommission.app.model.RuleParameter;
 
@@ -28,6 +28,9 @@ public class RuleAssignmentAPI {
 
 	@Autowired
 	private SessionFactory sessionFactory;
+	
+	@Autowired
+	private RuleAPI ruleAPI;
 
 	private static final Logger logger = Logger.getLogger(EmployeeAPI.class);
 
@@ -262,5 +265,19 @@ public class RuleAssignmentAPI {
 			session.close();
 		}
 		return ruleAssignment;
+	}
+	
+	/**
+	 * Method for getting rule for assignment
+	 * @param ruleID
+	 * @return
+	 */
+	public RuleAssignmentDetails getRuleToAssign(long ruleID){
+		
+		RuleAssignmentDetails rulAssDetail = new RuleAssignmentDetails();
+		Rule rule = ruleAPI.getRule(ruleID);
+		rulAssDetail.setRule(rule);
+		rulAssDetail.setRuleAssignmentParameter(setRuleAssignmentParameters(rule));   
+		return rulAssDetail;
 	}
 }

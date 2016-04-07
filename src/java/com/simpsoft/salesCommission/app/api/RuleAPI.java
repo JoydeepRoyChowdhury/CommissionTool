@@ -1,6 +1,5 @@
 package com.simpsoft.salesCommission.app.api;
 
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -76,7 +75,7 @@ public class RuleAPI {
 		}
 
 		return newRule.getId();
-		
+
 	}
 
 	/**
@@ -104,7 +103,7 @@ public class RuleAPI {
 	 */
 
 	private RuleSimple createSimpleRuleRank(RuleSimple simpRule) {
-		
+
 		RuleSimple newRuleSimple = new RuleSimple();
 		newRuleSimple.setCalculationMode("rank");
 		newRuleSimple.setAggregateFunctions(simpRule.getAggregateFunctions());
@@ -114,8 +113,7 @@ public class RuleAPI {
 		newRuleSimple.setQualifyingClause(simpRule.getQualifyingClause());
 		newRuleSimple.setRankCount(simpRule.getRankCount());
 		newRuleSimple.setRankingType(simpRule.getRankingType());
-	
-		
+
 		return newRuleSimple;
 
 	}
@@ -171,13 +169,16 @@ public class RuleAPI {
 		}
 
 	}
-/**
- * Private method for edit simple rule with rank
- * @param session
- * @param simpRule
- * @return newsimp
- */
+
+	/**
+	 * Private method for edit simple rule with rank
+	 * 
+	 * @param session
+	 * @param simpRule
+	 * @return newsimp
+	 */
 	private RuleSimple editRuleSimpleRank(Session session, RuleSimple simpRule) {
+		
 		RuleSimple newsimp = new RuleSimple();
 		newsimp = (RuleSimple) session.get(RuleSimple.class, simpRule.getId());
 		newsimp.setCalculationMode("rank");
@@ -193,12 +194,14 @@ public class RuleAPI {
 
 		return newsimp;
 	}
-/**
- * Private method for edit simple rule with individual
- * @param session
- * @param simpRule
- * @return newsimp
- */
+
+	/**
+	 * Private method for edit simple rule with individual
+	 * 
+	 * @param session
+	 * @param simpRule
+	 * @return newsimp
+	 */
 	private RuleSimple editRuleSimpleIndividual(Session session, RuleSimple simpRule) {
 
 		RuleSimple newsimp = new RuleSimple();
@@ -223,17 +226,26 @@ public class RuleAPI {
 
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
+		List<Rule> rules = new ArrayList<Rule>();
+		try {
 		tx = session.beginTransaction();
-		List rules = session.createQuery("FROM Rule").list();
+	    rules = session.createQuery("FROM Rule").list();
 		for (Iterator iterator = rules.iterator(); iterator.hasNext();) {
 			Rule rule = (Rule) iterator.next();
 			logger.debug("GET THE RULE DETAILS FROM DATABASE" + rule.getRuleName() + rule.getRuleDetails()
 					+ rule.getRuleType());
-
+		}
+		tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
 		}
 		return rules;
 	}
-	
+
 	/**
 	 * Method for getting list of simple rules
 	 * 
@@ -245,24 +257,24 @@ public class RuleAPI {
 		Transaction tx = null;
 		List<Rule> rule1 = new ArrayList<Rule>();
 		try {
-		tx = session.beginTransaction();
-		List simpRules = session.createQuery("FROM Rule").list();
-		for (Iterator iterator = simpRules.iterator(); iterator.hasNext();) {
-			
-			Rule rule = (Rule) iterator.next();
-			if(typeOfRule.toString().equals(rule.getRuleType())){
-				rule1.add(rule);
-			}  		
+			tx = session.beginTransaction();
+			List simpRules = session.createQuery("FROM Rule").list();
+			for (Iterator iterator = simpRules.iterator(); iterator.hasNext();) {
+
+				Rule rule = (Rule) iterator.next();
+				if (typeOfRule.toString().equals(rule.getRuleType())) {
+					rule1.add(rule);
+				}
+			}
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
 		}
-		tx.commit();
-	} catch (HibernateException e) {
-		if (tx != null)
-			tx.rollback();
-		e.printStackTrace();
-	} finally {
-		session.close();
-	}
-		
+
 		return rule1;
 	}
 
@@ -273,8 +285,8 @@ public class RuleAPI {
 	 * @return
 	 */
 	public Rule getRule(long ruleID) {
+		
 		Rule newRule = new Rule();
-
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
@@ -290,7 +302,7 @@ public class RuleAPI {
 		}
 		return newRule;
 	}
-	
+
 	/**
 	 * Method for search rule by rule name
 	 * 
@@ -302,18 +314,18 @@ public class RuleAPI {
 		Transaction tx = null;
 		Rule rule1 = new Rule();
 		try {
-		tx = session.beginTransaction();
-		List fields = session.createQuery("FROM Rule").list();
-		for (Iterator iterator = fields.iterator(); iterator.hasNext();) {
+			tx = session.beginTransaction();
+			List fields = session.createQuery("FROM Rule").list();
+			for (Iterator iterator = fields.iterator(); iterator.hasNext();) {
 
-			Rule rule = (Rule) iterator.next();
-			if (ruleName.equals(rule.getRuleName())) {
-				rule1 = rule;
+				Rule rule = (Rule) iterator.next();
+				if (ruleName.equals(rule.getRuleName())) {
+					rule1 = rule;
+
+				}
 
 			}
-
-		}
-		tx.commit();
+			tx.commit();
 
 		} catch (HibernateException e) {
 			if (tx != null)

@@ -35,8 +35,8 @@ public class RuleAssignmentDetails {
 	@Column(name = "startDate")
 	private Date startDate;
 
-	@Column(name = "terminationDate")
-	private Date terminationDate;
+	@Column(name = "endDate")
+	private Date endDate;
 
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "FREQ_ID")
@@ -116,18 +116,18 @@ public class RuleAssignmentDetails {
 	}
 
 	/**
-	 * @return the terminationDate
+	 * @return the endDate
 	 */
-	public Date getTerminationDate() {
-		return terminationDate;
+	public Date getEndDate() {
+		return endDate;
 	}
 
 	/**
-	 * @param terminationDate
-	 *            the terminationDate to set
+	 * @param endDate
+	 *            the endDate to set
 	 */
-	public void setTerminationDate(Date terminationDate) {
-		this.terminationDate = terminationDate;
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 
 	/**

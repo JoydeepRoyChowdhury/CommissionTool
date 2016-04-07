@@ -101,6 +101,12 @@ public class ReadXMLForRule {
 					Integer CompensationValue = Integer.parseInt(elem.getElementsByTagName("CompensationValue").item(0)
 							.getChildNodes().item(0).getNodeValue());
 					
+					String compensationFormula = (elem.getElementsByTagName("CompensationFormula").item(0).getChildNodes()
+							.item(0).getNodeValue());
+					
+					String compensationParameter = (elem.getElementsByTagName("CompensationParameter").item(0).getChildNodes()
+							.item(0).getNodeValue());
+					
 					List<RuleParameter> rulesParameter = new ArrayList<RuleParameter>();
 					NodeList nodeList1 = elem.getElementsByTagName("RuleParameter");
 					for (int j = 0; j < nodeList1.getLength(); j++) {
@@ -133,7 +139,19 @@ public class ReadXMLForRule {
 
 					String functionName = (elem.getElementsByTagName("AggregateFun").item(0).getChildNodes().item(0)
 							.getNodeValue());
-
+					
+					Integer rankCount = Integer.parseInt(elem.getElementsByTagName("RankCount").item(0)
+							.getChildNodes().item(0).getNodeValue());
+					
+					String rankingType = (elem.getElementsByTagName("RankingType").item(0).getChildNodes().item(0)
+							.getNodeValue());
+					
+					String populationType = (elem.getElementsByTagName("PopulationType").item(0).getChildNodes().item(0)
+							.getNodeValue());
+					
+					Integer populationUpto = Integer.parseInt(elem.getElementsByTagName("PopulationUpto").item(0)
+							.getChildNodes().item(0).getNodeValue());
+					
 					List<QualifyingClause> qualifyingClauses = new ArrayList<QualifyingClause>();
 					NodeList nodeList2 = elem.getElementsByTagName("QualifyingClause");
 					for (int k = 0; k < nodeList2.getLength(); k++) {
@@ -189,12 +207,18 @@ public class ReadXMLForRule {
 					r.setRuleParameter(rulesParameter);
 					r.setCompensationType(compensationType);
 					r.setFixedCompValue(CompensationValue);
+					r.setCompensationFormula(compensationFormula);
+					r.setCompensationParameter(compensationParameter);
 
 					RuleSimple rs = new RuleSimple();
 					AggregateFunctions aggregateFunction = new AggregateFunctions();
 					aggregateFunction.setFunctionName(functionName);
 					rs.setAggregateFunctions(aggregateFunction);
 					rs.setCalculationMode(calculationMode);
+					rs.setRankCount(rankCount);
+					rs.setRankingType(rankingType);
+					rs.setPopulationType(populationType);
+					rs.setPopulationUpto(populationUpto);
 					rs.setField(field);
 					rs.setQualifyingClause(qualifyingClauses);
 
