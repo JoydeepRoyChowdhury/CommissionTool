@@ -152,8 +152,8 @@ td {
 			}
 		</script>
 		<form:form action="/CommissionTool/submitSimpRule"
-			modelAttribute="personListContainer"
-			 method="post" id="personListForm">
+			modelAttribute="personListContainer" method="post"
+			id="personListForm">
 			<!--
 <form action="/CommissionTool/submitSimpRule"  method="post">
 	-->
@@ -218,23 +218,24 @@ td {
 
 						</TD>
 					</tr>
+
+
 					<tr>
 						<td><b>Calculation mode:&nbsp;</b></td>
 						<td><input type="radio" name="calculationMode" value="i">
 
-							&nbsp;individual&nbsp;<input type="radio"
-							name="calculationMode" value="r">&nbsp;Rank&nbsp;<br />
-							Within&nbsp;<input type="text" Name="rankCount" value="0"
-							size="4">&nbsp;ranks in&nbsp;<input type="radio"
-							Name="rankType" value="Number">&nbsp;number&nbsp;<input
+							&nbsp;individual&nbsp;<input type="radio" name="calculationMode"
+							value="r">&nbsp;Rank&nbsp;<br /> Within&nbsp;<input
+							type="text" Name="rankCount" value="0" size="4">&nbsp;ranks
+							in&nbsp;<input type="radio" Name="rankType" value="Number">&nbsp;number&nbsp;<input
 							type="radio" Name="rankType" value="percentage">&nbsp;percentage
-							<br />
-						<br />Population&nbsp;<input type="radio" Name="populationType"
-							value="SameManager">&nbsp;Under same reporting manager<br />
-							<input type="radio" Name="populationType" value="SameRole">&nbsp;Same
-							role<br /> <input type="radio" Name="populationType"
-							value="Global">&nbsp;Global Upto &nbsp;<input type="text"
-							Name="populationUpto" size="4" value="0">&nbsp;level up</td>
+							<br /> <br />Population&nbsp;<input type="radio"
+							Name="populationType" value="SameManager">&nbsp;Under
+							same reporting manager<br /> <input type="radio"
+							Name="populationType" value="SameRole">&nbsp;Same role<br />
+							<input type="radio" Name="populationType" value="Global">&nbsp;Global
+							Upto &nbsp;<input type="text" Name="populationUpto" size="4"
+							value="0">&nbsp;level up</td>
 
 
 					</tr>
@@ -248,14 +249,13 @@ td {
 										<c:out value="${rule.functionName}" />
 									</option>
 								</c:forEach>
-						</select> 
-						&nbsp;Field&nbsp; <select name="field"><option VALUE="lineItemTotal">Line Item Total
-						<option value="quantity">Quantity
-						</select>
+						</select> &nbsp;Field&nbsp; <select name="field"><option
+									VALUE="lineItemTotal">Line Item Total
+								<option value="quantity">Quantity</select>
 						</td>
 
 					</tr>
-<!--  
+					<!--  
 					<tr>
 						<td><b>Qualifying Clause</b></td>
 						<td>
@@ -283,7 +283,6 @@ td {
 									<c:forEach items="${personListContainer1.personList}"
 										var="Person" varStatus="i" begin="0">
 										<tr class="person">
-											
 											<td>&nbsp;FieldName&nbsp;<form:select
 													path="personList[${i.index}].fieldName"
 													id="fieldName${i.index}">
@@ -293,19 +292,19 @@ td {
 														</option>
 													</c:forEach>
 												</form:select>
-											
-												<td>&nbsp;Not&nbsp;<form:input
-													path="personList[${i.index}].condition" id="condition${i.index}" /></td>
-										
+											<td>&nbsp;Not&nbsp;<form:input
+													path="personList[${i.index}].condition"
+													id="condition${i.index}" /></td>
+
 											<td>&nbsp;Condition&nbsp;<form:select
 													path="personList[${i.index}].conditionValue"
 													id="conditionValue${i.index}">
-													<c:forEach items="${listRule3}"
-											var="rule">
-											<option value="${rule.conditionValue}">
-												<c:out value="${rule.conditionValue}" />
-											</option>
-										</c:forEach></form:select></td>
+													<c:forEach items="${listRule3}" var="rule">
+														<option value="${rule.conditionValue}">
+															<c:out value="${rule.conditionValue}" />
+														</option>
+													</c:forEach>
+												</form:select></td>
 
 											<td>&nbsp;Value&nbsp;<form:input
 													path="personList[${i.index}].value" id="value${i.index}" /></td>
@@ -324,18 +323,17 @@ td {
 														</option>
 													</c:forEach>
 											</select></td>
-											
+
 											<td>&nbsp;Not&nbsp;<input type="text"
 												name="personList[].condition" value="TRUE" size="2"></td>
-											
-											<td>&nbsp;Condition&nbsp;<select
-												name="personList[].conditionValue"><c:forEach items="${listRule3}"
-											var="rule">
-											<option value="${rule.conditionValue}">
-												<c:out value="${rule.conditionValue}" />
-											</option>
-										</c:forEach></select>
 
+											<td>&nbsp;Condition&nbsp;<select
+												name="personList[].conditionValue"><c:forEach
+														items="${listRule3}" var="rule">
+														<option value="${rule.conditionValue}">
+															<c:out value="${rule.conditionValue}" />
+														</option>
+													</c:forEach></select>
 											<td>&nbsp;Value&nbsp;<input type="text"
 												name="personList[].value"></td>
 											<td><a href="#" class="removePerson1">Remove</a></td>
@@ -343,17 +341,16 @@ td {
 										</tr>
 									</c:if>
 								</tbody>
-							</table> <a href="#" id="addPerson1">Add</a>&nbsp;&nbsp; <a
-							href="?f=">Reset List</a>
+							</table> <a href="#" id="addPerson1">Add</a>&nbsp;&nbsp; <a href="?f=">Reset
+								List</a>
 						</td>
 					</tr>
 
 					<tr>
 						<td><b>Compensation</b></td>
-						<td><input type="radio" name="compensationType"
-							value="Fixed">&nbsp;Fixed&nbsp; <input type="text"
-							name="fixedCompValue" value="0"><br /> <input
-							type="radio" name="compensationType" value="Variable">&nbsp;Variable&nbsp;<br />
+						<td><input type="radio" name="compensationType" value="Fixed">&nbsp;Fixed&nbsp;
+							<input type="text" name="fixedCompValue" value="0"><br />
+							<input type="radio" name="compensationType" value="Variable">&nbsp;Variable&nbsp;<br />
 
 							&nbsp;Apply formula&nbsp;<input type="text"
 							name="compensationFormula"><br /> <br />&nbsp;

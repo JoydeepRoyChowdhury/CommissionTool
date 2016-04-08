@@ -84,14 +84,14 @@
 				<c:forEach items="${listRule}" var="rule">
 					<tr>
 						<td><c:choose>
-							<c:when test="${rule.ruleType=='Simple'}">
-       							<a href="/CommissionTool/editSimple/${rule.id}">${rule.ruleName}</a> 
-							</c:when>
-							<c:otherwise>
-							<a href="/CommissionTool/editComposite/${rule.id}"><b>${rule.ruleName}</b></a> 
-							</c:otherwise>
-						</c:choose></td>
-						
+								<c:when test="${rule.ruleType=='Simple'}">
+									<a href="/CommissionTool/editSimple/${rule.id}">${rule.ruleName}</a>
+								</c:when>
+								<c:otherwise>
+									<a href="/CommissionTool/editComposite/${rule.id}"><b>${rule.ruleName}</b></a>
+								</c:otherwise>
+							</c:choose></td>
+
 						<td>${rule.ruleType}</td>
 						<td>${rule.description}</td>
 						<td>${rule.ruleDetails}</td>
@@ -104,8 +104,9 @@
 
 			</table>
 			<div align="center">
-				<br /> 			
-				<a href="/CommissionTool/compositeRule"><button>Add Composite Rule</button></a>&nbsp;<a href="/CommissionTool/simpleRule"><button>Add Simple Rule</button></a>
+				<br /> <a href="/CommissionTool/compositeRule"><button>Add
+						Composite Rule</button></a>&nbsp;<a href="/CommissionTool/simpleRule"><button>Add
+						Simple Rule</button></a>
 			</div>
 		</div>
 
