@@ -145,7 +145,7 @@ public class RuleController {
 			obj1.setConditionList(cnd);
 			obj1.setFieldList(fldList);
 			obj1.setValue(qcui.getValue());
-			//obj1.setNotFlag(qcui.getCondition());
+			obj1.setNotFlag(qcui.getCondition());
 			// System.out.println(ptr.size());
 			ptr1.add(obj1);
 		}
@@ -181,17 +181,42 @@ public class RuleController {
 	@RequestMapping(value = "/editSimple/{id}", method = RequestMethod.GET)
 	public String EditSimpRule(@PathVariable("id") int id, ModelMap model, HttpSession session,
 			HttpServletRequest request, String message) {
-		model.addAttribute("listRule3", ruleApi.getRule(id));
 		model.addAttribute("listRule1", ruleSimpleApi.listOfAggregateFunctions());
 		model.addAttribute("listRule2", ruleSimpleApi.listOfFields());
+		model.addAttribute("listRule3", ruleSimpleApi.listOfConditions());
+		model.addAttribute("listRule4", ruleApi.getRule(id));
+		Rule qRule = ruleApi.getRule(id);
+		RuleSimple sRule = qRule.getRuleSimple();
+		List<QualifyingClause> qList = sRule.getQualifyingClause();
+		List<QualifyingClause> qualiCList = new ArrayList<QualifyingClause>();
+		for (Iterator iterator = qList.iterator(); iterator.hasNext();) {
+			QualifyingClause qcui = (QualifyingClause) iterator.next();
+		      System.out.println(qcui.getValue());
+		      System.out.println(qcui.isNotFlag());
+		  qualiCList.add(qcui);
+		}
+		model.addAttribute("qualifyingList",qualiCList);
+		
+		
+		
+		Rule rule1 = ruleApi.getRule(id);
+		List<RuleParameter> ptr = rule1.getRuleParameter();
+		List<RuleParameter> parameterList = new ArrayList<RuleParameter>();
+		Iterator it = ptr.iterator();	 
+	    while(it.hasNext()) {
+	    	RuleParameter rp = (RuleParameter)it.next();
+	      System.out.println(rp.getParameterName());
+	      System.out.println(rp.getParameterValue());
+	      parameterList.add(rp);
+	    }
+	  model.addAttribute("parList",parameterList);
 
 		if (session.getAttribute("personListContainer") == null)
 			session.setAttribute("personListContainer", getDummyPersonListContainer());
 		model.addAttribute("personListContainer", (PersonListContainer) session.getAttribute("personListContainer"));
-		if (message != null)
-			model.addAttribute("message", message);
-		model.addAttribute("cp", request.getContextPath());
-
+		
+		session.setAttribute("personListContainer1", getDummyPersonListContainer1());
+		model.addAttribute("personListContainer1", (PersonListContainer1) session.getAttribute("personListContainer1"));
 		System.out.println("*****************ListDone**********************");
 		return "EditSimple";
 	}
@@ -281,19 +306,34 @@ public class RuleController {
 	@RequestMapping(value = "/ruleList", method = RequestMethod.GET)
 	public String listRules(ModelMap model) {
 		model.addAttribute("listRule", ruleApi.listOfRules());
-		//model.addAttribute("listSimpRule", ruleSimpleApi.listOfSimpleRules());
 		// logger.info("A NEW List HAS CREATED");
 		System.out.println("*****************ListDone**********************");
 		return "compRule";
 	}
 
 	@RequestMapping(value = "/editComposite/{id}", method = RequestMethod.GET)
-	public String EditCompRule(@PathVariable("id") int id, ModelMap model) {
+	public String EditCompRule(@PathVariable("id") int id,HttpSession session, ModelMap model) {
+		//model.addAttribute("listRule2", ruleApi.listOfRules(RuleType.Simple));
 		model.addAttribute("listRule1", ruleApi.getRule(id));
-		model.addAttribute("listRule2", ruleApi.listOfRules());
-		//model.addAttribute("listSimpRule", ruleSimpleApi.listOfSimpleRules());
-		// logger.info("A NEW List HAS CREATED");
-		System.out.println("*****************ListDone**********************");
+		Rule rule1 = ruleApi.getRule(id);
+		List<RuleParameter> ptr = rule1.getRuleParameter();
+		List<RuleParameter> parameterList = new ArrayList<RuleParameter>();
+		Iterator it = ptr.iterator();	 
+	    while(it.hasNext()) {
+	    	RuleParameter rp = (RuleParameter)it.next();
+	      System.out.println(rp.getParameterName());
+	      System.out.println(rp.getParameterValue());
+	      parameterList.add(rp);
+	    }
+	  model.addAttribute("parList",parameterList);
+	    
+		if (session.getAttribute("personListContainer3") == null)
+			session.setAttribute("personListContainer3", getDummyPersonListContainer3());
+		model.addAttribute("personListContainer3", (PersonListContainer) session.getAttribute("personListContainer3"));
+
+		session.setAttribute("personListContainer2", getDummyPersonListContainer2());
+		model.addAttribute("personListContainer2", (PersonListContainer2) session.getAttribute("personListContainer2"));
+		model.addAttribute("listSimpRule", ruleApi.listOfRules(RuleType.Simple));
 		return "EditComposite";
 	}
 

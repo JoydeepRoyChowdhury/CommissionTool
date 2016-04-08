@@ -273,6 +273,10 @@ public class RuleUI {
 	public int getPopulationUpto() {
 		return populationUpto;
 	}
+	/**
+	 * 
+	 * @param populationUpto
+	 */
 
 	public void setPopulationUpto(int populationUpto) {
 		this.populationUpto = populationUpto;

@@ -166,11 +166,13 @@ var count = "1";
 	}
 </script>
 		<form:form action="/CommissionTool/submitCompRule"
-			modelAttribute="personListContainer3" method="post"
+			modelAttribute="personListContainer3"  method="post"
 			id="personListForm1">
 			<!-- 
 <form action="/CommissionTool/submitCompRule" method="post">
+
 -->
+			<div style="height: 580px; overflow: auto;">
 			<div align="center">
 				<h1>Compensation Rule Details</h1>
 			</div>
@@ -191,8 +193,8 @@ var count = "1";
 				</tr>
 				<tr>
 					<td><b>Rules connected as: </b></td>
-					<td><input type="checkbox" name="connectionType" value="All">All
-						<input type="checkbox" name="connectionType" value="Any" checked>Any</td>
+					<td><input type="Radio" name="connectionType" value="All">&nbsp;All&nbsp;
+						<input type="radio" name="connectionType" value="Any" checked>&nbsp;Any&nbsp;</td>
 				</tr>
 
 				<!-- 
@@ -222,6 +224,7 @@ var count = "1";
 				<tr>
 					<td><b>List of Rules</b></td>
 					<td>
+					
 						<table>
 							<tbody id="personListContainer2">
 								<c:forEach items="${personListContainer2.personList}"
@@ -257,7 +260,8 @@ var count = "1";
 
 
 							</tbody>
-						</table> <a href="#" id="addPerson1">Add&nbsp;</a>&nbsp;&nbsp; <a
+						</table>
+						 <a href="#" id="addPerson1">Add&nbsp;</a>&nbsp;&nbsp; <a
 						href="?f=">&nbsp;Reset List</a>
 					</td>
 				</tr>
@@ -305,20 +309,21 @@ var count = "1";
 				<tr>
 					<td><b>Compensation</b></td>
 					<td><input type="checkbox" name="fixed"
-						value="compensationType">Fixed <input type="text"
+						value="compensationType">&nbsp;Fixed&nbsp;<input type="text"
 						name="fixedCompValue" value="0"><br /> <input
-						type="checkbox" name="compensationType" value="Variable">Variable<br />
-						Apply formula<input type="text" name="compensationFormula"><br />
-						<br /> parameters<input type="text" name="compensationParameter"><br />
+						type="checkbox" name="compensationType" value="Variable">&nbsp;Variable&nbsp;<br />
+						&nbsp;Apply formula&nbsp;<input type="text" name="compensationFormula"><br />
+						<br />&nbsp; parameters&nbsp;<input type="text" name="compensationParameter"><br />
 					</td>
 				</tr>
+			
 			</table>
-			<input type="submit" value="Update">
+			<br/><input type="submit" value="Update">
 			<input type="submit" value="Submit" />
 			<a href="/CommissionTool/CompRule"> <input type="button"
 				value="Cancel" /></a>
 
-
+</div>
 		</form:form>
 	</tiles:putAttribute>
 </tiles:insertDefinition>

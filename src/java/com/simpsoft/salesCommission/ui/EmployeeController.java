@@ -27,7 +27,7 @@ public class EmployeeController {
 	private static final Logger logger = Logger.getLogger(EmployeeController.class);
 	
 
-	@RequestMapping(value = "/empList", method = RequestMethod.GET)
+	@RequestMapping(value = "/employeeList", method = RequestMethod.GET)
 	public String simpleRule(ModelMap model, HttpSession session,  HttpServletRequest request) {
 		//model.addAttribute("listRule", ruleApi.listRules());
 		model.addAttribute("listEmployee", employeeApi.listEmployees());

@@ -20,8 +20,93 @@ td {
 
 
 
-		<script>
- 
+		<script type="text/javascript">
+
+
+				   function rowAdded(rowElement) {
+				            //clear the imput fields for the row
+				            $(rowElement).find("input").val('');
+				            //may want to reset <select> options etc
+
+				            //in fact you may want to submit the form
+				            saveNeeded();
+				        }
+				        function rowRemoved(rowElement) {
+				            saveNeeded();
+				        }
+
+				        function saveNeeded() {
+				            $('#submit').css('color','red');
+				            $('#submit').css('font-weight','bold');
+				            if( $('#submit').val().indexOf('!') != 0 ) {
+				                $('#submit').val( '!' + $('#submit').val() );
+				            }
+				        }
+
+				        function beforeSubmit() {
+				            alert('submitting....');
+				            return true;
+				        }
+
+				        $(document).ready( function() {
+				            var config = {
+				                rowClass : 'person',
+				                addRowId : 'addPerson1',
+				                removeRowClass : 'removePerson1',
+				                formId : 'personListForm1',
+				                rowContainerId : 'personListContainer2',
+				                indexedPropertyName : 'personList',
+				                indexedPropertyMemberNames : 'simpRule',
+				                rowAddedListener : rowAdded,
+				                rowRemovedListener : rowRemoved,
+				                beforeSubmit : beforeSubmit
+				            };
+				            new DynamicListHelper(config);
+				        });
+
+						 function rowAdded(rowElement) {
+						     //clear the imput fields for the row
+						     $(rowElement).find("input").val('');
+						     //may want to reset <select> options etc
+
+						     //in fact you may want to submit the form
+						     saveNeeded();
+						 }
+						 function rowRemoved(rowElement) {
+						     saveNeeded();
+						 }
+
+						 function saveNeeded() {
+						     $('#submit').css('color','red');
+						     $('#submit').css('font-weight','bold');
+						     if( $('#submit').val().indexOf('!') != 0 ) {
+						         $('#submit').val( '!' + $('#submit').val() );
+						     }
+						 }
+
+						 function beforeSubmit() {
+						     alert('submitting....');
+						     return true;
+						 }
+
+						 $(document).ready( function() {
+						     var config = {
+						         rowClass : 'ruleParameter',
+						         addRowId : 'addPerson',
+						         removeRowClass : 'removePerson',
+						         formId : 'personListForm1',
+						         rowContainerId : 'personListContainer3',
+						         indexedPropertyName : 'personList',
+						         indexedPropertyMemberNames : 'parameterName,parameterValue',
+						         rowAddedListener : rowAdded,
+						         rowRemovedListener : rowRemoved,
+						         beforeSubmit : beforeSubmit
+						     };
+						     new DynamicListHelper(config);
+						 });
+
+		     
+		
 var count = "1";
 
   function addRow(in_tbl_name)
@@ -80,13 +165,16 @@ var count = "1";
 	}
 </script>
 
-<form action="/CommissionTool/submitCompRule" method="post">
+<form:form action="/CommissionTool/submitCompRule"
+			modelAttribute="personListContainer3"  method="post"
+			id="personListForm1">
+			<div style="height: 580px; overflow: auto;">
 
 		<div align="center">
 			<h1>Compensation Rule Details</h1>
 
 
-			<table>
+			<table border="1">
 				<tr>
 					<td><b>Rule name:</b></td>
 					<td><input type="text" name="ruleName" value="${listRule1.ruleName}"><br /></td>
@@ -103,58 +191,122 @@ var count = "1";
 				</tr>
 				<tr>
 					<td><b>Rules connected as: </b></td>
-					<td><input type="checkbox" name="connectionType" value="All">All
-						<input type="checkbox" name="connectionType" value="Any" checked>Any</td>
+					<td><input type="checkbox" name="connectionType" value="All">&nbsp;All&nbsp;
+						<input type="checkbox" name="connectionType" value="Any" checked>&nbsp;Any&nbsp;</td>
 				</tr>
 
 
+				
 				<tr>
-					<td><b>List of Rules: </b></td>
-
+					<td><b>List of Rules</b></td>
 					<td>
-						<table ID="in_tbl_name">
-							<tr>
+					
+						<table>
+							<tbody id="personListContainer2">
+								<c:forEach items="${personListContainer2.personList}"
+									var="Person" varStatus="i" begin="0">
+									<tr class="person">
+										<td><form:select path="personList[${i.index}].simpRule"
+												id="simpRule${i.index}">
+												<c:forEach items="${listSimpRule}" var="rule">
+													<option value="${rule.ruleName}">
+														<c:out value="${rule.ruleName}" />
+													</option>
+												</c:forEach>
+											</form:select></td>
 
-								<td><select><c:forEach items="${listCompRule1}"
-											var="rule">
-											<option value="${rule.ruleName}">
-												<c:out value="${rule.ruleName}" />
-											</option>
-										</c:forEach>
-								</select>
-								</td>
-								<td><input type="Button" onClick="addRow('in_tbl_name')"
-									VALUE="Add Row"></td>
-							</tr>
+										<td><a href="#" class="removePerson1">&nbsp;Remove</a></td>
+									</tr>
+								</c:forEach>
+
+								<c:if test="${personListContainer2.personList.size() == 0}">
+									<tr class="person defaultRow">
+										<td><select name="personList[].simpRule"><c:forEach
+													items="${listSimpRule}" var="rule">
+													<option value="${rule.ruleName}">
+														<c:out value="${rule.ruleName}" />
+													</option>
+												</c:forEach>
+										</select></td>
+
+										<td><a href="#" class="removePerson1">&nbsp;Remove</a></td>
+
+									</tr>
+								</c:if>
+
+
+							</tbody>
 						</table>
+						 <a href="#" id="addPerson1">Add&nbsp;</a>&nbsp;&nbsp; <a
+						href="?f=">&nbsp;Reset List</a>
 					</td>
 				</tr>
-				<tr>
-				<td>
-<div id="select-container">
-</div>
-<button id="add" onclick="addSelect('select-container');">Add Dropdown</button></td>
 				
-				</tr>
+				<tr>
+					<td><b>Rule Parameter</b></td>
+					<td>
+						<table>
+							<tbody id="personListContainer3">
+								<c:forEach items="${parList}" var="par">
+									
+									<tr class="ruleParameter">
+										<td>Parameter Name&nbsp;<input type="text" 
+												 value="${par.parameterName}"/></td>
+										<td>&nbsp;&nbsp;&nbsp;&nbsp;Parameter Value&nbsp;<input type="text"
+												value="${par.parameterValue}"/></td>
 
+										<td><a href="#" class="removePerson">&nbsp;Remove</a></td>
+									</tr>
+								</c:forEach>
+
+								<c:if test="${personListContainer3.personList.size() == 0}">
+									<tr class="person defaultRow">
+										<td>Parameter Name&nbsp;<input type="text"
+											name="personList[].parameterName" value="" /></td>
+										<td>&nbsp;&nbsp;Parameter Value&nbsp;<input type="text"
+											name="personList[].parameterValue" value="" /></td>
+
+										<td><a href="#" class="removePerson">Remove</a></td>
+									</tr>
+								</c:if>
+
+							</tbody>
+						</table> <a href="#" id="addPerson">Add Parameters</a>&nbsp;&nbsp; <a
+						href="?f=">Reset List</a>
+
+
+					</td>
+
+				</tr>
+				
+			<!-- 	
+				<tr>
+					<c:forEach items="${parList}"
+										var="par">
+											<td>Parameter Name&nbsp;<input type="text" value="${par.parameterName}"/></td>
+											<td>&nbsp;Parameter Value&nbsp;<input type="text" value="${par.parameterValue}" /></td>
+									
+									</c:forEach>
+					</tr>
+			 -->
 				<tr>
 					<td><b>Compensation</b></td>
-					<td><input type="checkbox" name="fixed" value="compensationType" value="Fixed">Fixed
+					<td><input type="checkbox" name="fixed" value="compensationType" value="Fixed">&nbsp;Fixed&nbsp;
 						<input type="text" name="fixedCompValue" value="${listRule1.fixedCompValue}"><br /> <input
-						type="checkbox" name="compensationType" value="Variable">Variable<br />
-						Apply formula<input type="text" name="compensationFormula" value="${listRule1.compensationFormula}" ><br />
-						<br /> parameters<input type="text" name="compensationParameter" value="${listRule1.compensationParameter}"><br />
+						type="checkbox" name="compensationType" value="Variable">&nbsp;Variable&nbsp;<br />
+						&nbsp;Apply formula&nbsp;<input type="text" name="compensationFormula" value="${listRule1.compensationFormula}" ><br />
+						<br />&nbsp; parameters&nbsp;<input type="text" name="compensationParameter" value="${listRule1.compensationParameter}"><br />
 					</td>
 
 				</tr>
-				<tr>
-					<td><input type="submit" value="Update"> <input
+				
+			</table>
+			<br/><input type="submit" value="Update"> <input
 						type="submit" value="Submit" /> <a
 						href="/CommissionTool/CompRule"> <input type="button"
-							value="Cancel" /></a></td>
-				</tr>
-			</table>
+							value="Cancel" /></a>
 		</div>
-		</form>
+		</div>
+		</form:form>
 	</tiles:putAttribute>
 </tiles:insertDefinition>
