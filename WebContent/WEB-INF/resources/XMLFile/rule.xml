@@ -30,7 +30,7 @@
 			<AggregateFun>min</AggregateFun>
 			<QualifyingClauses>
 				<QualifyingClause value="qualifying clause value 1">
-					<FieldList>Order Total</FieldList>
+					<FieldList>Customer Name</FieldList>
 					<notFlag>true</notFlag>
 					<ConditionList>greater than</ConditionList>
 					<ignoreCase>false</ignoreCase>
@@ -45,7 +45,7 @@
 		</RuleSimple>
 	</Rule>
 	
-	<Rule RuleName="Rule for getting commission on sale of new smart phone">
+<!--	<Rule RuleName="Rule for getting commission on sale of new smart phone">
 		<Description>This rule is for sales person who will get commission on
 			annually basis for sale of smart phone</Description>
 		<CompensationType>Fixed</CompensationType>
@@ -87,9 +87,9 @@
 				</QualifyingClause>
 			</QualifyingClauses> 
 		</RuleSimple>
-	</Rule>
+	</Rule> -->
 	
-	<Rule RuleName="Rule for getting commission on max sale of simcard">
+  	<Rule RuleName="Rule for getting commission on max sale of simcard">
 		<Description>This rule is for sales person who will get commission on
 			quaterly basis for sale of sim card</Description>
 		<CompensationType>Fixed</CompensationType>
@@ -133,7 +133,7 @@
 		</RuleSimple>
 	</Rule>
 	
-	<Rule RuleName="Rule for getting commission on top sale of hp laptop">
+<!--  	<Rule RuleName="Rule for getting commission on top sale of hp laptop">
 		<Description>This rule is for sales person who will get commission on
 			monthly basis for sale of sim card</Description>
 		<CompensationType>Variable</CompensationType>
@@ -159,7 +159,7 @@
 			<PopulationType>global upto</PopulationType>
 			<PopulationUpto>3</PopulationUpto>
 			<Field>Quantity</Field>
-			<AggregateFun>max</AggregateFun>
+			<AggregateFun>count</AggregateFun>
 		 	<QualifyingClauses>
 				<QualifyingClause value="s">
 					<FieldList>Office Location</FieldList>
@@ -175,5 +175,5 @@
 				</QualifyingClause>
 			</QualifyingClauses> 
 		</RuleSimple>
-	</Rule>
+	</Rule> -->
 </Rules>

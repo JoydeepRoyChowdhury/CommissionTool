@@ -4,15 +4,15 @@
 		<EmployeeName>Potter</EmployeeName>
 		<RoleName>null</RoleName>
 		<AssignmentDetails>
-		<AssignmentDetail>
-			<validityType>fixed</validityType>
+		<AssignmentDetail validityType="fixed">
+		<!-- 	<validityType>fixed</validityType>  -->
 			<StartDate>31/03/2016</StartDate>
 			<EndDate>30/09/2016</EndDate>
 			<RuleID>2</RuleID>
 			<Frequency>null</Frequency>
 		</AssignmentDetail>
-		<AssignmentDetail>
-			<validityType>repeats</validityType>
+		<AssignmentDetail validityType="repeats">
+		<!--  	<validityType>repeats</validityType> -->
 			<StartDate>02/04/2016</StartDate>
 			<EndDate>02/10/2016</EndDate>
 			<RuleID>3</RuleID>
@@ -24,15 +24,15 @@
 		<EmployeeName>null</EmployeeName>
 		<RoleName>VP Sales</RoleName>
 		<AssignmentDetails>
-		<AssignmentDetail>
-			<validityType>repeats</validityType>
+		<AssignmentDetail validityType="repeats">
+<!--  		<validityType>repeats</validityType> -->	
 			<StartDate>31/03/2016</StartDate>
 			<EndDate>30/09/2016</EndDate>
 			<RuleID>1</RuleID>
 			<Frequency>weekly</Frequency>
 		</AssignmentDetail>
-		<AssignmentDetail>
-			<validityType>fixed</validityType>
+		<AssignmentDetail validityType="fixed">
+<!--  			<validityType>fixed</validityType> -->
 			<StartDate>02/04/2016</StartDate>
 			<EndDate>02/10/2016</EndDate>
 			<RuleID>3</RuleID>

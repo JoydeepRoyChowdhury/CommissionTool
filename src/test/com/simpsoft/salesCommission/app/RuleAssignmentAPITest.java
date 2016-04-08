@@ -115,7 +115,7 @@ public class RuleAssignmentAPITest {
 	 * {@link com.simpsoft.salesCommission.app.api.RuleAPI#createRule(com.simpsoft.salesCommission.app.model.RuleAssignment)}
 	 * .
 	 */
-/*	@Test
+	@Test
 	public void testCreateRuleAssignmentToRole() {
 
 		RuleAssignment ruleAss = new RuleAssignment();
@@ -138,7 +138,7 @@ public class RuleAssignmentAPITest {
 		String frequencyName2 = "annually";
 		Frequency frequency2 = ruleAssignmentApi.searchFrequency(frequencyName2);
 		rlAssDtl2.setFrequency(frequency2);
-		Rule rule2 = ruleAPI.getRule(4);
+		Rule rule2 = ruleAPI.getRule(1);
 		rlAssDtl2.setRule(rule2);
 		List<RuleAssignmentParameter> assParamList2 = ruleAssignmentApi.setRuleAssignmentParameters(rule2);
 		rlAssDtl2.setRuleAssignmentParameter(assParamList2);
@@ -153,9 +153,9 @@ public class RuleAssignmentAPITest {
 		Assert.assertEquals("Good", newRuleAss.getRole().getDescription());
 		System.out.println("Running: testDummyRuleAssignment");
 
-	} */
+	} 
 	
-	@Test
+/*	@Test
 	public void testSearchAssignedRuleToEmployee() {
 		
 		String queryName = "Tom";
