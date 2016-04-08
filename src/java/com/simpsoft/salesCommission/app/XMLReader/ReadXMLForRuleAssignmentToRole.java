@@ -26,17 +26,15 @@ import com.simpsoft.salesCommission.app.api.RuleAPI;
 import com.simpsoft.salesCommission.app.api.RuleAssignmentAPI;
 import com.simpsoft.salesCommission.app.dataloader.RuleAssignmentDetailsXML;
 import com.simpsoft.salesCommission.app.dataloader.RuleAssignmentXML;
-import com.simpsoft.salesCommission.app.model.Employee;
 import com.simpsoft.salesCommission.app.model.Frequency;
 import com.simpsoft.salesCommission.app.model.Role;
 import com.simpsoft.salesCommission.app.model.Rule;
 import com.simpsoft.salesCommission.app.model.RuleAssignment;
 import com.simpsoft.salesCommission.app.model.RuleAssignmentDetails;
 import com.simpsoft.salesCommission.app.model.RuleAssignmentParameter;
-import com.simpsoft.salesCommission.app.model.RuleParameter;
 
 @Component
-public class ReadXMLForRuleAssignment {
+public class ReadXMLForRuleAssignmentToRole {
 	public static void main(String argv[]) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("/applicationContext.xml");
 		RuleAssignmentAPI rulAssAPI = (RuleAssignmentAPI) context.getBean("ruleAssignmentApi");
@@ -44,22 +42,19 @@ public class ReadXMLForRuleAssignment {
 		RoleAPI roleAPI = (RoleAPI) context.getBean("roleApi");
 		RuleAPI ruleAPI = (RuleAPI) context.getBean("ruleApi");
 
-		ReadXMLForRuleAssignment rdx = new ReadXMLForRuleAssignment();
+		ReadXMLForRuleAssignmentToRole rdx = new ReadXMLForRuleAssignmentToRole();
 		List<RuleAssignmentXML> assList = rdx.parseXML();
 		for (Iterator iterator = assList.iterator(); iterator.hasNext();) {
 
 			RuleAssignment ruleAss = new RuleAssignment();
 			RuleAssignmentXML rlAssXml = (RuleAssignmentXML) iterator.next();
-			if (rlAssXml.getEmployeeName() != null) {
-				Employee employee = empAPI.searchEmployee(rlAssXml.getEmployeeName());
-				ruleAss.setEmployee(employee);
-				ruleAss.setRole(null);
+
+			if (rlAssXml.getRoleName() != null) {
+				Role role = roleAPI.searchRoleByName(rlAssXml.getRoleName());
+				ruleAss.setRole(role);
+				ruleAss.setEmployee(null);
 			}
-			/*
-			 * if (rlAssXml.getRoleName() != null) { Role role =
-			 * roleAPI.searchRoleByName(rlAssXml.getRoleName());
-			 * ruleAss.setRole(role); ruleAss.setEmployee(null); }
-			 */
+
 			List<RuleAssignmentDetails> rlAssDtlList = new ArrayList<RuleAssignmentDetails>();
 			List<RuleAssignmentDetailsXML> rulAssDetailList = rlAssXml.getRuleAssignmentDetailsXML();
 			for (Iterator iterator1 = rulAssDetailList.iterator(); iterator1.hasNext();) {
@@ -94,7 +89,7 @@ public class ReadXMLForRuleAssignment {
 		List<RuleAssignmentXML> rulAssList = new ArrayList<RuleAssignmentXML>();
 		try {
 
-			File fXmlFile = new File("WebContent/WEB-INF/resources/XMLFile/ruleAssignmentToEmployee.xml");
+			File fXmlFile = new File("WebContent/WEB-INF/resources/XMLFile/ruleAssignmentToRole.xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(fXmlFile);
@@ -105,10 +100,8 @@ public class ReadXMLForRuleAssignment {
 				Node node = nodeList.item(i);
 
 				if (node.getNodeType() == Node.ELEMENT_NODE) {
-					Element elem = (Element) node;
 
-					// String empName =
-					// node.getAttributes().getNamedItem("Employeename").getNodeValue();
+					Element elem = (Element) node;
 
 					String employeeName = (elem.getElementsByTagName("EmployeeName").item(0).getChildNodes().item(0)
 							.getNodeValue());

@@ -115,7 +115,7 @@ public class RuleAssignmentAPITest {
 	 * {@link com.simpsoft.salesCommission.app.api.RuleAPI#createRule(com.simpsoft.salesCommission.app.model.RuleAssignment)}
 	 * .
 	 */
-	@Test
+/*	@Test
 	public void testCreateRuleAssignmentToRole() {
 
 		RuleAssignment ruleAss = new RuleAssignment();
@@ -153,14 +153,14 @@ public class RuleAssignmentAPITest {
 		Assert.assertEquals("Good", newRuleAss.getRole().getDescription());
 		System.out.println("Running: testDummyRuleAssignment");
 
-	} 
+	} */
 	
-/*	@Test
+	@Test
 	public void testSearchAssignedRuleToEmployee() {
 		
-		String queryName = "Tom";
+		String queryName = "Harry";
 		RuleAssignment assignment = ruleAssignmentApi.searchAssignedRule(queryName);
-		Assert.assertEquals("Tom", assignment.getEmployee().getEmployeeName());
+		Assert.assertEquals("Harry", assignment.getEmployee().getEmployeeName());
 		//Assert.assertEquals("Good", assignment.getRole().getDescription());
 		
 	} 
@@ -168,10 +168,10 @@ public class RuleAssignmentAPITest {
 	@Test
 	public void testSearchAssignedRuleToRole() {
 		
-		String queryName = "VP Sales";
+		String queryName = "Analyst I";
 		RuleAssignment assignment = ruleAssignmentApi.searchAssignedRule(queryName);	
-		Assert.assertEquals("VP Sales", assignment.getRole().getRoleName());
-		//Assert.assertEquals("Good", assignment.getRole().getDescription());
+		Assert.assertEquals("Analyst I", assignment.getRole().getRoleName());
+		Assert.assertEquals("Good", assignment.getRole().getDescription());
 		
 	}
 	/**
