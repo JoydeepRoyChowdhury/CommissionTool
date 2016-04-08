@@ -50,4 +50,7 @@
 	<bean id="ruleAssignmentApi" class="com.simpsoft.salesCommission.app.api.RuleAssignmentAPI">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	<bean id="orderApi" class="com.simpsoft.salesCommission.app.api.OrderAPI">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 </beans>

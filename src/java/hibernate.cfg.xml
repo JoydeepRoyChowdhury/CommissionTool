@@ -25,5 +25,8 @@
 		<mapping class="com.simpsoft.salesCommission.app.model.RuleAssignmentParameter" />
 		<mapping class="com.simpsoft.salesCommission.app.model.Target" />
 		<mapping class="com.simpsoft.salesCommission.app.model.TargetDefinition" />	
+		<mapping class="com.simpsoft.salesCommission.app.model.State" />	
+		<mapping class="com.simpsoft.salesCommission.app.model.Address" />	
+		
 	</session-factory>
 </hibernate-configuration>

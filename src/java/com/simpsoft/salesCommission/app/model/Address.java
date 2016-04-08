@@ -15,7 +15,7 @@ public class Address {
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
-	private long id;
+	private Long id;
 	
 	@Column(name = "addrslinen1")
 	private String addrslinen1;
@@ -32,14 +32,14 @@ public class Address {
 	/**
 	 * @return the id
 	 */
-	public long getId() {
+/*	public long getId() {
 		return id;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(long id) {
+/*	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -69,5 +69,29 @@ public class Address {
 	 */
 	public void setAddrslinen2(String addrslinen2) {
 		this.addrslinen2 = addrslinen2;
+	}
+	/**
+	 * @return the id
+	 */
+	public Long getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
+	/**
+	 * @return the state
+	 */
+	public State getState() {
+		return state;
+	}
+	/**
+	 * @param state the state to set
+	 */
+	public void setState(State state) {
+		this.state = state;
 	}
 }
