@@ -27,12 +27,12 @@
 			<PopulationType>null</PopulationType>
 			<PopulationUpto>0</PopulationUpto>
 			<Field>Line Item Total</Field>
-			<AggregateFun>min</AggregateFun>
+			<AggregateFun>max</AggregateFun>
 			<QualifyingClauses>
 				<QualifyingClause value="qualifying clause value 1">
 					<FieldList>Customer Name</FieldList>
 					<notFlag>true</notFlag>
-					<ConditionList>greater than</ConditionList>
+					<ConditionList>equal</ConditionList>
 					<ignoreCase>false</ignoreCase>
 				</QualifyingClause>
 				<QualifyingClause value="qualifying clause value 2">
@@ -45,7 +45,7 @@
 		</RuleSimple>
 	</Rule>
 	
-<!--	<Rule RuleName="Rule for getting commission on sale of new smart phone">
+	<Rule RuleName="Rule for getting commission on sale of new smart phone">
 		<Description>This rule is for sales person who will get commission on
 			annually basis for sale of smart phone</Description>
 		<CompensationType>Fixed</CompensationType>
@@ -87,7 +87,7 @@
 				</QualifyingClause>
 			</QualifyingClauses> 
 		</RuleSimple>
-	</Rule> -->
+	</Rule> 
 	
   	<Rule RuleName="Rule for getting commission on max sale of simcard">
 		<Description>This rule is for sales person who will get commission on
@@ -124,7 +124,7 @@
 					<ignoreCase>false</ignoreCase>
 				</QualifyingClause>
 				<QualifyingClause value="16000">
-					<FieldList>Order Total</FieldList>
+					<FieldList>Office Location</FieldList>
 					<notFlag>true</notFlag>
 					<ConditionList>equal</ConditionList>
 					<ignoreCase>false</ignoreCase>
@@ -133,7 +133,7 @@
 		</RuleSimple>
 	</Rule>
 	
-<!--  	<Rule RuleName="Rule for getting commission on top sale of hp laptop">
+ 	<Rule RuleName="Rule for getting commission on top sale of hp laptop">
 		<Description>This rule is for sales person who will get commission on
 			monthly basis for sale of sim card</Description>
 		<CompensationType>Variable</CompensationType>
@@ -159,7 +159,7 @@
 			<PopulationType>global upto</PopulationType>
 			<PopulationUpto>3</PopulationUpto>
 			<Field>Quantity</Field>
-			<AggregateFun>count</AggregateFun>
+			<AggregateFun>max</AggregateFun>
 		 	<QualifyingClauses>
 				<QualifyingClause value="s">
 					<FieldList>Office Location</FieldList>
@@ -170,10 +170,10 @@
 				<QualifyingClause value="16000">
 					<FieldList>Order Total</FieldList>
 					<notFlag>true</notFlag>
-					<ConditionList>equal</ConditionList>
+					<ConditionList>starts with</ConditionList>
 					<ignoreCase>false</ignoreCase>
 				</QualifyingClause>
 			</QualifyingClauses> 
 		</RuleSimple>
-	</Rule> -->
+	</Rule> 
 </Rules>

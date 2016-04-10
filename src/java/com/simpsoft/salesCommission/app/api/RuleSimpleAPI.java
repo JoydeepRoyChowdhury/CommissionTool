@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-
+import org.hibernate.criterion.Restrictions;
 import org.apache.log4j.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ import com.simpsoft.salesCommission.app.model.FieldList;
 import com.simpsoft.salesCommission.app.model.Rule;
 import com.simpsoft.salesCommission.app.model.RuleParameter;
 import com.simpsoft.salesCommission.app.model.RuleSimple;
+import com.simpsoft.salesCommission.app.model.State;
 
 @Component
 public class RuleSimpleAPI {
@@ -149,7 +151,7 @@ public class RuleSimpleAPI {
 	 * @param fieldVal
 	 * @return
 	 */
-	public AggregateFunctions searchAggregateFunction(String aggtFunName) {
+	public AggregateFunctions searchAggregateFunction1(String aggtFunName) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		AggregateFunctions fn1 = new AggregateFunctions();
@@ -176,7 +178,26 @@ public class RuleSimpleAPI {
 		}
 		return fn1;
 	}
+	public AggregateFunctions searchAggregateFunction(String aggtFunName) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		List<AggregateFunctions> aggtList = new ArrayList<>();
+		try {
+		tx = session.beginTransaction();
+		Criteria crit = session.createCriteria(AggregateFunctions.class);
+		crit.add(Restrictions.eq("functionName", aggtFunName));
+		aggtList = crit.list();
+				tx.commit();
 
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return aggtList.get(0);
+	}
 	/**
 	 * Method for create Condition List
 	 * 
@@ -230,7 +251,7 @@ public class RuleSimpleAPI {
 	 * @param conditionVal
 	 * @return
 	 */
-	public ConditionList searchCondition(String conditionVal) {
+	public ConditionList searchCondition1(String conditionVal) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		ConditionList cnd = new ConditionList();
@@ -257,7 +278,26 @@ public class RuleSimpleAPI {
 		}
 		return cnd;
 	}
+	public ConditionList searchCondition(String conditionVal) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		List<ConditionList> conditionList = new ArrayList<>();
+		try {
+		tx = session.beginTransaction();
+		Criteria crit = session.createCriteria(ConditionList.class);
+		crit.add(Restrictions.eq("conditionValue", conditionVal));
+		conditionList = crit.list();
+				tx.commit();
 
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return conditionList.get(0);
+	}
 	/**
 	 * Method for create Field List
 	 * 
@@ -318,7 +358,26 @@ public class RuleSimpleAPI {
 		}
 		return fld1;
 	}
+	public FieldList searchFieldList1(String fieldVal) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		List<FieldList> fieldList = new ArrayList<>();
+		try {
+		tx = session.beginTransaction();
+		Criteria crit = session.createCriteria(FieldList.class);
+		crit.add(Restrictions.eq("displayName", fieldVal));
+		fieldList = crit.list();
+				tx.commit();
 
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return fieldList.get(0);
+	}
 	/**
 	 * Method for getting list of fields
 	 * 

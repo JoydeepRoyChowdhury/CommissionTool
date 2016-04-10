@@ -27,6 +27,7 @@
 		<mapping class="com.simpsoft.salesCommission.app.model.TargetDefinition" />	
 		<mapping class="com.simpsoft.salesCommission.app.model.State" />	
 		<mapping class="com.simpsoft.salesCommission.app.model.Address" />	
-		
+		<mapping class="com.simpsoft.salesCommission.app.model.CustomerType" />
+		<mapping class="com.simpsoft.salesCommission.app.model.Customer" />		
 	</session-factory>
 </hibernate-configuration>

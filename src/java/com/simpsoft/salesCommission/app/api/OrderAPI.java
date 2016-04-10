@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import com.simpsoft.salesCommission.app.model.Address;
 import com.simpsoft.salesCommission.app.model.AggregateFunctions;
+import com.simpsoft.salesCommission.app.model.CustomerType;
 import com.simpsoft.salesCommission.app.model.RuleAssignment;
 import com.simpsoft.salesCommission.app.model.State;
 
@@ -95,6 +96,26 @@ public class OrderAPI {
 			session.close();
 		}
 		return stateList.get(0);
+	}
+	
+	public Long createCustomerType(CustomerType customerType) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		CustomerType newCustomerType = new CustomerType();
+		try {
+			tx = session.beginTransaction();
+			newCustomerType.setCustType(customerType.getCustType());
+			session.save(newCustomerType);
+			tx.commit();
+			logger.debug("CREATED AN AGGREGATE FUNCTION INTO DATABASE" + newCustomerType);
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return newCustomerType.getId();
 	}
 
 }
