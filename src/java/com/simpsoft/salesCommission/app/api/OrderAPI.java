@@ -17,6 +17,8 @@ import org.springframework.stereotype.Component;
 import com.simpsoft.salesCommission.app.model.Address;
 import com.simpsoft.salesCommission.app.model.AggregateFunctions;
 import com.simpsoft.salesCommission.app.model.CustomerType;
+import com.simpsoft.salesCommission.app.model.Employee;
+import com.simpsoft.salesCommission.app.model.OrderRoster;
 import com.simpsoft.salesCommission.app.model.RuleAssignment;
 import com.simpsoft.salesCommission.app.model.State;
 
@@ -25,6 +27,9 @@ public class OrderAPI {
 
 	@Autowired
 	private static SessionFactory sessionFactory;
+	
+	@Autowired
+	 EmployeeAPI employeeApi;
 
 	private static final Logger logger = Logger.getLogger(RuleAPI.class);
 
@@ -107,7 +112,7 @@ public class OrderAPI {
 			newCustomerType.setCustType(customerType.getCustType());
 			session.save(newCustomerType);
 			tx.commit();
-			logger.debug("CREATED AN AGGREGATE FUNCTION INTO DATABASE" + newCustomerType);
+			logger.debug("CREATED AN CUSTOMER TYPE INTO DATABASE" + newCustomerType);
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
@@ -116,6 +121,30 @@ public class OrderAPI {
 			session.close();
 		}
 		return newCustomerType.getId();
+	}
+	
+	public Long createOrderRoster(OrderRoster orderRoster) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		OrderRoster newOrderRoster = new OrderRoster();
+		try {
+			tx = session.beginTransaction();
+			newOrderRoster.setImportDate(orderRoster.getImportDate());
+			newOrderRoster.setCountOfOrders(orderRoster.getCountOfOrders());
+			newOrderRoster.setStatus(orderRoster.getStatus());
+			//Employee employee = employeeApi.searchEmployee(orderRoster.getImportedBy().getEmployeeName());
+			newOrderRoster.setImportedBy(orderRoster.getImportedBy());
+			session.save(orderRoster);
+			tx.commit();
+			logger.debug("CREATED AN CUSTOMER TYPE INTO DATABASE" + orderRoster);
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return orderRoster.getId();
 	}
 
 }

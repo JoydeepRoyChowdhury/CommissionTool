@@ -18,8 +18,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import com.simpsoft.salesCommission.app.api.OrderAPI;
-import com.simpsoft.salesCommission.app.api.RuleSimpleAPI;
-import com.simpsoft.salesCommission.app.model.ConditionList;
 import com.simpsoft.salesCommission.app.model.CustomerType;
 
 @Component
