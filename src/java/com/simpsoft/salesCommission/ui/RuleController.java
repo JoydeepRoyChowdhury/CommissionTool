@@ -25,10 +25,8 @@ import com.simpsoft.salesCommission.app.model.RuleType;
 import com.simpsoft.salesCommission.app.UImodel.RuleUI;
 import com.simpsoft.salesCommission.app.model.AggregateFunctions;
 import com.simpsoft.salesCommission.app.model.ConditionList;
-import com.simpsoft.salesCommission.app.model.Employee;
 import com.simpsoft.salesCommission.app.model.FieldList;
 import com.simpsoft.salesCommission.app.UImodel.ParameterUI;
-import com.simpsoft.salesCommission.app.UImodel.Person;
 import com.simpsoft.salesCommission.app.UImodel.Person1;
 import com.simpsoft.salesCommission.app.UImodel.PersonListContainer;
 import com.simpsoft.salesCommission.app.UImodel.PersonListContainer1;
@@ -49,12 +47,13 @@ public class RuleController {
 	@RequestMapping(value = "/simpleRule", method = RequestMethod.GET)
 	public String simpleRule(ModelMap model, HttpSession session, HttpServletRequest request, String message) {
 
-		if (session.getAttribute("personListContainer") == null)
+		if ((session.getAttribute("personListContainer") == null) && (session.getAttribute("personListContainer1") == null)){
 			session.setAttribute("personListContainer", getDummyPersonListContainer());
-		model.addAttribute("personListContainer", (PersonListContainer) session.getAttribute("personListContainer"));
-
-		session.setAttribute("personListContainer1", getDummyPersonListContainer1());
+			session.setAttribute("personListContainer1", getDummyPersonListContainer1());
+		}
+		//session.setAttribute("personListContainer1", getDummyPersonListContainer1());
 		model.addAttribute("personListContainer1", (PersonListContainer1) session.getAttribute("personListContainer1"));
+		model.addAttribute("personListContainer", (PersonListContainer) session.getAttribute("personListContainer"));
 
 		model.addAttribute("listRule1", ruleSimpleApi.listOfAggregateFunctions());
 		model.addAttribute("listRule2", ruleSimpleApi.listOfFields());

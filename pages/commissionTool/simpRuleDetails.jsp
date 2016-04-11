@@ -362,7 +362,7 @@ td {
 
 				</table>
 
-				<div align="center">
+				<br/><div align="center">
 					<input type="submit" value="Submit"> <a
 						href="/CommissionTool/ruledetails"> <input type="button"
 						value="Cancel" /></a>
