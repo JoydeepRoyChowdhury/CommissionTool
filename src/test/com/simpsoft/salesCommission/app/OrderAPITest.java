@@ -2,6 +2,8 @@ package com.simpsoft.salesCommission.app;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -15,6 +17,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.simpsoft.salesCommission.app.api.OrderAPI;
 import com.simpsoft.salesCommission.app.api.RoleAPI;
+import com.simpsoft.salesCommission.app.model.OrderRoster;
 import com.simpsoft.salesCommission.app.model.Role;
 import com.simpsoft.salesCommission.app.model.State;
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -48,10 +51,16 @@ public class OrderAPITest {
 		fail("Not yet implemented");
 	}
 */
-	@Test
+/*	@Test
 	public void testSearchState() {
 		State state = orderAPI.searchState("West Bengal");
 		Assert.assertEquals(800, state.getStateCode());
+	} */
+	
+	@Test
+	public void testListofOrderRoster() {
+		List <OrderRoster> orderRosterList = orderAPI.listOfOrderRosters();
+		Assert.assertEquals(4, orderRosterList.size());
 	}
 
 }

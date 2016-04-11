@@ -19,6 +19,7 @@ import com.simpsoft.salesCommission.app.model.AggregateFunctions;
 import com.simpsoft.salesCommission.app.model.CustomerType;
 import com.simpsoft.salesCommission.app.model.Employee;
 import com.simpsoft.salesCommission.app.model.OrderRoster;
+import com.simpsoft.salesCommission.app.model.Rule;
 import com.simpsoft.salesCommission.app.model.RuleAssignment;
 import com.simpsoft.salesCommission.app.model.State;
 
@@ -145,6 +146,30 @@ public class OrderAPI {
 			session.close();
 		}
 		return orderRoster.getId();
+	}
+	
+	/**
+	 * Method for getting list of orderRoster
+	 * 
+	 * @return
+	 */
+	public List<OrderRoster> listOfOrderRosters() {
+
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		List<OrderRoster> orderRosters = new ArrayList<OrderRoster>();
+		try {
+		tx = session.beginTransaction();
+		orderRosters = session.createQuery("FROM OrderRoster").list();
+		tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return orderRosters;
 	}
 
 }

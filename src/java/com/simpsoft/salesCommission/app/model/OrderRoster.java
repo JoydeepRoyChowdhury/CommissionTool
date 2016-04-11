@@ -1,15 +1,20 @@
 package com.simpsoft.salesCommission.app.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.IndexColumn;
 
 @Entity
 @Table(name = "OrderRoster")
@@ -31,6 +36,11 @@ public class OrderRoster {
 	
 	@Column(name = "status")
 	private String status;
+	
+/*	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER, orphanRemoval = true)
+	@JoinColumn(name = "ORDER_ID")
+	@IndexColumn(name = "detailSrl")
+	private List<Order> order; */
 	
 	public OrderRoster() {
 	}
@@ -104,4 +114,18 @@ public class OrderRoster {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
+	/**
+	 * @return the order
+	 */
+/*	public List<Order> getOrder() {
+		return order;
+	}
+
+	/**
+	 * @param order the order to set
+	 */
+/*	public void setOrder(List<Order> order) {
+		this.order = order;
+	} */
 }
