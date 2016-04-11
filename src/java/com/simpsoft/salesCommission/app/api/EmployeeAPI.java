@@ -5,14 +5,17 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.simpsoft.salesCommission.app.model.AggregateFunctions;
+import com.simpsoft.salesCommission.app.model.ConditionList;
 import com.simpsoft.salesCommission.app.model.Employee;
 import com.simpsoft.salesCommission.app.model.Role;
 
@@ -132,7 +135,7 @@ public class EmployeeAPI {
 	 * @param empName
 	 * @return
 	 */
-	public Employee searchEmployee(String empName) {
+/*	public Employee searchEmployee1(String empName) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		Employee employee = new Employee();
@@ -158,6 +161,27 @@ public class EmployeeAPI {
 			session.close();
 		}
 		return employee;
+	} */
+	
+	public Employee searchEmployee(String empName) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		List<Employee> empList = new ArrayList<>();
+		try {
+		tx = session.beginTransaction();
+		Criteria crit = session.createCriteria(Employee.class);
+		crit.add(Restrictions.eq("employeeName", empName));
+		empList = crit.list();
+				tx.commit();
+
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return empList.get(0);
 	}
 	/**
 	 * Method for delete an employee from database
