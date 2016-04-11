@@ -45,6 +45,8 @@ import com.simpsoft.salesCommission.app.model.OrderRoster;
 			  newOrder.setImportDate(order.getImportDate());			  
 			  newOrder.setCountOfOrders(order.getCountOfOrders());
 			  newOrder.setStatus(order.getStatus());
+			  //Employee employee = new Employee();
+			  //employee.setEmployeeName(order.getImportedBy());
 			  Employee employee = empAPI.searchEmployee(order.getImportedBy());
 			  newOrder.setImportedBy(employee);
 			  ordrAPI. createOrderRoster(newOrder);

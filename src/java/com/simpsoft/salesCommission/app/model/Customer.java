@@ -23,11 +23,12 @@ public class Customer {
 	@Column(name = "id")
 	private long id;
 
-	@Column(name = "addressLn1")
-	private String addressLine1;
+	@Column(name = "customerName")
+	private String customerName;
 
-	@Column(name = "addressLn2")
-	private String addressLine2;	
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "ADDRS_ID")
+	private Address address;	
 
 	@OneToOne(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "CUS_TYP_ID")
@@ -50,32 +51,34 @@ public class Customer {
 		this.id = id;
 	}
 
+	
+
 	/**
-	 * @return the addressLine1
+	 * @return the customerName
 	 */
-	public String getAddressLine1() {
-		return addressLine1;
+	public String getCustomerName() {
+		return customerName;
 	}
 
 	/**
-	 * @param addressLine1 the addressLine1 to set
+	 * @param customerName the customerName to set
 	 */
-	public void setAddressLine1(String addressLine1) {
-		this.addressLine1 = addressLine1;
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
 
 	/**
-	 * @return the addressLine2
+	 * @return the address
 	 */
-	public String getAddressLine2() {
-		return addressLine2;
+	public Address getAddress() {
+		return address;
 	}
 
 	/**
-	 * @param addressLine2 the addressLine2 to set
+	 * @param address the address to set
 	 */
-	public void setAddressLine2(String addressLine2) {
-		this.addressLine2 = addressLine2;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	/**

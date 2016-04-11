@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import com.simpsoft.salesCommission.app.model.Address;
 import com.simpsoft.salesCommission.app.model.AggregateFunctions;
+import com.simpsoft.salesCommission.app.model.Customer;
 import com.simpsoft.salesCommission.app.model.CustomerType;
 import com.simpsoft.salesCommission.app.model.Employee;
 import com.simpsoft.salesCommission.app.model.OrderRoster;
@@ -30,7 +31,7 @@ public class OrderAPI {
 	private static SessionFactory sessionFactory;
 	
 	@Autowired
-	 EmployeeAPI employeeApi;
+	private EmployeeAPI employeeAPI;
 
 	private static final Logger logger = Logger.getLogger(RuleAPI.class);
 
@@ -60,7 +61,7 @@ public class OrderAPI {
 		return newState.getId();
 	}
 	
-	public Long createAddress(Address address) {
+	public Address createAddress(Address address) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		Address newAddress = new Address();
@@ -68,7 +69,9 @@ public class OrderAPI {
 			tx = session.beginTransaction();
 			newAddress.setAddrslinen1(address.getAddrslinen1());
 			newAddress.setAddrslinen2(address.getAddrslinen2());
-			newAddress.setState(address.getState());
+			 State state = searchState(address.getState().getStateName());
+			 newAddress.setState(state); 
+			//newAddress.setState(address.getState());
 			session.save(newAddress);
 			tx.commit();
 			logger.debug("CREATED AN AGGREGATE FUNCTION INTO DATABASE" + newAddress);
@@ -79,13 +82,12 @@ public class OrderAPI {
 		} finally {
 			session.close();
 		}
-		return newAddress.getId();
+		return newAddress;
 	} 
 	
 	public State searchState(String stateName) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
-		State state1 = new State();
 		List<State> stateList = new ArrayList<>();
 		try {
 		tx = session.beginTransaction();
@@ -104,6 +106,11 @@ public class OrderAPI {
 		return stateList.get(0);
 	}
 	
+	/**
+	 * 
+	 * @param customerType
+	 * @return
+	 */
 	public Long createCustomerType(CustomerType customerType) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
@@ -124,6 +131,56 @@ public class OrderAPI {
 		return newCustomerType.getId();
 	}
 	
+	/**
+	 * 
+	 * @param customerType
+	 * @return
+	 */
+	public CustomerType searchCustomerType(String customerType) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		List<CustomerType> customerTypeList = new ArrayList<>();
+		try {
+		tx = session.beginTransaction();
+		Criteria crit = session.createCriteria(CustomerType.class);
+		crit.add(Restrictions.eq("custType",customerType));
+		customerTypeList = crit.list();
+				tx.commit();
+
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return customerTypeList.get(0);
+	}
+	
+	public Long createCustomer(Customer customer) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		Customer newCustomer = new Customer();
+		try {
+			tx = session.beginTransaction();
+			newCustomer.setCustomerName(customer.getCustomerName());
+			CustomerType customerType = searchCustomerType(customer.getCustomerType().getCustType());
+			newCustomer.setCustomerType(customerType);
+			Address newAddress = createAddress(customer.getAddress());
+			newCustomer.setAddress(newAddress);
+			session.save(newCustomer);
+			tx.commit();
+			logger.debug("CREATED AN CUSTOMER TYPE INTO DATABASE" + newCustomer);
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return newCustomer.getId();
+	}
+	
 	public Long createOrderRoster(OrderRoster orderRoster) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
@@ -133,7 +190,8 @@ public class OrderAPI {
 			newOrderRoster.setImportDate(orderRoster.getImportDate());
 			newOrderRoster.setCountOfOrders(orderRoster.getCountOfOrders());
 			newOrderRoster.setStatus(orderRoster.getStatus());
-			//Employee employee = employeeApi.searchEmployee(orderRoster.getImportedBy().getEmployeeName());
+			//Employee employee = employeeAPI.searchEmployee(orderRoster.getImportedBy().getEmployeeName());
+			//newOrderRoster.setImportedBy(employee);
 			newOrderRoster.setImportedBy(orderRoster.getImportedBy());
 			session.save(orderRoster);
 			tx.commit();

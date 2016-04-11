@@ -39,7 +39,8 @@ import com.simpsoft.salesCommission.app.model.State;
 			  Address newAddress = new Address();
 			  newAddress.setAddrslinen1(add.getAddrslinen1());
 			  newAddress.setAddrslinen2(add.getAddrslinen2());
-			  State state = ordrAPI.searchState(add.getState());
+			  State state = new State();
+			  state.setStateName(add.getState());
 			  newAddress.setState(state);
 			  ordrAPI.createAddress(newAddress);
 		  } 
