@@ -20,6 +20,8 @@ import com.simpsoft.salesCommission.app.model.Customer;
 import com.simpsoft.salesCommission.app.model.CustomerType;
 import com.simpsoft.salesCommission.app.model.Employee;
 import com.simpsoft.salesCommission.app.model.OrderRoster;
+import com.simpsoft.salesCommission.app.model.ProductSubType;
+import com.simpsoft.salesCommission.app.model.ProductType;
 import com.simpsoft.salesCommission.app.model.Rule;
 import com.simpsoft.salesCommission.app.model.RuleAssignment;
 import com.simpsoft.salesCommission.app.model.State;
@@ -181,6 +183,69 @@ public class OrderAPI {
 		return newCustomer.getId();
 	}
 	
+	
+	public Long createProductType(ProductType productType) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		ProductType newProductType = new ProductType();
+		try {
+			tx = session.beginTransaction();
+			newProductType.setProdType(productType.getProdType());
+			session.save(newProductType);
+			tx.commit();
+			logger.debug("CREATED AN PRODUCT TYPE INTO DATABASE" + newProductType);
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return newProductType.getId();
+	}
+	
+	public ProductSubType createProductSubType(ProductSubType productSubType) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		ProductSubType newproductSubType = new ProductSubType();
+		try {
+			tx = session.beginTransaction();
+			newproductSubType.setSubType(productSubType.getSubType());
+			ProductType productType = searchProductType(productSubType.getProductType().getProdType());
+			newproductSubType.setProductType(productType);
+			session.save(newproductSubType);
+			tx.commit();
+			logger.debug("CREATED AN AGGREGATE FUNCTION INTO DATABASE" + newproductSubType);
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return productSubType;
+	} 
+	
+	public ProductType searchProductType(String productType) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		List<ProductType> productTypeList = new ArrayList<>();
+		try {
+		tx = session.beginTransaction();
+		Criteria crit = session.createCriteria(ProductType.class);
+		crit.add(Restrictions.eq("prodType",productType));
+		productTypeList = crit.list();
+				tx.commit();
+
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return productTypeList.get(0);
+	}
 	public Long createOrderRoster(OrderRoster orderRoster) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;

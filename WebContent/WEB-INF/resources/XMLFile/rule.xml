@@ -74,7 +74,7 @@
 			<AggregateFun>max</AggregateFun>
 		 	<QualifyingClauses>
 				<QualifyingClause value="qualifying clause value 5">
-					<FieldList>Customer Name</FieldList>
+					<FieldList>Order Total</FieldList>
 					<notFlag>true</notFlag>
 					<ConditionList>less than</ConditionList>
 					<ignoreCase>false</ignoreCase>
@@ -124,7 +124,7 @@
 					<ignoreCase>false</ignoreCase>
 				</QualifyingClause>
 				<QualifyingClause value="16000">
-					<FieldList>Office Location</FieldList>
+					<FieldList>Discount Percentage</FieldList>
 					<notFlag>true</notFlag>
 					<ConditionList>equal</ConditionList>
 					<ignoreCase>false</ignoreCase>

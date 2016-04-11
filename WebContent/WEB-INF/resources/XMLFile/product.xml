@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<Products>
+	<Product ProductName="Sum">
+		<description>401,Victoria Enclave</description>
+		<add_line_2>Garia,Kolkata</add_line_2>
+		<state>West Bengal</state>
+		<custType>Discount Customers</custType>
+	</Product>
+
+	
+
+</Products>
