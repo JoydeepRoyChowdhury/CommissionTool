@@ -12,7 +12,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.simpsoft.salesCommission.app.model.AggregateFunctions;
 import com.simpsoft.salesCommission.app.model.Rule;
 import com.simpsoft.salesCommission.app.model.RuleSimple;
 import com.simpsoft.salesCommission.app.model.RuleType;

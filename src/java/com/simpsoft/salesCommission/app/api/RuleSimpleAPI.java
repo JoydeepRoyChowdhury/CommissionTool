@@ -4,25 +4,21 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
-import org.apache.log4j.Logger;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.simpsoft.salesCommission.app.model.AggregateFunctions;
 import com.simpsoft.salesCommission.app.model.ConditionList;
-import com.simpsoft.salesCommission.app.model.Employee;
 import com.simpsoft.salesCommission.app.model.FieldList;
 import com.simpsoft.salesCommission.app.model.Rule;
-import com.simpsoft.salesCommission.app.model.RuleParameter;
 import com.simpsoft.salesCommission.app.model.RuleSimple;
-import com.simpsoft.salesCommission.app.model.State;
 
 @Component
 public class RuleSimpleAPI {

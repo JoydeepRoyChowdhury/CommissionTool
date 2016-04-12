@@ -14,10 +14,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.simpsoft.salesCommission.app.model.AggregateFunctions;
-import com.simpsoft.salesCommission.app.model.ConditionList;
 import com.simpsoft.salesCommission.app.model.Employee;
-import com.simpsoft.salesCommission.app.model.Role;
 
 /**
  * Class for database operations on Employee

@@ -1,7 +1,6 @@
 package com.simpsoft.salesCommission.app.api;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -15,16 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.simpsoft.salesCommission.app.model.Address;
-import com.simpsoft.salesCommission.app.model.AggregateFunctions;
 import com.simpsoft.salesCommission.app.model.Customer;
 import com.simpsoft.salesCommission.app.model.CustomerType;
-import com.simpsoft.salesCommission.app.model.Employee;
 import com.simpsoft.salesCommission.app.model.OrderRoster;
 import com.simpsoft.salesCommission.app.model.Product;
 import com.simpsoft.salesCommission.app.model.ProductSubType;
 import com.simpsoft.salesCommission.app.model.ProductType;
-import com.simpsoft.salesCommission.app.model.Rule;
-import com.simpsoft.salesCommission.app.model.RuleAssignment;
 import com.simpsoft.salesCommission.app.model.State;
 
 @Component

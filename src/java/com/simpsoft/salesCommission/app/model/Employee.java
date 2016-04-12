@@ -25,12 +25,12 @@ public class Employee {
 	private Date terminationDate;
 	
 	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER, orphanRemoval = true)
-	@JoinColumn(name = "EMP_MGR_ID")
+	@JoinColumn(name = "EMP_ID")
 	@IndexColumn(name = "detailSrl")
 	private List<EmployeeManagerMap> employeeManagerMap;
 	
 	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER, orphanRemoval = true)
-	@JoinColumn(name = "EMP_ROLE_ID")
+	@JoinColumn(name = "EMP_ID")
 	@IndexColumn(name = "detailSrl")
 	private List<EmployeeRoleMap> employeeRoleMap;
 
