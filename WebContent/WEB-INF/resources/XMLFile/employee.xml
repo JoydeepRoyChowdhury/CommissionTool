@@ -2,21 +2,41 @@
 <Employees>
      <Employee Employeename="Harry">
          <StartDate>31/03/2016</StartDate>
-          <Salary>2500</Salary>
+          <Salary>25000</Salary>
      </Employee>
      <Employee Employeename="Tom">
           <StartDate>18/09/2015</StartDate>
-          <Salary>1500</Salary>       
+          <Salary>15000</Salary>       
           <manager_name>Harry</manager_name>
      </Employee>
      <Employee Employeename="Potter">
          <StartDate>14/04/2015</StartDate>
-          <Salary>2000</Salary>
+          <Salary>20000</Salary>
           <manager_name>Tom</manager_name>
      </Employee>
      <Employee Employeename="Jerry">
           <StartDate>31/08/2015</StartDate>
-          <Salary>2250</Salary>
+          <Salary>22500</Salary>
+          <manager_name>Potter</manager_name>
+     </Employee>
+     <Employee Employeename="Ram">
+          <StartDate>31/08/2015</StartDate>
+          <Salary>22500</Salary>
+          <manager_name>Harry</manager_name>
+     </Employee>
+     <Employee Employeename="Rocky">
+          <StartDate>31/08/2015</StartDate>
+          <Salary>30000</Salary>
+          <manager_name>Potter</manager_name>
+     </Employee>
+     <Employee Employeename="John">
+          <StartDate>31/08/2015</StartDate>
+          <Salary>30000</Salary>
+          <manager_name>Potter</manager_name>
+     </Employee>
+     <Employee Employeename="Smith">
+          <StartDate>31/08/2015</StartDate>
+          <Salary>30000</Salary>
           <manager_name>Potter</manager_name>
      </Employee>
 </Employees>

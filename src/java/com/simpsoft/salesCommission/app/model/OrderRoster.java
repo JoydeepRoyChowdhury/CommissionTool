@@ -37,10 +37,10 @@ public class OrderRoster {
 	@Column(name = "status")
 	private String status;
 	
-/*	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER, orphanRemoval = true)
-	@JoinColumn(name = "ORDER_ID")
+	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER, orphanRemoval = true)
+	@JoinColumn(name = "ORDER_ROSTER_ID")
 	@IndexColumn(name = "detailSrl")
-	private List<Order> order; */
+	private List<OrderDetail> orderDetail; 
 	
 	public OrderRoster() {
 	}
@@ -116,16 +116,18 @@ public class OrderRoster {
 	}
 
 	/**
-	 * @return the order
+	 * @return the orderDetail
 	 */
-/*	public List<Order> getOrder() {
-		return order;
+	public List<OrderDetail> getOrderDetail() {
+		return orderDetail;
 	}
 
 	/**
-	 * @param order the order to set
+	 * @param orderDetail the orderDetail to set
 	 */
-/*	public void setOrder(List<Order> order) {
-		this.order = order;
-	} */
+	public void setOrderDetail(List<OrderDetail> orderDetail) {
+		this.orderDetail = orderDetail;
+	}
+
+	
 }

@@ -1,23 +1,21 @@
 package com.simpsoft.salesCommission.app.dataloader;
 
 import java.util.Date;
+import java.util.List;
 
 public class OrderRosterXML {
 
-	
 	private long id;
-	
 	
 	private Date importDate;
 
-	
 	private int countOfOrders;
-	
-	
+		
 	private String importedBy;
 	
-	
 	private String status;
+	
+	private List<OrderXML> orderXML;
 	
 	public OrderRosterXML() {
 	}
@@ -90,5 +88,19 @@ public class OrderRosterXML {
 	 */
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	/**
+	 * @return the orderXML
+	 */
+	public List<OrderXML> getOrderXML() {
+		return orderXML;
+	}
+
+	/**
+	 * @param orderXML the orderXML to set
+	 */
+	public void setOrderXML(List<OrderXML> orderXML) {
+		this.orderXML = orderXML;
 	}
 }

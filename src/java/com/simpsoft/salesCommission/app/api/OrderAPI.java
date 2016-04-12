@@ -42,7 +42,11 @@ public class OrderAPI {
 		sessionFactory = factory;
 	}
 	
-	
+	/**
+	 * 
+	 * @param state
+	 * @return
+	 */
 	public Long createState(State state) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
@@ -64,6 +68,11 @@ public class OrderAPI {
 		return newState.getId();
 	}
 	
+	/**
+	 * 
+	 * @param address
+	 * @return
+	 */
 	public Address createAddress(Address address) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
@@ -88,6 +97,11 @@ public class OrderAPI {
 		return newAddress;
 	} 
 	
+	/**
+	 * 
+	 * @param stateName
+	 * @return
+	 */
 	public State searchState(String stateName) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
@@ -160,6 +174,11 @@ public class OrderAPI {
 		return customerTypeList.get(0);
 	}
 	
+	/**
+	 * 
+	 * @param customer
+	 * @return
+	 */
 	public Long createCustomer(Customer customer) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
@@ -182,6 +201,27 @@ public class OrderAPI {
 			session.close();
 		}
 		return newCustomer.getId();
+	}
+	
+	public Customer searchCustomer(String custName) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		List<Customer> custList = new ArrayList<>();
+		try {
+		tx = session.beginTransaction();
+		Criteria crit = session.createCriteria(Customer.class);
+		crit.add(Restrictions.eq("customerName", custName));
+		custList = crit.list();
+				tx.commit();
+
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return custList.get(0);
 	}
 	/**
 	 * 
@@ -287,8 +327,9 @@ public class OrderAPI {
 		}
 		return productSubTypeList.get(0);
 	}
+	
 	/**
-	 * 
+	 * Method for creating product
 	 * @param product
 	 * @return
 	 */
@@ -315,6 +356,11 @@ public class OrderAPI {
 		return newProduct;
 	} 
 	
+	/**
+	 * Method for creating order roster
+	 * @param orderRoster
+	 * @return
+	 */
 	public Long createOrderRoster(OrderRoster orderRoster) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
@@ -327,9 +373,10 @@ public class OrderAPI {
 			//Employee employee = employeeAPI.searchEmployee(orderRoster.getImportedBy().getEmployeeName());
 			//newOrderRoster.setImportedBy(employee);
 			newOrderRoster.setImportedBy(orderRoster.getImportedBy());
-			session.save(orderRoster);
+			newOrderRoster.setOrderDetail(orderRoster.getOrderDetail());
+			session.save(newOrderRoster);
 			tx.commit();
-			logger.debug("CREATED AN CUSTOMER TYPE INTO DATABASE" + orderRoster);
+			logger.debug("CREATED AN CUSTOMER TYPE INTO DATABASE" + newOrderRoster);
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
@@ -337,7 +384,7 @@ public class OrderAPI {
 		} finally {
 			session.close();
 		}
-		return orderRoster.getId();
+		return newOrderRoster.getId();
 	}
 	
 	/**

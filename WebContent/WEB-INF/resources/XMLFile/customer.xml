@@ -20,5 +20,19 @@
 		<state>Maharashtra</state>
 		<custType>Loyal Customers</custType>
 	</Customer>
+	
+	<Customer CustomerName="Microsoft">
+		<add_line_1>2/B, </add_line_1>
+		<add_line_2>Kukatpally,Pune</add_line_2>
+		<state>Maharashtra</state>
+		<custType>Loyal Customers</custType>
+	</Customer>
+	
+	<Customer CustomerName="Lenovo">
+		<add_line_1>2/B, </add_line_1>
+		<add_line_2>Kukatpally,Pune</add_line_2>
+		<state>Maharashtra</state>
+		<custType>Wandering Customers</custType>
+	</Customer>
 
 </Customers>

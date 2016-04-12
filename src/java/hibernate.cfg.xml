@@ -30,7 +30,7 @@
 		<mapping class="com.simpsoft.salesCommission.app.model.CustomerType" />
 		<mapping class="com.simpsoft.salesCommission.app.model.Customer" />	
 		<mapping class="com.simpsoft.salesCommission.app.model.OrderRoster" />
-		<mapping class="com.simpsoft.salesCommission.app.model.Order" />
+		<mapping class="com.simpsoft.salesCommission.app.model.OrderDetail" />
 		<mapping class="com.simpsoft.salesCommission.app.model.OrderLineItems" />
 		<mapping class="com.simpsoft.salesCommission.app.model.OrderLineItemsSplit" />	
 		<mapping class="com.simpsoft.salesCommission.app.model.Product" />
