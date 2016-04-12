@@ -1,16 +1,20 @@
 package com.simpsoft.salesCommission.app.api;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.simpsoft.salesCommission.app.model.Employee;
 import com.simpsoft.salesCommission.app.model.Role;
 
 
@@ -108,6 +112,27 @@ public class RoleAPI {
 			session.close();
 		}
 		return roleResult;
+	}
+	
+	public Role searchRole(String roleName) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		List<Role> roleList = new ArrayList<>();
+		try {
+		tx = session.beginTransaction();
+		Criteria crit = session.createCriteria(Role.class);
+		crit.add(Restrictions.eq("roleName", roleName));
+		roleList = crit.list();
+				tx.commit();
+
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return roleList.get(0);
 	}
 
 	/* ............. delete role........ */

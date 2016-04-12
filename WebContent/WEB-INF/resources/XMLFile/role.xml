@@ -35,4 +35,8 @@
          <Description>Good</Description>
           <ReportsTo>Director Project Management</ReportsTo>
      </Role>
+     <Role Rolename="Analyst II">
+         <Description>Good</Description>
+          <ReportsTo>Director Project Management</ReportsTo>
+     </Role>
 </Roles>

@@ -14,11 +14,11 @@ public class Role {
 	@Column(name = "id")
 	private long id;
 
-	@Column(name = "RoleName")
-	private String RoleName;
+	@Column(name = "roleName")
+	private String roleName;
 
-	@Column(name = "Description")
-	private String Description;
+	@Column(name = "description")
+	private String description;
 
 	@ManyToOne(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "reportsTo", nullable = true)
@@ -52,7 +52,7 @@ public class Role {
 	 * @return the roleName
 	 */
 	public String getRoleName() {
-		return RoleName;
+		return roleName;
 	}
 
 	/**
@@ -60,14 +60,14 @@ public class Role {
 	 *            the roleName to set
 	 */
 	public void setRoleName(String roleName) {
-		RoleName = roleName;
+		roleName = roleName;
 	}
 
 	/**
 	 * @return the description
 	 */
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
 	/**
@@ -75,7 +75,7 @@ public class Role {
 	 *            the description to set
 	 */
 	public void setDescription(String description) {
-		Description = description;
+		description = description;
 	}
 
 	/**
