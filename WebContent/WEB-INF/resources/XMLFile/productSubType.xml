@@ -9,7 +9,7 @@
 	<ProductSubType subtypeName="Mi">
 	<typeName>Smart Phone</typeName>
 	</ProductSubType>
-	<ProductSubType subtypeName="Samsung Galaxy Grand2">
+	<ProductSubType subtypeName="Samsung">
 	<typeName>Smart Phone</typeName>
 	</ProductSubType>
 </ProductSubTypes>

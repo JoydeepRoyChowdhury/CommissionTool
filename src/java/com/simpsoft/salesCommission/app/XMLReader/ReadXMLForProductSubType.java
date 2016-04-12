@@ -21,7 +21,7 @@ import com.simpsoft.salesCommission.app.api.OrderAPI;
 import com.simpsoft.salesCommission.app.dataloader.ProductSubTypeXML;
 import com.simpsoft.salesCommission.app.model.ProductSubType;
 import com.simpsoft.salesCommission.app.model.ProductType;
-import com.simpsoft.salesCommission.app.model.State;
+
 
 @Component
 	public class ReadXMLForProductSubType {	

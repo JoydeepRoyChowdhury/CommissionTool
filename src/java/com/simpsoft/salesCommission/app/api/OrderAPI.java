@@ -20,6 +20,7 @@ import com.simpsoft.salesCommission.app.model.Customer;
 import com.simpsoft.salesCommission.app.model.CustomerType;
 import com.simpsoft.salesCommission.app.model.Employee;
 import com.simpsoft.salesCommission.app.model.OrderRoster;
+import com.simpsoft.salesCommission.app.model.Product;
 import com.simpsoft.salesCommission.app.model.ProductSubType;
 import com.simpsoft.salesCommission.app.model.ProductType;
 import com.simpsoft.salesCommission.app.model.Rule;
@@ -182,7 +183,11 @@ public class OrderAPI {
 		}
 		return newCustomer.getId();
 	}
-	
+	/**
+	 * 
+	 * @param productType
+	 * @return
+	 */
 	
 	public Long createProductType(ProductType productType) {
 		Session session = sessionFactory.openSession();
@@ -204,6 +209,11 @@ public class OrderAPI {
 		return newProductType.getId();
 	}
 	
+	/**
+	 * 
+	 * @param productSubType
+	 * @return
+	 */
 	public ProductSubType createProductSubType(ProductSubType productSubType) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
@@ -226,6 +236,11 @@ public class OrderAPI {
 		return productSubType;
 	} 
 	
+	/**
+	 * 
+	 * @param productType
+	 * @return
+	 */
 	public ProductType searchProductType(String productType) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
@@ -246,6 +261,60 @@ public class OrderAPI {
 		}
 		return productTypeList.get(0);
 	}
+	
+	/**
+	 * 
+	 * @param productSubType
+	 * @return
+	 */
+	public ProductSubType searchProductSubType(String productSubType) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		List<ProductSubType> productSubTypeList = new ArrayList<>();
+		try {
+		tx = session.beginTransaction();
+		Criteria crit = session.createCriteria(ProductSubType.class);
+		crit.add(Restrictions.eq("subType",productSubType));
+		productSubTypeList = crit.list();
+				tx.commit();
+
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return productSubTypeList.get(0);
+	}
+	/**
+	 * 
+	 * @param product
+	 * @return
+	 */
+	public Product createProduct(Product product) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		Product newProduct = new Product();
+		try {
+			tx = session.beginTransaction();
+			newProduct.setProductName(product.getProductName());
+			newProduct.setDescription(product.getDescription());
+			ProductSubType productSubType = searchProductSubType(product.getProductSubType().getSubType());
+			newProduct.setProductSubType(productSubType);
+			session.save(newProduct);
+			tx.commit();
+			logger.debug("CREATED AN PRODUCT INTO DATABASE" + newProduct);
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return newProduct;
+	} 
+	
 	public Long createOrderRoster(OrderRoster orderRoster) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
