@@ -318,10 +318,10 @@ var count = "1";
 				</tr>
 			
 			</table>
-			<br/><input type="submit" value="Update">
+			<br/><div align="center"><input type="submit" value="Update">
 			<input type="submit" value="Submit" />
 			<a href="/CommissionTool/CompRule"> <input type="button"
-				value="Cancel" /></a>
+				value="Cancel" /></a></div>
 
 </div>
 		</form:form>
