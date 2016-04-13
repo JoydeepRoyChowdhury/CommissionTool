@@ -61,12 +61,15 @@ public class ReadXMLForRole {
 					Element elem = (Element) node;
 
 					String roleName = node.getAttributes().getNamedItem("Rolename").getNodeValue();
+					 System.out.println("ProductName :" + roleName);
 					String description = elem.getElementsByTagName("Description").item(0).getChildNodes().item(0)
 							.getNodeValue();
+					 System.out.println("ProductName :" + description);
 					RoleXML nrole = new RoleXML();
 					nrole.setRoleName(roleName);
 					nrole.setDescription(description);
 					NodeList reportsToNodes = elem.getElementsByTagName("ReportsTo");
+					 System.out.println("ProductName :" + reportsToNodes);
 					if (reportsToNodes != null && reportsToNodes.getLength() > 0) {
 						nrole.setReportsTo(reportsToNodes.item(0).getChildNodes().item(0).getNodeValue());
 					}

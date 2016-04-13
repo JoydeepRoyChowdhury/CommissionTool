@@ -36,7 +36,7 @@
 			</AssignmentDetail>
 		</AssignmentDetails>
 	</RuleAssignment>
-<!-- 	<RuleAssignment>
+	<RuleAssignment>
 		<EmployeeName>Tom</EmployeeName>
 		<RoleName>null</RoleName>
 		<AssignmentDetails>
@@ -71,5 +71,5 @@
 				<Frequency>null</Frequency>
 			</AssignmentDetail>
 		</AssignmentDetails>
-	</RuleAssignment>  -->
+	</RuleAssignment> 
 </RuleAssignments>

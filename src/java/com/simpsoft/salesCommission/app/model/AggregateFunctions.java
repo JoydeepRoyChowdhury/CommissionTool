@@ -46,5 +46,9 @@ public class AggregateFunctions {
 	public void setFunctionName(String functionName) {
 		this.functionName = functionName;
 	}
-
+	
+	@Override
+    public String toString() {
+         return "<" + functionName + ">";
+    }
 }

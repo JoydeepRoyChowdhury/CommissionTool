@@ -44,7 +44,7 @@ public class RuleSimple {
 	@Column(name = "populationUpto")
 	private int populationUpto;
 
-	@OneToOne(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER, orphanRemoval = true)
+	@OneToOne(cascade = { CascadeType.MERGE }, fetch = FetchType.EAGER, orphanRemoval = true)
 	@JoinColumn(name = "AGGT_FUNC_ID")
 	private AggregateFunctions aggregateFunctions;
 

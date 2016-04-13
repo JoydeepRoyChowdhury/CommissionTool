@@ -327,7 +327,7 @@ public class RuleSimpleAPI {
 	 * @param fieldVal
 	 * @return
 	 */
-	public FieldList searchFieldList(String fieldVal) {
+	public FieldList searchFieldList1(String fieldVal) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		FieldList fld1 = new FieldList();
@@ -354,7 +354,7 @@ public class RuleSimpleAPI {
 		}
 		return fld1;
 	}
-	public FieldList searchFieldList1(String fieldVal) {
+	public FieldList searchFieldList(String fieldVal) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		List<FieldList> fieldList = new ArrayList<>();

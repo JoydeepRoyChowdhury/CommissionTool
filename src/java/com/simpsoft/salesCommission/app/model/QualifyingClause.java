@@ -22,7 +22,7 @@ public class QualifyingClause {
 	@Column(name = "value")
 	private String value;
 
-	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToOne(cascade = CascadeType.MERGE, orphanRemoval = true)
 	@JoinColumn(name = "FLD_LST_ID")
 	private FieldList fieldList;
 

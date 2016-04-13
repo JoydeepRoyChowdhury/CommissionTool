@@ -33,6 +33,7 @@ public class Role {
 	public Role() {
 	}
 
+
 	/**
 	 * @return the id
 	 */
@@ -40,13 +41,14 @@ public class Role {
 		return id;
 	}
 
+
 	/**
-	 * @param id
-	 *            the id to set
+	 * @param id the id to set
 	 */
 	public void setId(long id) {
 		this.id = id;
 	}
+
 
 	/**
 	 * @return the roleName
@@ -55,13 +57,14 @@ public class Role {
 		return roleName;
 	}
 
+
 	/**
-	 * @param roleName
-	 *            the roleName to set
+	 * @param roleName the roleName to set
 	 */
 	public void setRoleName(String roleName) {
-		roleName = roleName;
+		this.roleName = roleName;
 	}
+
 
 	/**
 	 * @return the description
@@ -70,13 +73,14 @@ public class Role {
 		return description;
 	}
 
+
 	/**
-	 * @param description
-	 *            the description to set
+	 * @param description the description to set
 	 */
 	public void setDescription(String description) {
-		description = description;
+		this.description = description;
 	}
+
 
 	/**
 	 * @return the reportsTo
@@ -85,13 +89,14 @@ public class Role {
 		return reportsTo;
 	}
 
+
 	/**
-	 * @param reportsTo
-	 *            the reportsTo to set
+	 * @param reportsTo the reportsTo to set
 	 */
 	public void setReportsTo(Role reportsTo) {
 		this.reportsTo = reportsTo;
 	}
+
 
 	/**
 	 * @return the target
@@ -100,26 +105,13 @@ public class Role {
 		return target;
 	}
 
+
 	/**
-	 * @param target
-	 *            the target to set
+	 * @param target the target to set
 	 */
 	public void setTarget(List<Target> target) {
 		this.target = target;
 	}
 
-	/**
-	 * @return the subordinates
-	 */
-	/*
-	 * public Set<Role> getSubordinates() { return subordinates; }
-	 */
-	/**
-	 * @param subordinates
-	 *            the subordinates to set
-	 */
-	/*
-	 * public void setSubordinates(Set<Role> subordinates) { this.subordinates =
-	 * subordinates; }
-	 */
+	
 }
