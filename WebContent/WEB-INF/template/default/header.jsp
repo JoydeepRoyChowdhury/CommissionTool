@@ -44,7 +44,7 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Booking</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#">Orders/Booking</a>
+                                        <li><a href="/CommissionTool/importOrders">Orders/Booking</a>
                                         </li>
                                     </ul>
                                 </li>

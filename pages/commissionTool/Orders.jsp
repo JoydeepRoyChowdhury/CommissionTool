@@ -21,6 +21,26 @@
 
 <script>
 
+$(document)
+.ready(
+        function() {
+            //add more file components if Add is clicked
+            $('#addFile')
+                    .click(
+                            function() {
+                                var fileIndex = $('#fileTable tr')
+                                        .children().length - 1;
+                                $('#fileTable')
+                                        .append(
+                                                '<tr><td>'
+                                                        + '   <input type="file" name="files['+ fileIndex +']" />'
+                                                        + '</td></tr>');
+                            });
+
+        });
+
+
+
 	function HandleBrowseClick() {
 		var fileinput = document.getElementById("browse");
 		fileinput.click();
@@ -69,6 +89,7 @@
 </script>
 
 		</head>
+		<div style="height: 580px; overflow: auto;">
 		<div id="example">
 
 			<table id="grid">
@@ -107,16 +128,26 @@
 
 			</table>
 		</div>
-		<br/><table align="center">
-		   <tr>
-    
-		      <center><td> Import new: </td>
-		      <td><input type="file" id="browse" name="fileupload" style="display: none" onChange="Handlechange();"/>
-				<input type="text" id="filename" readonly="true"/>
-				<input type="button" value="Select File" id="fakeBrowse" onclick="HandleBrowseClick();"/></td>
-			<td>&nbsp;<input type="button" value="Import" onclick="HandleClick();" /></td>
-		  </tr>
-	  </table>
+		<br/>
+	
+		
+		     <form:form method="post" action="/CommissionTool/savefiles"  modelAttribute="uploadForm" enctype="multipart/form-data">
+ 			<div align="center">
+            <table id="fileTable">
+                <tr>
+                <td><b>Import Files:&nbsp;</b><input name="files[0]" type="file" /></td>
+                </tr>
+            </table>
+            </div><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+           <input type="submit" value="Upload" onClick="alert('Uploading Files.....!!!!!')" />
+            <input id="addFile" type="button" value="Add More Files" />
+        </form:form>
+        
 
+        </div>
 	</tiles:putAttribute>
 </tiles:insertDefinition>
