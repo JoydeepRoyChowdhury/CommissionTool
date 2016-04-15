@@ -75,21 +75,11 @@ public class OrderController {
                   // System.out.println(multipartFile.getInputStream());
                    System.out.println( multipartFile.getSize());
                     multipartFile.transferTo(new File(saveDirectory + fileName));
-                    Scanner scan = null;
-            		try{
-            			scan = new Scanner(new File(saveDirectory + fileName));
-            			while(scan.hasNextLine()){
-            				System.out.println(scan.nextLine());
-            			}
-            		}
-            		catch (FileNotFoundException e){
-            			e.printStackTrace();
-            		}
-                    fileNames.add(fileName);
+                    orderApi.importOrders(multipartFile.getInputStream());
                 }
             }
         }
- 
+        
         map.addAttribute("files", fileNames);
         return "redirect:/importOrders";
     }
