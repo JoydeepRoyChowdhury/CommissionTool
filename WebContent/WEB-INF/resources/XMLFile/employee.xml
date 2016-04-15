@@ -4,6 +4,10 @@
 		<StartDate>31/03/2016</StartDate>
 		<Salary>25000</Salary>
 	</Employee>
+	<Employee Employeename="Jackson">
+		<StartDate>31/03/2016</StartDate>
+		<Salary>25000</Salary>
+	</Employee>
 	<Employee Employeename="Tom">
 		<StartDate>18/09/2015</StartDate>
 		<Salary>15000</Salary>
@@ -12,17 +16,17 @@
 				<mgrSDate>18/09/2015</mgrSDate>
 				<mgrEDate>18/09/2015</mgrEDate>
 			</manager>
-			<manager managerName="Jack">
+			<manager managerName="Jackson">
 				<mgrSDate>18/09/2015</mgrSDate>
 				<mgrEDate>18/09/2015</mgrEDate>
 			</manager>
 		</managers>
 		<roles>
-			<role managerName="Analyst I">
+			<role roleName="Analyst I">
 				<rolSDate>18/09/2015</rolSDate>
 				<rolEDate>18/09/2015</rolEDate>
 			</role>
-			<role managerName="Director Project Management">
+			<role roleName="Director Project Management">
 				<rolSDate>18/09/2015</rolSDate>
 				<rolEDate>18/09/2015</rolEDate>
 			</role>
@@ -36,17 +40,17 @@
 				<mgrSDate>18/09/2015</mgrSDate>
 				<mgrEDate>18/09/2015</mgrEDate>
 			</manager>
-			<manager managerName="Jerry">
+			<manager managerName="Harry">
 				<mgrSDate>18/09/2015</mgrSDate>
 				<mgrEDate>18/09/2015</mgrEDate>
 			</manager>
 		</managers>
 		<roles>
-			<role managerName="Analyst II">
+			<role roleName="Analyst II">
 				<rolSDate>18/09/2015</rolSDate>
 				<rolEDate>18/09/2015</rolEDate>
 			</role>
-			<role managerName="Director Development">
+			<role roleName="Director Development">
 				<rolSDate>18/09/2015</rolSDate>
 				<rolEDate>18/09/2015</rolEDate>
 			</role>
