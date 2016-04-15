@@ -1,7 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<!DOCTYPE html>
-<html>
+
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,8 +16,8 @@
 
 <title>Login</title>
 </head>
+<form action="/CommissionTool/submitLogin"  method="post">
 
-<body>
 
 	<div class="vid-container">
 		<video id="Video1" class="bgvid back" autoplay="false" muted="muted"
@@ -51,6 +50,5 @@
 	<script
 		src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
+</form>
 
-</body>
-</html>

@@ -16,7 +16,8 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-<h2>Welcome to Sales Commission Tool..</h2>
+                    
+<h2>Welcome to Sales Commission Tool Mr.${sessionScope.employee}</h2>
 
  
  </div>
