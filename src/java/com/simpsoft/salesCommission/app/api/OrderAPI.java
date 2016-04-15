@@ -1,23 +1,12 @@
 package com.simpsoft.salesCommission.app.api;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Scanner;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -30,17 +19,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
-import org.springframework.web.multipart.MultipartFile;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.simpsoft.salesCommission.app.UImodel.FileList;
-import com.simpsoft.salesCommission.app.XMLReader.ReadXMLForOrderRoster;
 import com.simpsoft.salesCommission.app.dataloader.OrderLineItemsXML;
 import com.simpsoft.salesCommission.app.dataloader.OrderRosterXML;
 import com.simpsoft.salesCommission.app.dataloader.OrderXML;
@@ -61,9 +45,6 @@ public class OrderAPI {
 
 	@Autowired
 	private static SessionFactory sessionFactory;
-
-	@Autowired
-	private EmployeeAPI employeeAPI;
 
 	private static final Logger logger = Logger.getLogger(RuleAPI.class);
 
