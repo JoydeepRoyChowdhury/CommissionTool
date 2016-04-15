@@ -23,7 +23,7 @@ public class Product {
 	@Column(name = "description")
 	private String description;	
 
-	@OneToOne(cascade = { CascadeType.ALL })
+	@OneToOne(cascade = { CascadeType.MERGE })
 	@JoinColumn(name = "PROD_STYP_ID")
 	private ProductSubType productSubType;
 	

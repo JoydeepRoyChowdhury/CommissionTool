@@ -22,7 +22,7 @@ public class OrderLineItems {
 	@Column(name = "orderDate")
 	private Date orderDate;
 
-	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToOne(cascade = CascadeType.MERGE, orphanRemoval = true)
 	@JoinColumn(name = "PROD_ID")
 	private Product product;
 

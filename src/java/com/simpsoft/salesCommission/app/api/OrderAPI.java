@@ -352,6 +352,31 @@ public class OrderAPI {
 	} 
 	
 	/**
+	 * 
+	 * @param productType
+	 * @return
+	 */
+	public Product searchProduct(String product) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		List<Product> productList = new ArrayList<>();
+		try {
+		tx = session.beginTransaction();
+		Criteria crit = session.createCriteria(Product.class);
+		crit.add(Restrictions.eq("productName",product));
+		productList = crit.list();
+				tx.commit();
+
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return productList.get(0);
+	}
+	/**
 	 * Method for creating order roster
 	 * @param orderRoster
 	 * @return

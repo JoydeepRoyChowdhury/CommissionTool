@@ -30,7 +30,9 @@ import com.simpsoft.salesCommission.app.model.CustomerType;
 import com.simpsoft.salesCommission.app.model.Employee;
 import com.simpsoft.salesCommission.app.model.Order;
 import com.simpsoft.salesCommission.app.model.OrderDetail;
+import com.simpsoft.salesCommission.app.model.OrderLineItems;
 import com.simpsoft.salesCommission.app.model.OrderRoster;
+import com.simpsoft.salesCommission.app.model.Product;
 import com.simpsoft.salesCommission.app.model.RuleParameter;
 
 @Component
@@ -75,14 +77,31 @@ import com.simpsoft.salesCommission.app.model.RuleParameter;
 				  
 				  newOrder.setOrderTotal(order.getOrderTotal());
 				  
-				//  List <OrderXML> orderList = orderRoster.getOrderXML();
-				  //Employee employee = new Employee();
-				  //employee.setEmployeeName(order.getImportedBy());
-				 
+				  List <OrderLineItemsXML> orderLineItemList = order.getOrderLineItemsXML();
+				  List <OrderLineItems> newOrderLineItemList = new ArrayList<OrderLineItems>();
+				  for (Iterator iterator2 = orderLineItemList.iterator(); iterator2.hasNext();) {
+						
+					  OrderLineItemsXML orderLineItem = (OrderLineItemsXML) iterator2.next();
+					 
+					 
+					  OrderLineItems newOrderLineItem = new OrderLineItems();
+					  
+					  Product product = ordrAPI.searchProduct(orderLineItem.getProduct());
+					  newOrderLineItem.setProduct(product);	  
+					 
+					  newOrderLineItem.setQuantity(orderLineItem.getQuantity());
+					  newOrderLineItem.setRate(orderLineItem.getRate());
+					  newOrderLineItem.setDiscountPercentage(orderLineItem.getDiscountPercentage());
+					  newOrderLineItem.setDutyPercentage(orderLineItem.getDutyPercentage());
+					  newOrderLineItem.setSubtotal(orderLineItem.getSubtotal());
+					 
+					  newOrderLineItemList.add(newOrderLineItem);
+				  } 
+				  
+				  newOrder.setOrderLineItems(newOrderLineItemList);
 				  newOrderList.add(newOrder);
 			  } 
-			  //Employee employee = new Employee();
-			  //employee.setEmployeeName(order.getImportedBy());
+			  
 			 Employee employee = empAPI.searchEmployee(orderRoster.getImportedBy());
 			  newOrderRoster.setImportedBy(employee);
 			  newOrderRoster.setOrderDetail(newOrderList);
