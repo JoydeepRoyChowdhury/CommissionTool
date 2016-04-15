@@ -20,7 +20,7 @@
 			$(document).ready(function() {
                     $("#grid").kendoGrid({
                     	 pageSize: 10,
-                    	 height: 300, 
+                    	 height: 200, 
                     	 //scrollable: {
                             //virtual: true
                          //},                                                
@@ -114,7 +114,7 @@
 <!--  <h2><b align="center">Employee List</b></h2>-->
 		<div id="example">
 			<!--<c:if test="${!empty listEmp}">-->
-					
+				<!--  <form action="/CommissionTool/searchcheckbox" method="post" >-->
 				<table id="grid">
 					<colgroup>
 						<col />
@@ -128,22 +128,84 @@
 					<tr>
 						<th data-field="id">ID</th>
 						<th data-field="employeeName">Employee Name </th>
+						<th data-field="salary">Salary </th>
 						<th  data-field="startDate">Start Date </th>
 						<th data-field="terminationDate">Termination Date </th>
-						<th data-field="action">Action </th>
+						<th data-field="action">ChooseEmployee </th>
 					</tr>
 				</thead>
+				
 					<c:forEach items="${listEmp}" var="emp">
 							<tr>
 								<td>${emp.id}</td>
 								<td>${emp.employeeName}</td>
+								<td>${emp.salary}</td>
 								<td>${emp.startDate}</td>
 								<td>${emp.terminationDate}</td>	
+								
 								<td><input type="checkbox" value="${emp.employeeName}" name="select" id="select" onclick="sendData();"></td>	
-							</tr>							
+							   
+							</tr>						
 					</c:forEach>
+					
 				</table>
+				<!--</form>-->
+				<table border="1">
+				<thead>
+					<tr rowspan="4">
+						<th data-field="id" >ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+						<th data-field="details">RuleName&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+						
+     					
+     					 
+   					
+						<th data-field="parameter">Parameter&nbsp;&nbsp;|&nbsp;&nbsp; Value &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+						<!--  <th data-field="value">Value&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>--> 
+					</tr>
+				</thead>
+				<c:forEach items="${List2}" var="as">
+				<tr>
+					<td>${as.id}</td>	
+					<td>${as.ruleName}</td>
+					<td>
+					
+						<div>
+						
+							<table border="1">
+							<c:forEach items="${as.ruleParameter}" var="asss">	
+								<!--<thead>
+									  <th data-field="parameter">Parameter&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+									<th data-field="value">Value&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+								</thead>-->
+						
+								<tr>
+									<td >${asss.parameterName}</td>									
+									<td >${asss.parameterValue}</td>	
+								</tr>
+							</c:forEach>
+						 </table>
+						
+					</div>
+					</td>	
+					<!--<c:forEach items="${List3}" var="asss">						
+								<td>${asss.parameterName}</td>
+								<td>${asss.parameterValue}</td>		
+					 </c:forEach>-->				
+				</tr>							
+				</c:forEach>	
+  	
+								
+					 
+				<!-- </tr>
+				<tr>	
+					<c:forEach items="${List3}" var="asss">						
+								<td>${asss.parameterName}</td>
+								<td>${asss.parameterValue}</td>		
+					 </c:forEach> -->
+						 
 				
+				</table>
+				 
 			<!--</c:if>-->
 		</div>
 	</body>
