@@ -20,12 +20,14 @@ import java.util.Iterator;
 import java.util.List;
 
 import com.simpsoft.salesCommission.app.api.EmployeeAPI;
+import com.simpsoft.salesCommission.app.api.RoleAPI;
 import com.simpsoft.salesCommission.app.dataloader.EmployeeManagerMapXML;
 import com.simpsoft.salesCommission.app.dataloader.EmployeeRoleMapXML;
 import com.simpsoft.salesCommission.app.dataloader.EmployeeXML;
 import com.simpsoft.salesCommission.app.model.Employee;
 import com.simpsoft.salesCommission.app.model.EmployeeManagerMap;
 import com.simpsoft.salesCommission.app.model.EmployeeRoleMap;
+import com.simpsoft.salesCommission.app.model.Role;
 import com.simpsoft.salesCommission.app.model.RuleParameter;
 @Component
 	public class ReadXMLFile {	
@@ -33,6 +35,7 @@ import com.simpsoft.salesCommission.app.model.RuleParameter;
 		  ApplicationContext context = 
 		            new ClassPathXmlApplicationContext("/applicationContext.xml");
 		  EmployeeAPI empAPI = (EmployeeAPI) context.getBean("employeeApi");
+		  RoleAPI roleAPI = (RoleAPI) context.getBean("roleApi");
 		  
 		  ReadXMLFile rdx = new ReadXMLFile();
 		  List <EmployeeXML> empXmlList = rdx.parseXML();
@@ -63,21 +66,21 @@ import com.simpsoft.salesCommission.app.model.RuleParameter;
 			  List<EmployeeRoleMapXML> employeeRolMap = employeeXml.getEmployeeRoleMapXml();
 			  List<EmployeeRoleMap> newEmloyeeRolMap = new ArrayList<EmployeeRoleMap>();
 			  
-			/*  for (Iterator iterator1 = employeeRolMap.iterator(); iterator1.hasNext();) {
+			  for (Iterator iterator2 = employeeRolMap.iterator(); iterator2.hasNext();) {
 				  
-				  EmployeeManagerMapXML employeeManagerMapXML  = (EmployeeManagerMapXML) iterator1.next();
+				  EmployeeRoleMapXML employeeRolMapXML  = (EmployeeRoleMapXML) iterator2.next();
 				 
 				  EmployeeRoleMap empRolMap = new EmployeeRoleMap();
-				  Employee manager = empAPI.searchEmployee(employeeManagerMapXML.getManager());
-				  empMgrMap.setManager(manager);
-				  empMgrMap.setStartDate(employeeManagerMapXML.getStartDate());
-				  empMgrMap.setEndDate(employeeManagerMapXML.getEndDate());
-				  newEmloyeeRolMap.add(empMgrMap);
-			  } */
+				  Role role = roleAPI.searchRole(employeeRolMapXML.getRole());
+				  empRolMap.setRole(role);
+				  empRolMap.setStartDate(employeeRolMapXML.getStartDate());
+				  empRolMap.setEndDate(employeeRolMapXML.getEndDate());
+				  newEmloyeeRolMap.add(empRolMap);
+			  } 
 			  
+			  newEmployee.setEmployeeRoleMap(newEmloyeeRolMap);
 			  
-			  newEmployee.setEmployeeManagerMap(newEmloyeeMgrMap);
-			//  empAPI.createEmployee(newEmployee);
+			  empAPI.createEmployee(newEmployee);
 		  }
 	  }
 	  public List<EmployeeXML> parseXML() {
@@ -176,6 +179,7 @@ import com.simpsoft.salesCommission.app.model.RuleParameter;
 	                     empXml.setStartDate(date);
 	                   //  emp.setSalary(salary);
 	                     empXml.setEmployeeManagerMapXml(employeeMgrMap);
+	                     empXml.setEmployeeRoleMapXml(employeeRoleMap);
 	                     employeesXml.add(empXml);
 	                   
 	              }
