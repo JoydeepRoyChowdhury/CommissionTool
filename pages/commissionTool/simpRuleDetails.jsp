@@ -164,15 +164,15 @@ td {
 
 					<tr>
 						<td><b>Rule Name:</b></td>
-						<td><input type="text" name="ruleName"></td>
+						<td><input type="text" name="ruleName" size=50></td>
 					</tr>
 					<tr>
 						<td><b>Description:</b></td>
-						<td><input type="text" name="description"></td>
+						<td><textarea name="description" rows="4" cols="50"></textarea></td>
 					</tr>
 					<tr>
 						<td><b>RuleDetails</b></td>
-						<td><input type="text" name="ruleDetails"></td>
+						<td><input type="text" name="ruleDetails" size=50></td>
 					</tr>
 					<tr>
 						<td><b>Rule Type:</b></td>
@@ -219,42 +219,44 @@ td {
 						</TD>
 					</tr>
 
-
-					<tr>
-						<td><b>Calculation mode:&nbsp;</b></td>
-						<td><input type="radio" name="calculationMode" value="i">
-
-							&nbsp;individual&nbsp;<input type="radio" name="calculationMode"
-							value="r">&nbsp;Rank&nbsp;<br /> Within&nbsp;<input
-							type="text" Name="rankCount" value="0" size="4">&nbsp;ranks
-							in&nbsp;<input type="radio" Name="rankType" value="Number">&nbsp;number&nbsp;<input
-							type="radio" Name="rankType" value="percentage">&nbsp;percentage
-							<br /> <br />Population&nbsp;<input type="radio"
-							Name="populationType" value="SameManager">&nbsp;Under
-							same reporting manager<br /> <input type="radio"
-							Name="populationType" value="SameRole">&nbsp;Same role<br />
-							<input type="radio" Name="populationType" value="Global">&nbsp;Global
-							Upto &nbsp;<input type="text" Name="populationUpto" size="4"
-							value="0">&nbsp;level up</td>
-
-
-					</tr>
+<tr>
+			<td><b>Calculation mode :</b></td>
+			<td><input type="radio" name="calculationMode" value="i">Individual&nbsp;&nbsp;&nbsp;&nbsp;<input
+				type="radio" name="calculationMode" value="r">Rank</td>
+			</tr>
+			<tr>
+			<td></td>
+			<td>Within <input type="text" Name="rankCount" value="0" size="4">ranks in <input type="radio" Name="rankType" value="Number">number<input type="radio" Name="rankType" value="percentage">percentage</td>
+			</tr>
+			<tr>
+			<td></td>
+			<td>
+				<table>
+					<tr><td>Population</td><td></td><td><input type="radio" Name="populationType" value="SameManager">Under same reporting manager</td></tr>
+					<tr><td></td><td></td><td><input type="radio" Name="populationType" value="SameRole">Same role</td></tr>
+					<tr><td></td><td></td><td><input type="radio" Name="populationType" value="Global">Global Upto <input type="text" Name="populationUpto" size="4"
+							value="0"></input> level up</td></tr>
+				</table>
+			</td>
+			</tr>
 
 					<tr>
 						<td><b>Based on: </b></td>
-						<td>Aggregate function<br /> <select
+						<td><table>
+					<tr><td>Aggregate function</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>Field</td></tr>
+						<tr><td><select
 							name="aggregateFunctions"><c:forEach
 									items="${listRule1}" var="rule">
 									<option value="${rule.functionName}">
 										<c:out value="${rule.functionName}" />
 									</option>
 								</c:forEach>
-						</select> &nbsp;Field&nbsp; <select name="field"><option
+						</select>
+						</td><td></td><td><select name="field"><option
 									VALUE="lineItemTotal">Line Item Total
 								<option value="quantity">Quantity</select>
-						</td>
-
-					</tr>
+						</td></table>
+						</td></tr>
 					<!--  
 					<tr>
 						<td><b>Qualifying Clause</b></td>
