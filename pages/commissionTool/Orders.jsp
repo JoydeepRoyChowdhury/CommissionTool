@@ -105,7 +105,7 @@ $(document)
 						<th data-field="ImportId">Import Id</th>
 						<th data-field="ImportDate">Import Date</th>
 						<th data-field="CountOfOrders">Count Of Orders</th>
-						<th data-field="ImportedBy">Imported By</th>
+						<th data-field="importedBy">Imported By</th>
 						<th data-field="Status">Status</th>
 
 					</tr>
@@ -114,8 +114,14 @@ $(document)
 					<c:forEach items="${listOrder}" var="order">
 						<tr>
 
-
-							<td><a href="/CommissionTool/orderDetails">${order.id}</a></td>
+						<!--  
+						<td>
+							<form action="/CommissionTool/submitId" method="POST">
+							<input type="button" name="importId"  value="${order.id}"></form></td>
+							-->
+						
+							<td><a href="/CommissionTool/orderDetails/${order.id}">${order.id}</a></td>
+							 
 							<td>${order.importDate}</td>
 							<td>${order.countOfOrders}</td>
 							<td>${order.importedBy.employeeName}</td>

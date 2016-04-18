@@ -24,8 +24,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import com.simpsoft.salesCommission.app.UImodel.FileList;
+import com.simpsoft.salesCommission.app.UImodel.PersonListContainer;
+import com.simpsoft.salesCommission.app.UImodel.PersonListContainer1;
 import com.simpsoft.salesCommission.app.UImodel.RuleUI;
+import com.simpsoft.salesCommission.app.api.EmployeeAPI;
 import com.simpsoft.salesCommission.app.api.OrderAPI;
+import com.simpsoft.salesCommission.app.model.OrderDetail;
 import com.simpsoft.salesCommission.app.model.OrderRoster;
 import com.simpsoft.salesCommission.app.model.RuleParameter;
 import org.springframework.web.multipart.MultipartFile;
@@ -40,8 +44,7 @@ public class OrderController {
 	
 	@Autowired
 	private OrderAPI orderApi;
-	
-	
+
 	//private static final Logger logger = Logger.getLogger(EmployeeController.class);
 	
 	
@@ -83,15 +86,34 @@ public class OrderController {
         map.addAttribute("files", fileNames);
         return "redirect:/importOrders";
     }
-	
+	/*
+	@RequestMapping(value = "/submitId", method = RequestMethod.POST)
+	public String addRule(@ModelAttribute("SpringWeb")ImportOrderId id, ModelMap model) {
+		model.addAttribute("importId" ,id.getId());
+		System.out.println(id.getId());		
+		
+		return "redirect:/orderDetails";
+		
+	}
+	*/
 
-	@RequestMapping(value = "/orderDetails", method = RequestMethod.GET)
-	public String OrderDetails(ModelMap model, HttpSession session, HttpServletRequest request) {
+	@RequestMapping(value = "/orderDetails/{id}", method = RequestMethod.GET) 
+	public String OrderDetails(@PathVariable("id") int id, ModelMap model, HttpSession session,
+			HttpServletRequest request) {
 		//model.addAttribute("listOrder", orderApi.listOfOrderRosters());
+		OrderRoster ors = orderApi.getOrderRoster(id);
+		List<OrderDetail> ord = ors.getOrderDetail();
+		List<OrderDetail> ord1 = new ArrayList<OrderDetail>();
+		Iterator it = ord.iterator();	 
+	    while(it.hasNext()) {
+	    	OrderDetail ord2 = (OrderDetail)it.next();
+	      System.out.println(ord2.getId());
+	      System.out.println(ord2.getOrderDate());
+	      ord1.add(ord2);
+	    }
+	    model.addAttribute("ordetails", ord1);
 		return "OrderDetails";
 	}
-
-
 
 }
 
