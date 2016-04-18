@@ -23,10 +23,6 @@ public class EmployeeManagerMap {
 	@Column(name = "id")
 	private long id;
 
-/*	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "EMP_ID")
-	private Employee employee; */
-
 	@Column(name = "startDate")
 	private Date startDate;
 
@@ -56,21 +52,7 @@ public class EmployeeManagerMap {
 	/**
 	 * @return the employee
 	 */
-/*	public Employee getEmployee() {
-		return employee;
-	}
-
-	/**
-	 * @param employee
-	 *            the employee to set
-	 */
-/*	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
-
-	/**
-	 * @return the startDate
-	 */
+	
 	public Date getStartDate() {
 		return startDate;
 	}
@@ -113,19 +95,5 @@ public class EmployeeManagerMap {
 		this.manager = manager;
 	}
 
-	/**
-	 * @return the subordinates
-	 */
-	/*
-	 * public Set<Employee> getSubordinates() { return subordinates; }
-	 */
-	/**
-	 * @param subordinates
-	 *            the subordinates to set
-	 */
-	/*
-	 * public void setSubordinates(Set<Employee> subordinates) {
-	 * this.subordinates = subordinates; }
-	 */
 
 }

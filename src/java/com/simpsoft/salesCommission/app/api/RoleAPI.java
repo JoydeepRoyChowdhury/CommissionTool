@@ -14,16 +14,16 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.simpsoft.salesCommission.app.model.Employee;
 import com.simpsoft.salesCommission.app.model.Role;
-
 
 @Component
 public class RoleAPI {
-	
+
 	@Autowired
 	private static SessionFactory sessionFactory;
+	
 	private static final Logger logger = Logger.getLogger(RoleAPI.class);
+
 	public void setSessionFactory(SessionFactory factory) {
 		sessionFactory = factory;
 	}
@@ -36,10 +36,11 @@ public class RoleAPI {
 		tx = session.beginTransaction();
 		return (Role) session.get(Role.class, RoleID);
 	}
-/**
- * 
- * @param role
- */
+
+	/**
+	 * 
+	 * @param role
+	 */
 	public long createRole(Role role) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
@@ -62,6 +63,7 @@ public class RoleAPI {
 		}
 		return newRole.getId();
 	}
+
 	/**
 	 * Method for getting list of roles
 	 * 
@@ -76,34 +78,36 @@ public class RoleAPI {
 		for (Iterator iterator = roles.iterator(); iterator.hasNext();) {
 			Role role = (Role) iterator.next();
 			logger.debug("GET THE RULE DETAILS FROM DATABASE" + role.getRoleName() + role.getReportsTo());
-					
+
 		}
 		return roles;
 	}
-	
+
 	public Role searchRoleByName(String roleName) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		Role roleResult = new Role();
 		try {
-		tx = session.beginTransaction();
-		
-	/*	Criteria cr = session.createCriteria(Role.class);
-		cr.add(Restrictions.like("reportsTo", roleName));
-		List<Role> results = (List<Role>) cr.list();
-		 roleResult = (Role) results.get(0); */
-		List roles = session.createQuery("FROM Role").list();
-	 	for (Iterator iterator = roles.iterator(); iterator.hasNext();) {
-			
-			Role role = (Role) iterator.next();
-			if(roleName.equals(role.getRoleName())){
-				roleResult.setId(role.getId());
-				roleResult.setRoleName(role.getRoleName());
-				roleResult.setDescription(role.getDescription());
-				roleResult.setReportsTo(role.getReportsTo());			
-			} 
-			} 
-		
+			tx = session.beginTransaction();
+
+			/*
+			 * Criteria cr = session.createCriteria(Role.class);
+			 * cr.add(Restrictions.like("reportsTo", roleName)); List<Role>
+			 * results = (List<Role>) cr.list(); roleResult = (Role)
+			 * results.get(0);
+			 */
+			List roles = session.createQuery("FROM Role").list();
+			for (Iterator iterator = roles.iterator(); iterator.hasNext();) {
+
+				Role role = (Role) iterator.next();
+				if (roleName.equals(role.getRoleName())) {
+					roleResult.setId(role.getId());
+					roleResult.setRoleName(role.getRoleName());
+					roleResult.setDescription(role.getDescription());
+					roleResult.setReportsTo(role.getReportsTo());
+				}
+			}
+
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
@@ -113,17 +117,17 @@ public class RoleAPI {
 		}
 		return roleResult;
 	}
-	
+
 	public Role searchRole(String roleName) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		List<Role> roleList = new ArrayList<>();
 		try {
-		tx = session.beginTransaction();
-		Criteria crit = session.createCriteria(Role.class);
-		crit.add(Restrictions.eq("roleName", roleName));
-		roleList = crit.list();
-				tx.commit();
+			tx = session.beginTransaction();
+			Criteria crit = session.createCriteria(Role.class);
+			crit.add(Restrictions.eq("roleName", roleName));
+			roleList = crit.list();
+			tx.commit();
 
 		} catch (HibernateException e) {
 			if (tx != null)
@@ -138,7 +142,7 @@ public class RoleAPI {
 	/* ............. delete role........ */
 
 	public void deleteRole(Integer RoleID) {
-		
+
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
@@ -156,7 +160,7 @@ public class RoleAPI {
 	}
 
 	public void editRole(Role role) {
-		
+
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
@@ -165,7 +169,7 @@ public class RoleAPI {
 			role1.setId(role.getId());
 			role1.setRoleName(role.getRoleName());
 			role1.setDescription(role.getDescription());
-			//role1.setReportTo(role.getReportTo());
+			// role1.setReportTo(role.getReportTo());
 			session.save(role1);
 			tx.commit();
 		} catch (HibernateException e) {

@@ -104,12 +104,12 @@ import com.simpsoft.salesCommission.app.model.RuleParameter;
 	                   String empName = node.getAttributes().getNamedItem("Employeename").getNodeValue();
 	                   
 	                   String startDate = (elem.getElementsByTagName("StartDate")
-	                		 		.item(0).getChildNodes().item(0).getNodeValue());
-	                   Integer salary = Integer.parseInt(elem.getElementsByTagName("Salary")
-	                                       .item(0).getChildNodes().item(0).getNodeValue());
-	                   
+	                		 		.item(0).getChildNodes().item(0).getNodeValue());                   
 	                   DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 	                   Date date = df.parse(startDate); 
+	                   
+	                   Integer salary = Integer.parseInt(elem.getElementsByTagName("Salary")
+                               .item(0).getChildNodes().item(0).getNodeValue());
 	                   
 	                   List<EmployeeManagerMapXML> employeeMgrMap = new ArrayList<EmployeeManagerMapXML>();
 						NodeList nodeList1 = elem.getElementsByTagName("manager");

@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 @Table(name = "SplitQualifyingClause")
 public class SplitQualifyingClause {
@@ -20,13 +22,17 @@ public class SplitQualifyingClause {
 	@Column(name = "value")
 	private String value;
 
-	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToOne(cascade = CascadeType.MERGE, orphanRemoval = true)
 	@JoinColumn(name = "FLD_LST_ID")
 	private FieldList fieldList;
 
-	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToOne(cascade = CascadeType.MERGE, orphanRemoval = true)
 	@JoinColumn(name = "CND_LST_ID")
 	private ConditionList conditionList;
+	
+	@Type(type = "org.hibernate.type.NumericBooleanType")
+	@Column(name = "notFlag", nullable = false)
+	private boolean notFlag;
 	
 	public SplitQualifyingClause() {
 	}
@@ -85,5 +91,19 @@ public class SplitQualifyingClause {
 	 */
 	public void setConditionList(ConditionList conditionList) {
 		this.conditionList = conditionList;
+	}
+
+	/**
+	 * @return the notFlag
+	 */
+	public boolean isNotFlag() {
+		return notFlag;
+	}
+
+	/**
+	 * @param notFlag the notFlag to set
+	 */
+	public void setNotFlag(boolean notFlag) {
+		this.notFlag = notFlag;
 	}
 }

@@ -410,9 +410,6 @@ public class OrderAPI {
 			newOrderRoster.setImportDate(orderRoster.getImportDate());
 			newOrderRoster.setCountOfOrders(orderRoster.getCountOfOrders());
 			newOrderRoster.setStatus(orderRoster.getStatus());
-			// Employee employee =
-			// employeeAPI.searchEmployee(orderRoster.getImportedBy().getEmployeeName());
-			// newOrderRoster.setImportedBy(employee);
 			newOrderRoster.setImportedBy(orderRoster.getImportedBy());
 			newOrderRoster.setOrderDetail(orderRoster.getOrderDetail());
 			session.save(newOrderRoster);

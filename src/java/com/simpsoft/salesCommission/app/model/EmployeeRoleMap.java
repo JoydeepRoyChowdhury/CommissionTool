@@ -20,10 +20,6 @@ public class EmployeeRoleMap {
 	@Column(name = "id")
 	private long id;
 
-	/*@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "EMP_ID")
-	private Employee employee; */
-
 	@OneToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "ROLE_ID")
 	private Role role;
@@ -47,21 +43,6 @@ public class EmployeeRoleMap {
 	 */
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	/**
-	 * @return the employee
-	 */
-/*	public Employee getEmployee() {
-		return employee;
-	}
-
-	/**
-	 * @param employee
-	 *            the employee to set
-	 */
-/*	public void setEmployee(Employee employee) {
-		this.employee = employee;
 	}
 
 	/**

@@ -12,18 +12,23 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "OrderLineItemsSplit")
 public class OrderLineItemsSplit {
+	
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
 	private long id;
 	
-	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToOne(cascade = CascadeType.MERGE, orphanRemoval = true)
 	@JoinColumn(name = "BEN_ID")
 	private Employee beneficiary;
 	
-	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToOne(cascade = CascadeType.MERGE, orphanRemoval = true)
 	@JoinColumn(name = "SPLT_RUL_ID")
 	private SplitRule splitRule;
+	
+	@OneToOne(cascade = CascadeType.MERGE, orphanRemoval = true)
+	@JoinColumn(name = "ORD_LN_ID")
+	private OrderLineItems orderLineItems;
 	
 	@Column(name = "splitQuantity")
 	private int splitQuantity;
@@ -32,5 +37,89 @@ public class OrderLineItemsSplit {
 	private int splitSubTotal;
 
 	public OrderLineItemsSplit() {
+	}
+
+	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the beneficiary
+	 */
+	public Employee getBeneficiary() {
+		return beneficiary;
+	}
+
+	/**
+	 * @param beneficiary the beneficiary to set
+	 */
+	public void setBeneficiary(Employee beneficiary) {
+		this.beneficiary = beneficiary;
+	}
+
+	/**
+	 * @return the splitRule
+	 */
+	public SplitRule getSplitRule() {
+		return splitRule;
+	}
+
+	/**
+	 * @param splitRule the splitRule to set
+	 */
+	public void setSplitRule(SplitRule splitRule) {
+		this.splitRule = splitRule;
+	}
+
+	/**
+	 * @return the orderLineItems
+	 */
+	public OrderLineItems getOrderLineItems() {
+		return orderLineItems;
+	}
+
+	/**
+	 * @param orderLineItems the orderLineItems to set
+	 */
+	public void setOrderLineItems(OrderLineItems orderLineItems) {
+		this.orderLineItems = orderLineItems;
+	}
+
+	/**
+	 * @return the splitQuantity
+	 */
+	public int getSplitQuantity() {
+		return splitQuantity;
+	}
+
+	/**
+	 * @param splitQuantity the splitQuantity to set
+	 */
+	public void setSplitQuantity(int splitQuantity) {
+		this.splitQuantity = splitQuantity;
+	}
+
+	/**
+	 * @return the splitSubTotal
+	 */
+	public int getSplitSubTotal() {
+		return splitSubTotal;
+	}
+
+	/**
+	 * @param splitSubTotal the splitSubTotal to set
+	 */
+	public void setSplitSubTotal(int splitSubTotal) {
+		this.splitSubTotal = splitSubTotal;
 	}	
 }

@@ -22,11 +22,6 @@ public class RuleComposite {
 	@GeneratedValue
 	@Column(name = "id")
 	private long id;
-
-/*	@ManyToMany(cascade = { CascadeType.MERGE})
-	@JoinColumn(name = "RULE_COMPJOIN_ID")
-	@IndexColumn(name = "detailSrl")
-	private List<Rule> rule; */
 	
 	@ManyToMany(cascade = {CascadeType.MERGE})
     @JoinTable(name="RULE_COMPRULE", 
@@ -64,19 +59,5 @@ public class RuleComposite {
 		this.compJoinRule = compJoinRule;
 	}
 
-	/**
-	 * @return the ruleSimple
-	 */
-/*	public List<Rule> getRule() {
-		return rule;
-	}
-
-	/**
-	 * @param ruleSimple
-	 *            the ruleSimple to set
-	 */
-/*	public void setRule(List<Rule> rule) {
-		this.rule = rule;
-	} */
 
 }

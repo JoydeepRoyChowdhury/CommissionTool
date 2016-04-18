@@ -21,15 +21,6 @@
 
 		<property name="configLocation" value="classpath:hibernate.cfg.xml" />
 
-	<!--  	<property name="annotatedClasses">
-			<list>
-				<value>com.simpsoft.salesCommission.app.model.Employee</value>
-				<value>com.simpsoft.salesCommission.app.model.Role</value>
-				<value>com.simpsoft.salesCommission.app.model.Rule</value>
-				
-			</list>
-		</property> -->
-
 	</bean>
 	<bean id="template" class="org.springframework.orm.hibernate3.HibernateTemplate">
 		<property name="sessionFactory" ref="sessionFactory"></property>
@@ -51,6 +42,9 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<bean id="orderApi" class="com.simpsoft.salesCommission.app.api.OrderAPI">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="splitRuleApi" class="com.simpsoft.salesCommission.app.api.SplitRuleAPI">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 </beans>
