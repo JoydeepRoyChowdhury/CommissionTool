@@ -38,6 +38,7 @@ import com.simpsoft.salesCommission.app.model.OrderRoster;
 import com.simpsoft.salesCommission.app.model.Product;
 import com.simpsoft.salesCommission.app.model.ProductSubType;
 import com.simpsoft.salesCommission.app.model.ProductType;
+import com.simpsoft.salesCommission.app.model.Rule;
 import com.simpsoft.salesCommission.app.model.State;
 
 @Component
@@ -677,6 +678,29 @@ public class OrderAPI {
 			session.close();
 		}
 		return empList.get(0);
+	}
+/**
+ * Method for getting orderRoster details by import ID	
+ * @param importID
+ * @return
+ */
+public OrderRoster getOrderRoster(long importID) {
+		
+	OrderRoster newOrderRoster = new OrderRoster();
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			newOrderRoster = (OrderRoster) session.get(OrderRoster.class, importID);
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return newOrderRoster;
 	}
 
 }
