@@ -185,12 +185,6 @@
 
 	<!-- Calling Java Main -->
 	<target name="callJava" depends="compile, package">
-		<java classname="com.simpsoft.salesCommission.app.XMLReader.ReadXMLFile"  fork="true"
-	           failonerror="true">
-			<arg value="-h"/>
-			<classpath refid="build.class.path" />
-			<classpath path="${temp.dir.classes}" />
-		</java>
 		<java classname="com.simpsoft.salesCommission.app.XMLReader.ReadXMLForAggregateFunction"  fork="true"
 			           failonerror="true">
 					<arg value="-h"/>
@@ -226,19 +220,73 @@
 											<arg value="-h"/>
 											<classpath refid="build.class.path" />
 											<classpath path="${temp.dir.classes}" />
-										</java>
+										</java>	
+		<java classname="com.simpsoft.salesCommission.app.XMLReader.ReadXMLForState"  fork="true"
+			           failonerror="true">
+					<arg value="-h"/>
+					<classpath refid="build.class.path" />
+					<classpath path="${temp.dir.classes}" />
+				</java>
+		<java classname="com.simpsoft.salesCommission.app.XMLReader.ReadXMLForAddress"  fork="true"
+			           failonerror="true">
+					<arg value="-h"/>
+					<classpath refid="build.class.path" />
+					<classpath path="${temp.dir.classes}" />
+				</java>
+		<java classname="com.simpsoft.salesCommission.app.XMLReader.ReadXMLFile"  fork="true"
+			           failonerror="true">
+					<arg value="-h"/>
+					<classpath refid="build.class.path" />
+					<classpath path="${temp.dir.classes}" />
+				</java>
+		<java classname="com.simpsoft.salesCommission.app.XMLReader.ReadXMLForCustomerType"  fork="true"
+			           failonerror="true">
+					<arg value="-h"/>
+					<classpath refid="build.class.path" />
+					<classpath path="${temp.dir.classes}" />
+				</java>
+		<java classname="com.simpsoft.salesCommission.app.XMLReader.ReadXMLForCustomer"  fork="true"
+			           failonerror="true">
+					<arg value="-h"/>
+					<classpath refid="build.class.path" />
+					<classpath path="${temp.dir.classes}" />
+				</java>
+		<java classname="com.simpsoft.salesCommission.app.XMLReader.ReadXMLForProductType"  fork="true"
+			           failonerror="true">
+					<arg value="-h"/>
+					<classpath refid="build.class.path" />
+					<classpath path="${temp.dir.classes}" />
+				</java>
+		<java classname="com.simpsoft.salesCommission.app.XMLReader.ReadXMLForProductSubType"  fork="true"
+			           failonerror="true">
+					<arg value="-h"/>
+					<classpath refid="build.class.path" />
+					<classpath path="${temp.dir.classes}" />
+				</java>
+		<java classname="com.simpsoft.salesCommission.app.XMLReader.ReadXMLForProduct"  fork="true"
+			           failonerror="true">
+					<arg value="-h"/>
+					<classpath refid="build.class.path" />
+					<classpath path="${temp.dir.classes}" />
+				</java>
+		<java classname="com.simpsoft.salesCommission.app.XMLReader.ReadXMLForOrderRoster"  fork="true"
+			           failonerror="true">
+					<arg value="-h"/>
+					<classpath refid="build.class.path" />
+					<classpath path="${temp.dir.classes}" />
+				</java>
 		<java classname="com.simpsoft.salesCommission.app.XMLReader.ReadXMLForRuleAssignment"  fork="true"
 									           failonerror="true">
 											<arg value="-h"/>
 											<classpath refid="build.class.path" />
 											<classpath path="${temp.dir.classes}" />
 										</java>
-	<!--	<java classname="com.simpsoft.salesCommission.app.XMLReader.ReadXMLForRuleAssignmentToRole"  fork="true"
+		<java classname="com.simpsoft.salesCommission.app.XMLReader.ReadXMLForRuleAssignmentToRole"  fork="true"
 									           failonerror="true">
 											<arg value="-h"/>
 											<classpath refid="build.class.path" />
 											<classpath path="${temp.dir.classes}" />
-										</java> -->
+										</java> 
 	</target>
 
 </project>
