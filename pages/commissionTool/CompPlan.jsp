@@ -1,6 +1,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+
 	<tiles:insertDefinition name="defaultTemplate">
 	<tiles:putAttribute name="body">
 <head>
@@ -25,6 +26,7 @@
                 $('input[type=radio][name=test1]').not(':checked').each(function(){
                     var other_class=$(this).val();
                     $('.'+other_class).prop('disabled',true);
+                   // location.reload();
                 });
             });
         });
@@ -45,12 +47,12 @@
        
         $(document).ready(function() {
          	$(document).on('click', 'input[type=radio][name=test]', function() 
-        		{ var related_class = $(this).val(); 
-        	$('.' + related_class).prop('disabled', false); 
-        	
-        	$('input[type=radio][name=test]').not(':checked').each(function()
+        		{ 
+         		var clicked = localStorage['clicked'];
+        	   $('.' + related_class).prop('disabled', false); 
+        	  $('input[type=radio][name=test]').not(':checked').each(function()
         		 { var other_class = $(this).val(); 
-        	$('.' + other_class).prop('disabled', true); 
+        	  $('.' + other_class).prop('disabled', true); 
         	}); 
         });
      });   
@@ -152,23 +154,58 @@
     	     });
  });
     
-    function refreshPage(){
-        window.location.reload();
-    } 
-    
-  /*  $(document).ready(function(){
-        document.getElementById("text1").value = localStorage.getItem("value");	
-    });
-
-    $(window).on('beforeunload', function() {
-        localStorage.setItem("value",document.getElementById("text1").value);	
-    }); */     
+  //function refreshPage(){
+     // window.location.reload();
        
+  // } 
+  
+    
+   /* $(document).ready(function(){
+                document.getElementById("text1").value = localStorage.getItem("item1");
+ 
+            }); 
+      
+    localStorage.clear();
+    $(window).on('beforeunload', function() {
+        localStorage.setItem("item1",document.getElementById("text1").value);
+    });*/
+   
+    
+    
+   // $("#my_form").on('submit',function(){
+
+      //  document.getElementById("text1").value = "";
+     //   localStorage.setItem("item1",'');
+
+     //   $(this).submit();
+
+     // }) 
+     
+     
+     /*$(document).ready(function () {
+        $("#form1").submit(function () {
+            $("input[name = 'hidden1']").val($("input[name = 'text1']").val());
+        });
+        $(window).load(function () {
+            $("input[name = 'text1']").val($("input[name = 'hidden1']").val());
+            $("input[name = 'hidden1']").val('');
+        });
+    });*/
+    
+    
+    $(document).ready(function(){
+        $("submit").click(function(){
+            $.ajax({url: "/CommissionTool/compplan", success: function(result){
+                $("#div1").html(result);
+            }});
+        });
+    });
 </script>
 
+  
+     
 
-
-		<h1 align="center">Compensation Plan Assignment</h1></br>
+		<br><h1 align="center">Compensation Plan Assignment</h1>
 		<table>
 		
 			<tr>
@@ -178,15 +215,17 @@
 						<tr>
 						  <td>
 							<label for="radio1">
-									<input type="radio" name="test1" value="radio1" /><b>Employee</b>
+									<input type="radio" name="test1" value="radio1"  /><b>Employee</b>
 							</label><br>	
 							   Select Employee :&nbsp;&nbsp;
 							<input type="image" img src="resources/image/search.png" style="height:30px;width:30px; name="for_radio1[]" class="radio1" disabled="true" onclick="openWindow()"/> &nbsp;&nbsp;&nbsp;&nbsp;
 						   </td>	
 						<td>
-							<form action="/CommissionTool/searchemp" method="post" >
-							Selected Employee <input type="text"  name="EmployeeName" id="text1" name="for_radio1[]" class="radio1" disabled="true" size="11" />
-											  <input type ="submit" value="check">
+							<form action="/CommissionTool/searchemp" method="post">
+							Selected Employee <input type="text"  name="EmployeeName" id="text1" <c:forEach items="${listEmp}" var="emp">"${emp.employeeName}"</c:forEach> name="for_radio1[]"class="radio1" disabled="true" size="11" />
+											 
+											  <input type ="submit" value="check"/>
+						
 							
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Or</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							</form>
@@ -196,7 +235,7 @@
 							<td>
 							<form action="/CommissionTool/Submitrole" method="post" model="command">
 							<label for="radio2"><input type="radio" name="test1" value="radio2"  />Role </label><br>
-							Select Role : <select  name="roleName"  class="radio2" disabled="true" style="width: 80px;">
+							Select Role : <select  name="roleName"  class="radio2" disabled="true" style="width: 100px;">
 												<c:forEach items="${listRole}"
 													var="role">
 													<option value="${role.roleName}">
@@ -257,7 +296,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td>Selected Rule <br>
+				<td> <br>
 					<!--  <table ID="in_tbl_name" border="2">
 					<c:if test="${not empty List2}">-->
 					<!-- <table border="1">
@@ -302,9 +341,9 @@
 							</tr>-->							
 						
 					<!--</table>-->
-					
+			<div id="div1">		
 			<table border="1">
-				<thead>
+				<thead> <h3 align="center">Selected Rule</h2>
 					<tr>
 						<th data-field="id" width="30">ID&nbsp;&nbsp;&nbsp;</th>
 						<th data-field="details" width="20">RuleName&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
@@ -347,22 +386,23 @@
 				</tr>							
 				</c:forEach>	
   		</table>
+  		</div>
 			</c:if>
 					<!--  <form action="/CommissionTool/SubmitRule" method="post" model="command">
 					<table>-->
 			</td></tr>
-					<tr>
+					<!--  <tr>
 						<td colspan="7" align="right"><select name="id"><c:forEach items="${listRules}" var="rule">
                                 <option>
                                     <c:out value="${rule.id}" />
                                 </option>
                 </c:forEach>
             </select>
-								</td>	
+								</td>-->	
 					<!--<td colspan="8" align="right"><input type="submit" onClick="addRow('in_tbl_name')"
-						VALUE="AddRow"></td>-->
+						VALUE="AddRow"></td>
 						<td><input type="Button" onClick="addRow('in_tbl_name')"
-									VALUE="Add New"></td>
+									VALUE="Add New"></td>-->
 									
 									
 						</tr>	

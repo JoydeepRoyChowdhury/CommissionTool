@@ -99,9 +99,8 @@ public class TestCompController {
 	       return new ModelAndView("CompPlan");	
 		}
 
-		EmployeeUI object1 = (EmployeeUI) request.getSession().getAttribute("EmployeeName");
+		EmployeeUI object1 = (EmployeeUI) request.getSession().getAttribute("EmployeeName");	
 		if(object1 != null) {
-
 			RuleAssignment rAssdtail = ruleAssApi.searchAssignedRule(object1.getEmployeeName());
 			List<RuleAssignmentDetails> ptr1 = rAssdtail.getRuleAssignmentDetails();
 			ArrayList<RuleAssignmentDetails> ruleList1 = new ArrayList<RuleAssignmentDetails>();
@@ -126,12 +125,15 @@ public class TestCompController {
 				rl1.add(r1);
 			}
 			// model.addAttribute("List1",ruleList1);
-			model.addAttribute("List2", rl1);
+			model.addAttribute("List2", rl1);	
 			status.setComplete();
 	        session.removeAttribute("EmployeeName");
 	        return new ModelAndView("CompPlan");	
 		}
-		
+	//String rValue = request.getParameter("test1");	
+	
+	
+	
 	return new ModelAndView("CompPlan");
       
 	}
