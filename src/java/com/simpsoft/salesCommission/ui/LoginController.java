@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,8 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.simpsoft.salesCommission.app.UImodel.Login;
 import com.simpsoft.salesCommission.app.api.EmployeeAPI;
-//import javax.validation.Valid;
-import com.simpsoft.salesCommission.app.api.RuleAPI;
 import com.simpsoft.salesCommission.app.model.Employee;
 
 @Controller
@@ -34,10 +33,8 @@ public class LoginController extends HttpServlet {
 	 @RequestMapping(value = "/submitLogin", method = RequestMethod.POST)
 		 public String SubmitLogin(@ModelAttribute("SpringWeb") Login login, HttpServletRequest request,
 				  HttpServletResponse response, ModelMap model) throws ServletException, IOException {
-	       // System.out.println("in submit" + login);
 	        model.addAttribute("userName", login.getUserName());
 	        Employee emp = empApi.searchEmployee(login.getUserName());
-	        //obj1.setUserName(emp.getEmployeeName());
 	        String obj = emp.getEmployeeName();
 			request.getSession().setAttribute("employee",obj);
 	        String ename = emp.getEmployeeName();
@@ -55,4 +52,14 @@ public class LoginController extends HttpServlet {
 	        }
 	 
 	    } 
+	 
+	 @RequestMapping(value = "/logout", method = RequestMethod.GET)
+	 public void Logout(@ModelAttribute("SpringWeb") Login login, HttpServletRequest request,
+			  HttpServletResponse response, ModelMap model) throws ServletException, IOException {
+		 HttpSession session = request.getSession(false);
+		 if(session != null)
+		     session.invalidate();
+		 request.getRequestDispatcher("/login").forward(request,response);
+		 
+		}
 } 
